@@ -8,8 +8,73 @@ export const SCRIPTS_DATA: ScriptDialogue[] = [
     policeAsks: '“Give me your keys right now and show me your phone!”',
     citizenResponseEnglish: '“Namaste Officer. With respect, snatching the ignition key is not permitted under the Motor Vehicles Act. I am happily presenting my Driving License and RC digitally through the government DigiLocker app on this screen.”',
     citizenResponseHindi: '“नमस्ते सर, मोटर व्हीकल एक्ट के तहत गाड़ी की चाबी निकालना उचित नहीं है। मैं डिजिलॉकर ऐप पर अपने सभी अधिकृत दस्तावेज आपको अभी दिखा रहा हूँ।”',
+    citizenResponses: {
+      en: '“Namaste Officer. With respect, snatching the ignition key is not permitted under the Motor Vehicles Act. I am happily presenting my Driving License and RC digitally through the government DigiLocker app on this screen.”',
+      hi: '“नमस्ते सर, मोटर व्हीकल एक्ट के तहत गाड़ी की चाबी निकालना उचित नहीं है। मैं डिजिलॉकर ऐप पर अपने सभी अधिकृत दस्तावेज आपको अभी दिखा रहा हूँ।”',
+      te: '“నమస్తే సార్. మోటారు వాహనాల చట్టం ప్రకారం వాహనం కీ లాక్కోవడం నిబంధనలకు విరుద్ధం. నేను డిజిలాకర్ యాప్ ద్వారా నా డ్రైవింగ్ లైసెన్స్ మరియు ఆర్సీని ఇప్పుడే మీకు చూపిస్తున్నాను.”',
+      ta: '“வணக்கம் ஐயா. மோட்டார் வாகனச் சட்டத்தின்படி சாவியைப் பிடுங்குவது அனுமதிக்கப்படாது. டிஜிலாக்கர் செயலியில் உள்ள எனது ஓட்டுநர் உரிமம் மற்றும் ஆர்.சி-யை நான் காட்டுகிறேன்.”',
+      bn: '“নমস্কার স্যার। মোটর ভেহিকল আইন অনুসারে গাড়ির চাবি কেড়ে নেওয়া নিয়মবিরুদ্ধ। আমি ডিজিলকার অ্যাপের মাধ্যমে আমার ড্রাইভিং লাইসেন্স এবং আরসি দেখাচ্ছি।”',
+      mr: '“नमस्ते साहेब. मोटार वाहन कायद्यानुसार गाडीची चावी काढणे अयोग्य आहे. मी डिजीलॉकर ॲपवर माझे ड्रायव्हिंग लायसन्स आणि आरसी दाखवत आहे.”',
+      gu: '“નમસ્તે સાહેબ. મોટર વ્હીકલ એક્ટ મુજબ વાહનની ચાવી કાઢવી યોગ્ય નથી. હું ડીજીલોકર એપ પર મારા તમામ કાયદેસર દસ્તાવેજો બતાવી રહ્યો છું.”',
+      kn: '“ನಮಸ್ಕಾರ ಸರ್. ಮೋಟಾರು ವಾಹನ ಕಾಯ್ದೆಯಡಿ ವಾಹನದ ಕೀ ಕಸಿದುಕೊಳ್ಳುವುದು ಕಾನೂನುಬಾಹಿರ. ನಾನು ಡಿಜಿಲಾಕರ್ ಆ್ಯಪ್ ಮೂಲಕ ನನ್ನ ಲೈಸೆನ್ಸ್ ಮತ್ತು ಆರ್‌ಸಿ ತೋರಿಸುತ್ತಿದ್ದೇನೆ.”',
+      ml: '“നമസ്കാരം സാർ. മോട്ടോർ വാഹന നിയമപ്രകാരം വാഹനം താക്കോൽ എടുക്കാൻ പാടില്ല. ഡിജിലോക്കർ ആപ്പ് വഴി ഞാൻ എന്റെ ഡ്രൈവിംഗ് ലൈസൻസും ആർസിയും കാണിക്കാം.”',
+      pa: '“ਸਤਿ ਸ਼੍ਰੀ ਅਕਾਲ ਸਰ। ਮੋਟਰ ਵਹੀਕਲ ਐਕਟ ਅਨੁਸਾਰ ਗੱਡੀ ਦੀ ਚਾਬੀ ਖੋਹਣਾ ਗੈਰ-ਕਾਨੂੰਨੀ ਹੈ। ਮੈਂ ਡਿਜੀਲਾਕਰ ਐਪ ਰਾਹੀਂ ਆਪਣੇ ਸਾਰੇ ਦਸਤਾਵੇਜ਼ ਤੁਹਾਨੂੰ ਦਿਖਾ ਰਿਹਾ ਹਾਂ।”',
+      hinglish: '“Namaste Sir. Motor Vehicle Act ke under ignition key nikalna allowed nahi hai. Main DigiLocker app par verified documents aapko screen par dikha raha hoon.”',
+    },
     legalBasis: 'Rule 139 Central Motor Vehicles Rules & MVA guidelines',
-    tip: 'Keep your hands visible, maintain a steady polite voice, and keep hazard lights on.'
+    tip: 'Keep your hands visible, maintain a steady polite voice, and keep hazard lights on.',
+    translations: {
+      hi: {
+        scenario: 'ट्रैफिक पुलिस ने रोका और चाबी या फोन मांगने लगी',
+        policeAsks: '“गाड़ी की चाबी निकालो और फोन दिखाओ!”',
+        tip: 'हाथ स्पष्ट रखें, विनम्र स्वर में बात करें और गाड़ी की पार्किंग लाइट ऑन रखें।'
+      },
+      te: {
+        scenario: 'ట్రాఫిక్ పోలీసులు ఆపి కీ లేదా ఫోన్ ఇవ్వమని అడిగినప్పుడు',
+        policeAsks: '“కీ ఇవ్వు, నీ ఫోన్ చూపించు!”',
+        tip: 'చేతులను స్పష్టంగా ఉంచండి, మర్యాదగా మాట్లాడండి.'
+      },
+      ta: {
+        scenario: 'போக்குவரத்து காவலர் உங்களை நிறுத்தி சாவி அல்லது போன் கேட்கும்போது',
+        policeAsks: '“சாவியைக் கொடு, போனை காட்டு!”',
+        tip: 'கைகளை தெளிவாக வைத்து, மரியாதையுடன் பேசுங்கள்.'
+      },
+      bn: {
+        scenario: 'ট্রাফিক পুলিশ থামিয়ে চাবি বা ফোন চাইলে',
+        policeAsks: '“চাবি দাও আর ফোন দেখাও!”',
+        tip: 'হাত পরিষ্কার রাখুন এবং শান্তভাবে কথা বলুন।'
+      },
+      mr: {
+        scenario: 'ट्रॅफिक पोलिसांनी अडवून चावी किंवा फोन मागितल्यास',
+        policeAsks: '“चावी द्या आणि फोन दाखवा!”',
+        tip: 'शांतपणे बोला आणि वाहनाचे इंडिकेटर सुरू ठेवा.'
+      },
+      gu: {
+        scenario: 'ટ્રાફિક પોલીસે રોકીને ચાવી કે ફોન માંગ્યો હોય ત્યારે',
+        policeAsks: '“ચાવી આપી દો અને ફોન બતાવો!”',
+        tip: 'હાથ ખુલ્લા રાખો અને નમ્રતાથી વાત કરો.'
+      },
+      kn: {
+        scenario: 'ಟ್ರಾಫಿಕ್ ಪೊಲೀಸರು ತಡೆದು ಕೀ ಅಥವಾ ಫೋನ್ ಕೇಳಿದಾಗ',
+        policeAsks: '“ಕೀ ಕೊಡಿ, ಫೋನ್ ತೋರಿಸಿ!”',
+        tip: 'ಗೌರವಯುತವಾಗಿ ಮಾತನಾಡಿ ಮತ್ತು ಶಾಂತರಾಗಿರಿ.'
+      },
+      ml: {
+        scenario: 'ട്രാഫിക് പോലീസ് തടഞ്ഞ് താക്കോലോ ഫോണോ ആവശ്യപ്പെടുമ്പോൾ',
+        policeAsks: '“താക്കോൽ തരൂ, ഫോൺ കാണിക്കൂ!”',
+        tip: 'ശാന്തമായി സംസാരിക്കുക, കൈകൾ വ്യക്തമായി കാണിക്കുക.'
+      },
+      pa: {
+        scenario: 'ਟ੍ਰੈਫਿਕ ਪੁਲਿਸ ਨੇ ਰੋਕ ਕੇ ਚਾਬੀ ਜਾਂ ਫੋਨ ਮੰਗਿਆ',
+        policeAsks: '“ਚਾਬੀ ਕੱਢੋ ਤੇ ਫੋਨ ਦਿਖਾਓ!”',
+        tip: 'ਨਿਮਰਤਾ ਨਾਲ ਗੱਲ ਕਰੋ ਤੇ ਸ਼ਾਂਤ ਰਹੋ।'
+      },
+      hinglish: {
+        scenario: 'Traffic police ne roka aur chabi ya phone mangne lagi',
+        policeAsks: '“Chabi do aur phone dikhao!”',
+        tip: 'Hands visible rakhein aur calm polite tone mein baat karein.'
+      }
+    }
   },
   {
     id: 'script-phone-privacy',
@@ -18,8 +83,33 @@ export const SCRIPTS_DATA: ScriptDialogue[] = [
     policeAsks: '“Unlock your phone, let me see your chats.”',
     citizenResponseEnglish: '“Officer, under the Supreme Court Puttaswamy judgment on Article 21, my digital communications are private. Unless you have a formal Section 91 notice or search warrant in a registered FIR, I am not obliged to unlock it.”',
     citizenResponseHindi: '“सर, सुप्रीम कोर्ट के पुट्टास्वामी फैसले और आर्टिकल 21 के तहत मेरा मोबाइल फोन व्यक्तिगत है। बिना किसी आधिकारिक सर्च वारंट या केस के मैं इसे अनलॉक करने के लिए बाध्य नहीं हूँ।”',
+    citizenResponses: {
+      en: '“Officer, under the Supreme Court Puttaswamy judgment on Article 21, my digital communications are private. Unless you have a formal Section 91 notice or search warrant in a registered FIR, I am not obliged to unlock it.”',
+      hi: '“सर, सुप्रीम कोर्ट के पुट्टास्वामी फैसले और आर्टिकल 21 के तहत मेरा मोबाइल फोन व्यक्तिगत है। बिना किसी आधिकारिक सर्च वारंट या केस के मैं इसे अनलॉक करने के लिए बाध्य नहीं हूँ।”',
+      te: '“సార్, సుప్రీం కోర్టు పుట్టస్వామి తీర్పు మరియు ఆర్టికల్ 21 ప్రకారం నా ఫోన్ ప్రైవేట్. చట్టబద్ధమైన సెక్షన్ 91 నోటీసు లేదా సెర్చ్ వారెంట్ లేకుండా ఫోన్ అన్‌లాక్ చేయాల్సిన అవసరం లేదు.”',
+      ta: '“ஐயா, உச்ச நீதிமன்ற புட்டசுவாமி தீர்ப்பு மற்றும் பிரிவு 21-ன் படி எனது தொலைபேசி தனிப்பட்டதாகும். நீதிமன்ற வாரண்ட் அல்லது பிரிவு 91 நோட்டீஸ் இல்லாமல் அதை திறக்க முடியாது.”',
+      bn: '“স্যার, সুপ্রিম কোর্টের পুট্টাস্বামী রায় এবং অনুচ্ছেদ ২১ অনুসারে আমার ফোন ব্যক্তিগত। আইনানুগ পরোয়ানা ছাড়া এটি আনলক করতে আমি বাধ্য নই।”',
+      mr: '“साहेब, सर्वोच्च न्यायालयाच्या पुट्टास्वामी निकाल आणि कलम २१ नुसार माझा फोन वैयक्तिक आहे. सर्च वॉरंटशिवाय मी तो अनलॉक करण्यास बांधील नाही.”',
+      gu: '“સાહેબ, સુપ્રીમ કોર્ટના પુટ્ટાસ્વામી ચુકાદા અને કલમ ૨૧ મુજબ મારો ફોન ખાનગી છે. કોર્ટના વોરંટ વગર હું તેને અનલોક કરવા બંધાયેલ નથી.”',
+      kn: '“ಸರ್, ಸುಪ್ರೀಂ ಕೋರ್ಟ್‌ನ ಪುಟ್ಟಸ್ವಾಮಿ ತೀರ್ಪು ಮತ್ತು ವಿಧಿ 21 ರ ಪ್ರಕಾರ ನನ್ನ ಫೋನ್ ಖಾಸಗಿಯಾಗಿದೆ. ಅಧಿಕೃತ ವಾರಂಟ್ ಇಲ್ಲದೆ ನಾನು ಇದನ್ನು ಅನ್‌ಲಾಕ್ ಮಾಡಲು ಬದ್ಧನಲ್ಲ.”',
+      ml: '“സാർ, സുപ്രീം കോടതി പുട്ടസ്വാമി വിധിയും ആർട്ടിക്കിൾ 21 പ്രകാരവും എന്റെ ഫോൺ സ്വകാര്യമാണ്. സെർച്ച് വാറന്റ് ഇല്ലാതെ ഇത് അൺലോക്ക് ചെയ്യാൻ ഞാൻ ബാധ്യസ്ഥനല്ല.”',
+      pa: '“ਸਰ, ਸੁਪਰੀਮ ਕੋਰਟ ਦੇ ਪੁੱਟਾਸਵਾਮੀ ਫੈਸਲੇ ਅਤੇ ਧਾਰਾ 21 ਅਧੀਨ ਮੇਰਾ ਫੋਨ ਨਿੱਜੀ ਹੈ। ਬਿਨਾਂ ਵਾਰੰਟ ਦੇ ਮੈਂ ਇਸਨੂੰ ਅਨਲਾਕ ਕਰਨ ਲਈ ਪਾਬੰਦ ਨਹੀਂ ਹਾਂ।”',
+      hinglish: '“Sir, Supreme Court ke Puttaswamy verdict aur Article 21 ke under mera phone private property hai. Valid search warrant ke bina unlock karna mandatory nahi hai.”',
+    },
     legalBasis: 'Article 21 (Right to Privacy) & Section 91 CrPC',
-    tip: 'Never shout or physically snatch the phone back. Politely request their name and rank badge.'
+    tip: 'Never shout or physically snatch the phone back. Politely request their name and rank badge.',
+    translations: {
+      hi: {
+        scenario: 'नाके पर पुलिस फोन या व्हाट्सएप चैट अनलॉक करने को कहे',
+        policeAsks: '“फोन अनलॉक करो, अपनी चैट्स दिखाओ!”',
+        tip: 'गुस्सा न करें, फोन न छीनें, शांतिपूर्वक अधिकारी का नाम और बैच पूछें।'
+      },
+      te: {
+        scenario: 'పోలీసులు మీ ఫోన్ లేదా వాట్సాప్ అన్‌లాక్ చేయమని అడిగితే',
+        policeAsks: '“ఫోన్ అన్‌లాక్ చెయ్, చాట్స్ చూపించు!”',
+        tip: 'కోపం తెచ్చుకోకండి, అధికారి పేరు మరియు బ్యాడ్జ్ నంబర్ అడగండి.'
+      }
+    }
   },
   {
     id: 'script-arrest-grounds',
@@ -28,8 +118,28 @@ export const SCRIPTS_DATA: ScriptDialogue[] = [
     policeAsks: '“Sit in the police jeep, we are arresting you!”',
     citizenResponseEnglish: '“Officer, under Article 22(1) of the Constitution and Section 41B CrPC, please inform me of the specific grounds of arrest and prepare the D.K. Basu Arrest Memo with a witness signature before we leave.”',
     citizenResponseHindi: '“सर, संविधान के आर्टिकल 22(1) और डी.के. बसु गाइडलाइंस के तहत मुझे गिरफ्तारी का कारण बताएं, अरेस्ट मेमो तैयार करें और मुझे अपने परिवार व वकील से बात करने की अनुमति दें।”',
+    citizenResponses: {
+      en: '“Officer, under Article 22(1) of the Constitution and Section 41B CrPC, please inform me of the specific grounds of arrest and prepare the D.K. Basu Arrest Memo with a witness signature before we leave.”',
+      hi: '“सर, संविधान के आर्टिकल 22(1) और डी.के. बसु गाइडलाइंस के तहत मुझे गिरफ्तारी का कारण बताएं, अरेस्ट मेमो तैयार करें और मुझे अपने परिवार व वकील से बात करने की अनुमति दें।”',
+      te: '“సార్, రాజ్యాంగంలోని ఆర్టికల్ 22(1) మరియు సెక్షన్ 41B ప్రకారం అరెస్టుకు గల కారణాలు చెప్పండి, డి.కె. బసు అరెస్ట్ మెమో తయారు చేసి సాక్షుల సంతకం తీసుకోండి.”',
+      ta: '“ஐயா, அரசியலமைப்பு பிரிவு 22(1) மற்றும் 41B-ன் கீழ் கைதிற்கான காரணத்தை தெரிவிக்கவும், டி.கே. பாசு கைது மெமோவை தயார் செய்யவும்.”',
+      bn: '“স্যার, সংবিধানের ২২(১) অনুচ্ছেদ এবং ৪১বি ধারা অনুসারে গ্রেপ্তারের কারণ জানান এবং ডি.কে. বসু অ্যারেস্ট মেমো প্রস্তুত করুন।”',
+      mr: '“साहेब, संविधानाचे कलम २२(१) आणि डी.के. बसू नियमांनुसार मला अटकेचे कारण सांगा आणि साक्षीदाराच्या सहीसह अरेस्ट मेमो तयार करा.”',
+      gu: '“સાહેબ, બંધારણની કલમ ૨૨(૧) અને ડી.કે. બસુ ગાઇડલાઇન મુજબ મને ધરપકડનું કારણ જણાવો અને અરેસ્ટ મેમો તૈયાર કરો.”',
+      kn: '“ಸರ್, ಸಂವಿಧಾನದ ವಿಧಿ 22(1) ಮತ್ತು ಡಿ.ಕೆ. ಬಸು ನಿಯಮಗಳ ಪ್ರಕಾರ ಬಂಧನದ ಕಾರಣ ತಿಳಿಸಿ ಮತ್ತು ಅರೆಸ್ಟ್ ಮೆಮೊ ತಯಾರಿಸಿ.”',
+      ml: '“സാർ, ഭരണഘടനയിലെ ആർട്ടിക്കിൾ 22(1) പ്രകാരം അറസ്റ്റിന്റെ കാരണം വ്യക്തമാക്കുകയും ഡി.കെ. ബസു അറസ്റ്റ് മെമ്മോ തയ്യാറാക്കുകയും ചെയ്യുക.”',
+      pa: '“ਸਰ, ਸੰਵਿਧਾਨ ਦੀ ਧਾਰਾ 22(1) ਤਹਿਤ ਗ੍ਰਿਫ਼ਤਾਰੀ ਦਾ ਕਾਰਨ ਦੱਸੋ ਅਤੇ ਡੀ.ਕੇ. ਬਾਸੂ ਅਰੈਸਟ ਮੈਮੋ ਤਿਆਰ ਕਰੋ।”',
+      hinglish: '“Sir, Article 22(1) aur Section 41B CrPC ke under please grounds of arrest batayein aur D.K. Basu Arrest Memo witness ke saath prepare karein.”',
+    },
     legalBasis: 'Article 22(1), Section 41B CrPC & D.K. Basu Landmark Ruling',
-    tip: 'Do not run or physically resist. Demand the memo and note badge numbers.'
+    tip: 'Do not run or physically resist. Demand the memo and note badge numbers.',
+    translations: {
+      hi: {
+        scenario: 'पुलिस कहे कि चलो अभी थाने चलो, तुम्हें गिरफ्तार कर रहे हैं',
+        policeAsks: '“गाड़ी में बैठो, तुम्हें अरेस्ट कर रहे हैं!”',
+        tip: 'भागने या हाथापाई की कोशिश न करें। शांति से अरेस्ट मेमो और कानूनी नोटिस की मांग करें।'
+      }
+    }
   },
   {
     id: 'script-fir-refusal',
@@ -38,8 +148,28 @@ export const SCRIPTS_DATA: ScriptDialogue[] = [
     policeAsks: '“This is not our jurisdiction / We will not write an FIR for this.”',
     citizenResponseEnglish: '“Sir, under the Supreme Court’s 5-Judge Constitution Bench ruling in Lalita Kumari v. Govt of UP, registering an FIR is mandatory for cognizable complaints. If jurisdiction is an issue, please register a Zero FIR and provide me a signed carbon copy.”',
     citizenResponseHindi: '“सर, सुप्रीम कोर्ट के ललिता कुमारी फैसले के अनुसार संज्ञेय अपराध में एफआईआर दर्ज करना अनिवार्य है। यदि यह आपका क्षेत्राधिकार नहीं है, तो कृपया ‘जीरो एफआईआर’ दर्ज करें और मुझे उसकी फ्री कॉपी दें।”',
+    citizenResponses: {
+      en: '“Sir, under the Supreme Court’s 5-Judge Constitution Bench ruling in Lalita Kumari v. Govt of UP, registering an FIR is mandatory for cognizable complaints. If jurisdiction is an issue, please register a Zero FIR and provide me a signed carbon copy.”',
+      hi: '“सर, सुप्रीम कोर्ट के ललिता कुमारी फैसले के अनुसार संज्ञेय अपराध में एफआईआर दर्ज करना अनिवार्य है। यदि यह आपका क्षेत्राधिकार नहीं है, तो कृपया ‘जीरो एफआईआर’ दर्ज करें और मुझे उसकी फ्री कॉपी दें।”',
+      te: '“సార్, లలితా కుమారి వర్సెస్ యూపీ కేసులో సుప్రీం కోర్టు తీర్పు ప్రకారం ఎఫ్.ఐ.ఆర్ నమోదు చేయడం తప్పనిసరి. పరిధి సమస్య అయితే జీరో ఎఫ్.ఐ.ఆర్ నమోదు చేసి కాపీ ఇవ్వండి.”',
+      ta: '“ஐயா, உச்ச நீதிமன்ற லலிதா குமாரி தீர்ப்பின்படி எஃப்.ஐ.ஆர் பதிவு செய்வது கட்டாயமாகும். வரம்பு சிக்கல் இருந்தால் ஜீரோ எஃப்.ஐ.ஆர் பதிவு செய்து நகல் தரவும்.”',
+      bn: '“স্যার, সুপ্রিম কোর্টের ললিতা কুমারী রায় অনুযায়ী এফআইআর দায়ের করা বাধ্যতামূলক। এখতিয়ার সমস্যা হলে জিরো এফআইআর নথিভুক্ত করুন।”',
+      mr: '“साहेब, सर्वोच्च न्यायालयाच्या ललिता कुमारी निकालानुसार दखलपात्र गुन्ह्यात एफआयआर नोंदवणे बंधनकारक आहे. अधिकारक्षेत्र नसल्यास झिरो एफआयआर नोंदवा.”',
+      gu: '“સાહેબ, સુપ્રીમ કોર્ટના લલિતા કુમારી ચુકાદા મુજબ એફઆઈઆર નોંધવી ફરજિયાત છે. જો વિસ્તારનો પ્રશ્ન હોય તો ઝીરો એફઆઈઆર નોંધીને કોપી આપો.”',
+      kn: '“ಸರ್, ಲಲಿತಾ ಕುಮಾರಿ ತೀರ್ಪಿನ ಪ್ರಕಾರ ಎಫ್‌ಐಆರ್ ದಾಖಲಿಸುವುದು ಕಡ್ಡಾಯ. ವ್ಯಾಪ್ತಿಯ ಸಮಸ್ಯೆಯಿದ್ದರೆ ಝೀರೋ ಎಫ್‌ಐಆರ್ ದಾಖಲಿಸಿ ಪ್ರತಿ ನೀಡಿ.”',
+      ml: '“സാർ, സുപ്രീം കോടതി ലളിത കുമാരി വിധിപ്രകാരം എഫ്.ഐ.ആർ രജിസ്റ്റർ ചെയ്യൽ നിർബന്ധമാണ്. പരിധി പ്രശ്നമാണെങ്കിൽ സീറോ എഫ്.ഐ.ആർ രജിസ്റ്റർ ചെയ്യുക.”',
+      pa: '“ਸਰ, ਸੁਪਰੀਮ ਕੋਰਟ ਦੇ ਲਲਿਤਾ ਕੁਮਾਰੀ ਫੈਸਲੇ ਅਨੁਸਾਰ ਐਫਆਈਆਰ ਦਰਜ ਕਰਨਾ ਲਾਜ਼ਮੀ ਹੈ। ਜੇਕਰ ਹੱਦਬੰਦੀ ਦਾ ਮਾਮਲਾ ਹੈ ਤਾਂ ਜ਼ੀਰੋ ਐਫਆਈਆਰ ਦਰਜ ਕਰੋ।”',
+      hinglish: '“Sir, Supreme Court ke Lalita Kumari judgement ke mutabik cognizable offence mein FIR register karna mandatory hai. Jurisdiction issue hai toh Zero FIR file karein.”',
+    },
     legalBasis: 'Section 154 CrPC & Lalita Kumari v. Govt. of UP (2014)',
-    tip: 'Carry two printed copies of your complaint and get an acknowledgment stamp on one copy.'
+    tip: 'Carry two printed copies of your complaint and get an acknowledgment stamp on one copy.',
+    translations: {
+      hi: {
+        scenario: 'थाने में अधिकारी एफआईआर लिखने से मना कर दे',
+        policeAsks: '“यह हमारे इलाके का मामला नहीं है, हम एफआईआर नहीं लिखेंगे।”',
+        tip: 'शिकायत की दो कॉपियां ले जाएं और एक कॉपी पर रिसीविंग मोहर जरूर लें।'
+      }
+    }
   },
   {
     id: 'script-recording-public',
@@ -48,8 +178,28 @@ export const SCRIPTS_DATA: ScriptDialogue[] = [
     policeAsks: '“Stop recording! Who gave you permission to film the police?”',
     citizenResponseEnglish: '“Officer, I am standing at a safe distance on a public road without obstructing your lawful duty. Recording public servants in public spaces is protected under Article 19(1)(a) for mutual transparency.”',
     citizenResponseHindi: '“सर, मैं सुरक्षित दूरी से रिकॉर्ड कर रहा हूँ और आपकी ड्यूटी में कोई बाधा नहीं डाल रहा। सार्वजनिक स्थान पर रिकॉर्डिंग आर्टिकल 19(1)(a) के तहत नागरिक का अधिकार है।”',
+    citizenResponses: {
+      en: '“Officer, I am standing at a safe distance on a public road without obstructing your lawful duty. Recording public servants in public spaces is protected under Article 19(1)(a) for mutual transparency.”',
+      hi: '“सर, मैं सुरक्षित दूरी से रिकॉर्ड कर रहा हूँ और आपकी ड्यूटी में कोई बाधा नहीं डाल रहा। सार्वजनिक स्थान पर रिकॉर्डिंग आर्टिकल 19(1)(a) के तहत नागरिक का अधिकार है।”',
+      te: '“సార్, నేను సురక్షితమైన దూరం నుండి రికార్డ్ చేస్తున్నాను, మీ విధులకు ఆటంకం కలిగించడం లేదు. పబ్లిక్ స్థలంలో రికార్డింగ్ చేయడం ఆర్టికల్ 19(1)(a) కింద అనుమతించబడింది.”',
+      ta: '“ஐயா, பொது இடத்தில் உங்கள் பணிக்கு இடையூறு இல்லாமல் தூரத்திலிருந்து பதிவு செய்வது அரசியலமைப்பு பிரிவு 19(1)(a)-ன் கீழ் அனுமதிக்கப்பட்ட உரிமை.”',
+      bn: '“স্যার, আমি নিরাপদ দূরত্ব থেকে ভিডিও করছি এবং আপনার কাজে বাধা দিচ্ছি না। ১৯(১)(ক) অনুচ্ছেদ অনুযায়ী এটি নাগরিকের অধিকার।”',
+      mr: '“साहेब, मी सुरक्षित अंतरावरून चित्रीकरण करत असून तुमच्या कामात अडथळा आणत नाही. कलम १९(१)(a) नुसार हे कायदेशीर आहे.”',
+      gu: '“સાહેબ, હું સુરક્ષિત અંતરેથી રેકોર્ડિંગ કરું છું અને તમારી ફરજમાં દખલ કરતો નથી. કલમ ૧૯(૧)(a) હેઠળ આ નાગરિકનો અધિકાર છે.”',
+      kn: '“ಸರ್, ನಾನು ಸುರಕ್ಷಿತ ದೂರದಿಂದ ರೆಕಾರ್ಡ್ ಮಾಡುತ್ತಿದ್ದೇನೆ ಮತ್ತು ನಿಮ್ಮ ಕರ್ತವ್ಯಕ್ಕೆ ಅಡ್ಡಿಪಡಿಸುತ್ತಿಲ್ಲ. ವಿಧಿ 19(1)(a) ಅಡಿಯಲ್ಲಿ ಇದು ಕಾನೂನುಬದ್ಧ.”',
+      ml: '“സാർ, സുരക്ഷിതമായ അകലത്തിൽ നിന്നാണ് ഞാൻ റെക്കോർഡ് ചെയ്യുന്നത്, നിങ്ങളുടെ ഡ്യൂട്ടി തടസ്സപ്പെടുത്തുന്നില്ല. ആർട്ടിക്കിൾ 19(1)(a) പ്രകാരം ഇത് അനുവദനീയമാണ്.”',
+      pa: '“ਸਰ, ਮੈਂ ਸੁਰੱਖਿਅਤ ਦੂਰੀ ਤੋਂ ਰਿਕਾਰਡਿੰਗ ਕਰ ਰਿਹਾ ਹਾਂ ਤੇ ਤੁਹਾਡੇ ਕੰਮ ਵਿੱਚ ਕੋਈ ਰੁਕਾਵਟ ਨਹੀਂ ਪਾ ਰਿਹਾ। ਧਾਰਾ 19(1)(a) ਤਹਿਤ ਇਹ ਜਾਇਜ਼ ਹੈ।”',
+      hinglish: '“Sir, main safe distance se bina obstruction ke record kar raha hoon. Public servant ko public space mein record karna Article 19(1)(a) ke under protected hai.”',
+    },
     legalBasis: 'Article 19(1)(a) Freedom of Speech & Public Servant Transparency',
-    tip: 'Never enter the officer’s personal space or block traffic.'
+    tip: 'Never enter the officer’s personal space or block traffic.',
+    translations: {
+      hi: {
+        scenario: 'पुलिस अधिकारी वीडियो बनाने पर केस करने की धमकी दे',
+        policeAsks: '“कैमरा बंद करो! पुलिस की वीडियो बनाने की हिम्मत कैसे हुई?”',
+        tip: 'ऑफिसर के बिल्कुल पास न जाएं, ट्रैफिक न रोकें, सुरक्षित दूरी से रिकॉर्ड करें।'
+      }
+    }
   },
   {
     id: 'script-home-search',
@@ -58,7 +208,27 @@ export const SCRIPTS_DATA: ScriptDialogue[] = [
     policeAsks: '“Open the door, we are searching your house right now!”',
     citizenResponseEnglish: '“Good day Officer. Please show the Search Warrant issued by the Magistrate, or the Section 165 CrPC recording of emergency grounds. We also request two independent neighbors as Panch witnesses, and that officers allow a personal search before entering.”',
     citizenResponseHindi: '“सर, कृपया मजिस्ट्रेट द्वारा जारी सर्च वारंट दिखाएं। धारा 100 सीआरपीसी के तहत दो स्थानीय स्वतंत्र गवाहों की मौजूदगी में और आपकी तलाशी के बाद ही घर की तलाशी शुरू की जा सकती है।”',
+    citizenResponses: {
+      en: '“Good day Officer. Please show the Search Warrant issued by the Magistrate, or the Section 165 CrPC recording of emergency grounds. We also request two independent neighbors as Panch witnesses, and that officers allow a personal search before entering.”',
+      hi: '“सर, कृपया मजिस्ट्रेट द्वारा जारी सर्च वारंट दिखाएं। धारा 100 सीआरपीसी के तहत दो स्थानीय स्वतंत्र गवाहों की मौजूदगी में और आपकी तलाशी के बाद ही घर की तलाशी शुरू की जा सकती है।”',
+      te: '“సార్, దయచేసి సెర్చ్ వారెంట్ చూపించండి. సెక్షన్ 100 CrPC ప్రకారం ఇద్దరు స్వతంత్ర సాక్షుల సమక్షంలో మాత్రమే ఇంటి సోదాలు జరగాలి.”',
+      ta: '“ஐயா, தயவுசெய்து நீதிமன்ற தேடுதல் வாரண்ட்டைக் காட்டுங்கள். பிரிவு 100-ன் படி இரண்டு உள்ளூர் சாட்சிகள் முன்னிலையில் மட்டுமே சோதனை செய்ய முடியும்.”',
+      bn: '“স্যার, অনুগ্রহ করে সার্চ ওয়ারেন্ট দেখান। ধারা ১০০ সিআরপিসি অনুযায়ী দুজন স্বাধীন সাক্ষীর উপস্থিতিতে তল্লাশি করতে হবে।”',
+      mr: '“साहेब, कृपया सर्च वॉरंट दाखवा. कलम १०० नुसार दोन स्थानिक पंच साक्षीदारांच्या उपस्थितीतच घराची झडती घेता येईल.”',
+      gu: '“સાહેબ, કૃપા કરીને સર્ચ વોરંટ બતાવો. કલમ ૧૦૦ મુજબ બે સ્વતંત્ર સાક્ષીઓની હાજરીમાં જ તપાસ થઈ શકે છે.”',
+      kn: '“ಸರ್, ದಯವಿಟ್ಟು ಸರ್ಚ್ ವಾರಂಟ್ ತೋರಿಸಿ. ಸೆಕ್ಷನ್ 100 ರ ಪ್ರಕಾರ ಇಬ್ಬರು ಸ್ವತಂತ್ರ ಸಾಕ್ಷಿಗಳ ಸಮ್ಮುಖದಲ್ಲಿ ಮಾತ್ರ ಶೋಧನೆ ನಡೆಸಬಹುದು.”',
+      ml: '“സാർ, ദയവായി സെർച്ച് വാറന്റ് കാണിക്കുക. സെക്ഷൻ 100 പ്രകാരം രണ്ട് സാക്ഷികളുടെ സാന്നിധ്യത്തിൽ മാത്രമേ വീട് പരിശോധിക്കാൻ പാടുള്ളൂ.”',
+      pa: '“ਸਰ, ਕਿਰਪਾ ਕਰਕੇ ਸਰਚ ਵਾਰੰਟ ਦਿਖਾਓ। ਧਾਰਾ 100 ਅਨੁਸਾਰ ਦੋ ਆਜ਼ਾਦ ਗਵਾਹਾਂ ਦੀ ਹਾਜ਼ਰੀ ਵਿੱਚ ਹੀ ਤਲਾਸ਼ੀ ਹੋ ਸਕਦੀ ਹੈ।”',
+      hinglish: '“Sir, please Magistrate dwara issued Search Warrant dikhayein. Section 100 CrPC ke under do independent witnesses ki presence mandatory hai.”',
+    },
     legalBasis: 'Section 100 & Section 165 CrPC',
-    tip: 'Keep calm and ensure a Panchanama inventory list is made for every single article touched.'
+    tip: 'Keep calm and ensure a Panchanama inventory list is made for every single article touched.',
+    translations: {
+      hi: {
+        scenario: 'पुलिस घर का दरवाजा खटखटाकर तुरंत तलाशी लेने को कहे',
+        policeAsks: '“दरवाजा खोलो, हम अभी तुम्हारे घर की तलाशी लेंगे!”',
+        tip: 'घबराएं नहीं, स्वतंत्र पड़ोसियों को बुलाएं और हर वस्तु की जब्ती सूची (Panchanama) बनवाएं।'
+      }
+    }
   }
 ];

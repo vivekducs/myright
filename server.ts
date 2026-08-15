@@ -57,24 +57,40 @@ async function startServer() {
         });
       }
 
+      const languageMap: Record<string, string> = {
+        en: "English (clear, accessible legal terms)",
+        hi: "Hindi (हिंदी - शुद्ध व सरल भाषा)",
+        te: "Telugu (తెలుగు - సులభమైన చట్టపరమైన భాష)",
+        ta: "Tamil (தமிழ் - எளிய சட்ட மொழி)",
+        bn: "Bengali (বাংলা - সহজ আইনি ভাষা)",
+        mr: "Marathi (मराठी - सोपी कायदेशीर भाषा)",
+        gu: "Gujarati (ગુજરાતી - સરળ કાનૂની ભાષા)",
+        kn: "Kannada (ಕನ್ನಡ - ಸರಳ ಕಾನೂನು ಭಾಷೆ)",
+        ml: "Malayalam (മലയാളം - ലളിതമായ നിയമ ഭാഷ)",
+        pa: "Punjabi (ਪੰਜਾਬੀ - ਸਰਲ ਕਾਨੂੰਨੀ ਭਾਸ਼ਾ)",
+        hinglish: "Hinglish (Hindi written in Roman English script)"
+      };
+
+      const targetLangInstruction = languageMap[language] || language || "English with easy terms";
+
       const prompt = `You are "Nyaya Mitra", an authoritative, calm, and practical Legal Rights & Police Procedure Advisor for Indian citizens.
 The citizen has asked for guidance about a situation involving Indian Police:
 Situation/Question: "${question}"
 Category: ${situationCategory || "General Police Interaction"}
-Language preference: ${language || "English with easy terms"}
+CRITICAL REQUIREMENT: You MUST generate the JSON values entirely in the requested regional language: ${targetLangInstruction}. (Keep legal section numbers recognizable like Article 21, Section 41B CrPC/BNSS).
 
 Provide a structured, legally sound response based on the Constitution of India, Criminal Procedure Code (CrPC) / Bharatiya Nagarik Suraksha Sanhita (BNSS), Motor Vehicles Act, Indian Penal Code (IPC) / Bharatiya Nyaya Sanhita (BNS), and landmark Supreme Court judgments (e.g. D.K. Basu, Lalita Kumari, Arnesh Kumar).
 
 Return a JSON object with the following schema:
 {
-  "summary": "Brief 1-2 sentence reassuring summary of citizen's legal standing",
+  "summary": "Brief 1-2 sentence reassuring summary of citizen's legal standing in the requested language",
   "whatToDoNow": ["Step 1", "Step 2", "Step 3", "Step 4"],
   "whatNOTToDo": ["Avoid doing X", "Avoid doing Y"],
-  "exactWordsToSay": "Respectful, polite, legally sound exact sentence the citizen can say to the officer",
+  "exactWordsToSay": "Respectful, polite, legally sound exact sentence the citizen can say to the officer in the requested language",
   "legalProvisions": [
-    {"law": "Name of law/article (e.g. Article 22, Section 41B CrPC/BNSS)", "explanation": "Simple one-line explanation of what it guarantees"}
+    {"law": "Name of law/article (e.g. Article 22, Section 41B CrPC/BNSS)", "explanation": "Simple one-line explanation of what it guarantees in the requested language"}
   ],
-  "officerObligations": "What the police officer is legally required to do or not do in this scenario",
+  "officerObligations": "What the police officer is legally required to do or not do in this scenario in the requested language",
   "emergencyHelpline": "Relevant helpline number (e.g. 112, 1091, 1930, 15100)",
   "isUrgent": true or false
 }`;

@@ -3,17 +3,21 @@ import { motion } from 'motion/react';
 import { Shield, Download, Printer, Share2, Sparkles, CheckCircle2, User, Phone, MapPin, QrCode } from 'lucide-react';
 import { ThreeDCard } from './ThreeDCard';
 import confetti from 'canvas-confetti';
+import { SupportedLanguage } from '../types';
+import { getT, LANGUAGE_OPTIONS } from '../data/translations';
 
 interface RightsCardGeneratorProps {
-  language: 'en' | 'hi' | 'hinglish';
+  language: SupportedLanguage;
 }
 
 export const RightsCardGenerator: React.FC<RightsCardGeneratorProps> = ({ language }) => {
   const [userName, setUserName] = useState('Indian Citizen');
   const [emergencyContact, setEmergencyContact] = useState('+91 98765 43210');
   const [userCity, setUserCity] = useState('New Delhi, India');
-  const [selectedProfile, setSelectedProfile] = useState<'all' | 'traffic' | 'women' | 'student'>('all');
   const [isCopied, setIsCopied] = useState(false);
+
+  const t = getT(language);
+  const langConfig = LANGUAGE_OPTIONS.find((l) => l.code === language) || LANGUAGE_OPTIONS[0];
 
   const handleCelebrate = () => {
     confetti({
@@ -42,6 +46,29 @@ export const RightsCardGenerator: React.FC<RightsCardGeneratorProps> = ({ langua
     }
   };
 
+  const legalSafeguards = [
+    {
+      title: 'Article 21 & Privacy',
+      desc: 'No random search of private phones without formal magistrate search warrant.',
+    },
+    {
+      title: 'D.K. Basu Memo (Sec 41B)',
+      desc: 'Mandatory written arrest memo on the spot with witness signature + 24hr magistrate rule.',
+    },
+    {
+      title: 'Rule 139 MVA DigiLocker',
+      desc: 'Digital DL & RC on DigiLocker/mParivahan are 100% legal; keys cannot be snatched.',
+    },
+    {
+      title: 'Zero FIR (Lalita Kumari)',
+      desc: 'Any police station must register Zero FIR for cognizable offences regardless of area.',
+    },
+    {
+      title: 'Sunset Protection (Sec 46(4))',
+      desc: 'No woman can be arrested after sunset without prior Judicial Magistrate written order.',
+    },
+  ];
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -56,10 +83,10 @@ export const RightsCardGenerator: React.FC<RightsCardGeneratorProps> = ({ langua
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1A3841] tracking-tight">
-            {language === 'hi' ? 'नागरिक अधिकार पॉकेट पास' : 'Citizen Legal Rights Pocket Pass Generator'}
+            {t.passTitle}
           </h2>
           <p className="text-sm text-[#458393] font-medium">
-            Generate a personalized digital emergency legal reference card with key Indian constitutional protections.
+            {t.passSubtitle}
           </p>
         </div>
 
@@ -73,173 +100,134 @@ export const RightsCardGenerator: React.FC<RightsCardGeneratorProps> = ({ langua
             className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#458393] hover:bg-[#34A99D] text-[#FFF3C8] font-bold text-xs shadow-md transition-all cursor-pointer"
           >
             <Printer className="w-4 h-4 text-[#E5CB90]" />
-            <span>Print Pass</span>
+            <span>{t.printDoc}</span>
           </button>
           <button
             onClick={handleShare}
             className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#FFF3C8] hover:bg-[#E5CB90] border border-[#E5CB90] text-[#1A3841] font-bold text-xs shadow-xs transition-all cursor-pointer"
           >
             <Share2 className="w-4 h-4 text-[#458393]" />
-            <span>{isCopied ? 'Link Copied!' : 'Share Pass'}</span>
+            <span>{isCopied ? t.copiedText : t.shareDoc}</span>
           </button>
         </div>
       </div>
 
+      {/* Main Builder Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        {/* Left Column: Customization Controls */}
-        <div className="lg:col-span-5 space-y-4 p-6 rounded-3xl bg-[#FFF3C8] border-2 border-[#E5CB90] shadow-md">
-          <h3 className="text-lg font-extrabold text-[#1A3841] flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-[#34A99D]" />
-            <span>Customize Your Pass</span>
-          </h3>
+        {/* Left Column: Form Controls */}
+        <div className="lg:col-span-5 p-6 rounded-3xl bg-[#FFF3C8] border-2 border-[#E5CB90] shadow-md space-y-4">
+          <div className="flex items-center gap-2 text-sm font-extrabold text-[#1A3841] uppercase tracking-wider pb-2 border-b border-[#E5CB90]">
+            <User className="w-4 h-4 text-[#34A99D]" />
+            <span>Personalize Your Legal Shield Card</span>
+          </div>
 
-          <div className="space-y-3">
-            <div>
-              <label className="text-xs font-bold text-[#1A3841] block mb-1">
-                Citizen Name / Alias
-              </label>
-              <input
-                type="text"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
-                className="w-full p-2.5 rounded-xl bg-white border border-[#E5CB90] font-semibold text-sm text-[#1A3841] focus:outline-hidden focus:border-[#34A99D]"
-              />
-            </div>
+          <div>
+            <label className="block text-xs font-bold text-[#1A3841] mb-1">Your Full Name:</label>
+            <input
+              type="text"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+              className="w-full p-2.5 rounded-xl bg-white border border-[#E5CB90] text-sm font-bold text-[#1A3841] focus:outline-hidden focus:border-[#34A99D]"
+            />
+          </div>
 
-            <div>
-              <label className="text-xs font-bold text-[#1A3841] block mb-1">
-                Emergency Relative / Lawyer Contact
-              </label>
-              <input
-                type="text"
-                value={emergencyContact}
-                onChange={(e) => setEmergencyContact(e.target.value)}
-                className="w-full p-2.5 rounded-xl bg-white border border-[#E5CB90] font-semibold text-sm text-[#1A3841] focus:outline-hidden focus:border-[#34A99D]"
-              />
-            </div>
+          <div>
+            <label className="block text-xs font-bold text-[#1A3841] mb-1">Emergency Advocate / Family Phone:</label>
+            <input
+              type="text"
+              value={emergencyContact}
+              onChange={(e) => setEmergencyContact(e.target.value)}
+              className="w-full p-2.5 rounded-xl bg-white border border-[#E5CB90] text-sm font-bold text-[#1A3841] focus:outline-hidden focus:border-[#34A99D]"
+            />
+          </div>
 
-            <div>
-              <label className="text-xs font-bold text-[#1A3841] block mb-1">
-                City / State
-              </label>
-              <input
-                type="text"
-                value={userCity}
-                onChange={(e) => setUserCity(e.target.value)}
-                className="w-full p-2.5 rounded-xl bg-white border border-[#E5CB90] font-semibold text-sm text-[#1A3841] focus:outline-hidden focus:border-[#34A99D]"
-              />
-            </div>
+          <div>
+            <label className="block text-xs font-bold text-[#1A3841] mb-1">City & State:</label>
+            <input
+              type="text"
+              value={userCity}
+              onChange={(e) => setUserCity(e.target.value)}
+              className="w-full p-2.5 rounded-xl bg-white border border-[#E5CB90] text-sm font-bold text-[#1A3841] focus:outline-hidden focus:border-[#34A99D]"
+            />
+          </div>
 
-            <div>
-              <label className="text-xs font-bold text-[#1A3841] block mb-1">
-                Key Shield Focus Profile
-              </label>
-              <div className="grid grid-cols-2 gap-2">
-                {[
-                  { id: 'all', label: 'Universal (All Rights)' },
-                  { id: 'traffic', label: 'Daily Commuter (Traffic)' },
-                  { id: 'women', label: 'Women Shield (Sec 46)' },
-                  { id: 'student', label: 'Student / Youth (Digital)' },
-                ].map((p) => (
-                  <button
-                    key={p.id}
-                    onClick={() => setSelectedProfile(p.id as any)}
-                    className={`p-2 rounded-xl text-xs font-bold text-left transition-all border ${
-                      selectedProfile === p.id
-                        ? 'bg-[#458393] text-[#FFF3C8] border-[#34A99D]'
-                        : 'bg-white text-[#1A3841] border-[#E5CB90] hover:bg-[#E5CB90]/20'
-                    }`}
-                  >
-                    {p.label}
-                  </button>
-                ))}
-              </div>
-            </div>
+          <div className="pt-2">
+            <button
+              onClick={handleCelebrate}
+              className="w-full py-2.5 rounded-xl bg-[#34A99D] hover:bg-[#458393] text-white font-bold text-xs shadow-sm transition-all cursor-pointer"
+            >
+              ✨ Generate Card Effect
+            </button>
           </div>
         </div>
 
-        {/* Right Column: 3D Interactive Pocket Pass Preview */}
+        {/* Right Column: High-Res Physical Badge Card Preview */}
         <div className="lg:col-span-7 flex justify-center">
-          <ThreeDCard intensity={20} className="w-full max-w-md">
-            <div className="rounded-3xl p-6 bg-gradient-to-br from-[#458393] via-[#34A99D] to-[#1A3841] text-[#FFF3C8] shadow-2xl border-3 border-[#E5CB90] relative overflow-hidden space-y-4">
-              
-              {/* Card Holographic Top Bar */}
-              <div className="flex items-center justify-between border-b border-[#E5CB90]/40 pb-3">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-[#E5CB90] text-[#1A3841] flex items-center justify-center font-black">
-                    <Shield className="w-5 h-5 text-[#1A3841]" />
+          <ThreeDCard className="w-full max-w-md">
+            <div
+              id="citizen-pass-card"
+              className="p-6 rounded-3xl bg-gradient-to-br from-[#1A3841] via-[#244C58] to-[#12272D] text-[#FFF3C8] border-2 border-[#E5CB90] shadow-2xl space-y-4 relative overflow-hidden"
+            >
+              {/* Background watermark badge */}
+              <div className="absolute -right-8 -bottom-8 opacity-10 pointer-events-none text-[#FFF3C8]">
+                <Shield className="w-56 h-56" />
+              </div>
+
+              {/* Card Header */}
+              <div className="flex items-center justify-between border-b border-[#E5CB90]/40 pb-3 relative z-10">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#34A99D] to-[#E5CB90] flex items-center justify-center text-[#1A3841] font-black shadow-xs">
+                    <Shield className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="font-extrabold text-sm tracking-wide uppercase text-[#FFF3C8] block">
-                      CITIZEN LEGAL PASS
-                    </span>
-                    <span className="text-[10px] text-[#E5CB90] font-semibold">
-                      Republic of India • Constitutional Shield
+                    <h3 className="font-extrabold text-sm tracking-tight text-white leading-none">
+                      NyayaMitra Legal Shield
+                    </h3>
+                    <span className="text-[10px] text-[#E5CB90] font-semibold tracking-wider uppercase">
+                      Citizen Rights Pocket Pass
                     </span>
                   </div>
                 </div>
 
-                <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-[#E5CB90] text-[#1A3841]">
-                  VERIFIED LAW
+                <span className="text-[9px] font-mono px-2 py-0.5 rounded-md bg-[#FFF3C8]/10 text-[#E5CB90] border border-[#E5CB90]/40">
+                  {langConfig.nativeName}
                 </span>
               </div>
 
-              {/* Citizen Identity Box */}
-              <div className="p-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-[#E5CB90]/30 space-y-1.5">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-[#E5CB90] font-bold">Bearer:</span>
-                  <span className="text-sm font-extrabold text-white">{userName || 'Indian Citizen'}</span>
-                </div>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-[#E5CB90]/80">Emergency Contact:</span>
-                  <span className="font-bold text-[#FFF3C8]">{emergencyContact}</span>
-                </div>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-[#E5CB90]/80">Jurisdiction:</span>
-                  <span className="font-bold text-[#FFF3C8]">{userCity}</span>
-                </div>
-              </div>
-
-              {/* Core Statutory Rights Summary on Pass */}
-              <div className="space-y-2">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#E5CB90] block">
-                  Mandatory Legal Shields (Show to Officer):
-                </span>
-                
-                <div className="space-y-1.5 text-xs text-white font-medium">
-                  <div className="p-2 rounded-xl bg-black/20 border border-white/10 flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-[#E5CB90] shrink-0 mt-0.5" />
-                    <span><strong>Article 21 & 22:</strong> Protection against arbitrary arrest, right to grounds of arrest, and right to consult legal counsel.</span>
-                  </div>
-                  <div className="p-2 rounded-xl bg-black/20 border border-white/10 flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-[#E5CB90] shrink-0 mt-0.5" />
-                    <span><strong>D.K. Basu Directives:</strong> Mandatory visible name tag, written Arrest Memo with witness, and 24-hr magistrate presentation.</span>
-                  </div>
-                  {selectedProfile === 'women' ? (
-                    <div className="p-2 rounded-xl bg-black/20 border border-white/10 flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#E5CB90] shrink-0 mt-0.5" />
-                      <span><strong>Sec 46(4) CrPC:</strong> No woman can be arrested between sunset and sunrise without a Judicial Magistrate order.</span>
-                    </div>
-                  ) : (
-                    <div className="p-2 rounded-xl bg-black/20 border border-white/10 flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#E5CB90] shrink-0 mt-0.5" />
-                      <span><strong>Motor Vehicles Act:</strong> Police cannot snatch keys. Digital docs on DigiLocker are 100% legal (Rule 139).</span>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Card Footer with Emergency Dialers */}
-              <div className="pt-3 border-t border-[#E5CB90]/40 flex items-center justify-between text-xs font-bold">
+              {/* Citizen Credentials Bar */}
+              <div className="grid grid-cols-2 gap-2 bg-[#FFF3C8]/10 p-3 rounded-2xl border border-[#E5CB90]/30 text-xs relative z-10">
                 <div>
-                  <span className="text-[#E5CB90] block text-[10px]">SOS Police Emergency:</span>
-                  <span className="text-base font-black text-white">112 / 15100</span>
+                  <span className="text-[10px] text-[#E5CB90] block uppercase font-bold">Citizen Name</span>
+                  <span className="font-extrabold text-white text-sm truncate block">{userName}</span>
                 </div>
-                <div className="text-right">
-                  <span className="text-[#E5CB90] block text-[10px]">Women Helpline:</span>
-                  <span className="text-sm font-black text-white">1091</span>
+                <div>
+                  <span className="text-[10px] text-[#E5CB90] block uppercase font-bold">Emergency Contact</span>
+                  <span className="font-bold text-[#34A99D] truncate block">{emergencyContact}</span>
                 </div>
+              </div>
+
+              {/* 5 Core Constitutional Bullet Shield */}
+              <div className="space-y-2 relative z-10">
+                <span className="text-[10px] uppercase font-black tracking-wider text-[#E5CB90] block">
+                  Mandatory Legal Safeguards (Constitution & CrPC/BNSS):
+                </span>
+                <div className="space-y-1.5 text-[11px] leading-tight">
+                  {legalSafeguards.map((item, idx) => (
+                    <div key={idx} className="flex items-start gap-1.5 text-[#FFF3C8]/90 font-medium">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#34A99D] shrink-0 mt-0.5" />
+                      <span>
+                        <strong className="text-white">{item.title}:</strong> {item.desc}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Card Footer */}
+              <div className="pt-3 border-t border-[#E5CB90]/40 flex items-center justify-between text-[10px] text-[#E5CB90] font-mono relative z-10">
+                <span>National SOS: 112 • Legal Aid: 15100</span>
+                <span>Location: {userCity}</span>
               </div>
 
             </div>

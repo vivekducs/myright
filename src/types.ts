@@ -1,3 +1,24 @@
+export type SupportedLanguage = 
+  | 'en' 
+  | 'hi' 
+  | 'te' 
+  | 'ta' 
+  | 'bn' 
+  | 'mr' 
+  | 'gu' 
+  | 'kn' 
+  | 'ml' 
+  | 'pa' 
+  | 'hinglish';
+
+export interface LanguageOption {
+  code: SupportedLanguage;
+  name: string;
+  nativeName: string;
+  speechCode: string;
+  flag: string;
+}
+
 export type Category = 
   | 'all'
   | 'traffic'
@@ -11,18 +32,24 @@ export type Category =
 export interface LegalRight {
   id: string;
   title: string;
-  hindiTitle?: string;
   category: Category;
   lawRef: string; // e.g. "Section 41B CrPC / Sec 36 BNSS" or "Article 21"
   scJudgment?: string; // Landmark Supreme Court Case
   summary: string;
-  hindiSummary?: string;
   keyPoints: string[];
   whatPoliceMustDo: string[];
   whatPoliceCannotDo: string[];
   exactDialogue: string;
   priority: 'critical' | 'high' | 'medium';
   iconName: string;
+  translations?: Partial<Record<SupportedLanguage, {
+    title: string;
+    summary: string;
+    keyPoints?: string[];
+    whatPoliceMustDo?: string[];
+    whatPoliceCannotDo?: string[];
+    exactDialogue?: string;
+  }>>;
 }
 
 export interface SituationStep {
@@ -36,6 +63,14 @@ export interface SituationStep {
   legalShield: string;
   sayThis: string;
   helpline: string;
+  translations?: Partial<Record<SupportedLanguage, {
+    title: string;
+    situation: string;
+    immediateActions: string[];
+    doNotDo: string[];
+    legalShield: string;
+    sayThis: string;
+  }>>;
 }
 
 export interface MythItem {
@@ -45,6 +80,12 @@ export interface MythItem {
   explanation: string;
   lawSection: string;
   tag: string;
+  translations?: Partial<Record<SupportedLanguage, {
+    myth: string;
+    reality: string;
+    explanation: string;
+    tag?: string;
+  }>>;
 }
 
 export interface ScriptDialogue {
@@ -53,9 +94,25 @@ export interface ScriptDialogue {
   category: Category;
   policeAsks: string;
   citizenResponseEnglish: string;
-  citizenResponseHindi: string;
+  citizenResponseHindi?: string;
+  citizenResponses?: Partial<Record<SupportedLanguage, string>>;
   legalBasis: string;
   tip: string;
+  translations?: Partial<Record<SupportedLanguage, {
+    scenario: string;
+    policeAsks: string;
+    tip: string;
+  }>>;
+}
+
+export interface DKBasuGuideline {
+  num: number;
+  title: string;
+  desc: string;
+  translations?: Partial<Record<SupportedLanguage, {
+    title: string;
+    desc: string;
+  }>>;
 }
 
 export interface QuizQuestion {
@@ -65,6 +122,11 @@ export interface QuizQuestion {
   correctIndex: number;
   explanation: string;
   legalReference: string;
+  translations?: Partial<Record<SupportedLanguage, {
+    question: string;
+    options: string[];
+    explanation: string;
+  }>>;
 }
 
 export interface EmergencyContact {

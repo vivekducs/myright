@@ -11,7 +11,7 @@ import { RightsCardGenerator } from './components/RightsCardGenerator';
 import { LegalArticlesExplorer } from './components/LegalArticlesExplorer';
 import { MythBusterQuiz } from './components/MythBusterQuiz';
 import { Footer } from './components/Footer';
-import { Category } from './types';
+import { Category, SupportedLanguage } from './types';
 import { Shield, PhoneCall, AlertTriangle } from 'lucide-react';
 
 export default function App() {
@@ -19,7 +19,7 @@ export default function App() {
   const [selectedCategory, setSelectedCategory] = useState<Category>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedSituationId, setSelectedSituationId] = useState<string | null>(null);
-  const [language, setLanguage] = useState<'en' | 'hi' | 'hinglish'>('en');
+  const [language, setLanguage] = useState<SupportedLanguage>('en');
   const [isEmergencyModalOpen, setIsEmergencyModalOpen] = useState<boolean>(false);
 
   const handleSelectQuickSituation = (situationId: string) => {
@@ -67,6 +67,7 @@ export default function App() {
       <EmergencyBar
         isOpen={isEmergencyModalOpen}
         onClose={() => setIsEmergencyModalOpen(false)}
+        language={language}
       />
 
       {/* Main Content Area */}
@@ -117,7 +118,7 @@ export default function App() {
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.2 }}
             >
-              <DKBasuCard />
+              <DKBasuCard language={language} />
             </motion.div>
           )}
 
@@ -182,7 +183,7 @@ export default function App() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => setIsEmergencyModalOpen(true)}
-          className="p-3.5 rounded-full bg-red-600 text-white shadow-2xl flex items-center gap-2 font-bold text-xs border-2 border-[#FFF3C8] animate-bounce"
+          className="p-3.5 rounded-full bg-red-600 text-white shadow-2xl flex items-center gap-2 font-bold text-xs border-2 border-[#FFF3C8] animate-bounce cursor-pointer"
         >
           <PhoneCall className="w-5 h-5" />
           <span>SOS 112</span>
@@ -190,7 +191,7 @@ export default function App() {
       </div>
 
       {/* Footer */}
-      <Footer />
+      <Footer language={language} />
 
     </div>
   );

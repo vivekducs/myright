@@ -2,14 +2,18 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Phone, Copy, Check, ShieldAlert, X, AlertTriangle, ExternalLink } from 'lucide-react';
 import { EMERGENCY_CONTACTS } from '../data/legalData';
+import { SupportedLanguage } from '../types';
+import { getT } from '../data/translations';
 
 interface EmergencyBarProps {
   isOpen: boolean;
   onClose: () => void;
+  language: SupportedLanguage;
 }
 
-export const EmergencyBar: React.FC<EmergencyBarProps> = ({ isOpen, onClose }) => {
+export const EmergencyBar: React.FC<EmergencyBarProps> = ({ isOpen, onClose, language }) => {
   const [copiedNumber, setCopiedNumber] = useState<string | null>(null);
+  const t = getT(language);
 
   const handleCopy = (num: string) => {
     navigator.clipboard.writeText(num);
@@ -30,14 +34,14 @@ export const EmergencyBar: React.FC<EmergencyBarProps> = ({ isOpen, onClose }) =
             <div>
               <div className="flex items-center gap-2">
                 <span className="font-bold text-sm sm:text-base tracking-tight text-[#FFF3C8]">
-                  National Emergency Helplines (24x7 Free)
+                  {t.emergencyTitle}
                 </span>
                 <span className="bg-red-500/30 text-white text-[10px] uppercase font-bold px-2 py-0.5 rounded-full border border-red-400/40">
                   Govt of India
                 </span>
               </div>
               <p className="text-xs text-[#E5CB90] font-medium">
-                Tap to call directly or copy number if facing unlawful police coercion
+                {t.emergencySubtitle}
               </p>
             </div>
           </div>
@@ -59,7 +63,7 @@ export const EmergencyBar: React.FC<EmergencyBarProps> = ({ isOpen, onClose }) =
                 <button
                   onClick={() => handleCopy(c.number)}
                   title="Copy number"
-                  className="text-[#FFF3C8]/70 hover:text-white"
+                  className="text-[#FFF3C8]/70 hover:text-white cursor-pointer"
                 >
                   {copiedNumber === c.number ? <Check className="w-3.5 h-3.5 text-green-300" /> : <Copy className="w-3.5 h-3.5" />}
                 </button>
@@ -83,9 +87,9 @@ export const EmergencyBar: React.FC<EmergencyBarProps> = ({ isOpen, onClose }) =
               {/* Modal Header */}
               <div className="bg-gradient-to-r from-red-600 to-rose-700 p-5 text-white flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <ShieldAlert className="w-8 h-8 text-yellow-300 animate-pulse" />
+                  <ShieldAlert className="w-8 h-8 text-yellow-300 animate-pulse shrink-0" />
                   <div>
-                    <h3 className="text-xl font-extrabold">EMERGENCY SOS & LEGAL ASSISTANCE</h3>
+                    <h3 className="text-lg sm:text-xl font-extrabold">EMERGENCY SOS & LEGAL ASSISTANCE</h3>
                     <p className="text-xs text-red-100 font-medium">
                       If you are in immediate danger or facing unlawful police detention
                     </p>
@@ -93,7 +97,7 @@ export const EmergencyBar: React.FC<EmergencyBarProps> = ({ isOpen, onClose }) =
                 </div>
                 <button
                   onClick={onClose}
-                  className="p-2 rounded-full hover:bg-white/20 text-white transition-colors"
+                  className="p-2 rounded-full hover:bg-white/20 text-white transition-colors cursor-pointer"
                 >
                   <X className="w-6 h-6" />
                 </button>
@@ -136,7 +140,7 @@ export const EmergencyBar: React.FC<EmergencyBarProps> = ({ isOpen, onClose }) =
                         </a>
                         <button
                           onClick={() => handleCopy(item.number)}
-                          className="px-2 py-1 rounded-lg bg-[#E5CB90]/40 text-[#1A3841] text-[10px] font-bold hover:bg-[#E5CB90]"
+                          className="px-2 py-1 rounded-lg bg-[#E5CB90]/40 text-[#1A3841] text-[10px] font-bold hover:bg-[#E5CB90] cursor-pointer"
                         >
                           {copiedNumber === item.number ? 'Copied' : 'Copy'}
                         </button>

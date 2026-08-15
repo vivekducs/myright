@@ -3,15 +3,19 @@ import { motion } from 'motion/react';
 import { MessageSquare, Volume2, Copy, Check, Shield, Sparkles, User, AlertCircle } from 'lucide-react';
 import { SCRIPTS_DATA } from '../data/scriptsData';
 import { ThreeDCard } from './ThreeDCard';
+import { SupportedLanguage } from '../types';
+import { getT, LANGUAGE_OPTIONS } from '../data/translations';
 
 interface VerbalScriptsProps {
-  language: 'en' | 'hi' | 'hinglish';
+  language: SupportedLanguage;
 }
 
 export const VerbalScripts: React.FC<VerbalScriptsProps> = ({ language }) => {
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [playingId, setPlayingId] = useState<string | null>(null);
-  const [scriptLang, setScriptLang] = useState<'en' | 'hi'>('en');
+
+  const t = getT(language);
+  const langConfig = LANGUAGE_OPTIONS.find((l) => l.code === language) || LANGUAGE_OPTIONS[0];
 
   const handleCopy = (id: string, text: string) => {
     navigator.clipboard.writeText(text);
@@ -28,7 +32,10 @@ export const VerbalScripts: React.FC<VerbalScriptsProps> = ({ language }) => {
       }
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = 0.92;
+      if (langConfig?.speechCode) {
+        utterance.lang = langConfig.speechCode;
+      }
+      utterance.rate = 0.90;
       utterance.onend = () => setPlayingId(null);
       utterance.onerror = () => setPlayingId(null);
       setPlayingId(id);
@@ -50,39 +57,32 @@ export const VerbalScripts: React.FC<VerbalScriptsProps> = ({ language }) => {
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1A3841] tracking-tight">
-            {language === 'hi' ? 'पुलिस से क्या कहें (Verbal Scripts)' : 'What to Say to the Police (Verbal Dialogue Scripts)'}
+            {t.scriptsTitle}
           </h2>
           <p className="text-sm text-[#458393] font-medium">
-            Respectful, legally backed sentences that defend your rights without provoking hostility or confrontation.
+            {t.scriptsSubtitle}
           </p>
         </div>
 
-        {/* Script Language toggle */}
-        <div className="flex items-center gap-1 bg-[#E5CB90]/40 p-1 rounded-xl border border-[#E5CB90]">
-          <button
-            onClick={() => setScriptLang('en')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-              scriptLang === 'en' ? 'bg-[#458393] text-[#FFF3C8] shadow-2xs' : 'text-[#1A3841]'
-            }`}
-          >
-            English Scripts
-          </button>
-          <button
-            onClick={() => setScriptLang('hi')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-              scriptLang === 'hi' ? 'bg-[#458393] text-[#FFF3C8] shadow-2xs' : 'text-[#1A3841]'
-            }`}
-          >
-            हिंदी संवाद
-          </button>
+        {/* Selected Regional Language Indicator */}
+        <div className="inline-flex items-center gap-2 bg-[#E5CB90]/40 px-3 py-1.5 rounded-xl border border-[#E5CB90] text-xs font-bold text-[#1A3841]">
+          <span>{langConfig.flag}</span>
+          <span>{langConfig.nativeName}</span>
+          <span className="text-[10px] text-[#458393]">({langConfig.name})</span>
         </div>
       </div>
 
       {/* Script Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {SCRIPTS_DATA.map((item) => {
-          const activeText =
-            scriptLang === 'hi' ? item.citizenResponseHindi : item.citizenResponseEnglish;
+          const trans = item.translations?.[language];
+          const scenarioTitle = trans?.scenario || item.scenario;
+          const officerWords = trans?.policeAsks || item.policeAsks;
+          const tipText = trans?.tip || item.tip;
+          const citizenResponse =
+            item.citizenResponses?.[language] ||
+            (language === 'hi' ? (item.citizenResponseHindi || item.citizenResponseEnglish) : item.citizenResponseEnglish);
+
           const isPlaying = playingId === item.id;
           const isCopied = copiedId === item.id;
 
@@ -100,56 +100,69 @@ export const VerbalScripts: React.FC<VerbalScriptsProps> = ({ language }) => {
                       Law: {item.legalBasis}
                     </span>
                   </div>
-
-                  <h3 className="text-base font-extrabold text-[#1A3841] leading-snug">
-                    {item.scenario}
+                  <h3 className="text-lg font-extrabold text-[#1A3841] leading-snug">
+                    {scenarioTitle}
                   </h3>
                 </div>
 
-                {/* Police Says Box */}
-                <div className="p-3 rounded-2xl bg-red-50 border border-red-200 text-xs text-red-900 font-semibold space-y-1">
-                  <span className="text-[10px] uppercase font-bold text-red-700 block">
-                    When Police Says:
-                  </span>
-                  <p className="italic text-red-950 font-bold">{item.policeAsks}</p>
-                </div>
-
-                {/* You Say Box (Script) */}
-                <div className="p-4 rounded-2xl bg-gradient-to-r from-[#458393] to-[#34A99D] text-[#FFF3C8] shadow-sm space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] uppercase tracking-wider font-extrabold text-[#E5CB90]">
-                      Your Response (Speak Politely & Firmly):
-                    </span>
-                    <div className="flex items-center gap-1.5">
-                      <button
-                        onClick={() => handleSpeak(item.id, activeText)}
-                        className="p-1.5 rounded-lg bg-[#FFF3C8] text-[#1A3841] hover:bg-[#E5CB90] transition-colors"
-                        title="Play audio pronunciation"
-                      >
-                        <Volume2 className={`w-3.5 h-3.5 ${isPlaying ? 'text-red-600 animate-spin' : 'text-[#458393]'}`} />
-                      </button>
-                      <button
-                        onClick={() => handleCopy(item.id, activeText)}
-                        className="p-1.5 rounded-lg bg-[#FFF3C8] text-[#1A3841] hover:bg-[#E5CB90] transition-colors"
-                        title="Copy text"
-                      >
-                        {isCopied ? <Check className="w-3.5 h-3.5 text-green-600" /> : <Copy className="w-3.5 h-3.5 text-[#458393]" />}
-                      </button>
+                {/* Dialogue Comparison Box */}
+                <div className="space-y-3">
+                  {/* Police Statement Box */}
+                  <div className="p-3.5 rounded-2xl bg-red-50/80 border border-red-200 flex items-start gap-2.5">
+                    <div className="w-7 h-7 rounded-lg bg-red-600 text-white flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
+                      <AlertCircle className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-extrabold uppercase text-red-800 tracking-wider block">
+                        If the Officer says:
+                      </span>
+                      <p className="text-xs sm:text-sm font-semibold text-red-950 italic">
+                        "{officerWords}"
+                      </p>
                     </div>
                   </div>
 
-                  <p className="text-sm sm:text-base font-bold italic text-white leading-relaxed">
-                    {activeText}
-                  </p>
+                  {/* Citizen Counter-Statement (Respectful & Firm) */}
+                  <div className="p-4 rounded-2xl bg-gradient-to-r from-[#458393] to-[#34A99D] text-[#FFF3C8] shadow-md space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#E5CB90]">
+                        Your exact words ({langConfig.name}):
+                      </span>
+                      <div className="flex items-center gap-1.5">
+                        <button
+                          onClick={() => handleSpeak(item.id, citizenResponse)}
+                          className="p-1.5 rounded-lg bg-[#FFF3C8] text-[#1A3841] hover:bg-[#E5CB90] transition-colors cursor-pointer"
+                          title="Listen with voice synthesis"
+                        >
+                          <Volume2 className={`w-3.5 h-3.5 ${isPlaying ? 'text-red-600 animate-spin' : 'text-[#458393]'}`} />
+                        </button>
+                        <button
+                          onClick={() => handleCopy(item.id, citizenResponse)}
+                          className="p-1.5 rounded-lg bg-[#FFF3C8] text-[#1A3841] hover:bg-[#E5CB90] transition-colors cursor-pointer"
+                          title="Copy to clipboard"
+                        >
+                          {isCopied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5 text-[#458393]" />}
+                        </button>
+                      </div>
+                    </div>
+                    <p className="text-sm sm:text-base font-bold italic tracking-wide text-white leading-snug">
+                      "{citizenResponse}"
+                    </p>
+                  </div>
                 </div>
 
-                {/* De-escalation Pro Tip */}
-                <div className="p-3 rounded-xl bg-[#E5CB90]/30 border border-[#E5CB90] flex items-start gap-2 text-xs text-[#1A3841] font-medium">
-                  <AlertCircle className="w-4 h-4 text-[#458393] shrink-0 mt-0.5" />
-                  <span>
-                    <strong className="text-[#1A3841]">Tactical Tip: </strong>
-                    {item.tip}
-                  </span>
+                {/* Why This Works & Tips */}
+                <div className="p-3 rounded-2xl bg-[#E5CB90]/40 border border-[#E5CB90] text-xs space-y-1">
+                  <div className="flex items-center gap-1.5 text-[#1A3841] font-bold">
+                    <Sparkles className="w-3.5 h-3.5 text-[#458393]" />
+                    <span>Statutory Foundation:</span>
+                  </div>
+                  <p className="text-[#1A3841]/90 font-medium">
+                    Backed by {item.legalBasis} and Supreme Court procedural mandates.
+                  </p>
+                  <p className="text-[#458393] font-semibold text-[11px] pt-1 border-t border-[#E5CB90]/60">
+                    💡 Tip: {tipText}
+                  </p>
                 </div>
 
               </div>
