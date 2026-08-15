@@ -1,0 +1,227 @@
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { ShieldCheck, AlertTriangle, XCircle, CheckCircle2, MessageSquare, Scale, PhoneCall, Volume2, ArrowRight } from 'lucide-react';
+import { SITUATION_STEPS } from '../data/legalData';
+import { ThreeDCard } from './ThreeDCard';
+
+interface SituationNavigatorProps {
+  selectedSituationId: string | null;
+  onSelectSituation: (id: string) => void;
+  language: 'en' | 'hi' | 'hinglish';
+}
+
+export const SituationNavigator: React.FC<SituationNavigatorProps> = ({
+  selectedSituationId,
+  onSelectSituation,
+  language,
+}) => {
+  const [activeStepId, setActiveStepId] = useState<string>(
+    selectedSituationId || SITUATION_STEPS[0].id
+  );
+  const [isSpeaking, setIsSpeaking] = useState(false);
+
+  // Update activeStepId when selectedSituationId changes
+  React.useEffect(() => {
+    if (selectedSituationId) {
+      setActiveStepId(selectedSituationId);
+    }
+  }, [selectedSituationId]);
+
+  const currentStep = SITUATION_STEPS.find((s) => s.id === activeStepId) || SITUATION_STEPS[0];
+
+  const handleSpeak = (text: string) => {
+    if ('speechSynthesis' in window) {
+      if (isSpeaking) {
+        window.speechSynthesis.cancel();
+        setIsSpeaking(false);
+        return;
+      }
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 0.95;
+      utterance.onend = () => setIsSpeaking(false);
+      utterance.onerror = () => setIsSpeaking(false);
+      setIsSpeaking(true);
+      window.speechSynthesis.speak(utterance);
+    }
+  };
+
+  return (
+    <div className="space-y-6">
+      {/* Section Title & Context */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#E5CB90]/60 pb-3">
+        <div>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1A3841] tracking-tight">
+            {language === 'hi' ? 'इंटरैक्टिव सिचुएशन गाइड' : 'Real-Time Police Situation Navigator'}
+          </h2>
+          <p className="text-sm text-[#458393] font-medium">
+            {language === 'hi'
+              ? 'स्थिति चुनें और जानें कि इस समय आपको क्या करना चाहिए, क्या नहीं करना चाहिए और पुलिस से क्या बोलना चाहिए।'
+              : 'Select what is happening right now to see your immediate legal rights, exact words to speak, and dos & don’ts.'}
+          </p>
+        </div>
+      </div>
+
+      {/* Situation Selector Buttons Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+        {SITUATION_STEPS.map((step) => {
+          const isSelected = activeStepId === step.id;
+          return (
+            <button
+              key={step.id}
+              id={`situation-btn-${step.id}`}
+              onClick={() => {
+                setActiveStepId(step.id);
+                onSelectSituation(step.id);
+              }}
+              className={`p-3.5 rounded-2xl text-left font-bold text-xs sm:text-sm transition-all border flex flex-col justify-between ${
+                isSelected
+                  ? 'bg-[#458393] text-[#FFF3C8] border-[#34A99D] shadow-md scale-[1.02]'
+                  : 'bg-[#FFF3C8] text-[#1A3841] border-[#E5CB90] hover:bg-[#E5CB90]/40'
+              }`}
+            >
+              <div className="flex items-center justify-between mb-2">
+                <span className={`text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full font-extrabold ${
+                  step.severity === 'critical'
+                    ? 'bg-red-500/20 text-red-700 border border-red-400'
+                    : 'bg-[#34A99D]/20 text-[#1A3841] border border-[#34A99D]'
+                }`}>
+                  {step.category.replace('_', ' ')}
+                </span>
+                {isSelected && <CheckCircle2 className="w-4 h-4 text-[#E5CB90]" />}
+              </div>
+              <span className="line-clamp-2 leading-tight">{step.title}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Detailed Interactive Action Guide for Selected Situation */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentStep.id}
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -15 }}
+          transition={{ duration: 0.25 }}
+        >
+          <ThreeDCard className="w-full">
+            <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-[#FFF3C8] via-[#FFF9E6] to-[#E5CB90]/30 border-2 border-[#E5CB90] shadow-lg space-y-6">
+              
+              {/* Header Box */}
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-[#E5CB90]">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-[#34A99D] text-white">
+                      Active Situation
+                    </span>
+                    <span className="text-xs text-[#458393] font-semibold">
+                      Legal Recourse Guide
+                    </span>
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-[#1A3841]">
+                    {currentStep.title}
+                  </h3>
+                  <p className="text-sm text-[#458393] font-medium mt-1">
+                    Scenario: {currentStep.situation}
+                  </p>
+                </div>
+
+                {/* Helpline quick dial for this situation */}
+                <div className="flex items-center gap-2 bg-[#FFF3C8] p-2.5 rounded-2xl border border-[#E5CB90] shadow-2xs">
+                  <PhoneCall className="w-5 h-5 text-red-600 animate-pulse" />
+                  <div>
+                    <span className="text-[11px] text-[#458393] font-bold block leading-none">Relevant Helpline</span>
+                    <span className="text-sm font-extrabold text-red-600">{currentStep.helpline}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Exact Words to Say (Dialogue Box with Audio Simulator) */}
+              <div className="p-5 rounded-2xl bg-gradient-to-r from-[#458393] to-[#34A99D] text-[#FFF3C8] shadow-md space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <MessageSquare className="w-5 h-5 text-[#E5CB90]" />
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#E5CB90]">
+                      Exact Words to Say to the Officer (Respectful & Firm)
+                    </span>
+                  </div>
+                  <button
+                    onClick={() => handleSpeak(currentStep.sayThis)}
+                    className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#FFF3C8] text-[#1A3841] text-xs font-bold hover:bg-[#E5CB90] transition-colors shadow-xs"
+                  >
+                    <Volume2 className={`w-3.5 h-3.5 ${isSpeaking ? 'text-red-600 animate-spin' : 'text-[#458393]'}`} />
+                    <span>{isSpeaking ? 'Playing...' : 'Audio Voice'}</span>
+                  </button>
+                </div>
+                <p className="text-base sm:text-lg font-bold italic tracking-wide text-white leading-snug">
+                  {currentStep.sayThis}
+                </p>
+              </div>
+
+              {/* Two Column Grid: DOs and DONTs */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                {/* Immediate DOs */}
+                <div className="p-5 rounded-2xl bg-emerald-50/90 border border-emerald-300 shadow-2xs space-y-3">
+                  <div className="flex items-center gap-2 text-emerald-800">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-600" />
+                    <h4 className="font-extrabold text-sm uppercase tracking-wider">
+                      What You MUST Do Immediately:
+                    </h4>
+                  </div>
+                  <ul className="space-y-2.5">
+                    {currentStep.immediateActions.map((action, idx) => (
+                      <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-emerald-950 font-medium leading-relaxed">
+                        <span className="w-5 h-5 rounded-full bg-emerald-200 text-emerald-900 flex items-center justify-center text-xs font-black shrink-0 mt-0.5">
+                          {idx + 1}
+                        </span>
+                        <span>{action}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Critical DON'Ts */}
+                <div className="p-5 rounded-2xl bg-rose-50/90 border border-rose-300 shadow-2xs space-y-3">
+                  <div className="flex items-center gap-2 text-rose-800">
+                    <XCircle className="w-5 h-5 text-rose-600" />
+                    <h4 className="font-extrabold text-sm uppercase tracking-wider">
+                      What You MUST NOT Do (Mistakes to Avoid):
+                    </h4>
+                  </div>
+                  <ul className="space-y-2.5">
+                    {currentStep.doNotDo.map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-rose-950 font-medium leading-relaxed">
+                        <span className="w-5 h-5 rounded-full bg-rose-200 text-rose-900 flex items-center justify-center text-xs font-black shrink-0 mt-0.5">
+                          ✕
+                        </span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+              </div>
+
+              {/* Legal Shield & Section Citation */}
+              <div className="p-4 rounded-2xl bg-[#E5CB90]/40 border border-[#E5CB90] flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-[#458393] text-[#FFF3C8] flex items-center justify-center shrink-0 shadow-2xs">
+                  <Scale className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-xs font-bold text-[#1A3841] block uppercase tracking-wider">
+                    Statutory Legal Shield:
+                  </span>
+                  <span className="text-sm font-extrabold text-[#458393]">
+                    {currentStep.legalShield}
+                  </span>
+                </div>
+              </div>
+
+            </div>
+          </ThreeDCard>
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+};

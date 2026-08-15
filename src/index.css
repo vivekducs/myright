@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --vintage-sand: #E5CB90;
+    --vintage-cream: #FFF3C8;
+    --vintage-teal: #34A99D;
+    --vintage-ocean: #458393;
+    --vintage-deep: #1A3841;
+    --vintage-charcoal: #233438;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: #FFF3C8;
+    color: #1A3841;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: 'Outfit', 'Cinzel', serif, sans-serif;
+  }
+}
+
+/* Custom Vintage Summer Color Utilities */
+.bg-vintage-sand { background-color: #E5CB90; }
+.bg-vintage-cream { background-color: #FFF3C8; }
+.bg-vintage-teal { background-color: #34A99D; }
+.bg-vintage-ocean { background-color: #458393; }
+.bg-vintage-deep { background-color: #1A3841; }
+
+.text-vintage-sand { color: #E5CB90; }
+.text-vintage-cream { color: #FFF3C8; }
+.text-vintage-teal { color: #34A99D; }
+.text-vintage-ocean { color: #458393; }
+.text-vintage-deep { color: #1A3841; }
+
+.border-vintage-sand { border-color: #E5CB90; }
+.border-vintage-cream { border-color: #FFF3C8; }
+.border-vintage-teal { border-color: #34A99D; }
+.border-vintage-ocean { border-color: #458393; }
+
+/* 3D tilt perspective container */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* Vintage Paper grain and subtle gold sunlit glow */
+.vintage-sun-gradient {
+  background: linear-gradient(135deg, #FFF3C8 0%, #FFF8DC 50%, #E5CB90 100%);
+}
+
+.vintage-ocean-gradient {
+  background: linear-gradient(135deg, #458393 0%, #34A99D 50%, #1A3841 100%);
+}
+
+.vintage-card-gradient {
+  background: linear-gradient(180deg, rgba(255, 243, 200, 0.95) 0%, rgba(229, 203, 144, 0.4) 100%);
+}
+
+.vintage-teal-gradient {
+  background: linear-gradient(135deg, #34A99D 0%, #458393 100%);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FFF3C8;
+}
+::-webkit-scrollbar-thumb {
+  background: #458393;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #34A99D;
+}

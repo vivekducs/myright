@@ -1,0 +1,6 @@
+{
+  "name": "Citizen Police Rights India - Legal Guide & Rights Navigator",
+  "description": "Interactive legal rights guide and police interaction navigator for Indian citizens, featuring situation advisors, emergency helplines, Fundamental Rights, and D.K. Basu arrest rules in a vintage summer teal & gold aesthetic.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
