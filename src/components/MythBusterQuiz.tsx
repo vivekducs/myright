@@ -35,13 +35,12 @@ export const MythBusterQuiz: React.FC<MythBusterQuizProps> = ({ language }) => {
     if (isAnswered) return;
     setSelectedOption(index);
     setIsAnswered(true);
-
     const isCorrect = index === QUIZ_QUESTIONS[currentQIndex].correctIndex;
     if (isCorrect) {
       setScore((s) => s + 1);
       confetti({
-        particleCount: 40,
-        spread: 60,
+        particleCount: 50,
+        spread: 70,
         origin: { y: 0.7 },
         colors: ['#34A99D', '#E5CB90', '#FFF3C8', '#458393'],
       });
@@ -56,8 +55,8 @@ export const MythBusterQuiz: React.FC<MythBusterQuizProps> = ({ language }) => {
     } else {
       setShowResult(true);
       confetti({
-        particleCount: 100,
-        spread: 90,
+        particleCount: 110,
+        spread: 100,
         origin: { y: 0.5 },
       });
     }
@@ -75,25 +74,33 @@ export const MythBusterQuiz: React.FC<MythBusterQuizProps> = ({ language }) => {
 
   return (
     <div className="space-y-6">
-      {/* Tab Selector */}
+      {/* Tab Selector with Circular Pills */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E5CB90]/60 pb-4">
         <div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1A3841] tracking-tight">
+          <div className="flex items-center gap-2 mb-1.5">
+            <span className="px-4 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-[#458393] text-white shadow-xs">
+              Gamified Civic Learning
+            </span>
+            <span className="text-xs font-bold text-[#34A99D] px-3 py-0.5 rounded-full bg-[#34A99D]/15">
+              Interactive Myth Busting & Scenarios
+            </span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-black text-[#1A3841] tracking-tight">
             {t.quizTitle}
           </h2>
-          <p className="text-sm text-[#458393] font-medium">
+          <p className="text-sm text-[#458393] font-bold">
             {t.quizSubtitle}
           </p>
         </div>
 
-        <div className="flex items-center gap-2 bg-[#FFF3C8] p-1.5 rounded-2xl border border-[#E5CB90]">
+        <div className="flex items-center gap-2 bg-[#FFF3C8] p-1.5 rounded-full border-2 border-[#E5CB90] shadow-xs">
           <button
             id="tab-myths-btn"
             onClick={() => setActiveTab('myths')}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+            className={`px-5 py-2 rounded-full text-xs sm:text-sm font-black transition-all cursor-pointer ${
               activeTab === 'myths'
-                ? 'bg-[#458393] text-[#FFF3C8] shadow-xs'
-                : 'text-[#1A3841] hover:bg-[#E5CB90]/30'
+                ? 'bg-[#458393] text-[#FFF3C8] shadow-md'
+                : 'text-[#1A3841] hover:bg-[#E5CB90]/40'
             }`}
           >
             Myth-Buster 3D Cards
@@ -101,10 +108,10 @@ export const MythBusterQuiz: React.FC<MythBusterQuizProps> = ({ language }) => {
           <button
             id="tab-quiz-btn"
             onClick={() => setActiveTab('quiz')}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+            className={`px-5 py-2 rounded-full text-xs sm:text-sm font-black transition-all cursor-pointer ${
               activeTab === 'quiz'
-                ? 'bg-[#458393] text-[#FFF3C8] shadow-xs'
-                : 'text-[#1A3841] hover:bg-[#E5CB90]/30'
+                ? 'bg-[#458393] text-[#FFF3C8] shadow-md'
+                : 'text-[#1A3841] hover:bg-[#E5CB90]/40'
             }`}
           >
             Citizen Knowledge Quiz
@@ -117,7 +124,7 @@ export const MythBusterQuiz: React.FC<MythBusterQuizProps> = ({ language }) => {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-[#458393]">
-              💡 Tap any card to flip and reveal the official statutory legal reality.
+              💡 Tap any card to flip in 3D and reveal the official statutory legal reality.
             </span>
           </div>
 
@@ -134,39 +141,41 @@ export const MythBusterQuiz: React.FC<MythBusterQuizProps> = ({ language }) => {
                   key={item.id}
                   id={`myth-card-${item.id}`}
                   onClick={() => toggleFlip(item.id)}
-                  className="cursor-pointer select-none min-h-[220px]"
+                  className="cursor-pointer select-none min-h-[230px] group"
                 >
                   <ThreeDCard className="h-full">
                     <motion.div
                       animate={{ rotateY: isFlipped ? 180 : 0 }}
                       transition={{ duration: 0.4 }}
                       style={{ transformStyle: 'preserve-3d' }}
-                      className="w-full h-full relative min-h-[220px]"
+                      className="w-full h-full relative min-h-[230px]"
                     >
                       {/* FRONT OF CARD (The Common Myth) */}
                       <div
                         style={{ backfaceVisibility: 'hidden' }}
-                        className={`absolute inset-0 p-6 rounded-3xl border-2 shadow-md flex flex-col justify-between transition-all ${
+                        className={`absolute inset-0 p-6 rounded-[32px] border-2 shadow-md group-hover:shadow-2xl transition-all duration-300 flex flex-col justify-between ${
                           isFlipped ? 'pointer-events-none' : ''
-                        } bg-gradient-to-b from-[#FFF3C8] to-[#FFF9E6] border-red-300/80`}
+                        } bg-gradient-to-b from-[#FFF3C8] to-[#FFF9E6] border-red-300/80 group-hover:border-red-400`}
                       >
                         <div>
                           <div className="flex items-center justify-between mb-3">
-                            <span className="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-red-100 text-red-800 border border-red-300">
+                            <span className="text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full bg-red-100 text-red-800 border border-red-300">
                               Common Myth ✕
                             </span>
-                            <span className="text-[11px] font-extrabold text-[#458393] uppercase">
+                            <span className="text-[11px] font-black text-[#458393] uppercase px-2.5 py-0.5 rounded-full bg-[#E5CB90]/40">
                               {item.tag}
                             </span>
                           </div>
-                          <h3 className="text-base sm:text-lg font-extrabold text-[#1A3841] leading-snug">
+                          <h3 className="text-base sm:text-lg font-black text-[#1A3841] leading-snug">
                             "{mythText}"
                           </h3>
                         </div>
 
-                        <div className="pt-3 border-t border-[#E5CB90]/60 flex items-center justify-between text-xs font-bold text-[#34A99D]">
-                          <span>Tap to reveal legal reality</span>
-                          <ArrowRight className="w-4 h-4" />
+                        <div className="pt-3 border-t border-[#E5CB90]/60 flex items-center justify-between text-xs font-black text-[#34A99D]">
+                          <span>Tap to flip and reveal reality</span>
+                          <div className="w-7 h-7 rounded-full bg-[#34A99D]/20 flex items-center justify-center">
+                            <ArrowRight className="w-4 h-4" />
+                          </div>
                         </div>
                       </div>
 
@@ -176,29 +185,30 @@ export const MythBusterQuiz: React.FC<MythBusterQuizProps> = ({ language }) => {
                           backfaceVisibility: 'hidden',
                           transform: 'rotateY(180deg)',
                         }}
-                        className={`absolute inset-0 p-6 rounded-3xl border-2 shadow-md flex flex-col justify-between transition-all bg-gradient-to-b from-[#34A99D] to-[#458393] text-[#FFF3C8] border-[#34A99D] ${
+                        className={`absolute inset-0 p-6 rounded-[32px] border-2 shadow-xl flex flex-col justify-between transition-all bg-gradient-to-b from-[#34A99D] to-[#458393] text-[#FFF3C8] border-[#34A99D] ${
                           !isFlipped ? 'pointer-events-none' : ''
                         }`}
                       >
                         <div>
                           <div className="flex items-center justify-between mb-2">
-                            <span className="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-[#FFF3C8] text-[#1A3841]">
+                            <span className="text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full bg-[#FFF3C8] text-[#1A3841]">
                               Legal Reality ✓
                             </span>
-                            <span className="text-[10px] font-mono text-[#E5CB90]">
+                            <span className="text-[10px] font-mono font-bold text-[#E5CB90] px-2 py-0.5 rounded-full bg-white/10">
                               {item.lawSection}
                             </span>
                           </div>
                           <h4 className="text-sm font-black text-white mb-1">
                             {realityHeading}
                           </h4>
-                          <p className="text-xs text-[#FFF3C8]/90 font-medium leading-relaxed">
+                          <p className="text-xs text-[#FFF3C8]/90 font-semibold leading-relaxed">
                             {explanationText}
                           </p>
                         </div>
 
-                        <div className="pt-2 border-t border-[#FFF3C8]/20 text-[11px] text-[#E5CB90] font-bold">
-                          Tap to flip back
+                        <div className="pt-2 border-t border-[#FFF3C8]/20 text-[11px] text-[#E5CB90] font-black flex items-center justify-between">
+                          <span>Tap to flip back</span>
+                          <RefreshCw className="w-3.5 h-3.5" />
                         </div>
                       </div>
                     </motion.div>
@@ -215,24 +225,24 @@ export const MythBusterQuiz: React.FC<MythBusterQuizProps> = ({ language }) => {
         <div className="max-w-2xl mx-auto">
           {!showResult ? (
             <ThreeDCard className="w-full">
-              <div className="p-6 sm:p-8 rounded-3xl bg-[#FFF3C8] border-2 border-[#E5CB90] shadow-xl space-y-6">
+              <div className="p-6 sm:p-8 rounded-[36px] bg-[#FFF3C8] border-2 border-[#E5CB90] shadow-xl space-y-6">
                 
                 {/* Progress Header */}
-                <div className="flex items-center justify-between pb-3 border-b border-[#E5CB90]">
+                <div className="flex items-center justify-between pb-4 border-b border-[#E5CB90]">
                   <span className="text-xs font-black uppercase tracking-wider text-[#458393]">
                     Question {currentQIndex + 1} of {QUIZ_QUESTIONS.length}
                   </span>
-                  <span className="px-3 py-1 rounded-full bg-[#34A99D]/20 text-[#1A3841] text-xs font-bold border border-[#34A99D]">
+                  <span className="px-4 py-1 rounded-full bg-[#34A99D]/20 text-[#1A3841] text-xs font-black border border-[#34A99D]">
                     Score: {score}
                   </span>
                 </div>
 
                 {/* Question */}
                 <div>
-                  <span className="text-[11px] font-bold uppercase text-[#458393] tracking-wider block mb-1">
+                  <span className="text-[11px] font-black uppercase text-[#458393] tracking-wider block mb-1">
                     Scenario / Rule:
                   </span>
-                  <h3 className="text-lg sm:text-xl font-extrabold text-[#1A3841] leading-snug">
+                  <h3 className="text-lg sm:text-xl font-black text-[#1A3841] leading-snug">
                     {currentQ.question}
                   </h3>
                 </div>
@@ -243,12 +253,12 @@ export const MythBusterQuiz: React.FC<MythBusterQuizProps> = ({ language }) => {
                     const isSelected = selectedOption === idx;
                     const isCorrect = idx === currentQ.correctIndex;
 
-                    let btnStyle = 'bg-white hover:bg-[#E5CB90]/40 border-[#E5CB90] text-[#1A3841]';
+                    let btnStyle = 'bg-white hover:bg-[#E5CB90]/40 border-2 border-[#E5CB90] text-[#1A3841] hover:border-[#34A99D]';
                     if (isAnswered) {
                       if (isCorrect) {
-                        btnStyle = 'bg-emerald-100 border-emerald-500 text-emerald-950 font-bold';
+                        btnStyle = 'bg-emerald-100 border-2 border-emerald-500 text-emerald-950 font-black';
                       } else if (isSelected) {
-                        btnStyle = 'bg-rose-100 border-rose-500 text-rose-950';
+                        btnStyle = 'bg-rose-100 border-2 border-rose-500 text-rose-950 font-black';
                       }
                     }
 
@@ -258,7 +268,7 @@ export const MythBusterQuiz: React.FC<MythBusterQuizProps> = ({ language }) => {
                         id={`quiz-opt-${idx}`}
                         onClick={() => handleSelectOption(idx)}
                         disabled={isAnswered}
-                        className={`w-full p-4 rounded-2xl border-2 text-left text-sm font-semibold transition-all flex items-center justify-between cursor-pointer ${btnStyle}`}
+                        className={`w-full p-4 rounded-full text-left text-sm font-bold transition-all flex items-center justify-between cursor-pointer shadow-2xs hover:scale-[1.01] px-5 ${btnStyle}`}
                       >
                         <span>{opt}</span>
                         {isAnswered && isCorrect && <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 ml-2" />}
@@ -273,16 +283,16 @@ export const MythBusterQuiz: React.FC<MythBusterQuizProps> = ({ language }) => {
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="p-4 rounded-2xl bg-[#E5CB90]/40 border border-[#E5CB90] space-y-2"
+                    className="p-5 rounded-3xl bg-[#E5CB90]/40 border-2 border-[#E5CB90] space-y-2"
                   >
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-[#1A3841]">
+                    <div className="flex items-center gap-2 text-xs font-black text-[#1A3841]">
                       <Sparkles className="w-4 h-4 text-[#34A99D]" />
                       <span>Legal Reference & Rule:</span>
                     </div>
-                    <p className="text-xs font-medium text-[#1A3841] leading-relaxed">
+                    <p className="text-xs sm:text-sm font-bold text-[#1A3841] leading-relaxed">
                       {currentQ.explanation}
                     </p>
-                    <span className="inline-block text-[11px] font-mono font-bold text-[#458393] bg-white/80 px-2 py-0.5 rounded-md">
+                    <span className="inline-block text-[11px] font-mono font-bold text-[#458393] bg-white/90 px-3 py-1 rounded-full border border-[#E5CB90]">
                       {currentQ.legalReference}
                     </span>
                   </motion.div>
@@ -294,7 +304,7 @@ export const MythBusterQuiz: React.FC<MythBusterQuizProps> = ({ language }) => {
                     <button
                       id="quiz-next-btn"
                       onClick={handleNextQuestion}
-                      className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#458393] hover:bg-[#34A99D] text-[#FFF3C8] font-extrabold text-sm shadow-md transition-all cursor-pointer"
+                      className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#458393] hover:bg-[#34A99D] text-[#FFF3C8] font-black text-sm shadow-md hover:shadow-xl hover:-translate-y-0.5 transition-all cursor-pointer"
                     >
                       <span>{currentQIndex < QUIZ_QUESTIONS.length - 1 ? 'Next Question' : 'View Final Score'}</span>
                       <ArrowRight className="w-4 h-4" />
@@ -306,21 +316,21 @@ export const MythBusterQuiz: React.FC<MythBusterQuizProps> = ({ language }) => {
             </ThreeDCard>
           ) : (
             <ThreeDCard className="w-full">
-              <div className="p-8 rounded-3xl bg-[#FFF3C8] border-2 border-[#E5CB90] text-center space-y-6">
-                <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-[#34A99D] to-[#458393] text-white flex items-center justify-center mx-auto shadow-lg">
-                  <Award className="w-10 h-10 text-[#E5CB90]" />
+              <div className="p-8 sm:p-10 rounded-[40px] bg-[#FFF3C8] border-2 border-[#E5CB90] text-center space-y-6 shadow-2xl">
+                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#34A99D] to-[#458393] text-white flex items-center justify-center mx-auto shadow-xl ring-4 ring-[#FFF3C8]">
+                  <Award className="w-12 h-12 text-[#E5CB90]" />
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-[#1A3841]">
+                  <h3 className="text-2xl sm:text-3xl font-black text-[#1A3841]">
                     Quiz Complete!
                   </h3>
-                  <p className="text-sm font-bold text-[#458393]">
+                  <p className="text-base font-black text-[#458393]">
                     You scored {score} out of {QUIZ_QUESTIONS.length}
                   </p>
                 </div>
 
-                <p className="text-sm text-[#1A3841] max-w-md mx-auto">
+                <p className="text-sm font-bold text-[#1A3841] max-w-md mx-auto leading-relaxed">
                   {score >= 4
                     ? '🎉 Outstanding! You are exceptionally well-informed about your fundamental rights and police procedures under Indian law.'
                     : 'Good attempt! Explore the D.K. Basu guidelines and legal articles to brush up on your citizen safeguards.'}
@@ -329,7 +339,7 @@ export const MythBusterQuiz: React.FC<MythBusterQuizProps> = ({ language }) => {
                 <div className="flex justify-center gap-3 pt-2">
                   <button
                     onClick={handleRestartQuiz}
-                    className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-[#458393] hover:bg-[#34A99D] text-[#FFF3C8] font-extrabold text-sm shadow-md transition-all cursor-pointer"
+                    className="flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#458393] hover:bg-[#34A99D] text-[#FFF3C8] font-black text-sm shadow-lg hover:shadow-2xl hover:-translate-y-0.5 transition-all cursor-pointer"
                   >
                     <RefreshCw className="w-4 h-4" />
                     <span>Retake Quiz</span>

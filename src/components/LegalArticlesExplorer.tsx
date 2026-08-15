@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { BookOpen, Search, Filter, ShieldCheck, CheckCircle2, XCircle, ChevronDown, ChevronUp, Scale, Sparkles, Volume2 } from 'lucide-react';
+import { BookOpen, Search, Filter, ShieldCheck, CheckCircle2, XCircle, ChevronDown, ChevronUp, Scale, Sparkles, Volume2, Bookmark, Check } from 'lucide-react';
 import { LEGAL_RIGHTS } from '../data/legalData';
-import { Category, SupportedLanguage } from '../types';
+import { Category, DetailPageTarget, SupportedLanguage } from '../types';
 import { ThreeDCard } from './ThreeDCard';
 import { getT, LANGUAGE_OPTIONS } from '../data/translations';
 
@@ -11,6 +11,7 @@ interface LegalArticlesExplorerProps {
   onSelectCategory: (cat: Category) => void;
   searchQuery: string;
   language: SupportedLanguage;
+  onSelectTarget: (target: DetailPageTarget) => void;
 }
 
 export const LegalArticlesExplorer: React.FC<LegalArticlesExplorerProps> = ({
@@ -18,6 +19,7 @@ export const LegalArticlesExplorer: React.FC<LegalArticlesExplorerProps> = ({
   onSelectCategory,
   searchQuery,
   language,
+  onSelectTarget,
 }) => {
   const [expandedId, setExpandedId] = useState<string | null>(LEGAL_RIGHTS[0].id);
   const [speakingId, setSpeakingId] = useState<string | null>(null);
@@ -79,26 +81,26 @@ export const LegalArticlesExplorer: React.FC<LegalArticlesExplorerProps> = ({
   return (
     <div className="space-y-6">
       {/* Section Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E5CB90]/60 pb-3">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E5CB90]/60 pb-4">
         <div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-[#458393] text-white">
+          <div className="flex items-center gap-2 mb-1.5">
+            <span className="px-4 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-[#458393] text-white shadow-xs">
               Official Statutory Compendium
             </span>
-            <span className="text-xs font-bold text-[#34A99D]">
+            <span className="text-xs font-bold text-[#34A99D] px-3 py-0.5 rounded-full bg-[#34A99D]/15">
               Constitution of India & BNSS / CrPC
             </span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1A3841] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-black text-[#1A3841] tracking-tight">
             {t.rightsTitle}
           </h2>
-          <p className="text-sm text-[#458393] font-medium">
+          <p className="text-sm text-[#458393] font-bold">
             {t.rightsSubtitle}
           </p>
         </div>
       </div>
 
-      {/* Category Pills Filter */}
+      {/* Category Circular Pills Filter */}
       <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-thin">
         {categories.map((cat) => {
           const isActive = selectedCategory === cat.id;
@@ -107,10 +109,10 @@ export const LegalArticlesExplorer: React.FC<LegalArticlesExplorerProps> = ({
               key={cat.id}
               id={`filter-cat-${cat.id}`}
               onClick={() => onSelectCategory(cat.id)}
-              className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all cursor-pointer ${
+              className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-black whitespace-nowrap transition-all duration-200 cursor-pointer shadow-xs ${
                 isActive
-                  ? 'bg-[#34A99D] text-white shadow-sm scale-105'
-                  : 'bg-[#FFF3C8] text-[#1A3841] border border-[#E5CB90] hover:bg-[#E5CB90]/40'
+                  ? 'bg-[#34A99D] text-white shadow-md ring-2 ring-[#34A99D]/30 scale-105'
+                  : 'bg-[#FFF3C8] text-[#1A3841] border-2 border-[#E5CB90] hover:border-[#34A99D] hover:bg-[#E5CB90]/40'
               }`}
             >
               {cat.label}
@@ -122,10 +124,10 @@ export const LegalArticlesExplorer: React.FC<LegalArticlesExplorerProps> = ({
       {/* Rights List Accordion / Grid */}
       <div className="space-y-4">
         {filteredRights.length === 0 ? (
-          <div className="text-center py-12 bg-[#FFF3C8] rounded-3xl border border-[#E5CB90] p-6">
+          <div className="text-center py-12 bg-[#FFF3C8] rounded-3xl border-2 border-[#E5CB90] p-6">
             <Scale className="w-12 h-12 text-[#458393] mx-auto mb-3 opacity-60" />
-            <h3 className="text-lg font-bold text-[#1A3841]">No matching legal provisions found</h3>
-            <p className="text-sm text-[#458393] mt-1">
+            <h3 className="text-lg font-black text-[#1A3841]">No matching legal provisions found</h3>
+            <p className="text-sm text-[#458393] font-semibold mt-1">
               Try adjusting your search query or choosing "All Rights".
             </p>
           </div>
@@ -141,7 +143,7 @@ export const LegalArticlesExplorer: React.FC<LegalArticlesExplorerProps> = ({
               <ThreeDCard key={right.id} className="w-full">
                 <div
                   id={`right-card-${right.id}`}
-                  className="rounded-3xl bg-gradient-to-b from-[#FFF3C8] to-[#FFF8E7] border-2 border-[#E5CB90] shadow-sm hover:shadow-md transition-all overflow-hidden"
+                  className="rounded-[32px] bg-gradient-to-b from-[#FFF3C8] via-[#FFFBF0] to-[#FFF8E7] border-2 border-[#E5CB90] hover:border-[#34A99D] shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group"
                 >
                   {/* Card Header (Click to toggle) */}
                   <div
@@ -149,28 +151,29 @@ export const LegalArticlesExplorer: React.FC<LegalArticlesExplorerProps> = ({
                     className="p-5 sm:p-6 cursor-pointer flex items-center justify-between gap-4 select-none hover:bg-[#E5CB90]/20 transition-colors"
                   >
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#34A99D] to-[#458393] text-[#FFF3C8] flex items-center justify-center shrink-0 shadow-xs mt-0.5">
-                        <BookOpen className="w-6 h-6" />
+                      {/* Circular Icon Emblem */}
+                      <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#34A99D] to-[#458393] text-[#FFF3C8] flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform mt-0.5 ring-4 ring-[#FFF3C8]">
+                        <BookOpen className="w-7 h-7" />
                       </div>
                       <div>
                         <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                          <span className="text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#458393]/20 text-[#1A3841] border border-[#458393]/40">
+                          <span className="text-[10px] font-black uppercase tracking-wider px-3 py-0.5 rounded-full bg-[#458393]/20 text-[#1A3841] border border-[#458393]/40">
                             {right.category.replace('_', ' ')}
                           </span>
-                          <span className="text-xs font-mono font-bold text-[#458393] bg-[#E5CB90]/40 px-2 py-0.5 rounded-md">
+                          <span className="text-xs font-mono font-bold text-[#458393] bg-[#E5CB90]/50 px-2.5 py-0.5 rounded-full border border-[#E5CB90]">
                             {right.lawRef}
                           </span>
                         </div>
-                        <h3 className="text-lg sm:text-xl font-extrabold text-[#1A3841] leading-snug">
+                        <h3 className="text-lg sm:text-xl font-black text-[#1A3841] group-hover:text-[#34A99D] transition-colors leading-snug">
                           {displayTitle}
                         </h3>
-                        <p className="text-xs sm:text-sm text-[#458393] font-medium mt-1">
+                        <p className="text-xs sm:text-sm text-[#458393] font-bold mt-1">
                           {displaySummary}
                         </p>
                       </div>
                     </div>
 
-                    <div className="shrink-0 text-[#458393] bg-[#FFF3C8] p-2 rounded-xl border border-[#E5CB90]">
+                    <div className="shrink-0 text-[#458393] bg-[#FFF3C8] w-10 h-10 rounded-full border-2 border-[#E5CB90] group-hover:border-[#34A99D] flex items-center justify-center shadow-xs transition-colors">
                       {isExpanded ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
                     </div>
                   </div>
@@ -187,8 +190,10 @@ export const LegalArticlesExplorer: React.FC<LegalArticlesExplorerProps> = ({
                       >
                         {/* Landmark Judgment Banner */}
                         {right.scJudgment && (
-                          <div className="p-3.5 rounded-2xl bg-[#E5CB90]/30 border border-[#E5CB90] flex items-center gap-2.5 text-xs text-[#1A3841] font-semibold">
-                            <Sparkles className="w-4 h-4 text-[#458393] shrink-0" />
+                          <div className="p-4 rounded-2xl bg-[#E5CB90]/30 border border-[#E5CB90] flex items-center gap-3 text-xs text-[#1A3841] font-bold">
+                            <div className="w-7 h-7 rounded-full bg-[#458393]/20 flex items-center justify-center shrink-0">
+                              <Sparkles className="w-4 h-4 text-[#458393]" />
+                            </div>
                             <span>
                               <strong>Landmark Supreme Court Benchmark:</strong> {right.scJudgment}
                             </span>
@@ -196,17 +201,17 @@ export const LegalArticlesExplorer: React.FC<LegalArticlesExplorerProps> = ({
                         )}
 
                         {/* Core Key Safeguards */}
-                        <div className="space-y-2">
-                          <h4 className="text-xs font-extrabold uppercase tracking-wider text-[#1A3841]">
+                        <div className="space-y-2.5">
+                          <h4 className="text-xs font-black uppercase tracking-wider text-[#1A3841]">
                             Key Statutory Safeguards:
                           </h4>
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                             {right.keyPoints.map((pt, idx) => (
                               <div
                                 key={idx}
-                                className="p-3 rounded-xl bg-white/70 border border-[#E5CB90]/60 text-xs sm:text-sm font-medium text-[#1A3841] flex items-start gap-2"
+                                className="p-3.5 rounded-2xl bg-white/80 border border-[#E5CB90]/70 text-xs sm:text-sm font-semibold text-[#1A3841] flex items-start gap-2.5 shadow-2xs"
                               >
-                                <span className="w-4 h-4 rounded-full bg-[#34A99D]/20 text-[#34A99D] flex items-center justify-center text-[10px] font-black shrink-0 mt-0.5">
+                                <span className="w-5 h-5 rounded-full bg-[#34A99D]/20 text-[#34A99D] flex items-center justify-center text-[10px] font-black shrink-0 mt-0.5">
                                   ✓
                                 </span>
                                 <span>{pt}</span>
@@ -218,12 +223,14 @@ export const LegalArticlesExplorer: React.FC<LegalArticlesExplorerProps> = ({
                         {/* Two Columns: Police Duties & Police Prohibitions */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           
-                          <div className="p-4 rounded-2xl bg-emerald-50/80 border border-emerald-300 space-y-2">
-                            <div className="flex items-center gap-1.5 text-emerald-800 text-xs font-black uppercase tracking-wider">
-                              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                          <div className="p-5 rounded-3xl bg-emerald-50/90 border-2 border-emerald-300 space-y-2.5">
+                            <div className="flex items-center gap-2 text-emerald-800 text-xs font-black uppercase tracking-wider">
+                              <div className="w-6 h-6 rounded-full bg-emerald-200 flex items-center justify-center">
+                                <CheckCircle2 className="w-4 h-4 text-emerald-700" />
+                              </div>
                               <span>{t.whatPoliceMustDo}</span>
                             </div>
-                            <ul className="space-y-1.5 text-xs text-emerald-950 font-medium">
+                            <ul className="space-y-2 text-xs text-emerald-950 font-semibold pl-1">
                               {right.whatPoliceMustDo.map((item, i) => (
                                 <li key={i} className="flex items-start gap-2">
                                   <span className="text-emerald-700 font-bold">•</span>
@@ -233,12 +240,14 @@ export const LegalArticlesExplorer: React.FC<LegalArticlesExplorerProps> = ({
                             </ul>
                           </div>
 
-                          <div className="p-4 rounded-2xl bg-rose-50/80 border border-rose-300 space-y-2">
-                            <div className="flex items-center gap-1.5 text-rose-800 text-xs font-black uppercase tracking-wider">
-                              <XCircle className="w-4 h-4 text-rose-600 shrink-0" />
+                          <div className="p-5 rounded-3xl bg-rose-50/90 border-2 border-rose-300 space-y-2.5">
+                            <div className="flex items-center gap-2 text-rose-800 text-xs font-black uppercase tracking-wider">
+                              <div className="w-6 h-6 rounded-full bg-rose-200 flex items-center justify-center">
+                                <XCircle className="w-4 h-4 text-rose-700" />
+                              </div>
                               <span>{t.whatPoliceCannotDo}</span>
                             </div>
-                            <ul className="space-y-1.5 text-xs text-rose-950 font-medium">
+                            <ul className="space-y-2 text-xs text-rose-950 font-semibold pl-1">
                               {right.whatPoliceCannotDo.map((item, i) => (
                                 <li key={i} className="flex items-start gap-2">
                                   <span className="text-rose-700 font-bold">•</span>
@@ -251,21 +260,36 @@ export const LegalArticlesExplorer: React.FC<LegalArticlesExplorerProps> = ({
                         </div>
 
                         {/* Spoken Dialogue Pill */}
-                        <div className="p-4 rounded-2xl bg-gradient-to-r from-[#458393] to-[#34A99D] text-[#FFF3C8] shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div className="p-5 rounded-3xl bg-gradient-to-r from-[#458393] via-[#34A99D] to-[#458393] text-[#FFF3C8] shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                           <div>
-                            <span className="text-[11px] uppercase tracking-wider font-extrabold text-[#E5CB90] block mb-1">
+                            <span className="text-[11px] uppercase tracking-wider font-black text-[#E5CB90] block mb-1">
                               {t.exactSpokenWords}
                             </span>
-                            <p className="text-sm font-bold italic text-white">
-                              {displayDialogue}
+                            <p className="text-sm sm:text-base font-bold italic text-white leading-relaxed">
+                              "{displayDialogue}"
                             </p>
                           </div>
                           <button
                             onClick={() => handleSpeakDialogue(right.id, displayDialogue)}
-                            className="self-start sm:self-center shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#FFF3C8] hover:bg-[#E5CB90] text-[#1A3841] text-xs font-bold transition-all shadow-xs cursor-pointer"
+                            className="self-start sm:self-center shrink-0 flex items-center gap-2 px-4 py-2 rounded-full bg-[#FFF3C8] hover:bg-[#E5CB90] text-[#1A3841] text-xs font-black hover:scale-105 transition-all shadow-md cursor-pointer"
                           >
-                            <Volume2 className={`w-3.5 h-3.5 ${speakingId === right.id ? 'text-red-600 animate-spin' : 'text-[#458393]'}`} />
+                            <Volume2 className={`w-4 h-4 ${speakingId === right.id ? 'text-red-600 animate-spin' : 'text-[#458393]'}`} />
                             <span>{speakingId === right.id ? t.playingAudio : t.listenAudio}</span>
+                          </button>
+                        </div>
+
+                        {/* Open Dedicated Page Action */}
+                        <div className="pt-2 flex justify-end">
+                          <button
+                            id={`open-full-right-btn-${right.id}`}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              onSelectTarget({ type: 'right', id: right.id });
+                            }}
+                            className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#1A3841] hover:bg-[#34A99D] text-white text-xs font-black shadow-md hover:scale-105 transition-all cursor-pointer"
+                          >
+                            <span>{t.viewFullExplanation}</span>
+                            <span className="text-base">→</span>
                           </button>
                         </div>
 

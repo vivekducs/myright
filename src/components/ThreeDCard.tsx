@@ -63,14 +63,14 @@ export const ThreeDCard: React.FC<ThreeDCardProps> = ({
         rotateY,
       }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      className={`relative perspective-1000 transition-shadow duration-300 ${className}`}
+      className={`relative perspective-1000 transition-all duration-300 ${className}`}
     >
       {/* Subtle dynamic sheen reflection using vintage gold / teal */}
       <div
-        className="pointer-events-none absolute inset-0 rounded-2xl z-10 transition-opacity duration-300"
+        className="pointer-events-none absolute inset-0 rounded-3xl z-10 transition-opacity duration-300"
         style={{
           opacity: glarePos.opacity,
-          background: `radial-gradient(circle at ${glarePos.x}% ${glarePos.y}%, rgba(229, 203, 144, 0.4), transparent 60%)`,
+          background: `radial-gradient(circle at ${glarePos.x}% ${glarePos.y}%, rgba(229, 203, 144, 0.45), transparent 65%)`,
         }}
       />
       {children}

@@ -30,6 +30,7 @@ export interface TranslationDictionary {
   // Navigation Tabs
   navSituations: string;
   navRights: string;
+  navDepartments: string;
   navDKBasu: string;
   navScripts: string;
   navAIAdvisor: string;
@@ -45,12 +46,15 @@ export interface TranslationDictionary {
   catWomenChild: string;
   catPhonePrivacy: string;
   catFundamentalRights: string;
+  catDepartments: string;
 
   // Section Headers
   situationTitle: string;
   situationSubtitle: string;
   rightsTitle: string;
   rightsSubtitle: string;
+  departmentsTitle: string;
+  departmentsSubtitle: string;
   dkBasuTitle: string;
   dkBasuSubtitle: string;
   scriptsTitle: string;
@@ -62,7 +66,7 @@ export interface TranslationDictionary {
   quizTitle: string;
   quizSubtitle: string;
 
-  // Common Actions
+  // Common Actions & Detail View
   listenAudio: string;
   playingAudio: string;
   copyText: string;
@@ -79,11 +83,16 @@ export interface TranslationDictionary {
   verifiedLawBadge: string;
   languageSelectLabel: string;
   quickSituationsHeading: string;
+  sourceArticle: string;
+  officialDepartmentLink: string;
+  backToDirectory: string;
+  openDetailPage: string;
+  viewFullExplanation: string;
 }
 
-export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
+export const TRANSLATIONS: { en: TranslationDictionary } & Record<SupportedLanguage, Partial<TranslationDictionary>> = {
   en: {
-    appName: 'NyayaMitra India',
+    appName: 'MyRight',
     appSub: 'Citizen Legal & Police Rights Navigator',
     heroBadge: 'Constitution of India • CrPC/BNSS • Supreme Court Precedents',
     heroTitle: 'Know Your Fundamental & Police Rights',
@@ -97,6 +106,7 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     
     navSituations: 'Situation Guide',
     navRights: 'Rights Library',
+    navDepartments: 'Govt Portals',
     navDKBasu: 'D.K. Basu Rules',
     navScripts: 'Verbal Scripts',
     navAIAdvisor: 'AI Legal Advisor',
@@ -111,11 +121,14 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     catWomenChild: 'Women & Children',
     catPhonePrivacy: 'Phone & Privacy',
     catFundamentalRights: 'Fundamental Rights',
+    catDepartments: 'Government Departments',
 
     situationTitle: 'Real-Time Police Situation Navigator',
     situationSubtitle: 'Select what is happening right now to see your immediate legal rights, exact words to speak, and dos & don’ts.',
     rightsTitle: 'Citizen Rights & Legal Sections Compendium',
     rightsSubtitle: 'Explore your exact statutory rights under the Constitution of India and BNSS/CrPC.',
+    departmentsTitle: 'Official Government Departments & Citizen Portals',
+    departmentsSubtitle: 'Verified direct access to MoRTH Parivahan, Digital Police, NALSA Legal Aid, Cyber Crime 1930, NHRC and NCW.',
     dkBasuTitle: 'The 11 Mandatory D.K. Basu Arrest Guidelines',
     dkBasuSubtitle: 'Interactive compliance checklist for police arrest safeguards established by the Supreme Court of India.',
     scriptsTitle: 'What to Say to the Police (Verbal Dialogue Scripts)',
@@ -143,10 +156,15 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
     verifiedLawBadge: 'VERIFIED INDIAN LAW',
     languageSelectLabel: 'Select Your Language',
     quickSituationsHeading: 'Or Choose a Common Encounter:',
+    sourceArticle: 'Official Statutory Source & Legal Sections',
+    officialDepartmentLink: 'Official Department Portal Link',
+    backToDirectory: 'Back to Guide',
+    openDetailPage: 'Open Full Page & Explanation',
+    viewFullExplanation: 'View In-Depth Explanation & Official Source',
   },
 
   hi: {
-    appName: 'न्यायमित्र भारत',
+    appName: 'MyRight (माईराइट)',
     appSub: 'नागरिक कानूनी एवं पुलिस अधिकार संदर्शिका',
     heroBadge: 'भारत का संविधान • बीएनएसएस / सीआरपीसी • सुप्रीम कोर्ट के ऐतिहासिक फैसले',
     heroTitle: 'अपने मौलिक और पुलिस अधिकार जानें',
@@ -777,5 +795,9 @@ export const TRANSLATIONS: Record<SupportedLanguage, TranslationDictionary> = {
 };
 
 export function getT(lang: SupportedLanguage): TranslationDictionary {
-  return TRANSLATIONS[lang] || TRANSLATIONS.en;
+  const dict = TRANSLATIONS[lang] || TRANSLATIONS.en;
+  return {
+    ...TRANSLATIONS.en,
+    ...dict,
+  };
 }

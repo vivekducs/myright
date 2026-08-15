@@ -1,6 +1,6 @@
 {
-  "name": "Citizen Police Rights India - Legal Guide & Rights Navigator",
-  "description": "Interactive legal rights guide and police interaction navigator for Indian citizens, featuring situation advisors, emergency helplines, Fundamental Rights, and D.K. Basu arrest rules in a vintage summer teal & gold aesthetic.",
+  "name": "MyRight - Citizen Legal Empowerment & Police Rights Navigator",
+  "description": "MyRight is India's premier citizen legal rights navigator and police interaction guide, featuring interactive situation guides, D.K. Basu arrest protocols, official department portals, and statutory explanations in 11 Indian languages.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

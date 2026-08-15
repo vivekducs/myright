@@ -27,7 +27,16 @@ export type Category =
   | 'fir'
   | 'women_child'
   | 'phone_privacy'
-  | 'fundamental_rights';
+  | 'fundamental_rights'
+  | 'departments';
+
+export interface OfficialSourceLink {
+  title: string;
+  url: string;
+  department: string;
+  type: 'act' | 'portal' | 'judgement' | 'helpline' | 'form';
+  description?: string;
+}
 
 export interface LegalRight {
   id: string;
@@ -36,15 +45,21 @@ export interface LegalRight {
   lawRef: string; // e.g. "Section 41B CrPC / Sec 36 BNSS" or "Article 21"
   scJudgment?: string; // Landmark Supreme Court Case
   summary: string;
+  detailedExplanation?: string;
   keyPoints: string[];
   whatPoliceMustDo: string[];
   whatPoliceCannotDo: string[];
   exactDialogue: string;
   priority: 'critical' | 'high' | 'medium';
   iconName: string;
+  departmentId?: string;
+  officialLinks?: OfficialSourceLink[];
+  sourceActName?: string;
+  sourceSectionOrArticle?: string;
   translations?: Partial<Record<SupportedLanguage, {
     title: string;
     summary: string;
+    detailedExplanation?: string;
     keyPoints?: string[];
     whatPoliceMustDo?: string[];
     whatPoliceCannotDo?: string[];
@@ -63,6 +78,11 @@ export interface SituationStep {
   legalShield: string;
   sayThis: string;
   helpline: string;
+  detailedExplanation?: string;
+  departmentId?: string;
+  officialLinks?: OfficialSourceLink[];
+  sourceActName?: string;
+  sourceSectionOrArticle?: string;
   translations?: Partial<Record<SupportedLanguage, {
     title: string;
     situation: string;
@@ -70,6 +90,31 @@ export interface SituationStep {
     doNotDo: string[];
     legalShield: string;
     sayThis: string;
+    detailedExplanation?: string;
+  }>>;
+}
+
+export interface DepartmentLink {
+  id: string;
+  name: string;
+  department: string;
+  ministryOrAuthority: string;
+  category: 'police' | 'traffic' | 'cyber' | 'legal_aid' | 'human_rights' | 'women_child' | 'rti_vigilance' | 'consumer';
+  description: string;
+  fullOverview: string;
+  portalUrl: string;
+  grievanceUrl?: string;
+  helplineNumber?: string;
+  helplineName?: string;
+  servicesProvided: string[];
+  keyActsGoverning: string[];
+  officialSourceCitation: string;
+  verifiedGovBadge: string;
+  translations?: Partial<Record<SupportedLanguage, {
+    name: string;
+    description: string;
+    fullOverview: string;
+    servicesProvided?: string[];
   }>>;
 }
 
@@ -80,6 +125,7 @@ export interface MythItem {
   explanation: string;
   lawSection: string;
   tag: string;
+  officialLinks?: OfficialSourceLink[];
   translations?: Partial<Record<SupportedLanguage, {
     myth: string;
     reality: string;
@@ -98,6 +144,7 @@ export interface ScriptDialogue {
   citizenResponses?: Partial<Record<SupportedLanguage, string>>;
   legalBasis: string;
   tip: string;
+  officialLinks?: OfficialSourceLink[];
   translations?: Partial<Record<SupportedLanguage, {
     scenario: string;
     policeAsks: string;
@@ -109,6 +156,8 @@ export interface DKBasuGuideline {
   num: number;
   title: string;
   desc: string;
+  legalSignificance?: string;
+  officialJudgementRef?: string;
   translations?: Partial<Record<SupportedLanguage, {
     title: string;
     desc: string;
@@ -136,4 +185,10 @@ export interface EmergencyContact {
   category: string;
   available: string;
   tollFree: boolean;
+  departmentUrl?: string;
+}
+
+export interface DetailPageTarget {
+  type: 'situation' | 'right' | 'department' | 'dk-basu' | 'script';
+  id: string;
 }

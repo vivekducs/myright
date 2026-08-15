@@ -98,24 +98,24 @@ export const AIAdvisor: React.FC<AIAdvisorProps> = ({ language }) => {
     ],
     pa: [
       'ਟ੍ਰੈਫਿਕ ਪੁਲਿਸ ਨੇ ਬਾਈਕ ਦੀ ਚਾਬੀ ਕੱਢ ਲਈ ਤੇ ਨਕਦ ਮੰਗ ਰਹੇ ਹਨ',
-      'ਨਾਕੇ \'ਤੇ ਪੁਲਿਸ ਫੋਨ ਅਨਲਾਕ ਕਰਵਾ ਕੇ ਵਟਸਐਪ ਦੇਖਣਾ ਚਾਹੁੰਦੀ ਹੈ',
-      'ਥਾਣੇ \'ਚ ਸ਼ਿਕਾਇਤ ਦਰਜ ਕਰਨ ਤੋਂ ਇਨਕਾਰ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ',
-      'ਰਾਤ ਨੂੰ ਪੁਲਿਸ ਭੈਣ ਤੋਂ ਪੁੱਛਗਿੱਛ ਕਰਨ ਘਰ ਆਈ ਹੈ',
-      'ਮੈਂ ਕਾਰ \'ਚ ਬੈਠਾ ਹਾਂ ਤੇ ਕ੍ਰੇਨ ਗੱਡੀ ਟੋ ਕਰ ਰਹੀ ਹੈ',
+      'ਨਾਕੇ ਤੇ ਪੁਲਿਸ ਫੋਨ ਅਨਲੌਕ ਕਰਕੇ ਵ੍ਹਟਸਐਪ ਦਿਖਾਉਣ ਲਈ ਕਹਿ ਰਹੀ ਹੈ',
+      'ਥਾਣੇਦਾਰ ਇਲਾਕਾ ਨਾ ਹੋਣ ਦਾ ਬਹਾਨਾ ਬਣਾ ਕੇ ਪਰਚਾ ਨਹੀਂ ਦਰਜ ਕਰ ਰਿਹਾ',
+      'ਸ਼ਾਮ ਤੋਂ ਬਾਅਦ ਪੁਲਿਸ ਘਰ ਆ ਕੇ ਭੈਣ ਤੋਂ ਪੁੱਛਗਿੱਛ ਕਰ ਰਹੀ ਹੈ',
+      'ਮੈਂ ਕਾਰ ਵਿੱਚ ਬੈਠਾ ਹਾਂ ਫਿਰ ਵੀ ਕਰੇਨ ਗੱਡੀ ਖਿੱਚ ਕੇ ਲੈ ਜਾ ਰਹੀ ਹੈ',
     ],
     hinglish: [
-      'Traffic police ne bike key nikal li aur bina challan cash demand kar rahe hain',
-      'Naka par police phone unlock karke WhatsApp chats dikhane bol rahi hai',
-      'SHO complaint lene se mana kar raha hai bolkar yeh unka area nahi hai',
-      'Evening ke baad police sister se questioning karne ghar aayi hai',
-      'Main car ke andar baitha hu fir bhi vehicle tow kar rahe hain',
+      'Traffic police ne bike ki key nikal li aur bina challan cash maang rahe hain',
+      'Naka par police phone unlock karke private chats dikhane ko bol rahi hai',
+      'Thane wale keh rahe hain ki ye hamara area nahi hai aur Zero FIR nahi likh rahe',
+      'Shaam ke baad police ghar aake sister se poochtaach karne ki koshish kar rahi hai',
+      'Gaadi ke andar baithe hone ke bawajood traffic crane car tow kar rahi hai',
     ],
   };
 
-  const presetScenarios = presetsByLang[language] || presetsByLang.en;
+  const sampleScenarios = presetsByLang[language] || presetsByLang.en;
 
-  const handleAsk = async (textToQuery?: string) => {
-    const q = textToQuery || question;
+  const handleAsk = async (queryText?: string) => {
+    const q = queryText || question;
     if (!q.trim()) return;
 
     setLoading(true);
@@ -126,45 +126,42 @@ export const AIAdvisor: React.FC<AIAdvisorProps> = ({ language }) => {
       const res = await fetch('/api/advisor', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          question: q,
-          situationCategory: 'Citizen Police Interaction',
-          language,
-        }),
+        body: JSON.stringify({ question: q, language }),
       });
 
       if (!res.ok) {
-        throw new Error(`Server returned ${res.status}`);
+        throw new Error(`Advisor server returned ${res.status}`);
       }
 
       const data = await res.json();
       setResponse(data);
     } catch (err: any) {
-      console.warn('Backend query notice, using structured fallback model:', err);
+      console.error('AI Advisor error:', err);
+      // Fallback robust local response generator if API fails
       setResponse({
-        summary: language === 'hi'
-          ? 'भारतीय संविधान और कानून के तहत पुलिस आपके साथ मनमानी नहीं कर सकती। शांत रहकर अपनी बात रखें।'
-          : 'Under the Constitution of India and CrPC/BNSS, police officers are bound by strict statutory procedures and cannot act arbitrarily.',
+        summary: `Under Article 21 and Supreme Court judgments (D.K. Basu & Lalita Kumari), you have guaranteed legal protections regarding: "${q}".`,
         whatToDoNow: [
-          language === 'hi' ? 'अधिकारी का नाम, पद व थाना विनम्रता से पूछें।' : 'Stay calm and politely ask for the officer’s name, rank, and station.',
-          language === 'hi' ? 'अनुच्छेद 21 व 22 के तहत अपने अधिकारों का हवाला दें।' : 'State your constitutional protections firmly under Article 21 and Article 22.',
-          language === 'hi' ? 'किसी भी जब्ती या जुर्माने की आधिकारिक सरकारी रसीद मांगें।' : 'Demand an official written receipt or e-challan for any seized item or fine.',
-          language === 'hi' ? '112 या मुफ्त कानूनी सलाह (15100) पर कॉल करें।' : 'Call 112 or NALSA Free Legal Aid (15100) if you feel unsafe.'
+          'Politely state that you are fully aware of your rights under Indian Law and Supreme Court guidelines.',
+          'Request the officer’s name, batch number, and jurisdictional police station respectfully.',
+          'If demanded cash without an electronic receipt or e-challan, refuse firmly and request a court summons or official portal receipt.',
+          'Call National Citizen Emergency at 112 or NALSA Legal Aid helpline at 15100 if rights are violated.',
         ],
         whatNOTToDo: [
-          language === 'hi' ? 'बिना रसीद नकद या रिश्वत न दें।' : 'Do NOT offer informal bribes or cash without an official printed receipt.',
-          language === 'hi' ? 'हाथापाई या बहस न करें।' : 'Do NOT physically resist or escalate tension.',
-          language === 'hi' ? 'कोरे कागज पर दस्तखत न करें।' : 'Do NOT sign blank or unread documents.'
+          'Do NOT become physically confrontational or use abusive language.',
+          'Do NOT hand over your phone unlocked or allow random inspection without a magistrate warrant.',
+          'Do NOT sign any blank paper or memo without reading and obtaining a copy on the spot.',
         ],
-        exactWordsToSay: language === 'hi'
-          ? '“सर, मैं कानून का पूरा सम्मान करता हूँ। कृपया मुझे सरकारी ई-चालान रसीद दें और कानूनी प्रक्रिया बताएं।”'
-          : '“Officer, with due respect, I am fully cooperating with the law. Please provide the official receipt and state the legal grounds under the CrPC/BNSS.”',
+        exactWordsToSay:
+          language === 'hi'
+            ? 'सर, मैं कानून का सम्मान करता हूँ। कृपया कानूनी प्रक्रिया का पालन करें और नियमानुसार रसीद या मेमो प्रदान करें।'
+            : 'Officer, I am cooperating fully with the law. Kindly follow statutory procedure and provide an official memo/receipt.',
         legalProvisions: [
-          { law: 'Article 21 Constitution', explanation: 'Right to Life and Personal Liberty including privacy' },
-          { law: 'Article 22 & D.K. Basu', explanation: 'Protection against arbitrary arrest and right to inform family' }
+          { law: 'Article 21, Constitution of India', explanation: 'Right to life, dignity, and fair procedural due process.' },
+          { law: 'Section 41B CrPC / BNSS 35', explanation: 'Mandatory arrest memo and identification badges for officers.' },
+          { law: 'D.K. Basu v. State of West Bengal', explanation: 'Binding Supreme Court 11-point procedural safeguards.' },
         ],
-        emergencyHelpline: '112 / 15100',
-        isUrgent: true,
+        emergencyHelpline: '112 (National Emergency) / 15100 (Free Legal Aid)',
+        isUrgent: false,
       });
     } finally {
       setLoading(false);
@@ -178,12 +175,11 @@ export const AIAdvisor: React.FC<AIAdvisorProps> = ({ language }) => {
         setIsSpeaking(false);
         return;
       }
-      window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
       if (langConfig?.speechCode) {
         utterance.lang = langConfig.speechCode;
       }
-      utterance.rate = 0.92;
+      utterance.rate = 0.90;
       utterance.onend = () => setIsSpeaking(false);
       utterance.onerror = () => setIsSpeaking(false);
       setIsSpeaking(true);
@@ -196,61 +192,59 @@ export const AIAdvisor: React.FC<AIAdvisorProps> = ({ language }) => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E5CB90]/60 pb-4">
         <div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-gradient-to-r from-[#34A99D] to-[#458393] text-white shadow-2xs">
-              Gemini 2.5 Flash Legal Copilot
+          <div className="flex items-center gap-2 mb-1.5">
+            <span className="px-4 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-[#458393] text-white shadow-xs">
+              AI Legal Guardian
             </span>
-            <span className="text-xs font-bold text-[#458393]">
-              Instant Constitutional & Police Advisory
+            <span className="text-xs font-bold text-[#34A99D] px-3 py-0.5 rounded-full bg-[#34A99D]/15">
+              Trained on Indian Constitution, BNSS & Supreme Court Rulings
             </span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1A3841] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-black text-[#1A3841] tracking-tight">
             {t.aiTitle}
           </h2>
-          <p className="text-sm text-[#458393] font-medium">
+          <p className="text-sm text-[#458393] font-bold">
             {t.aiSubtitle}
           </p>
         </div>
 
-        <div className="flex items-center gap-2 bg-[#E5CB90]/40 px-3 py-1.5 rounded-xl border border-[#E5CB90] text-xs font-bold text-[#1A3841]">
+        <div className="inline-flex items-center gap-2 bg-[#E5CB90]/50 px-4 py-2 rounded-full border-2 border-[#E5CB90] text-xs font-black text-[#1A3841] shadow-xs">
           <span>{langConfig.flag}</span>
-          <span>{langConfig.nativeName}</span>
+          <span>Response Language: {langConfig.name}</span>
         </div>
       </div>
 
-      {/* Input Box & Preset Triggers */}
-      <div className="p-6 rounded-3xl bg-gradient-to-b from-[#FFF3C8] via-[#FFF9E6] to-[#E5CB90]/30 border-2 border-[#E5CB90] shadow-lg space-y-4">
-        <div>
-          <label htmlFor="ai-situation-textarea" className="block text-xs font-extrabold uppercase tracking-wider text-[#1A3841] mb-2">
-            Describe your situation (What is the officer saying or doing?):
-          </label>
-          <div className="relative">
-            <textarea
-              id="ai-situation-textarea"
-              rows={3}
-              value={question}
-              onChange={(e) => setQuestion(e.target.value)}
-              placeholder="e.g. Traffic police took my keys and asking for spot fine, or police at door asking to search without warrant..."
-              className="w-full p-4 rounded-2xl bg-white border-2 border-[#E5CB90] text-sm sm:text-base font-semibold text-[#1A3841] placeholder:text-[#458393]/60 focus:outline-hidden focus:border-[#34A99D] shadow-inner resize-none"
-            />
-          </div>
+      {/* Query Input Card */}
+      <div className="p-6 sm:p-8 rounded-[36px] bg-[#FFF3C8] border-2 border-[#E5CB90] shadow-xl space-y-4">
+        <label className="block text-sm font-black text-[#1A3841]">
+          Describe your immediate situation or legal question:
+        </label>
+        
+        <div className="relative">
+          <textarea
+            id="ai-advisor-query-input"
+            rows={3}
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+            placeholder="e.g. Police stopped my car at night, snatched keys and asking to unlock my phone without warrant..."
+            className="w-full p-4 sm:p-5 rounded-3xl bg-white border-2 border-[#E5CB90] text-sm sm:text-base font-semibold text-[#1A3841] focus:outline-hidden focus:border-[#34A99D] shadow-inner placeholder-[#458393]/60"
+          />
         </div>
 
-        {/* Preset quick pills */}
-        <div className="space-y-1.5">
-          <span className="text-[11px] font-extrabold uppercase text-[#458393] tracking-wider block">
-            {t.quickSituationsHeading}
+        {/* Quick Sample Scenarios Pills */}
+        <div className="space-y-2">
+          <span className="text-xs font-black uppercase tracking-wider text-[#458393] block">
+            Tap a common scenario to assess immediately:
           </span>
           <div className="flex flex-wrap gap-2">
-            {presetScenarios.map((sc, idx) => (
+            {sampleScenarios.map((sc, i) => (
               <button
-                key={idx}
-                id={`preset-btn-${idx}`}
+                key={i}
                 onClick={() => {
                   setQuestion(sc);
                   handleAsk(sc);
                 }}
-                className="text-left text-xs font-semibold px-3 py-1.5 rounded-xl bg-white/80 hover:bg-[#E5CB90]/50 border border-[#E5CB90] text-[#1A3841] transition-all cursor-pointer shadow-2xs hover:scale-[1.01]"
+                className="text-left text-xs font-bold px-4 py-2 rounded-full bg-white/90 hover:bg-[#E5CB90]/60 border-2 border-[#E5CB90] hover:border-[#34A99D] text-[#1A3841] transition-all cursor-pointer shadow-2xs hover:scale-[1.02]"
               >
                 ⚡ {sc}
               </button>
@@ -264,12 +258,12 @@ export const AIAdvisor: React.FC<AIAdvisorProps> = ({ language }) => {
             id="ask-ai-submit-btn"
             onClick={() => handleAsk()}
             disabled={loading || !question.trim()}
-            className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-r from-[#34A99D] to-[#458393] text-white font-extrabold text-sm sm:text-base shadow-md hover:shadow-lg disabled:opacity-50 transition-all cursor-pointer"
+            className="flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#34A99D] to-[#458393] hover:from-[#34A99D] hover:to-[#1A3841] text-white font-black text-sm sm:text-base shadow-md hover:shadow-xl hover:-translate-y-0.5 disabled:opacity-50 transition-all cursor-pointer"
           >
             {loading ? (
               <>
                 <Loader2 className="w-5 h-5 animate-spin" />
-                <span>{t.playingAudio}</span>
+                <span>Analyzing Indian Law...</span>
               </>
             ) : (
               <>
@@ -289,16 +283,16 @@ export const AIAdvisor: React.FC<AIAdvisorProps> = ({ language }) => {
           transition={{ duration: 0.3 }}
         >
           <ThreeDCard className="w-full">
-            <div className="p-6 sm:p-8 rounded-3xl bg-[#FFF3C8] border-2 border-[#34A99D] shadow-xl space-y-6">
+            <div className="p-6 sm:p-8 rounded-[36px] bg-[#FFF3C8] border-2 border-[#34A99D] shadow-2xl space-y-6">
               
               {/* Header Box */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#E5CB90]">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#34A99D] to-[#458393] text-white flex items-center justify-center shadow-xs">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#34A99D] to-[#458393] text-white flex items-center justify-center shadow-md ring-2 ring-[#FFF3C8]">
                     <Bot className="w-6 h-6" />
                   </div>
                   <div>
-                    <h3 className="text-xl sm:text-2xl font-extrabold text-[#1A3841]">
+                    <h3 className="text-xl sm:text-2xl font-black text-[#1A3841]">
                       Legal Assessment & Action Plan
                     </h3>
                     <p className="text-xs text-[#458393] font-bold">
@@ -308,7 +302,7 @@ export const AIAdvisor: React.FC<AIAdvisorProps> = ({ language }) => {
                 </div>
 
                 {response.emergencyHelpline && (
-                  <div className="px-3.5 py-1.5 rounded-xl bg-red-100 border border-red-300 text-red-800 text-xs font-black self-start sm:self-center">
+                  <div className="px-4 py-2 rounded-full bg-red-100 border border-red-300 text-red-800 text-xs font-black self-start sm:self-center shadow-2xs">
                     Helpline: {response.emergencyHelpline}
                   </div>
                 )}
@@ -316,30 +310,32 @@ export const AIAdvisor: React.FC<AIAdvisorProps> = ({ language }) => {
 
               {/* Summary Statement */}
               {response.summary && (
-                <div className="p-4 rounded-2xl bg-[#E5CB90]/40 border border-[#E5CB90] text-sm sm:text-base font-bold text-[#1A3841] leading-relaxed">
+                <div className="p-5 rounded-3xl bg-[#E5CB90]/40 border-2 border-[#E5CB90] text-sm sm:text-base font-bold text-[#1A3841] leading-relaxed">
                   {response.summary}
                 </div>
               )}
 
               {/* Spoken Dialogue to officer */}
               {response.exactWordsToSay && (
-                <div className="p-5 rounded-2xl bg-gradient-to-r from-[#458393] to-[#34A99D] text-white shadow-md space-y-2">
+                <div className="p-6 rounded-3xl bg-gradient-to-r from-[#458393] via-[#34A99D] to-[#458393] text-white shadow-lg space-y-3 relative overflow-hidden">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <MessageSquare className="w-5 h-5 text-[#E5CB90]" />
+                      <div className="w-7 h-7 rounded-full bg-[#E5CB90]/30 flex items-center justify-center">
+                        <MessageSquare className="w-4 h-4 text-[#E5CB90]" />
+                      </div>
                       <span className="text-xs font-black uppercase tracking-wider text-[#E5CB90]">
                         {t.exactSpokenWords}
                       </span>
                     </div>
                     <button
                       onClick={() => handleSpeakSpeech(response.exactWordsToSay || '')}
-                      className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#FFF3C8] text-[#1A3841] text-xs font-bold hover:bg-[#E5CB90] transition-colors cursor-pointer"
+                      className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFF3C8] text-[#1A3841] text-xs font-black hover:bg-[#E5CB90] hover:scale-105 transition-all shadow-xs cursor-pointer"
                     >
                       <Volume2 className={`w-3.5 h-3.5 ${isSpeaking ? 'text-red-600 animate-spin' : 'text-[#458393]'}`} />
                       <span>{isSpeaking ? t.playingAudio : t.listenAudio}</span>
                     </button>
                   </div>
-                  <p className="text-base sm:text-lg font-bold italic tracking-wide text-white leading-snug">
+                  <p className="text-base sm:text-lg font-bold italic tracking-wide text-white leading-relaxed">
                     "{response.exactWordsToSay}"
                   </p>
                 </div>
@@ -350,15 +346,17 @@ export const AIAdvisor: React.FC<AIAdvisorProps> = ({ language }) => {
                 
                 {/* Do Now */}
                 {response.whatToDoNow && response.whatToDoNow.length > 0 && (
-                  <div className="p-5 rounded-2xl bg-emerald-50 border border-emerald-300 space-y-3">
-                    <div className="flex items-center gap-2 text-emerald-800 text-xs font-black uppercase tracking-wider">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-600" />
+                  <div className="p-6 rounded-3xl bg-emerald-50/95 border-2 border-emerald-300 shadow-sm space-y-3">
+                    <div className="flex items-center gap-2.5 text-emerald-800 text-xs font-black uppercase tracking-wider">
+                      <div className="w-7 h-7 rounded-full bg-emerald-200 flex items-center justify-center">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-700" />
+                      </div>
                       <span>{t.immediateActions}</span>
                     </div>
-                    <ul className="space-y-2">
+                    <ul className="space-y-2.5">
                       {response.whatToDoNow.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-emerald-950 font-medium leading-relaxed">
-                          <span className="w-5 h-5 rounded-full bg-emerald-200 text-emerald-900 flex items-center justify-center text-xs font-black shrink-0 mt-0.5">
+                        <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-emerald-950 font-bold leading-relaxed">
+                          <span className="w-5 h-5 rounded-full bg-emerald-200 text-emerald-900 flex items-center justify-center text-xs font-black shrink-0 mt-0.5 shadow-2xs">
                             {idx + 1}
                           </span>
                           <span>{item}</span>
@@ -370,15 +368,17 @@ export const AIAdvisor: React.FC<AIAdvisorProps> = ({ language }) => {
 
                 {/* Do Not Do */}
                 {response.whatNOTToDo && response.whatNOTToDo.length > 0 && (
-                  <div className="p-5 rounded-2xl bg-rose-50 border border-rose-300 space-y-3">
-                    <div className="flex items-center gap-2 text-rose-800 text-xs font-black uppercase tracking-wider">
-                      <XCircle className="w-5 h-5 text-rose-600" />
+                  <div className="p-6 rounded-3xl bg-rose-50/95 border-2 border-rose-300 shadow-sm space-y-3">
+                    <div className="flex items-center gap-2.5 text-rose-800 text-xs font-black uppercase tracking-wider">
+                      <div className="w-7 h-7 rounded-full bg-rose-200 flex items-center justify-center">
+                        <XCircle className="w-4 h-4 text-rose-700" />
+                      </div>
                       <span>{t.avoidMistakes}</span>
                     </div>
-                    <ul className="space-y-2">
+                    <ul className="space-y-2.5">
                       {response.whatNOTToDo.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-rose-950 font-medium leading-relaxed">
-                          <span className="w-5 h-5 rounded-full bg-rose-200 text-rose-900 flex items-center justify-center text-xs font-black shrink-0 mt-0.5">
+                        <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-rose-950 font-bold leading-relaxed">
+                          <span className="w-5 h-5 rounded-full bg-rose-200 text-rose-900 flex items-center justify-center text-xs font-black shrink-0 mt-0.5 shadow-2xs">
                             ✕
                           </span>
                           <span>{item}</span>
@@ -392,18 +392,18 @@ export const AIAdvisor: React.FC<AIAdvisorProps> = ({ language }) => {
 
               {/* Legal provisions list */}
               {response.legalProvisions && response.legalProvisions.length > 0 && (
-                <div className="space-y-2 pt-2">
-                  <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-[#1A3841]">
+                <div className="space-y-2.5 pt-2">
+                  <div className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-[#1A3841]">
                     <Scale className="w-4 h-4 text-[#34A99D]" />
                     <span>{t.legalShield}</span>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {response.legalProvisions.map((lp, i) => (
-                      <div key={i} className="p-3.5 rounded-2xl bg-white border border-[#E5CB90] shadow-2xs">
-                        <span className="font-mono text-xs font-black text-[#458393] block mb-0.5">
+                      <div key={i} className="p-4 rounded-3xl bg-white border-2 border-[#E5CB90] shadow-2xs">
+                        <span className="font-mono text-xs font-black text-[#458393] block mb-1">
                           {lp.law}
                         </span>
-                        <p className="text-xs font-medium text-[#1A3841]">
+                        <p className="text-xs font-bold text-[#1A3841] leading-relaxed">
                           {lp.explanation}
                         </p>
                       </div>

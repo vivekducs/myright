@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
-import { Shield, PhoneCall, Globe, BookOpen, AlertOctagon, HelpCircle, MessageSquareText, FileBadge, Check } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Shield, PhoneCall, Globe, BookOpen, AlertOctagon, HelpCircle, MessageSquareText, FileBadge, Check, Sparkles, ChevronDown, Compass, Building2 } from 'lucide-react';
 import { SupportedLanguage } from '../types';
 import { getT, LANGUAGE_OPTIONS } from '../data/translations';
 
@@ -26,8 +26,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   const currentLangObj = LANGUAGE_OPTIONS.find((l) => l.code === language) || LANGUAGE_OPTIONS[0];
 
   const navItems = [
-    { id: 'situations', label: t.navSituations, icon: AlertOctagon },
+    { id: 'situations', label: t.navSituations, icon: Compass },
     { id: 'rights', label: t.navRights, icon: BookOpen },
+    { id: 'departments', label: t.navDepartments, icon: Building2 },
     { id: 'dk-basu', label: t.navDKBasu, icon: Shield },
     { id: 'scripts', label: t.navScripts, icon: MessageSquareText },
     { id: 'ai-advisor', label: t.navAIAdvisor, icon: Shield },
@@ -36,36 +37,36 @@ export const Navbar: React.FC<NavbarProps> = ({
   ];
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-md bg-[#FFF3C8]/90 border-b border-[#E5CB90]/80 shadow-xs transition-all">
+    <header className="sticky top-0 z-40 backdrop-blur-md bg-[#FFF3C8]/90 border-b border-[#E5CB90]/80 shadow-xs transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
-          {/* Logo & Brand */}
+          {/* Circular Brand Logo */}
           <div 
             id="brand-logo"
             onClick={() => setActiveTab('situations')}
             className="flex items-center gap-3 cursor-pointer group"
           >
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#34A99D] to-[#458393] flex items-center justify-center text-[#FFF3C8] shadow-md group-hover:scale-105 transition-transform">
-              <Shield className="w-7 h-7 text-[#FFF3C8]" />
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#34A99D] via-[#458393] to-[#1A3841] flex items-center justify-center text-[#FFF3C8] shadow-md group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 ring-2 ring-[#E5CB90]/60">
+              <Shield className="w-6 h-6 text-[#FFF3C8]" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-display text-2xl font-bold tracking-tight text-[#1A3841]">
-                  Nyaya<span className="text-[#34A99D]">Mitra</span>
+                <span className="font-display text-2xl font-black tracking-tight text-[#1A3841] group-hover:text-[#34A99D] transition-colors">
+                  My<span className="text-[#34A99D]">Right</span>
                 </span>
-                <span className="text-[10px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full bg-[#E5CB90]/70 text-[#1A3841] border border-[#E5CB90]">
+                <span className="text-[10px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full bg-[#E5CB90]/70 text-[#1A3841] border border-[#E5CB90] shadow-xs">
                   India
                 </span>
               </div>
-              <p className="text-xs text-[#458393] font-medium hidden sm:block">
+              <p className="text-xs text-[#458393] font-semibold hidden sm:block">
                 {t.appSub}
               </p>
             </div>
           </div>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-1 bg-[#FFF3C8] p-1.5 rounded-2xl border border-[#E5CB90]/60">
+          {/* Desktop Nav - Circular Pill Group */}
+          <nav className="hidden lg:flex items-center gap-1.5 bg-[#E5CB90]/30 p-1.5 rounded-full border border-[#E5CB90]/70 shadow-xs backdrop-blur-xs">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeTab === item.id;
@@ -74,102 +75,115 @@ export const Navbar: React.FC<NavbarProps> = ({
                   key={item.id}
                   id={`nav-tab-${item.id}`}
                   onClick={() => setActiveTab(item.id)}
-                  className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${
+                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-black transition-all duration-200 cursor-pointer ${
                     isActive
-                      ? 'bg-[#458393] text-[#FFF3C8] shadow-sm'
-                      : 'text-[#1A3841] hover:text-[#34A99D] hover:bg-[#E5CB90]/30'
+                      ? 'bg-[#458393] text-[#FFF3C8] shadow-md -translate-y-0.5'
+                      : 'text-[#1A3841] hover:text-[#34A99D] hover:bg-[#FFF3C8] hover:shadow-xs'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-[#E5CB90]' : 'text-[#458393]'}`} />
-                  <span>{item.label}</span>
+                  <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-[#E5CB90]' : 'text-[#458393]'}`} />
+                  <span className="whitespace-nowrap">{item.label}</span>
                 </button>
               );
             })}
           </nav>
 
-          {/* Right Actions: Language + SOS Button */}
-          <div className="flex items-center gap-2.5">
+          {/* Right Actions: Circular Language Pill + SOS Button */}
+          <div className="flex items-center gap-2 sm:gap-2.5">
             
             {/* Regional Language Custom Dropdown */}
             <div className="relative">
               <button
                 id="language-select-trigger"
                 onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#E5CB90]/40 hover:bg-[#E5CB90]/70 border border-[#E5CB90] text-xs font-extrabold text-[#1A3841] transition-all cursor-pointer shadow-xs"
+                className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-[#E5CB90]/40 hover:bg-[#E5CB90]/80 border border-[#E5CB90] text-xs font-black text-[#1A3841] hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer shadow-xs"
               >
-                <Globe className="w-4 h-4 text-[#458393]" />
-                <span className="max-w-[80px] sm:max-w-[120px] truncate">{currentLangObj.nativeName}</span>
-                <span className="text-[10px] text-[#458393] font-mono uppercase">({currentLangObj.code})</span>
+                <div className="w-5 h-5 rounded-full bg-[#34A99D]/20 flex items-center justify-center text-[#458393]">
+                  <Globe className="w-3.5 h-3.5" />
+                </div>
+                <span className="max-w-[70px] sm:max-w-[100px] truncate">{currentLangObj.nativeName}</span>
+                <ChevronDown className={`w-3.5 h-3.5 text-[#458393] transition-transform ${isLangDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
 
-              {isLangDropdownOpen && (
-                <>
-                  <div 
-                    className="fixed inset-0 z-40"
-                    onClick={() => setIsLangDropdownOpen(false)}
-                  />
-                  <div className="absolute right-0 mt-2 w-64 max-h-80 overflow-y-auto z-50 bg-[#FFF3C8] border-2 border-[#E5CB90] rounded-2xl shadow-xl p-2 space-y-1">
-                    <div className="px-2 py-1.5 text-[11px] font-black uppercase text-[#458393] border-b border-[#E5CB90]/60">
-                      🇮🇳 {t.languageSelectLabel}
-                    </div>
-                    {LANGUAGE_OPTIONS.map((lang) => {
-                      const isSelected = language === lang.code;
-                      return (
-                        <button
-                          key={lang.code}
-                          id={`lang-option-${lang.code}`}
-                          onClick={() => {
-                            setLanguage(lang.code);
-                            setIsLangDropdownOpen(false);
-                          }}
-                          className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-left text-xs font-bold transition-colors cursor-pointer ${
-                            isSelected
-                              ? 'bg-[#458393] text-white'
-                              : 'hover:bg-[#E5CB90]/50 text-[#1A3841]'
-                          }`}
-                        >
-                          <div className="flex items-center gap-2">
-                            <span className="text-sm">{lang.flag}</span>
-                            <div>
-                              <div className="leading-tight">{lang.nativeName}</div>
-                              <div className={`text-[10px] ${isSelected ? 'text-[#FFF3C8]' : 'text-[#458393]'}`}>
-                                {lang.name}
+              <AnimatePresence>
+                {isLangDropdownOpen && (
+                  <>
+                    <div 
+                      className="fixed inset-0 z-40"
+                      onClick={() => setIsLangDropdownOpen(false)}
+                    />
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95, y: -10 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                      className="absolute right-0 mt-2 w-64 max-h-80 overflow-y-auto z-50 bg-[#FFF3C8] border-2 border-[#E5CB90] rounded-3xl shadow-2xl p-2.5 space-y-1"
+                    >
+                      <div className="px-3 py-2 text-[11px] font-black uppercase text-[#458393] border-b border-[#E5CB90]/60 flex items-center justify-between">
+                        <span>🇮🇳 {t.languageSelectLabel}</span>
+                        <span className="text-[10px] text-[#458393]/70 font-normal">11 Indian Langs</span>
+                      </div>
+                      {LANGUAGE_OPTIONS.map((lang) => {
+                        const isSelected = language === lang.code;
+                        return (
+                          <button
+                            key={lang.code}
+                            id={`lang-option-${lang.code}`}
+                            onClick={() => {
+                              setLanguage(lang.code);
+                              setIsLangDropdownOpen(false);
+                            }}
+                            className={`w-full flex items-center justify-between px-3 py-2 rounded-2xl text-left text-xs font-bold transition-all cursor-pointer ${
+                              isSelected
+                                ? 'bg-[#458393] text-white shadow-xs'
+                                : 'hover:bg-[#E5CB90]/50 text-[#1A3841] hover:translate-x-1'
+                            }`}
+                          >
+                            <div className="flex items-center gap-2.5">
+                              <span className="text-base">{lang.flag}</span>
+                              <div>
+                                <div className="leading-tight font-black">{lang.nativeName}</div>
+                                <div className={`text-[10px] ${isSelected ? 'text-[#FFF3C8]' : 'text-[#458393]'}`}>
+                                  {lang.name}
+                                </div>
                               </div>
                             </div>
-                          </div>
-                          {isSelected && <Check className="w-4 h-4 text-[#FFF3C8]" />}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </>
-              )}
+                            {isSelected && <Check className="w-4 h-4 text-[#FFF3C8]" />}
+                          </button>
+                        );
+                      })}
+                    </motion.div>
+                  </>
+                )}
+              </AnimatePresence>
             </div>
 
-            {/* Fast SOS Emergency Trigger */}
+            {/* Fast SOS Emergency Trigger Button */}
             <motion.button
               id="emergency-sos-btn"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.94 }}
               onClick={onOpenEmergencyModal}
-              className="flex items-center gap-1.5 px-3.5 py-2 sm:px-4 sm:py-2 rounded-xl bg-gradient-to-r from-red-600 to-rose-700 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all animate-pulse cursor-pointer shrink-0"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-red-600 to-rose-700 hover:from-red-500 hover:to-rose-600 text-white font-extrabold text-xs sm:text-sm shadow-md hover:shadow-xl hover:shadow-red-500/30 transition-all cursor-pointer shrink-0 border border-white/20"
             >
-              <PhoneCall className="w-4 h-4" />
-              <span>SOS 112</span>
+              <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center">
+                <PhoneCall className="w-3.5 h-3.5 animate-pulse" />
+              </div>
+              <span className="hidden xs:inline sm:inline">SOS</span>
+              <span>112</span>
             </motion.button>
 
-            {/* Mobile menu toggle */}
+            {/* Mobile quick menu trigger */}
             <button
               id="mobile-menu-toggle"
               aria-label="Toggle navigation menu"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-xl bg-[#E5CB90]/40 border border-[#E5CB90] text-[#1A3841] cursor-pointer"
+              className="lg:hidden w-10 h-10 rounded-full bg-[#E5CB90]/50 hover:bg-[#E5CB90] border border-[#E5CB90] text-[#1A3841] flex items-center justify-center transition-transform hover:scale-105 cursor-pointer"
             >
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 {mobileMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
                 ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h16" />
                 )}
               </svg>
             </button>
@@ -178,39 +192,43 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
 
         {/* Mobile Dropdown Menu */}
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden py-4 border-t border-[#E5CB90]/70 space-y-2 bg-[#FFF3C8]"
-          >
-            <div className="grid grid-cols-2 gap-2">
-              {navItems.map((item) => {
-                const Icon = item.icon;
-                const isActive = activeTab === item.id;
-                return (
-                  <button
-                    key={item.id}
-                    id={`mobile-nav-${item.id}`}
-                    onClick={() => {
-                      setActiveTab(item.id);
-                      setMobileMenuOpen(false);
-                    }}
-                    className={`flex items-center gap-2 p-3 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                      isActive
-                        ? 'bg-[#458393] text-[#FFF3C8]'
-                        : 'bg-[#E5CB90]/30 text-[#1A3841]'
-                    }`}
-                  >
-                    <Icon className="w-4 h-4 text-[#34A99D]" />
-                    <span>{item.label}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </motion.div>
-        )}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="lg:hidden py-4 border-t border-[#E5CB90]/70 space-y-2 bg-[#FFF3C8]"
+            >
+              <div className="grid grid-cols-2 gap-2">
+                {navItems.map((item) => {
+                  const Icon = item.icon;
+                  const isActive = activeTab === item.id;
+                  return (
+                    <button
+                      key={item.id}
+                      id={`mobile-nav-top-${item.id}`}
+                      onClick={() => {
+                        setActiveTab(item.id);
+                        setMobileMenuOpen(false);
+                      }}
+                      className={`flex items-center gap-2.5 p-3.5 rounded-2xl text-xs font-bold transition-all cursor-pointer shadow-xs ${
+                        isActive
+                          ? 'bg-[#458393] text-[#FFF3C8] shadow-md'
+                          : 'bg-[#E5CB90]/30 hover:bg-[#E5CB90]/60 text-[#1A3841]'
+                      }`}
+                    >
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${isActive ? 'bg-white/20' : 'bg-[#34A99D]/20 text-[#34A99D]'}`}>
+                        <Icon className="w-4 h-4" />
+                      </div>
+                      <span className="truncate">{item.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
       </div>
     </header>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Shield, Car, ShieldAlert, FileText, Smartphone, UserCheck, Search, ArrowRight, Sparkles, Scale } from 'lucide-react';
+import { Shield, Car, ShieldAlert, FileText, Smartphone, UserCheck, Search, ArrowRight, Sparkles, Scale, Compass, CheckCircle2 } from 'lucide-react';
 import { ThreeDCard } from './ThreeDCard';
 import { SupportedLanguage } from '../types';
 import { getT } from '../data/translations';
@@ -139,20 +139,23 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
   return (
     <section className="relative overflow-hidden pt-8 pb-12 px-4 sm:px-6 lg:px-8 border-b border-[#E5CB90]/60">
-      {/* Decorative Vintage Summer Orbs */}
+      {/* Decorative Vintage Summer Circular Orbs */}
       <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-[#E5CB90]/50 to-[#34A99D]/20 blur-3xl pointer-events-none" />
       <div className="absolute top-1/2 -left-28 w-80 h-80 rounded-full bg-gradient-to-tr from-[#34A99D]/30 to-[#458393]/20 blur-2xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         
-        {/* Top Floating Badge */}
+        {/* Top Floating Circular Badge */}
         <div className="flex justify-center mb-5">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E5CB90]/50 border border-[#E5CB90] shadow-xs text-xs font-bold text-[#1A3841] backdrop-blur-sm text-center"
+            whileHover={{ scale: 1.05 }}
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#E5CB90]/60 hover:bg-[#E5CB90]/90 border border-[#E5CB90] shadow-sm hover:shadow-md text-xs font-black text-[#1A3841] backdrop-blur-sm text-center transition-all cursor-default"
           >
-            <Sparkles className="w-3.5 h-3.5 text-[#458393] shrink-0" />
+            <div className="w-5 h-5 rounded-full bg-[#458393] flex items-center justify-center text-[#FFF3C8]">
+              <Sparkles className="w-3 h-3 shrink-0" />
+            </div>
             <span>{t.heroBadge}</span>
           </motion.div>
         </div>
@@ -163,31 +166,33 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#1A3841] leading-tight"
+            className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#1A3841] leading-tight"
           >
             {t.heroTitle} <span className="text-[#34A99D] underline decoration-[#E5CB90] decoration-wavy">{t.heroTitleHighlight}</span>
           </motion.h1>
 
-          <p className="text-sm sm:text-lg text-[#458393] max-w-2xl mx-auto font-medium leading-relaxed">
+          <p className="text-sm sm:text-lg text-[#458393] max-w-2xl mx-auto font-bold leading-relaxed">
             {t.heroSubtitle}
           </p>
 
-          {/* Quick Search Bar */}
-          <div className="max-w-2xl mx-auto pt-2">
-            <div className="relative flex items-center bg-[#FFF3C8] rounded-2xl border-2 border-[#E5CB90] shadow-md focus-within:border-[#34A99D] transition-all p-1.5">
-              <Search className="w-5 h-5 text-[#458393] ml-3 mr-2 shrink-0" />
+          {/* Quick Search Bar with Circular Rounded-Full Geometry */}
+          <div className="max-w-2xl mx-auto pt-3">
+            <div className="relative flex items-center bg-[#FFF3C8] rounded-full border-2 border-[#E5CB90] shadow-lg hover:shadow-xl focus-within:border-[#34A99D] focus-within:ring-4 focus-within:ring-[#34A99D]/20 transition-all p-2">
+              <div className="w-10 h-10 rounded-full bg-[#34A99D]/15 flex items-center justify-center text-[#458393] ml-1 mr-3 shrink-0">
+                <Search className="w-5 h-5" />
+              </div>
               <input
                 id="hero-search-input"
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={t.searchPlaceholder}
-                className="w-full bg-transparent text-xs sm:text-base font-semibold text-[#1A3841] placeholder:text-[#458393]/70 focus:outline-hidden py-2"
+                className="w-full bg-transparent text-xs sm:text-base font-bold text-[#1A3841] placeholder:text-[#458393]/70 focus:outline-hidden py-1.5"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="px-3 py-1 text-xs font-bold text-[#458393] hover:text-[#1A3841] cursor-pointer"
+                  className="px-4 py-1.5 rounded-full bg-[#E5CB90]/60 hover:bg-[#E5CB90] text-xs font-black text-[#1A3841] cursor-pointer transition-colors mr-1"
                 >
                   Clear
                 </button>
@@ -196,17 +201,19 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
         </div>
 
-        {/* 3D Interactive Situation Action Cards */}
-        <div className="mt-10">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <Scale className="w-5 h-5 text-[#34A99D]" />
-              <h2 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#1A3841]">
+        {/* 3D Interactive Situation Action Cards with Circular Aesthetics */}
+        <div className="mt-12">
+          <div className="flex items-center justify-between mb-5">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-full bg-[#34A99D]/20 flex items-center justify-center text-[#34A99D]">
+                <Compass className="w-4 h-4" />
+              </div>
+              <h2 className="text-xs sm:text-sm font-black uppercase tracking-wider text-[#1A3841]">
                 {t.quickSituationsHeading}
               </h2>
             </div>
-            <span className="text-xs text-[#458393] font-medium hidden sm:inline">
-              Interactive 3D Cards • Click to view step-by-step rights
+            <span className="text-xs text-[#458393] font-bold hidden sm:inline">
+              Instant Touch Cards • 3D Hover Shield
             </span>
           </div>
 
@@ -221,30 +228,34 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                     onSelectQuickSituation(item.id);
                     onSelectCategory(item.category);
                   }}
-                  className="cursor-pointer"
+                  className="cursor-pointer group"
                 >
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: idx * 0.08 }}
-                    whileHover={{ y: -5 }}
-                    className="h-full p-4 rounded-2xl bg-gradient-to-b from-[#FFF3C8] to-[#E5CB90]/40 border border-[#E5CB90] shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
+                    whileHover={{ y: -8, scale: 1.02 }}
+                    whileTap={{ scale: 0.96 }}
+                    className="h-full p-5 rounded-3xl bg-gradient-to-b from-[#FFF3C8] via-[#FFF3C8] to-[#E5CB90]/40 border-2 border-[#E5CB90] group-hover:border-[#34A99D] shadow-sm hover:shadow-2xl hover:shadow-[#34A99D]/15 transition-all duration-300 flex flex-col justify-between"
                   >
                     <div>
-                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#34A99D] to-[#458393] flex items-center justify-center text-[#FFF3C8] shadow-xs mb-3">
-                        <Icon className="w-5 h-5" />
+                      {/* Circular Icon Container */}
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#34A99D] to-[#458393] flex items-center justify-center text-[#FFF3C8] shadow-md mb-3.5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 ring-4 ring-[#FFF3C8]">
+                        <Icon className="w-6 h-6" />
                       </div>
-                      <h3 className="font-bold text-sm text-[#1A3841] leading-snug line-clamp-2 mb-1">
+                      <h3 className="font-extrabold text-sm text-[#1A3841] group-hover:text-[#34A99D] leading-snug line-clamp-2 mb-1.5 transition-colors">
                         {item.label}
                       </h3>
-                      <p className="text-xs text-[#458393] font-medium line-clamp-2">
+                      <p className="text-xs text-[#458393] font-semibold line-clamp-2">
                         {item.sub}
                       </p>
                     </div>
 
-                    <div className="mt-3 pt-2 border-t border-[#E5CB90]/60 flex items-center justify-between text-xs font-bold text-[#34A99D]">
+                    <div className="mt-4 pt-2.5 border-t border-[#E5CB90]/70 flex items-center justify-between text-xs font-black text-[#34A99D] group-hover:text-[#1A3841]">
                       <span>View Rights</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
+                      <div className="w-6 h-6 rounded-full bg-[#34A99D]/15 group-hover:bg-[#34A99D] group-hover:text-white flex items-center justify-center transition-all">
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </div>
                     </div>
                   </motion.div>
                 </ThreeDCard>

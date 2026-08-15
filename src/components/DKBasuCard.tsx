@@ -568,20 +568,20 @@ export const DKBasuCard: React.FC<DKBasuCardProps> = ({ language }) => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#E5CB90]/60 pb-4">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#E5CB90]/60 pb-5">
         <div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-[#458393] text-white">
+          <div className="flex flex-wrap items-center gap-2 mb-2">
+            <span className="px-4 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-[#458393] text-white shadow-xs">
               Landmark Supreme Court Safeguard
             </span>
-            <span className="text-xs font-bold text-[#34A99D]">
-              D.K. Basu v. State of West Bengal (AIR 1997 SC 610)
+            <span className="text-xs font-bold text-[#34A99D] px-3 py-0.5 rounded-full bg-[#34A99D]/15 border border-[#34A99D]/30">
+              D.K. Basu v. State of WB (AIR 1997 SC 610)
             </span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1A3841] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-black text-[#1A3841] tracking-tight">
             {t.dkBasuTitle}
           </h2>
-          <p className="text-sm text-[#458393] font-medium">
+          <p className="text-sm text-[#458393] font-bold mt-1">
             {t.dkBasuSubtitle}
           </p>
         </div>
@@ -590,7 +590,7 @@ export const DKBasuCard: React.FC<DKBasuCardProps> = ({ language }) => {
         <div className="flex items-center gap-2">
           <button
             onClick={handlePrint}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#FFF3C8] hover:bg-[#E5CB90] border border-[#E5CB90] text-[#1A3841] font-bold text-xs shadow-xs transition-colors cursor-pointer"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#FFF3C8] hover:bg-[#E5CB90] border-2 border-[#E5CB90] text-[#1A3841] font-black text-xs shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all cursor-pointer"
           >
             <Printer className="w-4 h-4 text-[#458393]" />
             <span>{t.printDoc}</span>
@@ -599,22 +599,24 @@ export const DKBasuCard: React.FC<DKBasuCardProps> = ({ language }) => {
       </div>
 
       {/* Progress Bar & Status */}
-      <div className="p-5 rounded-2xl bg-gradient-to-r from-[#FFF3C8] to-[#E5CB90]/40 border border-[#E5CB90] shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="p-6 rounded-3xl bg-gradient-to-r from-[#FFF3C8] via-[#FFF3C8] to-[#E5CB90]/40 border-2 border-[#E5CB90] shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="space-y-1 w-full sm:w-auto">
-          <div className="flex items-center gap-2">
-            <ShieldCheck className="w-5 h-5 text-[#34A99D]" />
-            <span className="font-extrabold text-sm text-[#1A3841]">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-full bg-[#34A99D]/20 flex items-center justify-center text-[#34A99D]">
+              <ShieldCheck className="w-5 h-5" />
+            </div>
+            <span className="font-black text-base text-[#1A3841]">
               Police Compliance Audit: {completedCount} / 11 Checked
             </span>
           </div>
-          <p className="text-xs text-[#458393] font-medium">
+          <p className="text-xs text-[#458393] font-bold pl-10">
             Violation of these mandatory steps is grounds for immediate bail and Contempt of Court proceedings.
           </p>
         </div>
 
-        <div className="w-full sm:w-48 bg-[#FFF3C8] rounded-full h-3.5 border border-[#E5CB90] overflow-hidden">
+        <div className="w-full sm:w-56 bg-[#E5CB90]/40 rounded-full h-4 border-2 border-[#E5CB90] overflow-hidden p-0.5 shadow-inner">
           <div
-            className="bg-gradient-to-r from-[#34A99D] to-[#458393] h-full transition-all duration-300"
+            className="bg-gradient-to-r from-[#34A99D] to-[#458393] h-full rounded-full transition-all duration-500 shadow-sm"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -630,33 +632,35 @@ export const DKBasuCard: React.FC<DKBasuCardProps> = ({ language }) => {
           const isPlaying = playingNum === item.num;
 
           return (
-            <ThreeDCard key={item.num} className="cursor-pointer" onClick={() => toggleCheck(item.num)}>
-              <div className={`h-full p-5 rounded-2xl border transition-all flex items-start gap-3.5 ${
+            <ThreeDCard key={item.num} className="cursor-pointer group" onClick={() => toggleCheck(item.num)}>
+              <div className={`h-full p-5 rounded-3xl border-2 transition-all duration-300 flex items-start gap-4 hover:shadow-xl hover:-translate-y-1 ${
                 isChecked
-                  ? 'bg-emerald-50/80 border-emerald-300 shadow-sm'
-                  : 'bg-[#FFF3C8] border-[#E5CB90] hover:bg-[#E5CB90]/25'
+                  ? 'bg-emerald-50/95 border-emerald-400 shadow-md ring-2 ring-emerald-200'
+                  : 'bg-[#FFF3C8] border-[#E5CB90] hover:border-[#34A99D] hover:bg-[#E5CB90]/25'
               }`}>
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     toggleCheck(item.num);
                   }}
-                  className="mt-0.5 text-[#458393] hover:text-[#34A99D] transition-colors shrink-0"
+                  className="mt-0.5 text-[#458393] hover:text-[#34A99D] transition-transform hover:scale-110 shrink-0 cursor-pointer"
                 >
                   {isChecked ? (
-                    <CheckSquare className="w-6 h-6 text-emerald-600" />
+                    <div className="w-7 h-7 rounded-full bg-emerald-600 flex items-center justify-center text-white shadow-xs">
+                      <CheckSquare className="w-4 h-4 text-white" />
+                    </div>
                   ) : (
-                    <Square className="w-6 h-6 text-[#458393]" />
+                    <div className="w-7 h-7 rounded-full border-2 border-[#458393] hover:border-[#34A99D] flex items-center justify-center bg-white/50" />
                   )}
                 </button>
 
-                <div className="space-y-1 flex-1">
+                <div className="space-y-1.5 flex-1">
                   <div className="flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-2">
-                      <span className="w-6 h-6 rounded-full bg-[#458393] text-[#FFF3C8] flex items-center justify-center text-xs font-black shrink-0">
+                    <div className="flex items-center gap-2.5">
+                      <span className="w-7 h-7 rounded-full bg-[#458393] text-[#FFF3C8] flex items-center justify-center text-xs font-black shrink-0 shadow-xs">
                         {item.num}
                       </span>
-                      <h3 className="font-extrabold text-sm text-[#1A3841] leading-snug">
+                      <h3 className="font-black text-sm text-[#1A3841] group-hover:text-[#34A99D] transition-colors leading-snug">
                         {activeTitle}
                       </h3>
                     </div>
@@ -666,13 +670,13 @@ export const DKBasuCard: React.FC<DKBasuCardProps> = ({ language }) => {
                         e.stopPropagation();
                         handleSpeak(item.num, `${activeTitle}. ${activeDesc}`);
                       }}
-                      className="p-1 rounded-lg bg-[#E5CB90]/50 hover:bg-[#E5CB90] text-[#1A3841] transition-colors shrink-0"
+                      className="w-8 h-8 rounded-full bg-[#E5CB90]/60 hover:bg-[#E5CB90] text-[#1A3841] transition-all flex items-center justify-center shrink-0 hover:scale-110 shadow-xs cursor-pointer"
                       title="Listen audio in selected language"
                     >
-                      <Volume2 className={`w-3.5 h-3.5 ${isPlaying ? 'text-red-600 animate-spin' : 'text-[#458393]'}`} />
+                      <Volume2 className={`w-4 h-4 ${isPlaying ? 'text-red-600 animate-spin' : 'text-[#458393]'}`} />
                     </button>
                   </div>
-                  <p className="text-xs text-[#458393] font-medium leading-relaxed">
+                  <p className="text-xs text-[#458393] font-bold leading-relaxed pl-9">
                     {activeDesc}
                   </p>
                 </div>
@@ -683,11 +687,13 @@ export const DKBasuCard: React.FC<DKBasuCardProps> = ({ language }) => {
       </div>
 
       {/* Supreme Court Warning Box */}
-      <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 flex items-start gap-3">
-        <Info className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
-        <div className="text-xs text-amber-950 font-medium leading-relaxed">
-          <span className="font-bold block text-sm text-amber-900">Legal Precedent & Punishment for Police Violation:</span>
-          Under paragraph 36 of the D.K. Basu judgment, any failure by police officials to fulfill these conditions renders them liable to be proceeded against for Contempt of Court, in addition to statutory departmental penalties and Section 166 IPC / BNS for disobeying law.
+      <div className="p-5 rounded-3xl bg-amber-50 border-2 border-amber-300 shadow-sm flex items-start gap-4">
+        <div className="w-10 h-10 rounded-full bg-amber-200/80 flex items-center justify-center text-amber-900 shrink-0">
+          <Info className="w-6 h-6" />
+        </div>
+        <div className="text-xs text-amber-950 font-semibold leading-relaxed">
+          <span className="font-black block text-sm text-amber-900 mb-0.5">Legal Precedent & Punishment for Police Violation:</span>
+          Under paragraph 36 of the D.K. Basu judgment, any failure by police officials to fulfill these conditions renders them liable to be proceeded against for Contempt of Court, in addition to statutory departmental penalties and Section 166 IPC / BNSS for disobeying law.
         </div>
       </div>
     </div>
