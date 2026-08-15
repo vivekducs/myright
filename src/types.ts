@@ -70,14 +70,29 @@ export interface LegalRight {
 export interface SituationStep {
   id: string;
   title: string;
-  situation: string;
+  situation: string; // Step 1: The Situation
   category: Category;
   severity: 'critical' | 'warning' | 'info';
-  immediateActions: string[];
-  doNotDo: string[];
-  legalShield: string;
-  sayThis: string;
+  legalShield: string; // Step 2: Your Rights
+  summaryRights?: string[]; // Quick summary rights points for 30-sec scan
+  landmarkCase?: string; // Landmark Supreme Court Precedent
+  immediateActions: string[]; // Step 3: What To Do Now
+  doNotDo: string[]; // What NOT to do
+  sayThis: string; // Exact Spoken Verbal Script
   helpline: string;
+  whereToComplain?: { // Step 4: Where To Complain
+    authority: string;
+    steps: string[];
+    helplineOrPortal: string;
+    portalUrl?: string;
+    actSection?: string;
+  };
+  fastScan30Sec?: {
+    situationText: string;
+    topRightText: string;
+    mustDoText: string;
+    complainToText: string;
+  };
   detailedExplanation?: string;
   departmentId?: string;
   officialLinks?: OfficialSourceLink[];
@@ -86,10 +101,16 @@ export interface SituationStep {
   translations?: Partial<Record<SupportedLanguage, {
     title: string;
     situation: string;
+    legalShield: string;
+    summaryRights?: string[];
     immediateActions: string[];
     doNotDo: string[];
-    legalShield: string;
     sayThis: string;
+    whereToComplain?: {
+      authority: string;
+      steps: string[];
+      helplineOrPortal?: string;
+    };
     detailedExplanation?: string;
   }>>;
 }

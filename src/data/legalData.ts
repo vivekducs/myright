@@ -363,202 +363,887 @@ export const LEGAL_RIGHTS: LegalRight[] = [
       hinglish: {
         title: 'Right to File "Zero FIR" Anywhere in India',
         summary: 'Jurisdiction issue bata kar police cognizable crime mein FIR refuse nahi kar sakti.',
-        exactDialogue: '“Lalita Kumari ruling ke mutabik Zero FIR register karke free copy dena mandatory hai.”'
-      }
-    }
-  },
+        exactDialogue: '“Lalita Kumari ruling ke mutabik Zero FIR register karke free copy dexport const SITUATION_STEPS: SituationStep[] = [
   {
-    id: 'phone-privacy-naka',
-    title: 'Phone & WhatsApp Privacy at Police Checkpoints',
-    category: 'phone_privacy',
-    lawRef: 'Article 21 (Right to Privacy), Article 20(3) & K.S. Puttaswamy v. Union of India (2017)',
-    scJudgment: 'Supreme Court 9-Judge Constitution Bench',
-    summary: 'Police cannot arbitrarily force you to unlock your phone, inspect WhatsApp chats, or browse photos without a formal warrant.',
-    keyPoints: [
-      'Digital Privacy: Your smartphone contains personal data protected under Article 21.',
-      'No Random Searches: Section 91 CrPC requires formal summons; random searching is unlawful.',
-      'Right against Self-Incrimination: Article 20(3) prevents forced disclosure of passwords.',
-      'Videography in Public: Citizens have the constitutional right to record police officers on duty in public spaces (Article 19(1)(a)).'
-    ],
-    whatPoliceMustDo: [
-      'Produce a specific magistrate search warrant or Section 91 notice in an active registered FIR.',
-      'Provide a formal seizure memo with IMEI number if device is taken into evidence.'
-    ],
-    whatPoliceCannotDo: [
-      'Force citizens to unlock devices at routine nakas or traffic stops.',
-      'Delete videos or photos recorded by citizens in public areas.'
-    ],
-    exactDialogue: '“Officer, under the 9-Judge Puttaswamy ruling, my mobile phone is protected by the constitutional Right to Privacy. Without a formal search warrant, I am not obliged to unlock it.”',
-    priority: 'high',
-    iconName: 'Smartphone',
-    translations: {
-      hi: {
-        title: 'नाके पर फोन व व्हाट्सएप चैट की प्राइवेसी',
-        summary: 'पुलिस बिना सर्च वारंट या केस के आपका फोन अनलॉक करने या व्हाट्सएप चैट पढ़ने के लिए बाध्य नहीं कर सकती।',
-        exactDialogue: '“पुट्टास्वामी फैसले और आर्टिकल 21 के तहत मेरा फोन निजी है। बिना वारंट के मैं इसे अनलॉक करने के लिए बाध्य नहीं हूँ।”'
-      },
-      te: {
-        title: 'పోలీస్ చెక్‌పోస్టుల వద్ద ఫోన్ & వాట్సాప్ గోప్యత',
-        summary: 'వారెంట్ లేకుండా ఫోన్ అన్‌లాక్ చేయమని లేదా చాట్స్ చూపించమని పోలీసులు బలవంతం చేయలేరు.',
-        exactDialogue: '“ఆర్టికల్ 21 మరియు పుట్టస్వామి తీర్పు ప్రకారం నా ఫోన్ ప్రైవేట్. వారెంట్ లేకుండా అన్‌లాక్ చేయను.”'
-      },
-      ta: {
-        title: 'போலீஸ் சோதனையில் போன் & வாட்ஸ்அப் தனியுரிமை',
-        summary: 'வாரண்ட் இல்லாமல் உங்கள் போனை திறக்கச் சொல்ல காவல்துறைக்கு அதிகாரமில்லை.',
-        exactDialogue: '“பிரிவு 21-ன் படி எனது போன் தனிப்பட்டது. வாரண்ட் இல்லாமல் திறக்க முடியாது.”'
-      },
-      bn: {
-        title: 'পুলিশ চেকপোস্টে ফোন ও হোয়াটসঅ্যাপের গোপনীয়তা',
-        summary: 'পরোয়ানা ছাড়া পুলিশ ফোন আনলক করতে বা চ্যাট দেখতে বাধ্য করতে পারে না।',
-        exactDialogue: '“পুট্টাস্বামী রায় অনুসারে আমার ফোন ব্যক্তিগত। ওয়ারেন্ট ছাড়া আনলক করতে বাধ্য নই।”'
-      },
-      mr: {
-        title: 'पोलिस नाकाबंदीत फोन व व्हॉट्सॲप गोपनीयता',
-        summary: 'वॉरंटशिवाय पोलिस तुमचा फोन अनलॉक करण्यास किंवा चॅट तपासण्यास सांगू शकत नाहीत.',
-        exactDialogue: '“पुट्टास्वामी निकाल व कलम २१ नुसार माझा फोन खाजगी आहे.”'
-      },
-      gu: {
-        title: 'ચેકપોસ્ટ પર ફોન અને વોટ્સએપ પ્રાઈવસી',
-        summary: 'વોરંટ વિના પોલીસ તમારો ફોન અનલોક કરવા દબાણ કરી શકતી નથી.',
-        exactDialogue: '“પુટ્ટાસ્વામી ચુકાદા મુજબ વોરંટ વિના ફોન અનલોક કરવા હું બંધાયેલ નથી.”'
-      },
-      kn: {
-        title: 'ಪೊಲೀಸ್ ಚೆಕ್‌ಪೋಸ್ಟ್‌ನಲ್ಲಿ ಫೋನ್ & ವಾಟ್ಸಾಪ್ ಗೌಪ್ಯತೆ',
-        summary: 'ವಾರಂಟ್ ಇಲ್ಲದೆ ಫೋನ್ ಅನ್‌ಲಾಕ್ ಮಾಡಲು ಪೊಲೀಸರು ಒತ್ತಾಯಿಸುವಂತಿಲ್ಲ.',
-        exactDialogue: '“ವಿಧಿ 21 ರ ಪ್ರಕಾರ ನನ್ನ ಫೋನ್ ಖಾಸಗಿಯಾಗಿದೆ. ವಾರಂಟ್ ಇಲ್ಲದೆ ಅನ್‌ಲಾಕ್ ಮಾಡುವುದಿಲ್ಲ.”'
-      },
-      ml: {
-        title: 'പോലീസ് പരിശോധനയിൽ ഫോൺ & വാട്ട്‌സ്ആപ്പ് സ്വകാര്യത',
-        summary: 'വാറന്റില്ലാതെ ഫോൺ അൺലോക്ക് ചെയ്യാൻ പോലീസിന് നിർബന്ധിക്കാൻ കഴിയില്ല.',
-        exactDialogue: '“പുട്ടസ്വാമി വിധിപ്രകാരം വാറന്റില്ലാതെ ഫോൺ അൺലോക്ക് ചെയ്യാൻ ഞാൻ ബാധ്യസ്ഥനല്ല.”'
-      },
-      pa: {
-        title: 'ਪੁਲਿਸ ਨਾਕੇ \'ਤੇ ਫੋਨ ਤੇ ਵਟਸਐਪ ਪ੍ਰਾਈਵੇਸੀ',
-        summary: 'ਬਿਨਾਂ ਵਾਰੰਟ ਦੇ ਪੁਲਿਸ ਫੋਨ ਅਨਲਾਕ ਕਰਨ ਲਈ ਮਜ਼ਬੂਰ ਨਹੀਂ ਕਰ ਸਕਦੀ।',
-        exactDialogue: '“ਧਾਰਾ 21 ਅਧੀਨ ਮੇਰਾ ਫੋਨ ਨਿੱਜੀ ਹੈ। ਬਿਨਾਂ ਵਾਰੰਟ ਅਨਲਾਕ ਨਹੀਂ ਕਰਾਂਗਾ।”'
-      },
-      hinglish: {
-        title: 'Phone & WhatsApp Privacy at Checkpoints',
-        summary: 'Valid search warrant ke bina police phone unlock karne ke liye compel nahi kar sakti.',
-        exactDialogue: '“Article 21 aur Puttaswamy judgment ke under phone private hai. Search warrant dikhayein.”'
-      }
-    }
-  },
-  {
-    id: 'home-search-warrant',
-    title: 'Home Search & Seizure Rules',
-    category: 'search',
-    lawRef: 'Section 100 & Section 165 CrPC (Sec 103 & 185 BNSS)',
-    scJudgment: 'State of Punjab v. Baldev Singh',
-    summary: 'Police cannot enter and search your home without a Search Warrant or recorded emergency grounds with two independent local witnesses.',
-    keyPoints: [
-      'Search Warrant or Section 165 Recording: Police must show a judicial search warrant.',
-      'Two Independent Panch Witnesses (Panchanama): Search must happen in the presence of two respectable inhabitants of the locality.',
-      'Personal Search of Police Officers: Occupants have the legal right to search the police officers before they enter to ensure no evidence is planted.',
-      'Women in the House: Women occupants who do not appear in public must be given liberty and time to withdraw.'
-    ],
-    whatPoliceMustDo: [
-      'Show search warrant or recorded Section 165 grounds.',
-      'Allow occupants to witness the search throughout.',
-      'Provide a signed inventory of every single seized article on the spot.'
-    ],
-    whatPoliceCannotDo: [
-      'Conduct a secret search without allowing homeowner to observe.',
-      'Seize items without listing on Panchanama receipt.'
-    ],
-    exactDialogue: '“Please show me the search warrant or recorded Section 165 memo. We also request two independent local witnesses be called, and officers offer themselves for search before entering.”',
-    priority: 'high',
-    iconName: 'Home',
-    translations: {
-      hi: {
-        title: 'घर की तलाशी एवं जब्ती के कड़े नियम',
-        summary: 'बिना सर्च वारंट और दो स्वतंत्र गवाहों (पंचों) के पुलिस आपके घर की तलाशी नहीं ले सकती।',
-        exactDialogue: '“कृपया सर्च वारंट दिखाएं और धारा 100 के तहत दो स्वतंत्र पड़ोसियों को गवाह के रूप में बुलाएं।”'
-      },
-      te: {
-        title: 'ఇంటి సోదాలు & స్వాధీనం నిబంధనలు',
-        summary: 'సెర్చ్ వారెంట్ మరియు ఇద్దరు స్వతంత్ర సాక్షులు లేకుండా పోలీసులు ఇంటిని సోదా చేయలేరు.',
-        exactDialogue: '“సెర్చ్ వారెంట్ చూపించండి మరియు సెక్షన్ 100 ప్రకారం ఇద్దరు స్థానిక సాక్షులను పిలవండి.”'
-      },
-      ta: {
-        title: 'வீடு சோதனை & பறிமுதல் விதிகள்',
-        summary: 'தேடுதல் வாரண்ட் மற்றும் இரண்டு சாட்சிகள் இல்லாமல் வீட்டில் சோதனை செய்ய முடியாது.',
-        exactDialogue: '“தேடுதல் வாரண்ட்டைக் காட்டுங்கள் மற்றும் இரண்டு சாட்சிகள் முன்னிலையில் சோதனை நடத்துங்கள்.”'
-      },
-      bn: {
-        title: 'বাড়িতে তল্লাশি ও মালামাল বাজেয়াপ্ত করার নিয়ম',
-        summary: 'সার্চ ওয়ারেন্ট এবং দুজন নিরপেক্ষ সাক্ষী ছাড়া পুলিশ বাড়িতে তল্লাশি চালাতে পারে না।',
-        exactDialogue: '“অনুগ্রহ করে সার্চ ওয়ারেন্ট দেখান এবং দুজন নিরপেক্ষ সাক্ষীকে ডাকুন।”'
-      },
-      mr: {
-        title: 'घर झडती व जप्तीचे कायदेशीर नियम',
-        summary: 'सर्च वॉरंट आणि दोन पंच साक्षीदारांशिवाय पोलिस घराची झडती घेऊ शकत नाहीत.',
-        exactDialogue: '“सर्च वॉरंट दाखवा आणि दोन स्थानिक साक्षीदारांच्या उपस्थितीत झडती घ्या.”'
-      },
-      gu: {
-        title: 'ઘરની તપાસ અને જપ્તીના નિયમો',
-        summary: 'સર્ચ વોરંટ અને બે સ્વતંત્ર સાક્ષીઓ વિના પોલીસ ઘરમાં તપાસ કરી શકતી નથી.',
-        exactDialogue: '“કૃપા કરીને સર્ચ વોરંટ બતાવો અને બે સાક્ષીઓની હાજરીમાં તપાસ કરો.”'
-      },
-      kn: {
-        title: 'ಮನೆ ಶೋಧನೆ ಮತ್ತು ವಶಪಡಿಸಿಕೊಳ್ಳುವ ನಿಯಮಗಳು',
-        summary: 'ಸರ್ಚ್ ವಾರಂಟ್ ಮತ್ತು ಇಬ್ಬರು ಸಾಕ್ಷಿಗಳಿಲ್ಲದೆ ಪೊಲೀಸರು ಮನೆ ಶೋಧಿಸುವಂತಿಲ್ಲ.',
-        exactDialogue: '“ದಯವಿಟ್ಟು ಸರ್ಚ್ ವಾರಂಟ್ ತೋರಿಸಿ ಮತ್ತು ಇಬ್ಬರು ಸಾಕ್ಷಿಗಳನ್ನು ಕರೆಯಿರಿ.”'
-      },
-      ml: {
-        title: 'വീട് പരിശോധനയും പിടിച്ചെടുക്കലും സംബന്ധിച്ച നിയമങ്ങൾ',
-        summary: 'സെർച്ച് വാറന്റും രണ്ട് സാക്ഷികളും ഇല്ലാതെ പോലീസിന് വീട് പരിശോധിക്കാൻ കഴിയില്ല.',
-        exactDialogue: '“സെർച്ച് വാറന്റ് കാണിക്കുക, രണ്ട് സാക്ഷികളുടെ സാന്നിധ്യത്തിൽ പരിശോധന നടത്തുക.”'
-      },
-      pa: {
-        title: 'ਘਰ ਦੀ ਤਲਾਸ਼ੀ ਅਤੇ ਜ਼ਬਤੀ ਦੇ ਨਿਯਮ',
-        summary: 'ਸਰਚ ਵਾਰੰਟ ਅਤੇ ਦੋ ਗਵਾਹਾਂ ਤੋਂ ਬਿਨਾਂ ਪੁਲਿਸ ਘਰ ਦੀ ਤਲਾਸ਼ੀ ਨਹੀਂ ਲੈ ਸਕਦੀ।',
-        exactDialogue: '“ਕਿਰਪਾ ਕਰਕੇ ਸਰਚ ਵਾਰੰਟ ਦਿਖਾਓ ਅਤੇ ਦੋ ਆਜ਼ਾਦ ਗਵਾਹ ਬੁਲਾਓ।”'
-      },
-      hinglish: {
-        title: 'Home Search & Seizure Rules',
-        summary: 'Search warrant aur do independent Panch witnesses ke bina house search allowed nahi hai.',
-        exactDialogue: '“Section 100 CrPC ke under search warrant aur do local witnesses ki presence required hai.”'
-      }
-    }
-  },
-  {
-    id: 'right-to-lawyer-silence',
-    title: 'Right to Legal Aid & Right to Remain Silent',
+    id: 'police-stop-question',
+    title: 'Police Stop or Question You on the Street / Naka',
+    situation: 'A police officer stops you on the road, at a checkpoint, or in a public space and begins questioning you.',
     category: 'fundamental_rights',
-    lawRef: 'Article 20(3), Article 22(1), Article 39A & Sec 41D CrPC (Sec 38 BNSS)',
-    scJudgment: 'Nandini Satpathy v. P.L. Dani (1978)',
-    summary: 'You have the constitutional right to consult an advocate of your choice and cannot be compelled to give self-incriminating statements under coercion.',
-    keyPoints: [
-      'Right to Counsel: Under Section 41D CrPC, an arrested person is entitled to meet and consult an advocate of their choice throughout interrogation.',
-      'Right to Free Legal Aid: Article 39A and NALSA Act guarantee free legal aid to anyone who cannot afford a lawyer.',
-      'Right Against Self-Incrimination: Article 20(3) protects you from being forced to confess.',
-      'Confession before Police: Inadmissible as evidence under Section 25 Evidence Act.'
+    severity: 'warning',
+    legalShield: 'Article 21 (Personal Liberty), Article 20(3) (Protection against self-incrimination), Section 41A CrPC / Sec 35(3) BNSS.',
+    landmarkCase: 'Nandini Satpathy v. P.L. Dani (1978) - Right against compulsory self-incrimination during police questioning.',
+    summaryRights: [
+      'Right to Know Reason: You have the right to politely ask the specific reason for being stopped.',
+      'Right to Officer Identification: Every officer must display a clear nameplate, designation rank, and buckle number.',
+      'Right to Free Movement: If you are not detained or arrested, you cannot be held indefinitely on suspicion without reason.',
+      'Right Against Verbal Abuse: Police officers are bound by State Police Conduct Rules prohibiting verbal intimidation.'
     ],
-    whatPoliceMustDo: [
-      'Permit the arrestee to contact their lawyer immediately.',
-      'Inform the Legal Services Authority (DLSA/NALSA) if eligible for free aid.'
+    immediateActions: [
+      'Stay calm, keep your hands visible, and speak politely with composure.',
+      'Ask respectfully: “Officer, may I please know why I am being stopped?”',
+      'If questioned without reason, ask clearly: “Sir, am I free to leave, or am I being formally detained for an inquiry?”',
+      'Provide your basic name and identity if asked, but you are not obligated to answer speculative or self-incriminating queries.',
+      'Note the officer’s name, rank badge, police vehicle registration number, and exact location.'
     ],
-    whatPoliceCannotDo: [
-      'Force an accused to sign blank stamp papers or confessions.',
-      'Deny access to legal counsel after formal arrest.'
+    doNotDo: [
+      'Do NOT run away, argue aggressively, or physically touch the officer.',
+      'Do NOT hand over your unlocked phone or surrender your personal belongings without an official search memo.',
+      'Do NOT sign any blank paper, notebook, or confession document on the spot.',
+      'Do NOT pay any informal on-the-spot cash fine without an official government receipt.'
     ],
-    exactDialogue: '“Under Article 20(3) and Section 41D CrPC, I wish to exercise my right to remain silent until I consult my legal counsel.”',
-    priority: 'critical',
-    iconName: 'Scale',
+    sayThis: '“Good day Officer. May I know the reason for this inquiry? Am I being detained, or am I free to proceed?”',
+    helpline: '112 (National Emergency) / 15100 (NALSA Free Legal Aid)',
+    whereToComplain: {
+      authority: 'Senior Superintendent of Police (SSP) / DCP & Police Complaints Authority (PCA)',
+      actSection: 'Section 154(3) CrPC / Section 173(4) BNSS & Police Act Disciplinary Rules',
+      steps: [
+        'Note the officer’s name tag, vehicle number, date, time, and exact landmark.',
+        'Submit a formal written grievance to the ACP / DCP / SP of the district in person or via Registered Post.',
+        'File an online complaint on the State Police Public Grievance Portal or Central CPGRAMS portal (pgportal.gov.in).',
+        'If severe harassment or illegal detention occurred, file a complaint before the State / District Police Complaints Authority (PCA).'
+      ],
+      helplineOrPortal: 'pgportal.gov.in / 112',
+      portalUrl: 'https://pgportal.gov.in'
+    },
+    fastScan30Sec: {
+      situationText: 'Stopped by police for questioning on the road or checkpoint.',
+      topRightText: 'Right to know reason • Ask if you are free to go • Note officer name tag.',
+      mustDoText: 'Stay calm. Ask “Am I free to leave or detained?”. Show ID if requested. Do not surrender unlocked phone.',
+      complainToText: 'District DCP / SP office or Police Complaints Authority (PCA).'
+    },
+    officialLinks: [
+      {
+        title: 'Constitution of India - Article 21 (Personal Liberty)',
+        url: 'https://legislative.gov.in/constitution-of-india',
+        department: 'Ministry of Law and Justice',
+        type: 'act',
+        description: 'Protection of life and personal liberty of all citizens.'
+      },
+      {
+        title: 'NALSA Legal Services Portal',
+        url: 'https://nalsa.gov.in',
+        department: 'National Legal Services Authority',
+        type: 'portal',
+        description: 'Toll-free 24x7 legal assistance 15100.'
+      }
+    ],
     translations: {
       hi: {
-        title: 'वकील का अधिकार और चुप रहने का मौलिक अधिकार',
-        summary: 'पूछताछ के दौरान अपने वकील से मिलने का अधिकार और खुद के खिलाफ बयान देने से इनकार करने का मौलिक अधिकार।',
-        exactDialogue: '“आर्टिकल 20(3) और धारा 41D के तहत मुझे अपने वकील से परामर्श करने का अधिकार है।”'
+        title: 'सड़क या नाके पर पुलिस रोके या पूछताछ करे',
+        situation: 'रास्ते में, नाके पर या सार्वजनिक स्थान पर पुलिसकर्मी आपको रोककर पूछताछ करने लगे।',
+        legalShield: 'संविधान का अनुच्छेद 21 (व्यक्तिगत स्वतंत्रता), अनुच्छेद 20(3) एवं धारा 41A CrPC / धारा 35 BNSS।',
+        immediateActions: [
+          'शांत रहें, हाथ स्पष्ट रखें और विनम्रता से बात करें।',
+          'अधिकारी से आदरपूर्वक पूछें: “सर, मुझे किस कारण से रोका गया है?”',
+          'पूछें: “क्या मुझे जाने की अनुमति है या किसी जांच के लिए हिरासत में लिया गया है?”',
+          'पहचान पूछे जाने पर नाम-पहचान बताएं, लेकिन बिना वकील किसी आरोप को स्वीकार न करें।',
+          'पुलिसकर्मी का नेम-टैग, पद और गाड़ी का नंबर नोट करें।'
+        ],
+        doNotDo: [
+          'भागने या हाथापाई करने की कोशिश न करें।',
+          'अनलॉक फोन पुलिस के हाथ में न दें।',
+          'कोरे कागज पर दस्तखत न करें।'
+        ],
+        sayThis: '“नमस्ते सर, कृपया बताएं मुझे किस कारण से रोका गया है? क्या मैं आगे जा सकता हूं या मुझे रोका गया है?”',
+        whereToComplain: {
+          authority: 'जिला पुलिस उपायुक्त (DCP) / पुलिस अधीक्षक (SP) एवं पुलिस शिकायत प्राधिकरण (PCA)',
+          steps: [
+            'पुलिसकर्मी का नाम, बैज नंबर, समय व स्थान डायरी में नोट करें।',
+            'जिले के पुलिस अधीक्षक (SP/DCP) को लिखित शिकायत या रजिस्टर्ड डाक भेजें।',
+            'केंद्रीय पीजी पोर्टल (pgportal.gov.in) पर ऑनलाइन शिकायत दर्ज करें।'
+          ],
+          helplineOrPortal: '112 / pgportal.gov.in'
+        }
+      }
+    }
+  },
+  {
+    id: 'arrest-detained',
+    title: 'Arrested or Detained by the Police',
+    situation: 'A police officer tells you “You are under arrest” or forcefully takes you to the police station.',
+    category: 'arrest',
+    severity: 'critical',
+    legalShield: 'Article 22(1) & (2) Constitution of India, Section 41B, 41D, 50, 54, 57 CrPC (Sec 36, 38, 47, 53, 58 BNSS).',
+    landmarkCase: 'D.K. Basu v. State of West Bengal (1997) & Arnesh Kumar v. State of Bihar (2014) - Mandatory Arrest Memo, family intimation within 8-12 hours, 24-hr magistrate production.',
+    summaryRights: [
+      'Right to Know Grounds of Arrest: Article 22(1) mandates police must clearly explain the exact offence and sections.',
+      'Right to Arrest Memo: Must be prepared on the spot, signed by a witness (family/neighbor) and counter-signed by you.',
+      'Right to Inform Family: Police must notify one friend or relative within 8 to 12 hours of arrest (Sec 50A CrPC).',
+      'Right to Consult a Lawyer: Sec 41D CrPC entitles you to meet your advocate during interrogation.',
+      '24-Hour Magistrate Production: Article 22(2) & Sec 57 CrPC mandate production before Judicial Magistrate within 24 hours.',
+      'Right to Medical Checkup: Sec 54 CrPC mandates independent doctor examination to record any injuries.'
+    ],
+    immediateActions: [
+      'Immediately ask: “Officer, what are the exact grounds of arrest under Article 22(1)?”',
+      'For offences with under 7 years punishment, police must show why Section 41A Notice was not given first.',
+      'Demand an official printed copy of the D.K. Basu Arrest Memo with date, time, and witness signature.',
+      'Exercise your right to make one phone call to inform your family and lawyer immediately.',
+      'Insist on a medical examination (MLC) by a government medical officer to record physical condition.',
+      'If you cannot afford an advocate, demand free legal representation from DLSA / NALSA (Helpline 15100).'
+    ],
+    doNotDo: [
+      'Do NOT physically resist arrest or attempt to flee.',
+      'Do NOT sign blank stamp papers, empty notebooks, or confessions (inadmissible u/s 25 Evidence Act / Sec 23 BSA).',
+      'Do NOT accept remaining in police lockup for more than 24 hours without being taken before a Magistrate.',
+      'Do NOT permit physical torture or third-degree abuse (strictly unconstitutional under Article 21).'
+    ],
+    sayThis: '“Under Article 22 and Section 41B CrPC, please provide my formal Arrest Memo, notify my family, and permit me to consult my advocate.”',
+    helpline: '112 / 15100 (NALSA Free Legal Counsel 24/7)',
+    whereToComplain: {
+      authority: 'Judicial Magistrate / District Legal Services Authority (DLSA) / State Human Rights Commission',
+      actSection: 'Section 57 & 156(3) CrPC / Section 58 & 175(3) BNSS, Protection of Human Rights Act 1993',
+      steps: [
+        'When produced before the Judicial Magistrate within 24 hours, directly inform the Magistrate in open court of any torture, illegal detention, or denial of rights.',
+        'Request the Magistrate to order an independent medical re-examination and grant immediate bail or legal aid.',
+        'File a formal complaint through your advocate before the District Sessions Court or High Court under Section 482 CrPC (Sec 528 BNSS).',
+        'Lodge a petition with the State Human Rights Commission (SHRC) or NHRC (nhrc.nic.in) for custodial rights violations.'
+      ],
+      helplineOrPortal: 'NALSA 15100 / NHRC 14433',
+      portalUrl: 'https://hrcnet.nic.in'
+    },
+    fastScan30Sec: {
+      situationText: 'Being placed under formal police arrest or taken to station lockup.',
+      topRightText: 'Mandatory Arrest Memo • 1 phone call to family/lawyer • 24hr Magistrate limit • Free Legal Aid 15100.',
+      mustDoText: 'Ask grounds of arrest. Demand Arrest Memo copy. Call lawyer/family. Request medical exam. Do not sign blank papers.',
+      complainToText: 'Inform Judicial Magistrate directly at 24-hr production or call NALSA Helpline 15100.'
+    },
+    officialLinks: [
+      {
+        title: 'Supreme Court D.K. Basu Judgment (AIR 1997 SC 610)',
+        url: 'https://main.sci.gov.in',
+        department: 'Supreme Court of India',
+        type: 'judgement',
+        description: 'The 11 mandatory guidelines for every arrest in India.'
       },
-      te: {
-        title: 'న్యాయవాది సహాయం & మౌనంగా ఉండే ప్రాథమిక హక్కు',
-        summary: 'విచారణలో న్యాయవాదిని సంప్రదించే హక్కు మరియు ఒత్తిడితో కూడిన వాంగ్మూలాలు ఇవ్వకుండా మౌనంగా ఉండే హక్కు.',
-        exactDialogue: '“ఆర్టికల్ 20(3) మరియు సెక్షన్ 41D ప్రకారం నా న్యాయవాదితో మాట్లాడే వరకు నేను మౌనంగా ఉంటాను.”'
+      {
+        title: 'National Legal Services Authority (NALSA)',
+        url: 'https://nalsa.gov.in',
+        department: 'Ministry of Law and Justice',
+        type: 'portal',
+        description: 'Constitutional free legal aid under Article 39A.'
+      }
+    ],
+    translations: {
+      hi: {
+        title: 'पुलिस द्वारा गिरफ्तारी या हिरासत',
+        situation: 'पुलिस आपको गिरफ्तार करने की बात कहे या जबरन थाने ले जाए।',
+        legalShield: 'संविधान का अनुच्छेद 22, धारा 41B, 41D, 50, 54 व 57 CrPC (बीएनएसएस)।',
+        immediateActions: [
+          'अनुच्छेद 22(1) के तहत गिरफ्तारी का कारण और धाराएं पूछें।',
+          'मौके पर गवाह के हस्ताक्षर युक्त अरेस्ट मेमो की कॉपी मांगें।',
+          'परिवार और वकील को तुरंत फोन करने के अधिकार का प्रयोग करें।',
+          'सरकारी अस्पताल के डॉक्टर से मेडिकल जांच (MLC) कराने की मांग करें।',
+          'यदि वकील नहीं है, तो नालसा (NALSA 15100) से मुफ्त सरकारी वकील की मांग करें।'
+        ],
+        doNotDo: [
+          'कोरे कागज या बयान पर हस्ताक्षर न करें।',
+          '24 घंटे से अधिक बिना मजिस्ट्रेट पेशी के थाने में न रहें।'
+        ],
+        sayThis: '“डी.के. बसु दिशानिर्देश और धारा 41B के तहत मुझे अरेस्ट मेमो दें और परिवार व वकील से बात करने की अनुमति दें।”',
+        whereToComplain: {
+          authority: 'न्यायिक मजिस्ट्रेट (Judicial Magistrate) व जिला विधिक सेवा प्राधिकरण (DLSA)',
+          steps: [
+            '24 घंटे के भीतर मजिस्ट्रेट के सामने पेश होने पर किसी भी मारपीट या अवैध हिरासत की शिकायत सीधे मजिस्ट्रेट से करें।',
+            'मानवाधिकार आयोग (NHRC पोर्टल hrcnet.nic.in) पर शिकायत दर्ज करें।'
+          ],
+          helplineOrPortal: '15100 (नालसा मुफ्त कानूनी सहायता)'
+        }
+      }
+    }
+  },
+  {
+    id: 'fir-refusal',
+    title: 'Police Refuse to Register Your FIR',
+    situation: 'You go to a police station to report a serious crime (theft, assault, fraud, harassment) and the officer refuses to lodge an FIR or sends you away.',
+    category: 'fir',
+    severity: 'critical',
+    legalShield: 'Section 154(1) & 154(3) CrPC (Sec 173(1) & 173(4) BNSS), Section 166A IPC / Sec 199 BNS (Criminal liability of police officer).',
+    landmarkCase: 'Lalita Kumari v. Govt. of U.P. (Constitution Bench, Supreme Court 2014) - Registration of FIR is MANDATORY if information discloses a cognizable offence.',
+    summaryRights: [
+      'Mandatory FIR Registration: Police CANNOT refuse an FIR if a cognizable crime is disclosed (Lalita Kumari mandate).',
+      'Right to Zero FIR: If the crime occurred outside the station’s territorial jurisdiction, they MUST register a Zero FIR and transfer it.',
+      'Right to Free Copy: Under Section 154(2) CrPC, the complainant is entitled to an immediate signed copy of the FIR completely FREE of cost.',
+      'Criminal Offence for Officer: Under Section 166A IPC / Section 199 BNS, an officer refusing an FIR in crimes against women faces up to 2 years imprisonment.'
+    ],
+    immediateActions: [
+      'Submit a typed or clearly handwritten complaint in duplicate. Ask the duty officer to stamp and sign your receiving copy with the General Diary (GD) number.',
+      'If the Station House Officer (SHO) refuses, note their name, rank, date, and exact reason cited.',
+      'Level 2 Escalation: Send a copy of your complaint by Registered Post / Speed Post with Acknowledgment Due (A/D) to the Superintendent of Police (SP) / DCP under Section 154(3) CrPC / Sec 173(4) BNSS.',
+      'Level 3 Escalation: File a private application before the Judicial Magistrate First Class (JMFC) under Section 156(3) CrPC / Section 175(3) BNSS praying for court directions to register an FIR and investigate.',
+      'File an online e-FIR / grievance on the State Police Citizen Portal or Digital Police CCTNS.'
+    ],
+    doNotDo: [
+      'Do NOT leave the police station without taking a stamped receipt, GD entry number, or acknowledgment on your duplicate copy.',
+      'Do NOT accept an informal settlement or compromise under police pressure if you wish to prosecute a cognizable crime.',
+      'Do NOT pay any money; filing an FIR is 100% free under Indian law.'
+    ],
+    sayThis: '“Under the Supreme Court’s Lalita Kumari judgment and Section 154 CrPC, registering an FIR for a cognizable offence is mandatory. Please provide my stamped receiving copy.”',
+    helpline: '112 / 1091 (Women) / 1930 (Cyber Crime FIR)',
+    whereToComplain: {
+      authority: 'District SP/DCP (Sec 154(3) CrPC) ➔ Judicial Magistrate (Sec 156(3) CrPC / 175(3) BNSS)',
+      actSection: 'Section 154(3) & 156(3) CrPC / Section 173(4) & 175(3) BNSS, Section 166A IPC',
+      steps: [
+        'Step 1: Write a registered post letter with complaint copy to the District Superintendent of Police (SP) / DCP under Section 154(3) CrPC / Sec 173(4) BNSS.',
+        'Step 2: If SP fails to act within a reasonable time, file an application supported by an affidavit before the Judicial Magistrate u/s 156(3) CrPC / 175(3) BNSS (supported by Priyanka Srivastava v. State of UP).',
+        'Step 3: Lodge a complaint against the defaulting police officer before the Police Complaints Authority (PCA) for dereliction of duty.',
+        'Step 4: For cyber crimes, register directly on cybercrime.gov.in.'
+      ],
+      helplineOrPortal: 'cybercrime.gov.in / digitalpolice.gov.in',
+      portalUrl: 'https://digitalpolice.gov.in'
+    },
+    fastScan30Sec: {
+      situationText: 'Police refusing or stalling the registration of an FIR for a crime.',
+      topRightText: 'FIR is mandatory (Lalita Kumari) • Zero FIR anywhere • Free copy • Officer liable u/s 166A.',
+      mustDoText: 'Get receiving stamp on duplicate copy. Send complaint to SP/DCP by Speed Post (Sec 154(3)). File in Magistrate Court (Sec 156(3)).',
+      complainToText: 'District SP/DCP via Speed Post or Judicial Magistrate Court under Section 156(3) CrPC.'
+    },
+    officialLinks: [
+      {
+        title: 'Supreme Court Lalita Kumari Judgment (AIR 2014 SC 187)',
+        url: 'https://main.sci.gov.in',
+        department: 'Supreme Court of India',
+        type: 'judgement',
+        description: 'Constitution Bench ruling on mandatory FIR registration.'
       },
-      ta: {
-        title: 'வழக்கறிஞர் உதவி & மௌனமாக இருக்கும் அடிப்படை உரிமை',
+      {
+        title: 'Digital Police CCTNS Citizen Portal',
+        url: 'https://digitalpolice.gov.in',
+        department: 'Ministry of Home Affairs',
+        type: 'portal',
+        description: 'Central online portal for citizen services and complaint tracking.'
+      },
+      {
+        title: 'National Cyber Crime Reporting Portal',
+        url: 'https://cybercrime.gov.in',
+        department: 'MHA Cyber Division',
+        type: 'portal',
+        description: 'Direct FIR registration for online financial & digital crimes.'
+      }
+    ],
+    translations: {
+      hi: {
+        title: 'पुलिस एफआईआर (FIR) दर्ज करने से मना करे',
+        situation: 'थाने जाने पर पुलिस आपकी शिकायत दर्ज करने से इनकार करे या टरकाए।',
+        legalShield: 'धारा 154(1) व 154(3) CrPC (धारा 173 BNSS), ललिता कुमारी सुप्रीम कोर्ट फैसला, धारा 166A IPC।',
+        immediateActions: [
+          'शिकायत की दो प्रतियों पर रिसीविंग मोहर और जीडी (GD) नंबर लें।',
+          'सुप्रीम कोर्ट के ललिता कुमारी फैसले का हवाला दें (संज्ञेय अपराध में FIR अनिवार्य है)।',
+          'थाना प्रभारी मना करे तो शिकायत की प्रति स्पीड पोस्ट से जिला पुलिस अधीक्षक (SP/DCP) को धारा 154(3) के तहत भेजें।',
+          'वकील के जरिए न्यायिक मजिस्ट्रेट की अदालत में धारा 156(3) CrPC (धारा 175(3) BNSS) के तहत आवेदन करें।'
+        ],
+        doNotDo: [
+          'बिना रिसीविंग लिए थाने से बाहर न आएं।',
+          'एफआईआर दर्ज कराने के लिए कोई रिश्वत न दें।'
+        ],
+        sayThis: '“सुप्रीम कोर्ट के ललिता कुमारी फैसले के अनुसार संज्ञेय अपराध में FIR दर्ज करना अनिवार्य है। कृपया मेरी शिकायत पर रिसीविंग मोहर लगाएं।”',
+        whereToComplain: {
+          authority: 'पुलिस अधीक्षक (SP/DCP) एवं न्यायिक मजिस्ट्रेट न्यायालय (धारा 156(3))',
+          steps: [
+            '1. स्पीड पोस्ट से एसपी/डीसीपी को धारा 154(3) में शिकायत भेजें।',
+            '2. न्यायिक मजिस्ट्रेट के समक्ष धारा 156(3) के तहत एफआईआर दर्ज करने का आदेश मांगें।',
+            '3. पुलिस शिकायत प्राधिकरण (PCA) में संबंधित अधिकारी की शिकायत करें।'
+          ],
+          helplineOrPortal: 'digitalpolice.gov.in / 112'
+        }
+      }
+    }
+  },
+  {
+    id: 'search-seizure',
+    title: 'Police Want to Search You, Your Vehicle, or Your Home',
+    situation: 'Police officers arrive at your residence, office, or stop your car demanding to search your premises or seize personal belongings.',
+    category: 'search',
+    severity: 'warning',
+    legalShield: 'Section 100 & 165 CrPC (Sec 103 & 185 BNSS), Section 51(2) CrPC / Sec 49(2) BNSS, Article 20(3) & 21.',
+    landmarkCase: 'State of Punjab v. Baldev Singh (1999) & K.S. Puttaswamy v. Union of India (2017) - Mandatory presence of 2 independent local witnesses (Panch), search memo, and digital privacy.',
+    summaryRights: [
+      'Search Warrant or Section 165 Memo: Police must produce a judicial Search Warrant, or record reasons in writing if emergency search under Sec 165.',
+      'Two Independent Local Witnesses (Panch): Search MUST be conducted in the presence of 2 respectable neighborhood inhabitants.',
+      'Right to Search Police Officers First: Occupants have the legal right to pat down and search the police officers before they enter to ensure no evidence is planted.',
+      'Female Search Protections: A female person can ONLY be searched by a female officer with strict decency (Sec 51(2) CrPC).',
+      'Right to Free Panchanama Copy: An itemized Seizure Memo of all confiscated goods must be prepared and handed over to you immediately on the spot.'
+    ],
+    immediateActions: [
+      'Politely ask the leading officer: “Officer, please show me the judicial Search Warrant or your Section 165 written authorization.”',
+      'Demand that two independent neighbors or local residents be called as Panch witnesses to observe the entire search.',
+      'Politely request the police officers to allow themselves to be searched before entering your rooms.',
+      'Follow the search team through each room to keep all movements in clear sight.',
+      'Demand an immediate signed duplicate copy of the Seizure Memo (Panchanama) containing serial numbers, brand, and exact condition of all seized items.'
+    ],
+    doNotDo: [
+      'Do NOT allow search without independent witnesses present.',
+      'Do NOT permit male officers to touch, frisk, or search any female family member.',
+      'Do NOT sign a Panchanama that contains blank rows or unlisted items.',
+      'Do NOT hand over unlocked passwords or cloud credentials without a specific court order.'
+    ],
+    sayThis: '“Under Section 100 CrPC, please show the search warrant, call two independent local witnesses, and provide an official signed Seizure Memo.”',
+    helpline: '112 / 15100',
+    whereToComplain: {
+      authority: 'Jurisdictional Magistrate Court & Vigilance Branch',
+      actSection: 'Section 100(7) & 165(5) CrPC / Section 103(7) & 185(5) BNSS',
+      steps: [
+        'File an application before the Jurisdictional Magistrate requesting a copy of the Section 165 search grounds forwarded by police.',
+        'If property was seized illegally or damaged, file an application under Section 451 / 457 CrPC for return of seized property (Superdari).',
+        'Lodge a vigilance complaint if items were taken without being listed on the formal Panchanama inventory.'
+      ],
+      helplineOrPortal: '112 / District Court Registry'
+    },
+    fastScan30Sec: {
+      situationText: 'Police demanding to search your house, bag, or vehicle.',
+      topRightText: 'Must show search warrant • 2 local witnesses required • Search police first • Signed inventory memo.',
+      mustDoText: 'Ask for search warrant. Call 2 neighbors as witnesses. Inspect officers before they enter. Ensure every item is listed on receipt.',
+      complainToText: 'Area Magistrate Court or SP Vigilance.'
+    },
+    officialLinks: [
+      {
+        title: 'Code of Criminal Procedure - Section 100 (Search Procedures)',
+        url: 'https://indiacode.nic.in',
+        department: 'Ministry of Law and Justice',
+        type: 'act',
+        description: 'Mandatory rules governing search of closed places and witness presence.'
+      }
+    ],
+    translations: {
+      hi: {
+        title: 'घर, गाड़ी या सामान की तलाशी एवं जब्ती',
+        situation: 'पुलिस आपके घर, दफ्तर या गाड़ी की तलाशी लेने पहुंचे या सामान जब्त करने लगे।',
+        legalShield: 'धारा 100 व 165 CrPC (धारा 103 व 185 BNSS), पुट्टास्वामी निजता फैसला।',
+        immediateActions: [
+          'सर्च वारंट या धारा 165 का लिखित आदेश दिखाने को कहें।',
+          'धारा 100 के तहत पड़ोस के 2 स्वतंत्र व्यक्तियों (पंच गवाह) को बुलाने की मांग करें।',
+          'घर में घुसने से पहले पुलिसकर्मियों की खुद तलाशी लेने का अधिकार प्रयोग करें ताकि कोई झूठा सबूत न रखा जा सके।',
+          'जब्त किए गए हर सामान की सूची (पंचनामा) पर दस्तखत लेकर तुरंत कॉपी लें।'
+        ],
+        doNotDo: [
+          'बिना गवाहों के तलाशी न लेने दें।',
+          'महिला की तलाशी पुरुष पुलिसकर्मी को न करने दें।'
+        ],
+        sayThis: '“धारा 100 के तहत कृपया सर्च वारंट दिखाएं, दो स्वतंत्र पड़ोसियों को गवाह बनाएं और जब्ती सूची की कॉपी दें।”',
+        whereToComplain: {
+          authority: 'इलाका न्यायिक मजिस्ट्रेट एवं एसपी विजिलेंस',
+          steps: [
+            'जब्त सामान की वापसी के लिए मजिस्ट्रेट कोर्ट में धारा 451/457 CrPC के तहत अर्जी लगाएं।'
+          ],
+          helplineOrPortal: '112'
+        }
+      }
+    }
+  },
+  {
+    id: 'police-threatens-assault',
+    title: 'Police Officer Threatens, Abuses, or Assaults You',
+    situation: 'A police officer uses abusive language, threatens violence or false charges, or physically assaults you or someone in custody.',
+    category: 'fundamental_rights',
+    severity: 'critical',
+    legalShield: 'Article 21 (Right to Dignity & Life), Section 330/331 IPC (Sec 115/116 BNS - Torture for confession), Section 166A IPC (Sec 199 BNS), Section 29 Police Act, 1861.',
+    landmarkCase: 'D.K. Basu v. State of West Bengal (AIR 1997 SC 610) & Prakash Singh v. Union of India (2006) - Custodial violence is a severe crime; State must compensate and prosecute guilty officers.',
+    summaryRights: [
+      'Absolute Ban on Police Violence: Physical beating, torture, or third-degree methods are strictly unconstitutional and criminal offences.',
+      'Right to Public Video Recording: Citizens have the legal right to record police officers performing duties in public spaces as long as it does not obstruct duty.',
+      'Right to Medico-Legal Examination: Mandatory medical documentation of any injury caused by police in a government hospital.',
+      'Personal Criminal Liability: A police officer who assaults a citizen does not have sovereign immunity under Section 197 CrPC for criminal acts.'
+    ],
+    immediateActions: [
+      'Prioritize personal safety: do not retaliate physically. Keep witnesses nearby.',
+      'Immediately visit the nearest Government District Hospital or Primary Health Centre (PHC) and get a detailed Medico-Legal Certificate (MLC) documenting every bruise, cut, and injury.',
+      'Preserve all digital evidence: take high-resolution photos of injuries with timestamp, preserve CCTV/phone footage, and audio recordings.',
+      'Note the offending officer’s name, badge number, police station, vehicle number, and names of accompanying officers.',
+      'Dial 112 immediately to log an official police distress call on the centralized computer server.',
+      'Lodge a formal written complaint with the District SP/DCP, Police Complaints Authority, and NHRC.'
+    ],
+    doNotDo: [
+      'Do NOT delay getting a government hospital medical examination; injury marks fade with time.',
+      'Do NOT delete any video or audio recordings from your phone; back them up to cloud storage immediately.',
+      'Do NOT accept monetary settlements to drop complaints of custodial brutality.'
+    ],
+    sayThis: '“Officer, physical assault and intimidation are punishable under Section 330 IPC and violate Article 21. I am requesting an immediate medical examination.”',
+    helpline: '112 / 14433 (National Human Rights Commission NHRC)',
+    whereToComplain: {
+      authority: 'Police Complaints Authority (PCA) ➔ NHRC / SHRC ➔ Judicial Magistrate (Sec 200 CrPC)',
+      actSection: 'Protection of Human Rights Act 1993, Section 200 & 156(3) CrPC / Section 223 & 175(3) BNSS',
+      steps: [
+        'Step 1: File an emergency complaint on the National Human Rights Commission (NHRC) online portal at hrcnet.nic.in or call toll-free 14433.',
+        'Step 2: Submit a formal complaint before the State / District Police Complaints Authority (PCA) seeking departmental suspension and disciplinary inquiry.',
+        'Step 3: File a private criminal complaint before the Judicial Magistrate under Section 200 CrPC / Section 223 BNSS against the specific officers for assault, criminal intimidation, and wrongful confinement.',
+        'Step 4: File a Writ Petition under Article 226 before the High Court for independent CBI / SIT investigation and interim compensation.'
+      ],
+      helplineOrPortal: 'hrcnet.nic.in / Toll-Free 14433',
+      portalUrl: 'https://hrcnet.nic.in'
+    },
+    fastScan30Sec: {
+      situationText: 'Police officer threatening, beating, abusing, or committing violence.',
+      topRightText: 'Torture is illegal • Right to record in public • Get hospital MLC certificate immediately.',
+      mustDoText: 'Get medical checkup (MLC) at govt hospital immediately. Photograph injuries. Dial 112 to log on server. Complain to NHRC/PCA.',
+      complainToText: 'NHRC (hrcnet.nic.in / 14433) and District Police Complaints Authority (PCA).'
+    },
+    officialLinks: [
+      {
+        title: 'National Human Rights Commission (NHRC) Portal',
+        url: 'https://hrcnet.nic.in',
+        department: 'NHRC India',
+        type: 'portal',
+        description: 'Direct portal for registering custodial violence & police atrocities complaints.'
+      },
+      {
+        title: 'Central Public Grievance CPGRAMS Portal',
+        url: 'https://pgportal.gov.in',
+        department: 'Department of Administrative Reforms',
+        type: 'portal',
+        description: 'Central government citizen grievance tracking system.'
+      }
+    ],
+    translations: {
+      hi: {
+        title: 'पुलिस अधिकारी द्वारा धमकी, गाली-गलौज या मारपीट',
+        situation: 'पुलिसकर्मी अभद्र भाषा बोले, झूठे केस में फंसाने की धमकी दे या मारपीट करे।',
+        legalShield: 'संविधान का अनुच्छेद 21, धारा 330/331 IPC (बीएनएस), पुलिस अधिनियम धारा 29।',
+        immediateActions: [
+          'तुरंत सरकारी अस्पताल जाकर मेडिकल (MLC) कराएं और चोटों का आधिकारिक रिकॉर्ड बनवाएं।',
+          'चोटों के फोटो, वीडियो, सीसीटीवी फुटेज और ऑडियो रिकॉर्डिंग सुरक्षित रखें।',
+          '112 पर कॉल करके कॉल रिकॉर्ड सरकारी सर्वर पर दर्ज कराएं।',
+          'मानवाधिकार आयोग (NHRC) और पुलिस शिकायत प्राधिकरण (PCA) में शिकायत दर्ज करें।'
+        ],
+        doNotDo: [
+          'मेडिकल कराने में देरी न करें।',
+          'सबूत या रिकॉर्डिंग फोन से डिलीट न करें।'
+        ],
+        sayThis: '“मारपीट और धमकी कानूनन अपराध है। मैं तुरंत सरकारी डॉक्टर से अपनी मेडिकल जांच कराने की मांग करता हूं।”',
+        whereToComplain: {
+          authority: 'राष्ट्रीय मानवाधिकार आयोग (NHRC) एवं पुलिस शिकायत प्राधिकरण (PCA)',
+          steps: [
+            '1. एनएचआरसी पोर्टल (hrcnet.nic.in या हेल्पलाइन 14433) पर ऑनलाइन शिकायत करें।',
+            '2. राज्य/जिला पुलिस शिकायत प्राधिकरण (PCA) में अधिकारी के निलंबन की अर्जी दें।',
+            '3. मजिस्ट्रेट कोर्ट में धारा 200 CrPC के तहत आपराधिक परिवाद दर्ज करें।'
+          ],
+          helplineOrPortal: '14433 (NHRC) / hrcnet.nic.in'
+        }
+      }
+    }
+  },
+  {
+    id: 'bribe-demands',
+    title: 'Police Officer Asks for a Bribe or Extortion',
+    situation: 'A police officer demands cash, online UPI transfer, or gifts to register an FIR, clear a passport verification, release a vehicle, or avoid arrest.',
+    category: 'fundamental_rights',
+    severity: 'critical',
+    legalShield: 'Prevention of Corruption Act, 1988 (Section 7, 7A & 13) & Section 384 IPC / Sec 308 BNS (Extortion).',
+    landmarkCase: 'State of Maharashtra v. Balaram Bapu Patil & Central Vigilance Commission Directives - Demanding bribe by public servant is a non-bailable cognizable offence.',
+    summaryRights: [
+      'Bribe Demands are Illegal: Under Section 7 of the Prevention of Corruption Act, demanding undue advantage carries up to 7 years rigorous imprisonment.',
+      'Protection for Whistleblowers: A citizen compelled to pay a bribe who reports the incident to law enforcement within 7 days is legally protected from prosecution.',
+      'Right to Free Public Services: Services like FIR registration, MLC, post-mortem, and routine verification are completely free by law.',
+      'Right to Demand Anti-Corruption Trap: Anti-Corruption Bureau (ACB) / CBI can lay a legal trap using phenolphthalein powder to catch corrupt officers red-handed.'
+    ],
+    immediateActions: [
+      'Do NOT pay the bribe. If under acute coercion, ask for some time to arrange the funds.',
+      'Discreetly note down all details: officer’s full name, rank, police station, date, time, location, exact demanded amount, and the reason claimed.',
+      'If demanded via UPI / QR code or phone number, take clear screenshots and preserve the transaction handle.',
+      'Immediately contact the State Anti-Corruption Bureau (ACB) or Central Bureau of Investigation (CBI) Anti-Corruption Helpline 1064.',
+      'Lodge a formal vigilance complaint with the Central Vigilance Commission (CVC) or State Vigilance Directorate.'
+    ],
+    doNotDo: [
+      'Do NOT willingly offer speed money or bribes (giving bribe is also punishable u/s 8 PC Act unless reported within 7 days).',
+      'Do NOT confront the officer aggressively in the police station without backup.',
+      'Do NOT pay cash to informal agents or intermediaries hanging around the station.'
+    ],
+    sayThis: '“Sir, demanding or paying a bribe is a non-bailable offence under Section 7 of the Prevention of Corruption Act. I will pay only the official government fee with a stamped receipt.”',
+    helpline: '1064 (Anti-Corruption Toll-Free Helpline) / 1800-11-5555 (CBI)',
+    whereToComplain: {
+      authority: 'Anti-Corruption Bureau (ACB) / CBI Anti-Corruption Wing / Central Vigilance Commission (CVC)',
+      actSection: 'Prevention of Corruption Act, 1988 (Sec 7 & 13), CVC Act 2003',
+      steps: [
+        'Step 1: Call National Anti-Corruption Helpline 1064 or CBI Anti-Corruption Toll-Free 1800-11-5555 / 011-24362755.',
+        'Step 2: File a complaint on the Central Vigilance Commission portal at cvc.gov.in.',
+        'Step 3: Meet the SP of your State Anti-Corruption Bureau (ACB) with your complaint to organize a formal trap operation.',
+        'Step 4: Register an online grievance on CPGRAMS (pgportal.gov.in) under the Ministry of Home Affairs.'
+      ],
+      helplineOrPortal: '1064 / cvc.gov.in / cbi.gov.in',
+      portalUrl: 'https://cvc.gov.in'
+    },
+    fastScan30Sec: {
+      situationText: 'Police demanding bribe for FIR, passport, vehicle release, or bail.',
+      topRightText: 'Bribe is a serious crime (PC Act Sec 7) • Free services • 7-day whistleblower protection.',
+      mustDoText: 'Do NOT pay. Note officer name & exact demand. Preserve UPI/call proof. Call Anti-Corruption Helpline 1064 or CBI.',
+      complainToText: 'Anti-Corruption Bureau (ACB) / CBI Helpline 1064 / CVC portal (cvc.gov.in).'
+    },
+    officialLinks: [
+      {
+        title: 'Central Vigilance Commission (CVC) Portal',
+        url: 'https://cvc.gov.in',
+        department: 'Government of India',
+        type: 'portal',
+        description: 'Official apex integrity body for reporting corruption by public servants.'
+      },
+      {
+        title: 'Central Bureau of Investigation (CBI) - Anti Corruption',
+        url: 'https://cbi.gov.in',
+        department: 'CBI India',
+        type: 'portal',
+        description: 'Toll-free anti-corruption helpline 1064 & online complaint.'
+      }
+    ],
+    translations: {
+      hi: {
+        title: 'पुलिस अधिकारी रिश्वत या पैसे मांगे',
+        situation: 'एफआईआर दर्ज करने, पासपोर्ट जांच, गाड़ी छोड़ने या केस रफा-दफा करने के लिए पुलिसकर्मी रिश्वत मांगे।',
+        legalShield: 'भ्रष्टाचार निवारण अधिनियम, 1988 (धारा 7 व 13) एवं धारा 384 IPC (जबरन वसूली)।',
+        immediateActions: [
+          'रिश्वत बिल्कुल न दें। समय मांगें।',
+          'अधिकारी का नाम, पद, थाना, तारीख और मांगी गई रकम की डिटेल नोट करें।',
+          'यदि फोन या यूपीआई (UPI) से मांग हो तो स्क्रीनशॉट व रिकॉर्डिंग सुरक्षित रखें।',
+          'एंटी करप्शन ब्यूरो (ACB) या सीबीआई (CBI) के टोल-फ्री नंबर 1064 पर शिकायत करें।'
+        ],
+        doNotDo: [
+          'स्वेच्छा से कोई दलाली या रिश्वत न दें।'
+        ],
+        sayThis: '“भ्रष्टाचार निवारण अधिनियम की धारा 7 के तहत रिश्वत मांगना गैर-जमानती अपराध है। मैं केवल आधिकारिक सरकारी रसीद पर ही फीस दूंगा।”',
+        whereToComplain: {
+          authority: 'एंटी करप्शन ब्यूरो (ACB) / सीबीआई (1064) एवं केंद्रीय सतर्कता आयोग (CVC)',
+          steps: [
+            '1. एंटी करप्शन हेल्पलाइन 1064 या सीबीआई 1800-11-5555 पर कॉल करें।',
+            '2. सीवीसी (cvc.gov.in) पर ऑनलाइन शिकायत दर्ज करें।'
+          ],
+          helplineOrPortal: '1064 / cvc.gov.in'
+        }
+      }
+    }
+  },
+  {
+    id: 'where-to-complain',
+    title: 'Where & How to Complain When Police Violate Your Rights',
+    situation: 'Your rights have been violated by a police officer (refused FIR, illegal custody, harassment, bribery, assault) and you need the exact legal escalation ladder.',
+    category: 'departments',
+    severity: 'info',
+    legalShield: 'Section 154(3), 156(3), 200 CrPC (Sec 173(4), 175(3), 223 BNSS), Police Act 1861, Article 226/32 Constitution of India.',
+    landmarkCase: 'Prakash Singh v. Union of India (2006) 8 SCC 1 - Supreme Court directed mandatory establishment of Police Complaints Authorities (PCA) at State & District levels.',
+    summaryRights: [
+      'Level 1: Senior Station Officer / ACP - Immediate administrative supervisory oversight.',
+      'Level 2: Superintendent of Police (SP) / DCP - Statutory petition via Registered Speed Post with A/D u/s 154(3) CrPC.',
+      'Level 3: Police Complaints Authority (PCA) - Independent statutory body headed by retired Judges to investigate misconduct.',
+      'Level 4: Judicial Magistrate First Class (JMFC) - Judicial orders u/s 156(3) & private criminal prosecution u/s 200 CrPC.',
+      'Level 5: National / State Commissions (NHRC, NCW, NALSA) & High Court Writ u/s Article 226.'
+    ],
+    immediateActions: [
+      'Collate all documentary proof: station diary numbers, photos, hospital MLC reports, witness contacts, audio/video clips.',
+      'Draft a chronological narrative stating: Date, Time, Location, Names/Badge numbers of officers, Exact violation, and Legal remedies requested.',
+      'Choose the appropriate forum according to the escalation ladder.',
+      'Retain signed postal receipts, speed post tracking numbers, and online acknowledgement tokens for every submission.'
+    ],
+    doNotDo: [
+      'Do NOT submit original documents without keeping photocopies and scanned backups.',
+      'Do NOT send anonymous complaints without basic verifiable facts.',
+      'Do NOT miss the statutory limitation periods for filing judicial applications.'
+    ],
+    sayThis: '“I am exercising my statutory right under Section 154(3) CrPC and Prakash Singh directives to file a formal grievance against misconduct before the supervisory authority.”',
+    helpline: '112 / 15100 / 14433 / 1064',
+    whereToComplain: {
+      authority: 'The 5-Tier National Police Grievance Escalation Ladder',
+      actSection: 'Constitution of India Art 226, CrPC / BNSS, Protection of Human Rights Act',
+      steps: [
+        'Tier 1 (Immediate): Submit written grievance to Assistant Commissioner of Police (ACP) / Sub-Divisional Police Officer (SDPO).',
+        'Tier 2 (District Police Chief): Send complaint via Speed Post with A/D to the Superintendent of Police (SP) / DCP under Section 154(3) CrPC.',
+        'Tier 3 (Independent Authority): File before State / District Police Complaints Authority (PCA) for serious misconduct (death, grievous hurt, rape, extortion).',
+        'Tier 4 (Court of Law): File application before Judicial Magistrate u/s 156(3) CrPC / 175(3) BNSS or private criminal complaint u/s 200 CrPC.',
+        'Tier 5 (Constitutional Apex): Petition National Human Rights Commission (nhrc.nic.in), National Commission for Women (ncw.nic.in), or High Court Writ under Article 226.'
+      ],
+      helplineOrPortal: 'pgportal.gov.in / hrcnet.nic.in / nalsa.gov.in',
+      portalUrl: 'https://pgportal.gov.in'
+    },
+    fastScan30Sec: {
+      situationText: 'Need to file a formal complaint against a police officer or station.',
+      topRightText: '5-Tier Escalation: SHO ➔ SP/DCP ➔ PCA ➔ Magistrate Court ➔ NHRC / High Court.',
+      mustDoText: 'Gather proofs (MLC, photos, GD receipt). Send Speed Post to SP (Sec 154(3)). File online on CPGRAMS / NHRC. Approach Magistrate.',
+      complainToText: 'District SP Office, Police Complaints Authority (PCA), or Judicial Magistrate Court.'
+    },
+    officialLinks: [
+      {
+        title: 'CPGRAMS Central Public Grievance Redressal',
+        url: 'https://pgportal.gov.in',
+        department: 'Government of India',
+        type: 'portal',
+        description: 'National portal for lodging grievances against public authorities.'
+      },
+      {
+        title: 'National Human Rights Commission (NHRC)',
+        url: 'https://hrcnet.nic.in',
+        department: 'NHRC India',
+        type: 'portal',
+        description: 'National portal for police excess and human rights complaints.'
+      },
+      {
+        title: 'National Commission for Women (NCW)',
+        url: 'http://ncw.nic.in',
+        department: 'Ministry of Women and Child Development',
+        type: 'portal',
+        description: 'Direct portal for police non-action in crimes against women.'
+      }
+    ],
+    translations: {
+      hi: {
+        title: 'पुलिस के खिलाफ कहां और कैसे शिकायत करें (पूरा रोडमैप)',
+        situation: 'पुलिस ने आपके अधिकारों का हनन किया हो और आप कानूनी रूप से शिकायत दर्ज कराना चाहते हैं।',
+        legalShield: 'धारा 154(3), 156(3), 200 CrPC, प्रकाश सिंह सुप्रीम कोर्ट फैसला (PCA)।',
+        immediateActions: [
+          'सभी सबूत (तस्वीरें, मेडिकल रिपोर्ट, रसीदें, ऑडियो-वीडियो) तैयार रखें।',
+          '5-स्तरीय एस्केलेशन सीढ़ी का पालन करें: 1. डीसीपी/एसपी 2. पुलिस शिकायत प्राधिकरण 3. न्यायिक मजिस्ट्रेट 4. मानवाधिकार आयोग।'
+        ],
+        doNotDo: [
+          'बिना रिसीविंग या स्पीड पोस्ट ट्रैकिंग के आवेदन न छोड़ें।'
+        ],
+        sayThis: '“मैं धारा 154(3) और सुप्रीम कोर्ट के प्रकाश सिंह फैसले के तहत वरिष्ठ अधिकारियों के समक्ष पुलिस दुर्व्यवहार की आधिकारिक शिकायत दर्ज कर रहा हूं।”',
+        whereToComplain: {
+          authority: '5-स्तरीय राष्ट्रीय पुलिस शिकायत निवारण प्रणाली',
+          steps: [
+            '1. जिला पुलिस अधीक्षक (SP/DCP) को स्पीड पोस्ट से भेजें।',
+            '2. राज्य पुलिस शिकायत प्राधिकरण (PCA) में अर्जी दें।',
+            '3. न्यायिक मजिस्ट्रेट कोर्ट में धारा 156(3) / 200 में केस करें।',
+            '4. एनएचआरसी (hrcnet.nic.in) और पीजी पोर्टल (pgportal.gov.in) पर ऑनलाइन दर्ज करें।'
+          ],
+          helplineOrPortal: 'pgportal.gov.in / 14433'
+        }
+      }
+    }
+  },
+  {
+    id: 'traffic-stopped',
+    title: 'Traffic Police Stopped My Vehicle / Ignition Keys Snatched',
+    situation: 'You are driving and a traffic cop flags you down at a naka / intersection, threatens to tow your vehicle, or attempts to snatch the ignition key.',
+    category: 'traffic',
+    severity: 'warning',
+    legalShield: 'Motor Vehicles Act, 1988 & Central Motor Vehicles Rules (Rule 139 for DigiLocker/mParivahan), State Police Manuals.',
+    landmarkCase: 'High Court & MVA Directives - Police cannot snatch vehicle keys or deflate tyres; only SI-rank officers can compound spot fines.',
+    summaryRights: [
+      'Key Snatching is Illegal: Traffic officers have NO legal power to pull out ignition keys or deflate tyres.',
+      'DigiLocker & mParivahan Valid: Rule 139 CMVR mandates electronic DL, RC, Insurance, and PUC are 100% legally recognized.',
+      'Rank Authorization: Only officers of Sub-Inspector (SI) rank and above can issue spot compounding challans exceeding ₹100.',
+      'No Towing with Occupants: Towing a vehicle while any person or pet is seated inside is prohibited.'
+    ],
+    immediateActions: [
+      'Pull over safely to the left curb, switch off engine, turn on hazard lights, and remain calm.',
+      'Politely ask the officer for their name, rank, and the exact traffic rule violation.',
+      'Present your Driving License, RC, Insurance, and PUC digitally via DigiLocker or mParivahan apps.',
+      'If a fine is imposed, demand an official electronic e-Challan receipt or court summons.'
+    ],
+    doNotDo: [
+      'Do NOT offer informal cash without an official printed electronic receipt.',
+      'Do NOT permit an officer below Sub-Inspector (SI) rank to seize your vehicle.',
+      'Do NOT leave your vehicle key inside if an officer tries to snatch it unlawfully.'
+    ],
+    sayThis: '“Good day Officer. Under Rule 139 Central Motor Vehicles Rules, here are my verified documents on DigiLocker. Snatching ignition keys is not permissible.”',
+    helpline: '112 or local State Traffic Police Control Room',
+    whereToComplain: {
+      authority: 'DCP Traffic & State Parivahan e-Challan Grievance Portal',
+      actSection: 'Motor Vehicles Act 1988 Section 130 & Rule 139 CMVR',
+      steps: [
+        'Step 1: Check your e-challan status and evidence photos on the official portal: echallan.parivahan.gov.in.',
+        'Step 2: Submit a dispute on the Parivahan portal if the fine was issued wrongfully or fake vehicle number was used.',
+        'Step 3: If an officer snatched keys, deflated tyres, or misbehaved, file a complaint with the Deputy Commissioner of Police (Traffic).'
+      ],
+      helplineOrPortal: 'echallan.parivahan.gov.in / 112',
+      portalUrl: 'https://echallan.parivahan.gov.in'
+    },
+    fastScan30Sec: {
+      situationText: 'Traffic police stopped vehicle, snatched key, or demanded cash.',
+      topRightText: 'Key snatching is illegal • DigiLocker 100% valid (Rule 139) • SI rank required for fine.',
+      mustDoText: 'Show DigiLocker. Ask officer name & violation. Demand printed e-challan. Never pay without receipt.',
+      complainToText: 'echallan.parivahan.gov.in or DCP Traffic Office.'
+    },
+    officialLinks: [
+      {
+        title: 'Ministry of Road Transport (Parivahan e-Challan)',
+        url: 'https://echallan.parivahan.gov.in',
+        department: 'MoRTH',
+        type: 'portal',
+        description: 'Verify, track, and dispute traffic challans online.'
+      }
+    ],
+    translations: {
+      hi: {
+        title: 'ट्रैफिक पुलिस ने गाड़ी रोकी या चाबी छीनी',
+        situation: 'ट्रैफिक पुलिस ने गाड़ी रोकी, चाबी निकालने की कोशिश की या बिना रसीद पैसे मांगे।',
+        legalShield: 'मोटर वाहन नियम 139 (डिजिलॉकर मान्यता), मोटर वाहन अधिनियम 1988।',
+        immediateActions: [
+          'गाड़ी साइड में रोकें, अधिकारी से विनम्रता से नाम व नियम उल्लंघन का कारण पूछें।',
+          'डिजिलॉकर (DigiLocker) या mParivahan ऐप पर ड्राइविंग लाइसेंस व आरसी दिखाएं।',
+          'चालान होने पर अनिवार्य रूप से सरकारी ई-चालान रसीद मांगें।'
+        ],
+        doNotDo: [
+          'बिना रसीद कोई नकद न दें।',
+          'चाबी छीनने का विनम्रतापूर्वक विरोध करें।'
+        ],
+        sayThis: '“नमस्ते सर, डिजिलॉकर पर मेरे सभी दस्तावेज वैध हैं। मोटर वाहन नियमों के तहत चाबी निकालना अवैध है।”',
+        whereToComplain: {
+          authority: 'डीसीपी ट्रैफिक एवं परिवहन ई-चालान पोर्टल',
+          steps: [
+            'ई-चालान पोर्टल (echallan.parivahan.gov.in) पर चालान चेक व डिस्प्यूट करें।'
+          ],
+          helplineOrPortal: 'echallan.parivahan.gov.in / 112'
+        }
+      }
+    }
+  },
+  {
+    id: 'women-questioning-arrest',
+    title: 'Women Summoned, Questioned, or Detained by Police',
+    situation: 'A woman is being called to a police station for questioning, or police attempt to arrest a woman at night or without female officers.',
+    category: 'women_child',
+    severity: 'critical',
+    legalShield: 'Section 160(1) & 46(4) CrPC (Sec 179(1) & 43(5) BNSS), Sheela Barse v. State of Maharashtra.',
+    landmarkCase: 'Sheela Barse v. State of Maharashtra (1983) & Supreme Court Directives - No woman can be arrested between sunset and sunrise; questioning must be at home.',
+    summaryRights: [
+      'No Calling to Police Station: Under Section 160(1) CrPC, a woman witness cannot be required to attend any place other than her residence for questioning.',
+      'Sunset to Sunrise Arrest Ban: Under Section 46(4) CrPC, no woman can be arrested after sunset (6 PM) and before sunrise (6 AM) except in exceptional circumstances with prior written permission of Judicial Magistrate.',
+      'Female Officer Mandatory: Only a female police officer is authorized to arrest or physically touch a female accused.',
+      'Right to Separate Lockup: Women must be kept in separate women-only lockup facilities with female wardens.'
+    ],
+    immediateActions: [
+      'If summoned to the police station for questioning, cite Section 160(1) CrPC and state that officers may record the statement at your residence in the presence of family.',
+      'If police arrive to arrest a woman after sunset, demand the written permission order of the Judicial Magistrate First Class.',
+      'Insist on the presence of a female police officer for any physical custody or frisking.',
+      'Exercise your right to have a family member or advocate present during questioning.',
+      'In emergency distress, dial 1091 (Women Police Helpline) or 112 immediately.'
+    ],
+    doNotDo: [
+      'Do NOT allow male police officers to physically touch or search a female citizen.',
+      'Do NOT enter a police station lockup at night without a female officer present.',
+      'Do NOT give unrecorded statements in isolation.'
+    ],
+    sayThis: '“Under Section 160(1) and Section 46(4) CrPC, women cannot be summoned to the station for witness inquiry, and cannot be arrested after sunset without a Magistrate’s prior written order.”',
+    helpline: '1091 (Women Helpline) / 112 / 7827170170 (NCW 24/7)',
+    whereToComplain: {
+      authority: 'National Commission for Women (NCW) & Judicial Magistrate',
+      actSection: 'Section 46(4) CrPC / Section 43(5) BNSS & National Commission for Women Act 1990',
+      steps: [
+        'Step 1: Dial 1091 Women Police Helpline or call NCW 24/7 Helpline 7827170170.',
+        'Step 2: File an online complaint on the NCW portal at ncw.nic.in / ncwapps.nic.in.',
+        'Step 3: File an urgent grievance before the State Commission for Women.',
+        'Step 4: Bring any violation of Section 46(4) directly to the notice of the Judicial Magistrate.'
+      ],
+      helplineOrPortal: '1091 / ncw.nic.in',
+      portalUrl: 'http://ncw.nic.in'
+    },
+    fastScan30Sec: {
+      situationText: 'Woman called to police station, questioned, or arrested at night.',
+      topRightText: 'Questioning at home only (Sec 160) • No arrest between sunset & sunrise (Sec 46(4)) • Female officer mandatory.',
+      mustDoText: 'Refuse station visit if witness; demand questioning at home. If after sunset, demand Magistrate order. Dial 1091 / 112.',
+      complainToText: 'National Commission for Women (ncw.nic.in / 7827170170) or 1091.'
+    },
+    officialLinks: [
+      {
+        title: 'National Commission for Women (NCW)',
+        url: 'http://ncw.nic.in',
+        department: 'NCW India',
+        type: 'portal',
+        description: 'Statutory body dedicated to protecting women’s legal and constitutional rights.'
+      }
+    ],
+    translations: {
+      hi: {
+        title: 'महिलाओं की पूछताछ, समन एवं गिरफ्तारी के विशेष अधिकार',
+        situation: 'महिला को पूछताछ के लिए थाने बुलाया जाए या सूर्यास्त के बाद गिरफ्तारी की कोशिश हो।',
+        legalShield: 'धारा 160(1) व धारा 46(4) CrPC (धारा 179 व 43 BNSS), शीला बर्से सुप्रीम कोर्ट फैसला।',
+        immediateActions: [
+          'गवाह के तौर पर महिला को थाने नहीं बुलाया जा सकता; बयान घर पर ही दर्ज होगा (धारा 160(1))।',
+          'सूर्यास्त के बाद (शाम 6 बजे) और सूर्योदय से पहले (सुबह 6 बजे) महिला की गिरफ्तारी वर्जित है (धारा 46(4))।',
+          'महिला की गिरफ्तारी व तलाशी केवल महिला पुलिसकर्मी ही कर सकती है।',
+          'आपात स्थिति में महिला हेल्पलाइन 1091 या 112 पर तुरंत कॉल करें।'
+        ],
+        doNotDo: [
+          'पुरुष पुलिसकर्मी को हाथ न लगाने दें।',
+          'सूर्यास्त के बाद बिना मजिस्ट्रेट आदेश गिरफ्तारी स्वीकार न करें।'
+        ],
+        sayThis: '“धारा 160 और धारा 46(4) के तहत महिला को पूछताछ के लिए थाने नहीं बुलाया जा सकता और सूर्यास्त के बाद बिना मजिस्ट्रेट अनुमति गिरफ्तारी अवैध है।”',
+        whereToComplain: {
+          authority: 'राष्ट्रीय महिला आयोग (NCW 7827170170) एवं इलाका मजिस्ट्रेट',
+          steps: [
+            '1. महिला हेल्पलाइन 1091 पर तुरंत रिपोर्ट करें।',
+            '2. राष्ट्रीय महिला आयोग (ncw.nic.in) पर ऑनलाइन शिकायत दर्ज करें।'
+          ],
+          helplineOrPortal: '1091 / ncw.nic.in'
+        }
+      }
+    }
+  },
+  {
+    id: 'phone-digital-privacy',
+    title: 'Police Demanding Phone / WhatsApp Unlock at Checkpoints',
+    situation: 'Police officers stop you during a routine naka and forcefully demand you unlock your phone, reveal passwords, or open WhatsApp chats.',
+    category: 'phone_privacy',
+    severity: 'warning',
+    legalShield: 'Article 21 (Fundamental Right to Privacy), Article 20(3) (Protection against self-incrimination), Section 91 & 100 CrPC.',
+    landmarkCase: 'Justice K.S. Puttaswamy (Retd.) v. Union of India (2017) 10 SCC 1 - Privacy is a fundamental constitutional right; smartphones contain intimate personal data and cannot be searched randomly without judicial warrant.',
+    summaryRights: [
+      'Right to Digital Privacy: Police cannot casually browse through your private phone, gallery, or chats without a specific judicial warrant or formal seizure under investigation.',
+      'No Random Naka Phone Checks: Routine roadside checking does NOT give police powers to inspect private messages.',
+      'Protection against Self-Incrimination: Article 20(3) protects you from being compelled to unlock encrypted devices to incriminate yourself without legal process.',
+      'Mandatory Seizure Process: If a phone is seized as evidence, police must formally issue a signed Seizure Memo with Hash Value / IMEI.'
+    ],
+    immediateActions: [
+      'Politely state that your phone contains confidential personal and professional data protected under Article 21.',
+      'Ask the officer: “Officer, please show me the judicial search warrant or official investigation order under which my private device is being inspected.”',
+      'If showing vehicle documents, open only the DigiLocker or mParivahan screen yourself and hold the phone in your hand without handing over the unlocked device.',
+      'If the phone is forcefully taken, demand an immediate Seizure Memo stating the exact IMEI, device model, and condition.'
+    ],
+    doNotDo: [
+      'Do NOT hand over your phone in an unlocked state with the home screen accessible.',
+      'Do NOT allow officers to scroll through personal chats or photo galleries without a formal warrant.',
+      'Do NOT delete or destroy files if formally seized during an active investigation.'
+    ],
+    sayThis: '“Under Article 21 and the Supreme Court’s Puttaswamy judgment, my phone is protected by the right to privacy. Please show a valid judicial search warrant before requesting access.”',
+    helpline: '112 / 1930 (National Cyber Crime)',
+    whereToComplain: {
+      authority: 'District SP/DCP & State Human Rights Commission',
+      actSection: 'Information Technology Act 2000 & Constitution of India Article 21',
+      steps: [
+        'Step 1: Note the officer’s name, rank, badge, and time of the illegal phone search.',
+        'Step 2: File a formal grievance before the Superintendent of Police (SP) / DCP for violation of privacy guidelines.',
+        'Step 3: If sensitive personal data was leaked, extorted, or misused, file a complaint on cybercrime.gov.in and before the State Human Rights Commission.'
+      ],
+      helplineOrPortal: '1930 / cybercrime.gov.in',
+      portalUrl: 'https://cybercrime.gov.in'
+    },
+    fastScan30Sec: {
+      situationText: 'Police asking you to unlock phone or read WhatsApp messages on the road.',
+      topRightText: 'Phone is private (Puttaswamy Art 21) • Warrant required • Hold phone yourself for DigiLocker.',
+      mustDoText: 'Politely refuse random phone unlocking. Show DigiLocker yourself. Demand judicial warrant for device search.',
+      complainToText: 'DCP Office or State Human Rights Commission.'
+    },
+    officialLinks: [
+      {
+        title: 'Supreme Court Puttaswamy Privacy Judgment (2017)',
+        url: 'https://main.sci.gov.in',
+        department: 'Supreme Court of India',
+        type: 'judgement',
+        description: 'Landmark 9-Judge bench judgment declaring privacy as a fundamental right.'
+      }
+    ],
+    translations: {
+      hi: {
+        title: 'नाके पर पुलिस द्वारा फोन व व्हाट्सएप अनलॉक कराने की मांग',
+        situation: 'चेकपोस्ट या नाके पर पुलिस आपका फोन अनलॉक कराने, पासवर्ड मांगने या व्हाट्सएप चैट पढ़ने का दबाव बनाए।',
+        legalShield: 'संविधान का अनुच्छेद 21 (निजता का मौलिक अधिकार), पुट्टास्वामी सुप्रीम कोर्ट फैसला, अनुच्छेद 20(3)।',
+        immediateActions: [
+          'विनम्रता से बताएं कि फोन में निजी डेटा है जो अनुच्छेद 21 के तहत सुरक्षित है।',
+          'सर्च वारंट या आधिकारिक जांच आदेश की मांग करें।',
+          'डिजिलॉकर में दस्तावेज दिखाने के लिए फोन हाथ में रखकर केवल दस्तावेज की स्क्रीन दिखाएं।'
+        ],
+        doNotDo: [
+          'फोन अनलॉक करके पुलिस के हाथ में न दें।',
+          'बिना वारंट निजी चैट या गैलरी न देखने दें।'
+        ],
+        sayThis: '“सुप्रीम कोर्ट के पुट्टास्वामी फैसले और अनुच्छेद 21 के तहत फोन की निजता मौलिक अधिकार है। बिना सर्च वारंट फोन अनलॉक करने के लिए बाध्य नहीं किया जा सकता।”',
+        whereToComplain: {
+          authority: 'जिला पुलिस अधीक्षक (SP/DCP) एवं राज्य मानवाधिकार आयोग',
+          steps: [
+            'डीसीपी कार्यालय में निजता हनन की शिकायत दर्ज करें।'
+          ],
+          helplineOrPortal: '112 / 1930'
+        }
+      }
+    }
+  }
+];
+��ும் அடிப்படை உரிமை',
         summary: 'விசாரணையின் போது வழக்கறிஞரை சந்திக்கும் உரிமை மற்றும் வற்புறுத்தலுக்கு எதிராக மௌனம் காக்கும் உரிமை.',
         exactDialogue: '“பிரிவு 20(3) மற்றும் 41D-ன் கீழ் எனது வழக்கறிஞரை ஆலோசிக்கும் வரை மௌனம் காக்கிறேன்.”'
       },
