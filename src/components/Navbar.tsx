@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Shield, PhoneCall, Globe, BookOpen, AlertOctagon, HelpCircle, MessageSquareText, FileBadge, Check, Sparkles, ChevronDown, Compass, Building2 } from 'lucide-react';
+import { Shield, PhoneCall, Globe, BookOpen, AlertOctagon, HelpCircle, MessageSquareText, FileBadge, Check, Sparkles, ChevronDown, Compass, Building2, BookMarked } from 'lucide-react';
 import { SupportedLanguage } from '../types';
 import { getT, LANGUAGE_OPTIONS } from '../data/translations';
+import { AshokStambha } from './AshokStambha';
+import { TirangaHeader } from './TirangaHeader';
 
 interface NavbarProps {
   activeTab: string;
@@ -26,7 +28,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   const currentLangObj = LANGUAGE_OPTIONS.find((l) => l.code === language) || LANGUAGE_OPTIONS[0];
 
   const navItems = [
-    { id: 'situations', label: t.navSituations, icon: Compass },
+    { id: 'situations', label: t.navSituations, icon: Compass, badge: '30s Guide' },
+    { id: 'guidebook', label: t.navGuidebook || 'Digital Book', icon: BookMarked, isSpecial: true },
     { id: 'rights', label: t.navRights, icon: BookOpen },
     { id: 'departments', label: t.navDepartments, icon: Building2 },
     { id: 'dk-basu', label: t.navDKBasu, icon: Shield },
@@ -37,36 +40,45 @@ export const Navbar: React.FC<NavbarProps> = ({
   ];
 
   return (
-    <header className="sticky top-0 z-40 backdrop-blur-md bg-[#FFF3C8]/90 border-b border-[#E5CB90]/80 shadow-xs transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-40 bg-[#FFF3C8]/95 backdrop-blur-md border-b border-[#E5CB90]/80 shadow-xs transition-all">
+      {/* --- National Tiranga Banner & Satyameva Jayate Header --- */}
+      <TirangaHeader onOpenEmergencyModal={onOpenEmergencyModal} />
+
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
-          {/* Circular Brand Logo */}
+          {/* Circular Brand Logo with State Emblem & Tiranga Indicator */}
           <div 
             id="brand-logo"
             onClick={() => setActiveTab('situations')}
-            className="flex items-center gap-3 cursor-pointer group"
+            className="flex items-center gap-3 cursor-pointer group shrink-0"
           >
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#34A99D] via-[#458393] to-[#1A3841] flex items-center justify-center text-[#FFF3C8] shadow-md group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 ring-2 ring-[#E5CB90]/60">
-              <Shield className="w-6 h-6 text-[#FFF3C8]" />
+            <div className="relative">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#1A3841] via-[#458393] to-[#34A99D] flex items-center justify-center text-[#FFF3C8] shadow-md group-hover:scale-105 transition-all duration-300 ring-2 ring-[#E5CB90]">
+                <AshokStambha size={28} showText={false} goldTone={true} />
+              </div>
+              {/* Micro Chakra indicator */}
+              <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-[#000080] border-2 border-white flex items-center justify-center text-[7px] text-white font-bold" title="Ashoka Dharma Chakra">
+                ☸
+              </div>
             </div>
             <div>
-              <div className="flex items-center gap-2">
-                <span className="font-display text-2xl font-black tracking-tight text-[#1A3841] group-hover:text-[#34A99D] transition-colors">
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <span className="font-display text-xl sm:text-2xl font-black tracking-tight text-[#1A3841] group-hover:text-[#34A99D] transition-colors">
                   My<span className="text-[#34A99D]">Right</span>
                 </span>
-                <span className="text-[10px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full bg-[#E5CB90]/70 text-[#1A3841] border border-[#E5CB90] shadow-xs">
-                  India
+                <span className="text-[9px] sm:text-[10px] font-extrabold tracking-wider uppercase px-2 py-0.5 rounded-full bg-[#E5CB90] text-[#1A3841] border border-[#E5CB90] shadow-xs">
+                  भारत
                 </span>
               </div>
-              <p className="text-xs text-[#458393] font-semibold hidden sm:block">
-                {t.appSub}
+              <p className="text-[11px] text-[#458393] font-bold hidden sm:block">
+                Citizen Police Rights & 30-Sec Action Navigator
               </p>
             </div>
           </div>
 
           {/* Desktop Nav - Circular Pill Group */}
-          <nav className="hidden lg:flex items-center gap-1.5 bg-[#E5CB90]/30 p-1.5 rounded-full border border-[#E5CB90]/70 shadow-xs backdrop-blur-xs">
+          <nav className="hidden xl:flex items-center gap-1 bg-[#E5CB90]/35 p-1.5 rounded-full border border-[#E5CB90]/70 shadow-xs backdrop-blur-xs">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeTab === item.id;
@@ -75,14 +87,21 @@ export const Navbar: React.FC<NavbarProps> = ({
                   key={item.id}
                   id={`nav-tab-${item.id}`}
                   onClick={() => setActiveTab(item.id)}
-                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-black transition-all duration-200 cursor-pointer ${
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-black transition-all duration-200 cursor-pointer relative ${
                     isActive
-                      ? 'bg-[#458393] text-[#FFF3C8] shadow-md -translate-y-0.5'
-                      : 'text-[#1A3841] hover:text-[#34A99D] hover:bg-[#FFF3C8] hover:shadow-xs'
+                      ? 'bg-[#1A3841] text-[#FFF3C8] shadow-md -translate-y-0.5'
+                      : item.isSpecial
+                      ? 'bg-[#34A99D]/15 text-[#1A3841] hover:bg-[#34A99D] hover:text-white'
+                      : 'text-[#1A3841] hover:text-[#34A99D] hover:bg-[#FFF3C8]'
                   }`}
                 >
                   <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-[#E5CB90]' : 'text-[#458393]'}`} />
                   <span className="whitespace-nowrap">{item.label}</span>
+                  {item.badge && !isActive && (
+                    <span className="text-[8px] bg-[#34A99D] text-white px-1.5 py-0.2 rounded-full font-extrabold ml-0.5">
+                      {item.badge}
+                    </span>
+                  )}
                 </button>
               );
             })}

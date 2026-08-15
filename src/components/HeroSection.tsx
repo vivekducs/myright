@@ -198,6 +198,29 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 </button>
               )}
             </div>
+
+            {/* 4-Step Legal Shield Workflow Pills */}
+            <div className="flex flex-wrap items-center justify-center gap-2 mt-4 text-[11px] font-extrabold text-[#1A3841]">
+              <span className="px-3 py-1 rounded-full bg-amber-200/70 border border-amber-300 flex items-center gap-1.5">
+                <span className="w-4 h-4 rounded-full bg-amber-700 text-white text-[9px] flex items-center justify-center font-black">1</span>
+                <span>The Situation</span>
+              </span>
+              <span className="text-[#34A99D] font-black">→</span>
+              <span className="px-3 py-1 rounded-full bg-teal-200/70 border border-teal-300 flex items-center gap-1.5">
+                <span className="w-4 h-4 rounded-full bg-[#34A99D] text-white text-[9px] flex items-center justify-center font-black">2</span>
+                <span>Your Rights</span>
+              </span>
+              <span className="text-[#34A99D] font-black">→</span>
+              <span className="px-3 py-1 rounded-full bg-blue-200/70 border border-blue-300 flex items-center gap-1.5">
+                <span className="w-4 h-4 rounded-full bg-blue-700 text-white text-[9px] flex items-center justify-center font-black">3</span>
+                <span>What To Do (30s)</span>
+              </span>
+              <span className="text-[#34A99D] font-black">→</span>
+              <span className="px-3 py-1 rounded-full bg-emerald-200/70 border border-emerald-300 flex items-center gap-1.5">
+                <span className="w-4 h-4 rounded-full bg-emerald-700 text-white text-[9px] flex items-center justify-center font-black">4</span>
+                <span>Where To Complain</span>
+              </span>
+            </div>
           </div>
         </div>
 

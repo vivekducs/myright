@@ -44,6 +44,7 @@ export const MobileBottomBar: React.FC<MobileBottomBarProps> = ({
   ];
 
   const moreTools = [
+    { id: 'guidebook', label: t.navGuidebook || 'Digital Guidebook', desc: '11-Chapter official statutory e-book', icon: BookOpen, color: 'from-[#34A99D] to-[#1A3841]' },
     { id: 'departments', label: t.navDepartments || 'Govt Portals', desc: 'Verified official gov portals & helplines', icon: Building2, color: 'from-[#34A99D] to-[#458393]' },
     { id: 'scripts', label: t.navScripts, desc: 'Exact phrases to speak to officers', icon: MessageSquareText, color: 'from-[#458393] to-[#1A3841]' },
     { id: 'ai-advisor', label: t.navAIAdvisor, desc: 'AI Copilot under BNSS & CrPC', icon: Bot, color: 'from-[#E5CB90] to-[#34A99D]' },

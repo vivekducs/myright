@@ -11,6 +11,7 @@ import { RightsCardGenerator } from './components/RightsCardGenerator';
 import { LegalArticlesExplorer } from './components/LegalArticlesExplorer';
 import { MythBusterQuiz } from './components/MythBusterQuiz';
 import { DepartmentDirectory } from './components/DepartmentDirectory';
+import { DigitalGuidebook } from './components/DigitalGuidebook';
 import { DetailPage } from './components/DetailPage';
 import { Footer } from './components/Footer';
 import { MobileBottomBar } from './components/MobileBottomBar';
@@ -128,6 +129,25 @@ export default function App() {
                     onSelectSituation={(id) => setSelectedSituationId(id)}
                     language={language}
                     onSelectTarget={handleOpenDetail}
+                  />
+                </motion.div>
+              )}
+
+              {/* Digital Guidebook View (Interactive Electronic Handbook) */}
+              {activeTab === 'guidebook' && (
+                <motion.div
+                  key="guidebook"
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <DigitalGuidebook
+                    language={language}
+                    onOpenSituation={(id) => {
+                      setSelectedSituationId(id);
+                      setActiveTab('situations');
+                    }}
                   />
                 </motion.div>
               )}

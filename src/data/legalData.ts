@@ -363,7 +363,167 @@ export const LEGAL_RIGHTS: LegalRight[] = [
       hinglish: {
         title: 'Right to File "Zero FIR" Anywhere in India',
         summary: 'Jurisdiction issue bata kar police cognizable crime mein FIR refuse nahi kar sakti.',
-        exactDialogue: '“Lalita Kumari ruling ke mutabik Zero FIR register karke free copy dexport const SITUATION_STEPS: SituationStep[] = [
+        exactDialogue: '“Lalita Kumari ruling ke mutabik Zero FIR register karke free copy dein.”'
+      }
+    }
+  },
+  {
+    id: 'right-to-lawyer',
+    title: 'Right to Consult Lawyer & Right to Silence',
+    category: 'arrest',
+    lawRef: 'Article 20(3) & 22(1) Constitution, Section 41D CrPC / Sec 38 BNSS',
+    scJudgment: 'Nandini Satpathy v. P.L. Dani (1978)',
+    summary: 'Right to meet an advocate during police interrogation and protection against forced self-incrimination.',
+    keyPoints: [
+      'You have the fundamental right to consult a legal practitioner of your choice (Article 22(1)).',
+      'Right against self-incrimination: Police cannot force you to confess or sign incriminating statements (Article 20(3)).',
+      'Section 41D entitles the arrested person to meet an advocate of choice throughout interrogation, though not throughout the entire examination.',
+      'NALSA 15100 provides free legal counsel for arrested citizens unable to afford private advocates.'
+    ],
+    whatPoliceMustDo: [
+      'Allow the accused to meet their chosen advocate during interrogation.',
+      'Inform the arrested person about the availability of free legal aid under NALSA.'
+    ],
+    whatPoliceCannotDo: [
+      'Subject the person to physical torture or coercion to extract a confession.',
+      'Deny reasonable access to family or legal counsel.'
+    ],
+    exactDialogue: '“Under Article 20(3) and Section 41D CrPC, I have the right to remain silent and consult my advocate before making any statement.”',
+    priority: 'critical',
+    iconName: 'Shield',
+    translations: {
+      hi: {
+        title: 'वकील से परामर्श एवं चुप रहने का मौलिक अधिकार',
+        summary: 'पूछताछ के दौरान अपने वकील से मिलने और दबाव में बयान न देने का संवैधानिक अधिकार।',
+        exactDialogue: '“अनुच्छेद 20(3) और धारा 41D के तहत मुझे वकील से बात करने और चुप रहने का संवैधानिक अधिकार है।”'
+      },
+      te: {
+        title: 'న్యాయవాదిని సంప్రదించే & మౌనంగా ఉండే ప్రాథమిక హక్కు',
+        summary: 'విచారణ సమయంలో న్యాయవాదిని కలిసే మరియు బలవంతపు వాంగ్మూలం ఇవ్వకుండా ఉండే హక్కు.',
+        exactDialogue: '“ఆర్టికల్ 20(3) మరియు సెక్షన్ 41D ప్రకారం న్యాయవాదితో మాట్లాడేవరకు నేను మౌనంగా ఉంటాను.”'
+      },
+      ta: {
+        title: 'வழக்கறிஞர் உதவி & மௌனம் காக்கும் அடிப்படை உரிமை',
+        summary: 'விசாரணையின் போது வழக்கறிஞரை சந்திக்கும் உரிமை மற்றும் வற்புறுத்தலுக்கு எதிராக மௌனம் காக்கும் உரிமை.',
+        exactDialogue: '“பிரிவு 20(3) மற்றும் 41D-ன் கீழ் எனது வழக்கறிஞரை ஆலோசிக்கும் வரை மௌனம் காக்கிறேன்.”'
+      },
+      bn: {
+        title: 'আইনজীবীর সহায়তা ও নীরব থাকার মৌলিক অধিকার',
+        summary: 'জিজ্ঞাসাবাদের সময় আইনজীবীর সাথে কথা বলার অধিকার এবং জোরপূর্বক স্বীকারোক্তি না দেওয়ার অধিকার।',
+        exactDialogue: '“২০(৩) অনুচ্ছেদ ও ৪১ডি ধারা অনুযায়ী আইনজীবীর সাথে কথা না বলা পর্যন্ত নীরব থাকার অধিকার প্রয়োগ করছি।”'
+      },
+      mr: {
+        title: 'वकिलाची मदत व शांत राहण्याचा मूलभूत हक्क',
+        summary: 'चौकशी दरम्यान वकिलाचा सल्ला घेण्याचा आणि स्वतःविरुद्ध जबानी न देण्याचा अधिकार.',
+        exactDialogue: '“कलम २०(३) आणि ४१D नुसार वकिलाशी बोलल्याशिवाय मी काहीही बोलणार नाही.”'
+      },
+      gu: {
+        title: 'વકીલની સહાય અને મૌન રહેવાનો મૂળભૂત અધિકાર',
+        summary: 'પૂછપરછ વખતે વકીલની સલાહ લેવાનો અને દબાણ હેઠળ નિવેદન ન આપવાનો અધિકાર.',
+        exactDialogue: '“કલમ ૨૦(૩) અને ૪૧D મુજબ મારા વકીલ સાથે વાત ન થાય ત્યાં સુધી હું મૌન રહીશ.”'
+      },
+      kn: {
+        title: 'ವಕೀಲರ ನೆರವು ಮತ್ತು ಮೌನವಾಗಿರುವ ಮೂಲಭೂತ ಹಕ್ಕು',
+        summary: 'ವಿಚಾರಣೆಯ ಸಮಯದಲ್ಲಿ ವಕೀಲರನ್ನು ಭೇಟಿ ಮಾಡುವ ಮತ್ತು ಒತ್ತಾಯದ ಹೇಳಿಕೆ ನೀಡದಿರುವ ಹಕ್ಕು.',
+        exactDialogue: '“ವಿಧಿ 20(3) ಮತ್ತು 41D ಪ್ರಕಾರ ನನ್ನ ವಕೀಲರನ್ನು ಸಂಪರ್ಕಿಸುವವರೆಗೆ ನಾನು ಮೌನವಾಗಿರುತ್ತೇನೆ.”'
+      },
+      ml: {
+        title: 'അഭിഭാഷക സഹായവും മൗനം പാലിക്കാനുള്ള മൗലികാവകാശവും',
+        summary: 'ചോദ്യം ചെയ്യൽ വേളയിൽ അഭിഭാഷകനെ കാണാനുള്ള അവകാശവും നിർബന്ധിത മൊഴി നൽകാതിരിക്കാനുള്ള അവകാശവും.',
+        exactDialogue: '“ആർട്ടിക്കിൾ 20(3) പ്രകാരം അഭിഭാഷകനുമായി സംസാരിക്കുന്നതുവരെ ഞാൻ മൗനം പാലിക്കുന്നു.”'
+      },
+      pa: {
+        title: 'ਵਕੀਲ ਦੀ ਸਹਾਇਤਾ ਅਤੇ ਚੁੱਪ ਰਹਿਣ ਦਾ ਮੌਲਿਕ ਅਧਿਕਾਰ',
+        summary: 'ਪੁੱਛਗਿੱਛ ਦੌਰਾਨ ਵਕੀਲ ਦੀ ਸਲਾਹ ਲੈਣ ਅਤੇ ਦਬਾਅ ਹੇਠ ਬਿਆਨ ਨਾ ਦੇਣ ਦਾ ਅਧਿਕਾਰ।',
+        exactDialogue: '“ਧਾਰਾ 20(3) ਅਧੀਨ ਮੇਰੇ ਵਕੀਲ ਨਾਲ ਗੱਲ ਹੋਣ ਤੱਕ ਮੈਨੂੰ ਚੁੱਪ ਰਹਿਣ ਦਾ ਅਧਿਕਾਰ ਹੈ।”'
+      },
+      hinglish: {
+        title: 'Right to Lawyer & Right to Remain Silent',
+        summary: 'Custody interrogation mein advocate consultation aur self-incrimination se protection.',
+        exactDialogue: '“Article 20(3) aur Section 41D ke under mujhe silence aur advocate consultation ka right hai.”'
+      }
+    }
+  },
+  {
+    id: 'phone-privacy-right',
+    title: 'Constitutional Privacy Shield for Smartphones & Laptops',
+    category: 'phone_privacy',
+    lawRef: 'Article 21 Constitution & K.S. Puttaswamy (Privacy Verdict, 2017)',
+    scJudgment: 'Supreme Court 9-Judge Constitution Bench',
+    summary: 'Police cannot arbitrarily force citizens to unlock phones, inspect WhatsApp chats, or browse gallery during random road checks without a warrant.',
+    keyPoints: [
+      'Right to Privacy is a Fundamental Right guaranteed under Article 21 of the Indian Constitution.',
+      'A police officer cannot seize or search digital devices without reasonable suspicion tied to a registered crime or a magistrate search warrant (BNSS § 105).',
+      'Mandatory Audio-Video Recording is required during search and seizure operations under BNSS Section 105.',
+      'You are only required to display driving documents on DigiLocker; you do not need to hand over an unlocked phone.'
+    ],
+    whatPoliceMustDo: [
+      'Produce a valid court search warrant or formal investigatory notice before demanding access to personal chats.',
+      'Record seizure videography and prepare a formal Seizure Memo (Panchnama) with independent witnesses.'
+    ],
+    whatPoliceCannotDo: [
+      'Arbitrarily snatch phones at barricades or nakas to read personal WhatsApp messages.',
+      'Threaten citizens with detention for refusing to unlock devices without legal cause.'
+    ],
+    exactDialogue: '“Under Article 21 and the Puttaswamy Supreme Court ruling, personal digital data is protected. Please provide a formal search order or warrant before searching my device.”',
+    priority: 'high',
+    iconName: 'Smartphone',
+    translations: {
+      hi: {
+        title: 'स्मार्टफोन और लैपटॉप की डिजिटल निजता का अधिकार',
+        summary: 'पुलिस नाके पर बिना सर्च वारंट फोन अनलॉक करने या व्हाट्सएप चैट देखने के लिए बाध्य नहीं कर सकती।',
+        exactDialogue: '“पुट्टास्वामी फैसले के तहत फोन की निजता मौलिक अधिकार है। बिना सर्च वारंट आप फोन चेक नहीं कर सकते।”'
+      },
+      te: {
+        title: 'స్మార్ట్‌ఫోన్ & ల్యాప్‌టాప్ డిజిటల్ గోప్యతా హక్కు',
+        summary: 'పోలీసులు వారెంట్ లేకుండా ఫోన్ అన్‌లాక్ చేయమని లేదా వాట్సాప్ తనిఖీ చేయమని బలవంతం చేయలేరు.',
+        exactDialogue: '“పుట్టస్వామి తీర్పు ప్రకారం డిజిటల్ గోప్యత ప్రాథమిక హక్కు. సెర్చ్ వారెంట్ లేకుండా ఫోన్ ఇవ్వలేను.”'
+      },
+      ta: {
+        title: 'ஸ்மார்ட்போன் மற்றும் லேப்டாப் தனிநபர் தனியுரிமை உரிமை',
+        summary: 'வாரண்ட் இல்லாமல் வாட்ஸ்அப் அல்லது போனை சோதனை செய்ய காவல்துறையினர் வற்புறுத்த முடியாது.',
+        exactDialogue: '“புட்டசுவாமி தீர்ப்பின்படி போன் தனியுரிமை அடிப்படை உரிமை. வாரண்ட் இல்லாமல் போனை திறக்க முடியாது.”'
+      },
+      bn: {
+        title: 'স্মার্টফোন ও ল্যাপটপের ডিজিটাল গোপনীয়তার অধিকার',
+        summary: 'ওয়ারেন্ট ছাড়া পুলিশ ফোন আনলক করতে বা হোয়াটসঅ্যাপ চ্যাট দেখতে বাধ্য করতে পারে না।',
+        exactDialogue: '“পুত্তাস্বামী রায় অনুযায়ী ফোনের গোপনীয়তা মৌলিক অধিকার। ওয়ারেন্ট ছাড়া ডিভাইস চেক করা যাবে না।”'
+      },
+      mr: {
+        title: 'स्मार्टफोन व लॅपटॉपच्या गोपनीयतेचा मूलभूत हक्क',
+        summary: 'वॉरंटशिवाय पोलिस नाक्यावर फोन अनलॉक करायला किंवा व्हॉट्सॲप चॅट पाहायला सक्ती करू शकत नाहीत.',
+        exactDialogue: '“पुट्टास्वामी निकालानुसार फोनची गोपनीयता मूलभूत हक्क आहे. वॉरंटशिवाय फोन दाखवणार नाही.”'
+      },
+      gu: {
+        title: 'સ્માર્ટફોન અને લેપટોપની ડિજિટલ પ્રાઈવસીનો અધિકાર',
+        summary: 'પોલીસ વોરંટ વિના ફોન અનલોક કરવા કે વોટ્સએપ ચેક કરવા દબાણ કરી શકતી નથી.',
+        exactDialogue: '“પુટ્ટસ્વામી ચુકાદા મુજબ ફોનની પ્રાઈવસી મૂળભૂત અધિકાર છે. વોરંટ વિના ચેક ન કરી શકાય.”'
+      },
+      kn: {
+        title: 'ಸ್ಮಾರ್ಟ್‌ಫೋನ್ ಮತ್ತು ಲ್ಯಾಪ್‌ಟಾಪ್ ಡಿಜಿಟಲ್ ಗೌಪ್ಯತೆಯ ಹಕ್ಕು',
+        summary: 'ವಾರಂಟ್ ಇಲ್ಲದೆ ಫೋನ್ ಅನ್‌ಲಾಕ್ ಮಾಡಲು ಅಥವಾ ವಾಟ್ಸಾಪ್ ಪರಿಶೀಲಿಸಲು ಪೊಲೀಸರು ಒತ್ತಾಯಿಸುವಂತಿಲ್ಲ.',
+        exactDialogue: '“ಪುಟ್ಟಸ್ವಾಮಿ ತೀರ್ಪಿನ ಪ್ರಕಾರ ಫೋನ್ ಗೌಪ್ಯತೆ ಮೂಲಭೂತ ಹಕ್ಕು. ವಾರಂಟ್ ಇಲ್ಲದೆ ತಪಾಸಣೆ ಸಾಧ್ಯವಿಲ್ಲ.”'
+      },
+      ml: {
+        title: 'സ്മാർട്ട്‌ഫോണിന്റെയും ലാപ്ടോപ്പിന്റെയും ഡിജിറ്റൽ സ്വകാര്യതാ അവകാശം',
+        summary: 'വാറന്റില്ലാതെ ഫോൺ അൺലോക്ക് ചെയ്യാനോ വാട്ട്‌സ്ആപ്പ് പരിശോധിക്കാനോ പോലീസിന് അധികാരമില്ല.',
+        exactDialogue: '“പുട്ടസ്വാമി വിധിപ്രകാരം ഫോൺ സ്വകാര്യത മൗലികാവകാശമാണ്. വാറന്റില്ലാതെ പരിശോധിക്കാൻ കഴിയില്ല.”'
+      },
+      pa: {
+        title: 'ਸਮਾਰਟਫ਼ੋਨ ਤੇ ਲੈਪਟਾਪ ਦੀ ਡਿਜੀਟਲ ਨਿੱਜਤਾ ਦਾ ਅਧਿਕਾਰ',
+        summary: 'ਵਾਰੰਟ ਤੋਂ ਬਿਨਾਂ ਪੁਲਿਸ ਨਾਕੇ \'ਤੇ ਫ਼ੋਨ ਅਨਲੌਕ ਕਰਨ ਜਾਂ ਵਟਸਐਪ ਚੈਟ ਦੇਖਣ ਲਈ ਮਜਬੂਰ ਨਹੀਂ ਕਰ ਸਕਦੀ।',
+        exactDialogue: '“ਪੁੱਟਾਸਵਾਮੀ ਫੈਸਲੇ ਅਨੁਸਾਰ ਫ਼ੋਨ ਦੀ ਨਿੱਜਤਾ ਮੌਲਿਕ ਅਧਿਕਾਰ ਹੈ। ਵਾਰੰਟ ਤੋਂ ਬਿਨਾਂ ਫ਼ੋਨ ਚੈੱਕ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।”'
+      },
+      hinglish: {
+        title: 'Smartphone & Digital Privacy Shield',
+        summary: 'Without search warrant, police random checking mein phone unlock ya WhatsApp inspect nahi kar sakti.',
+        exactDialogue: '“Puttaswamy ruling ke under digital privacy Article 21 fundamental right hai. Search warrant ke bina phone check nahi hoga.”'
+      }
+    }
+  }
+];
+
+export const SITUATION_STEPS: SituationStep[] = [
   {
     id: 'police-stop-question',
     title: 'Police Stop or Question You on the Street / Naka',
@@ -1239,413 +1399,6 @@ export const LEGAL_RIGHTS: LegalRight[] = [
           ],
           helplineOrPortal: '112 / 1930'
         }
-      }
-    }
-  }
-];
-��ும் அடிப்படை உரிமை',
-        summary: 'விசாரணையின் போது வழக்கறிஞரை சந்திக்கும் உரிமை மற்றும் வற்புறுத்தலுக்கு எதிராக மௌனம் காக்கும் உரிமை.',
-        exactDialogue: '“பிரிவு 20(3) மற்றும் 41D-ன் கீழ் எனது வழக்கறிஞரை ஆலோசிக்கும் வரை மௌனம் காக்கிறேன்.”'
-      },
-      bn: {
-        title: 'আইনজীবীর সহায়তা ও নীরব থাকার মৌলিক অধিকার',
-        summary: 'জিজ্ঞাসাবাদের সময় আইনজীবীর সাথে কথা বলার অধিকার এবং জোরপূর্বক স্বীকারোক্তি না দেওয়ার অধিকার।',
-        exactDialogue: '“২০(৩) অনুচ্ছেদ ও ৪১ডি ধারা অনুযায়ী আইনজীবীর সাথে কথা না বলা পর্যন্ত নীরব থাকার অধিকার প্রয়োগ করছি।”'
-      },
-      mr: {
-        title: 'वकिलाची मदत व शांत राहण्याचा मूलभूत हक्क',
-        summary: 'चौकशी दरम्यान वकिलाचा सल्ला घेण्याचा आणि स्वतःविरुद्ध जबानी न देण्याचा अधिकार.',
-        exactDialogue: '“कलम २०(३) आणि ४१D नुसार वकिलाशी बोलल्याशिवाय मी काहीही बोलणार नाही.”'
-      },
-      gu: {
-        title: 'વકીલની સહાય અને મૌન રહેવાનો મૂળભૂત અધિકાર',
-        summary: 'પૂછપરછ વખતે વકીલની સલાહ લેવાનો અને દબાણ હેઠળ નિવેદન ન આપવાનો અધિકાર.',
-        exactDialogue: '“કલમ ૨૦(૩) અને ૪૧D મુજબ મારા વકીલ સાથે વાત ન થાય ત્યાં સુધી હું મૌન રહીશ.”'
-      },
-      kn: {
-        title: 'ವಕೀಲರ ನೆರವು ಮತ್ತು ಮೌನವಾಗಿರುವ ಮೂಲಭೂತ ಹಕ್ಕು',
-        summary: 'ವಿಚಾರಣೆಯ ಸಮಯದಲ್ಲಿ ವಕೀಲರನ್ನು ಭೇಟಿ ಮಾಡುವ ಮತ್ತು ಒತ್ತಾಯದ ಹೇಳಿಕೆ ನೀಡದಿರುವ ಹಕ್ಕು.',
-        exactDialogue: '“ವಿಧಿ 20(3) ಮತ್ತು 41D ಪ್ರಕಾರ ನನ್ನ ವಕೀಲರನ್ನು ಸಂಪರ್ಕಿಸುವವರೆಗೆ ನಾನು ಮೌನವಾಗಿರುತ್ತೇನೆ.”'
-      },
-      ml: {
-        title: 'അഭിഭാഷക സഹായവും മൗനം പാലിക്കാനുള്ള മൗലികാവകാശവും',
-        summary: 'ചോദ്യം ചെയ്യൽ വേളയിൽ അഭിഭാഷകനെ കാണാനുള്ള അവകാശവും നിർബന്ധിത മൊഴി നൽകാതിരിക്കാനുള്ള അവകാശവും.',
-        exactDialogue: '“ആർട്ടിക്കിൾ 20(3) പ്രകാരം അഭിഭാഷകനുമായി സംസാരിക്കുന്നതുവരെ ഞാൻ മൗനം പാലിക്കുന്നു.”'
-      },
-      pa: {
-        title: 'ਵਕੀਲ ਦੀ ਸਹਾਇਤਾ ਅਤੇ ਚੁੱਪ ਰਹਿਣ ਦਾ ਮੌਲਿਕ ਅਧਿਕਾਰ',
-        summary: 'ਪੁੱਛਗਿੱਛ ਦੌਰਾਨ ਵਕੀਲ ਦੀ ਸਲਾਹ ਲੈਣ ਅਤੇ ਦਬਾਅ ਹੇਠ ਬਿਆਨ ਨਾ ਦੇਣ ਦਾ ਅਧਿਕਾਰ।',
-        exactDialogue: '“ਧਾਰਾ 20(3) ਅਧੀਨ ਮੇਰੇ ਵਕੀਲ ਨਾਲ ਗੱਲ ਹੋਣ ਤੱਕ ਮੈਨੂੰ ਚੁੱਪ ਰਹਿਣ ਦਾ ਅਧਿਕਾਰ ਹੈ।”'
-      },
-      hinglish: {
-        title: 'Right to Lawyer & Right to Remain Silent',
-        summary: 'Custody interrogation mein advocate consultation aur self-incrimination se protection.',
-        exactDialogue: '“Article 20(3) aur Section 41D ke under mujhe silence aur advocate consultation ka right hai.”'
-      }
-    }
-  }
-];
-
-export const SITUATION_STEPS: SituationStep[] = [
-  {
-    id: 'traffic-stopped',
-    title: 'Traffic Police Stopped My Vehicle',
-    situation: 'You are driving and a traffic cop flags you down at a naka / intersection.',
-    category: 'traffic',
-    severity: 'warning',
-    immediateActions: [
-      'Pull over safely to the left curb, turn on hazard lights, and keep your hands visible.',
-      'Politely ask the officer for their name, rank, and the specific traffic rule violation.',
-      'Show your Driving License, RC, Insurance, and PUC via DigiLocker or mParivahan apps.',
-      'If fined, demand an official electronic e-Challan receipt.'
-    ],
-    doNotDo: [
-      'Do NOT offer bribes or cash without an official printed receipt.',
-      'Do NOT allow an officer below Sub-Inspector (SI) rank to seize your vehicle.',
-      'Do NOT leave your vehicle key inside if an officer tries to snatch it unlawfully.'
-    ],
-    legalShield: 'Motor Vehicles Act Rule 139 (Digital Documents) & Section 130/132 MVA.',
-    sayThis: '“Good evening Officer. Please let me know what violation occurred. Here are my verified digital documents on DigiLocker.”',
-    helpline: '112 or local Traffic Helpline',
-    translations: {
-      hi: {
-        title: 'ट्रैफिक पुलिस ने गाड़ी रोकी',
-        situation: 'आप सड़क पर जा रहे हैं और ट्रैफिक पुलिस ने नाके या चौराहे पर आपको रोक लिया।',
-        immediateActions: [
-          'गाड़ी बाईं ओर सुरक्षित रोकें और हाथ स्पष्ट रखें।',
-          'अधिकारी का नाम, पद और उल्लंघन का कारण विनम्रता से पूछें।',
-          'डिजिलॉकर (DigiLocker) ऐप पर लाइसेंस और आरसी दिखाएं।',
-          'चालान होने पर अनिवार्य रूप से सरकारी ई-चालान रसीद मांगें।'
-        ],
-        doNotDo: [
-          'बिना रसीद कोई नकद या रिश्वत न दें।',
-          'सब-इंस्पेक्टर (SI) से नीचे के पद के पुलिसकर्मी को गाड़ी जब्त न करने दें।',
-          'चाबी जबरन छीनने का विरोध विनम्रतापूर्वक कानून बताकर करें।'
-        ],
-        legalShield: 'केंद्रीय मोटर वाहन नियम 139 (डिजिलॉकर मान्यता) एवं धारा 130/132।',
-        sayThis: '“नमस्ते सर, कृपया बताएं क्या उल्लंघन हुआ है? डिजिलॉकर पर मेरे सभी अधिकृत दस्तावेज मौजूद हैं।”'
-      },
-      te: {
-        title: 'ట్రాఫిక్ పోలీసులు వాహనాన్ని ఆపారు',
-        situation: 'మీరు ప్రయాణిస్తున్నప్పుడు ట్రాఫిక్ పోలీసులు మీ వాహనాన్ని ఆపినప్పుడు.',
-        immediateActions: [
-          'వాహనాన్ని ఎడమవైపు సురక్షితంగా ఆపండి, చేతులు స్పష్టంగా కనిపించేలా ఉంచండి.',
-          'అధికారి పేరు, హోదా మరియు ఉల్లంఘన కారణాన్ని మర్యాదగా అడగండి.',
-          'డిజిలాకర్ యాప్ ద్వారా లైసెన్స్ మరియు ఆర్సీ చూపించండి.',
-          'జరిమానా విధిస్తే తప్పనిసరిగా అధికారిక ఈ-చలాన్ రసీదు అడగండి.'
-        ],
-        doNotDo: [
-          'రసీదు లేకుండా నగదు లేదా లంచం ఇవ్వకండి.',
-          'సబ్-ఇన్‌స్పెక్టర్ (SI) కంటే తక్కువ స్థాయి అధికారికి వాహనం సీజ్ చేసే అధికారం లేదు.',
-          'కీ లాక్కోవడానికి ప్రయత్నిస్తే చట్టబద్ధంగా నిరసన తెలపండి.'
-        ],
-        legalShield: 'మోటారు వాహనాల చట్టం రూల్ 139 (డిజిటల్ పత్రాలు).',
-        sayThis: '“నమస్తే సార్, ఏ నిబంధన ఉల్లంఘించానో చెప్పండి. డిజిలాకర్‌లో నా పత్రాలను చూపిస్తున్నాను.”'
-      },
-      ta: {
-        title: 'போக்குவரத்து காவலர் வாகனத்தை நிறுத்தினார்',
-        situation: 'சாலையில் செல்லும் போது போக்குவரத்து காவலர் உங்களை நிறுத்தியுள்ளார்.',
-        immediateActions: [
-          'வாகனத்தை இடதுபுறம் நிறுத்தி, கைகளை தெளிவாக வைக்கவும்.',
-          'காவலரின் பெயர், பதவி மற்றும் விதிமீறல் காரணத்தை மரியாதையுடன் கேட்கவும்.',
-          'டிஜிலாக்கர் செயலியில் உள்ள ஆவணங்களைக் காட்டவும்.',
-          'அபராதம் விதிக்கப்பட்டால் அதிகாரப்பூர்வ இ-சலான் ரசீது கேட்கவும்.'
-        ],
-        doNotDo: [
-          'ரசீது இல்லாமல் பணம் அல்லது லஞ்சம் கொடுக்காதீர்கள்.',
-          'எஸ்.ஐ-க்கு குறைவான அதிகாரி வாகனத்தை பறிமுதல் செய்ய முடியாது.',
-          'சாவியைப் பிடுங்க அனுமதிக்காதீர்கள்.'
-        ],
-        legalShield: 'மோட்டார் வாகன விதிகள் 139 (டிஜிட்டல் ஆவணங்கள்).',
-        sayThis: '“வணக்கம் ஐயா, என்ன விதிமீறல் என்று கூறுங்கள். டிஜிலாக்கரில் எனது ஆவணங்கள் உள்ளன.”'
-      },
-      bn: {
-        title: 'ট্রাফিক পুলিশ গাড়ি থামিয়েছে',
-        situation: 'গাড়ি চালানোর সময় ট্রাফিক পুলিশ আপনাকে নাকা বা মোড়ে থামিয়েছে।',
-        immediateActions: [
-          'গাড়িটি নিরাপদে বাঁদিকে পার্ক করুন এবং হাত স্পষ্ট রাখুন।',
-          'অফিসারের নাম, পদ ও আইন লঙ্ঘনের কারণ ভদ্রভাবে জানতে চান।',
-          'ডিজিলকার অ্যাপে লাইসেন্স ও আরসি দেখান।',
-          'জরিমানা হলে অফিসিয়াল ই-চালান রসিদ দাবি করুন।'
-        ],
-        doNotDo: [
-          'রসিদ ছাড়া কোনো নগদ অর্থ বা ঘুষ দেবেন না।',
-          'এসআই পদমর্যাদার নিচে কাউকে গাড়ি বাজেয়াপ্ত করতে দেবেন না।'
-        ],
-        legalShield: 'মোটর ভেহিকেল রুলস ১৩৯ (ডিজিটাল নথির বৈধতা)।',
-        sayThis: '“নমস্কার স্যার, কি কারণে থামিয়েছেন জানান। ডিজিলকারে আমার সমস্ত বৈধ নথি রয়েছে।”'
-      },
-      mr: {
-        title: 'ट्रॅफिक पोलिसांनी गाडी अडवली',
-        situation: 'रस्त्याने जात असताना ट्रॅफिक पोलिसांनी तुम्हाला थांबवले.',
-        immediateActions: [
-          'गाडी डाव्या बाजूला सुरक्षित लावा आणि हात स्पष्ट ठेवा.',
-          'अधिकाऱ्याचे नाव, हुद्दा व नियमाच्या उल्लंघनाचे कारण विचारा.',
-          'डिजीलॉकर ॲपवरून लायसन्स व कागदपत्रे दाखवा.',
-          'दंडाची अधिकृत ई-चलन पावती मागा.'
-        ],
-        doNotDo: [
-          'पावतीशिवाय रोख रक्कम किंवा लाच देऊ नका.',
-          'एसआय पेक्षा कमी दर्जाच्या पोलिसाला गाडी जप्त करू देऊ नका.'
-        ],
-        legalShield: 'मोटार वाहन नियम १३९ (डिजिटल कागदपत्रे).',
-        sayThis: '“नमस्ते साहेब, काय चूक झाली ते सांगा. डिजीलॉकरवर माझी सर्व कागदपत्रे आहेत.”'
-      },
-      gu: {
-        title: 'ટ્રાફિક પોલીસે વાહન રોક્યું',
-        situation: 'ટ્રાફિક પોલીસે તમને નાકા પર રોક્યા છે.',
-        immediateActions: [
-          'વાહન સુરક્ષિત રીતે સાઇડમાં પાર્ક કરો.',
-          'અધિકારીનું નામ અને નિયમ ભંગનું કારણ પૂછો.',
-          'ડીજીલોકર એપ પર લાયસન્સ અને આરસી બતાવો.',
-          'દંડ થાય તો ઈ-ચલણની પાકી રસીદ માંગો.'
-        ],
-        doNotDo: [
-          'રસીદ વગર રોકડા રૂપિયા ન આપો.',
-          'એસઆઈથી નીચેના કર્મચારીને વાહન જપ્ત ન કરવા દો.'
-        ],
-        legalShield: 'મોટર વ્હીકલ રુલ્સ ૧૩૯ (ડિજિટલ દસ્તાવેજો).',
-        sayThis: '“નમસ્તે સાહેબ, કયા નિયમનો ભંગ થયો છે તે જણાવો. ડીજીલોકર પર મારા દસ્તાવેજો છે.”'
-      },
-      kn: {
-        title: 'ಟ್ರಾಫಿಕ್ ಪೊಲೀಸರು ವಾಹನ ತಡೆದರು',
-        situation: 'ರಸ್ತೆಯಲ್ಲಿ ಸಂಚರಿಸುವಾಗ ಪೊಲೀಸರು ನಿಮ್ಮನ್ನು ತಡೆದಿದ್ದಾರೆ.',
-        immediateActions: [
-          'ವಾಹನವನ್ನು ಎಡಬದಿಗೆ ನಿಲ್ಲಿಸಿ ಶಾಂತರಾಗಿರಿ.',
-          'ಅಧಿಕಾರಿಯ ಹೆಸರು ಮತ್ತು ನಿಯಮ ಉಲ್ಲಂಘನೆಯ ಕಾರಣ ಕೇಳಿ.',
-          'ಡಿಜಿಲಾಕರ್‌ನಲ್ಲಿ ದಾಖಲೆಗಳನ್ನು ತೋರಿಸಿ.',
-          'ದಂಡ ವಿಧಿಸಿದರೆ ಇ-ಚಲನ್ ರಶೀದಿ ಕೇಳಿ.'
-        ],
-        doNotDo: [
-          'ರಶೀದಿ ಇಲ್ಲದೆ ಹಣ ನೀಡಬೇಡಿ.',
-          'ಎಸ್.ಐ ಗಿಂತ ಕೆಳಗಿನ ಅಧಿಕಾರಿ ವಾಹನ ಜಪ್ತಿ ಮಾಡುವಂತಿಲ್ಲ.'
-        ],
-        legalShield: 'ಮೋಟಾರು ವಾಹನ ನಿಯಮ 139 (ಡಿಜಿಟಲ್ ದಾಖಲೆಗಳು).',
-        sayThis: '“ನಮಸ್ಕಾರ ಸರ್, ಏನು ತಪ್ಪಾಗಿದೆ ತಿಳಿಸಿ. ಡಿಜಿಲಾಕರ್‌ನಲ್ಲಿ ನನ್ನ ದಾಖಲೆಗಳಿವೆ.”'
-      },
-      ml: {
-        title: 'ട്രാഫിക് പോലീസ് വാഹനം തടഞ്ഞു',
-        situation: 'റോഡിൽ വെച്ച് ട്രാഫിക് പോലീസ് വാഹനം നിർത്തുമ്പോൾ.',
-        immediateActions: [
-          'വാഹനം സുരക്ഷിതമായി ഒതുക്കി നിർത്തുക.',
-          'പോലീസിന്റെ പേരും നിയമലംഘന കാരണവും ചോദിക്കുക.',
-          'ഡിജിലോക്കർ വഴി രേഖകൾ കാണിക്കുക.',
-          'പിഴയടക്കാൻ ഔദ്യോഗിക ഇ-ചെല്ലാൻ ആവശ്യപ്പെടുക.'
-        ],
-        doNotDo: [
-          'രസീത് ഇല്ലാതെ പണം നൽകരുത്.',
-          'എസ്.ഐ-ക്ക് താഴെയുള്ളവർക്ക് വാഹനം പിടിച്ചെടുക്കാൻ അധികാരമില്ല.'
-        ],
-        legalShield: 'മോട്ടോർ വാഹന ചട്ടം 139 (ഡിജിറ്റൽ രേഖകൾ).',
-        sayThis: '“നമസ്കാരം സാർ, എന്താണ് പ്രശ്നമെന്ന് വ്യക്തമാക്കൂ. ഡിജിലോക്കറിൽ എന്റെ രേഖകളുണ്ട്.”'
-      },
-      pa: {
-        title: 'ਟ੍ਰੈਫਿਕ ਪੁਲਿਸ ਨੇ ਗੱਡੀ ਰੋਕੀ',
-        situation: 'ਸੜਕ \'ਤੇ ਜਾਂਦਿਆਂ ਪੁਲਿਸ ਨੇ ਤੁਹਾਨੂੰ ਰੋਕ ਲਿਆ।',
-        immediateActions: [
-          'ਗੱਡੀ ਸਾਈਡ \'ਤੇ ਲਗਾਓ ਅਤੇ ਸ਼ਾਂਤ ਰਹੋ।',
-          'ਅਧਿਕਾਰੀ ਦਾ ਨਾਮ ਤੇ ਨਿਯਮ ਉਲੰਘਣਾ ਦਾ ਕਾਰਨ ਪੁੱਛੋ।',
-          'ਡਿਜੀਲਾਕਰ \'ਤੇ ਦਸਤਾਵੇਜ਼ ਦਿਖਾਓ।',
-          'ਚਲਾਨ ਹੋਣ \'ਤੇ ਸਰਕਾਰੀ ਈ-ਚਲਾਨ ਰਸੀਦ ਮੰਗੋ।'
-        ],
-        doNotDo: [
-          'ਬਿਨਾਂ ਰਸੀਦ ਰਿਸ਼ਵਤ ਜਾਂ ਨਕਦ ਨਾ ਦਿਓ।'
-        ],
-        legalShield: 'ਮੋਟਰ ਵਹੀਕਲ ਰੂਲ 139 (ਡਿਜੀਟਲ ਦਸਤਾਵੇਜ਼)।',
-        sayThis: '“ਸਤਿ ਸ਼੍ਰੀ ਅਕਾਲ ਸਰ, ਕਿਹੜਾ ਨਿਯਮ ਟੁੱਟਿਆ ਹੈ? ਡਿਜੀਲਾਕਰ \'ਤੇ ਮੇਰੇ ਕਾਗਜ਼ ਮੌਜੂਦ ਹਨ।”'
-      },
-      hinglish: {
-        title: 'Traffic Police ne Gadi Roki',
-        situation: 'Traffic cop ne naka par aapko flag down kiya.',
-        immediateActions: [
-          'Vehicle curb par safe park karein aur hands visible rakhein.',
-          'Officer ka name, rank aur exact violation politely poochein.',
-          'DigiLocker app par Driving License & RC present karein.',
-          'Fine lagne par official printed e-challan receipt demand karein.'
-        ],
-        doNotDo: [
-          'Bina receipt cash ya bribe na dein.',
-          'SI se niche rank wale officer ko vehicle seize na karne dein.'
-        ],
-        legalShield: 'Rule 139 Central Motor Vehicles Rules (DigiLocker validation).',
-        sayThis: '“Good evening Sir. Please batayein kya violation hua hai? DigiLocker par mere verified documents hain.”'
-      }
-    }
-  },
-  {
-    id: 'police-threatens-arrest',
-    title: 'Police Threatening with Arrest or Detention',
-    situation: 'An officer says “Come with us to the police station” or threatens to lock you up.',
-    category: 'arrest',
-    severity: 'critical',
-    immediateActions: [
-      'Stay calm. Ask firmly: “Am I being detained, arrested, or asked to assist an inquiry?”',
-      'For offences under 7 years, police must first issue a Section 41A Notice before arresting (Arnesh Kumar).',
-      'If being arrested, demand the formal Arrest Memo with charges, date, time, and witness signature.',
-      'Exercise your right to make one phone call to family and your legal counsel.'
-    ],
-    doNotDo: [
-      'Do NOT physically resist, run away, or use abusive language.',
-      'Do NOT sign blank papers, unread statements, or undated documents.',
-      'Do NOT accept detention beyond 24 hours without Judicial Magistrate remand.'
-    ],
-    legalShield: 'Article 22(1) & (2) Constitution of India, Section 41B & 41D CrPC, Arnesh Kumar v. State of Bihar.',
-    sayThis: '“Officer, if I am being arrested, please state the grounds under Article 22(1), prepare the D.K. Basu Arrest Memo, and allow me to call my family and lawyer.”',
-    helpline: '112 / 15100 (Free Legal Aid)',
-    translations: {
-      hi: {
-        title: 'गिरफ्तारी या थाने ले जाने की धमकी',
-        situation: 'पुलिस अधिकारी कहे कि गाड़ी में बैठो, तुम्हें अभी थाने ले जा रहे हैं या लॉकअप में डालेंगे।',
-        immediateActions: [
-          'शांत रहें और पूछें: क्या मुझे गिरफ्तार किया जा रहा है या पूछताछ के लिए बुलाया जा रहा है?',
-          '7 साल से कम सजा वाले मामलों में पहले धारा 41A का नोटिस देना अनिवार्य है (अर्नेश कुमार फैसला)।',
-          'गिरफ्तारी की स्थिति में मौके पर ही आधिकारिक अरेस्ट मेमो की मांग करें।',
-          'अपने परिवार और वकील को कॉल करने के अधिकार का उपयोग करें।'
-        ],
-        doNotDo: [
-          'हाथापाई या भागने की कोशिश न करें।',
-          'कोरे कागज या बिना पढ़े किसी बयान पर हस्ताक्षर न करें।',
-          '24 घंटे से अधिक बिना मजिस्ट्रेट पेशी के थाने में न रहें।'
-        ],
-        legalShield: 'संविधान का अनुच्छेद 22, धारा 41B व 41D सीआरपीसी (बीएनएसएस)।',
-        sayThis: '“सर, यदि आप गिरफ्तार कर रहे हैं तो अनुच्छेद 22(1) के तहत कारण बताएं, अरेस्ट मेमो तैयार करें और मुझे वकील से बात करने दें।”'
-      },
-      te: {
-        title: 'అరెస్ట్ లేదా నిర్బంధ బెదిరింపు',
-        situation: 'పోలీసులు స్టేషన్‌కు రమ్మని లేదా లాకప్‌లో వేస్తామని బెదిరించినప్పుడు.',
-        immediateActions: [
-          'శాంతంగా ఉండండి. అరెస్ట్ చేస్తున్నారా లేక విచారణకా అని స్పష్టంగా అడగండి.',
-          '7 సంవత్సరాల కంటే తక్కువ శిక్ష పడే కేసుల్లో ముందుగా సెక్షన్ 41A నోటీసు ఇవ్వాలి.',
-          'అరెస్ట్ మెమో తయారు చేసి కాపీ ఇవ్వాలని డిమాండ్ చేయండి.',
-          'కుటుంబానికి మరియు న్యాయవాదికి ఫోన్ చేసే హక్కును ఉపయోగించండి.'
-        ],
-        doNotDo: [
-          'ఖాళీ కాగితాలపై సంతకాలు చేయకండి.',
-          '24 గంటలకు మించి మేజిస్ట్రేట్ లేకుండా కస్టడీలో ఉండకండి.'
-        ],
-        legalShield: 'రాజ్యాంగంలోని ఆర్టికల్ 22, సెక్షన్ 41B మరియు 41D CrPC.',
-        sayThis: '“సార్, నన్ను అరెస్ట్ చేస్తే ఆర్టికల్ 22(1) ప్రకారం కారణం చెప్పండి, అరెస్ట్ మెమో తయారు చేయండి.”'
-      },
-      ta: {
-        title: 'கைது அல்லது காவல் அச்சுறுத்தல்',
-        situation: 'காவல்துறையினர் காவல் நிலையத்திற்கு வருமாறு மிரட்டும்போது.',
-        immediateActions: [
-          'கைது செய்வதற்கான காரணத்தை தெளிவாகக் கேட்கவும்.',
-          '7 ஆண்டுகளுக்கு குறைவான வழக்குகளில் பிரிவு 41A நோட்டீஸ் அளிக்கப்பட வேண்டும்.',
-          'டி.கே. பாசு கைது மெமோ தயார் செய்யக் கோருங்கள்.',
-          'குடும்பத்தினருக்கு போன் செய்யும் உரிமையைப் பயன்படுத்துங்கள்.'
-        ],
-        doNotDo: [
-          'வெற்று காகிதங்களில் கையெழுத்திடாதீர்கள்.',
-          '24 மணி நேரத்திற்கு மேல் மாஜிஸ்திரேட் உத்தரவின்றி காவலில் இருக்காதீர்கள்.'
-        ],
-        legalShield: 'அரசியலமைப்பு பிரிவு 22 மற்றும் 41B CrPC.',
-        sayThis: '“ஐயா, கைது செய்யப்பட்டால் காரணத்தை கூறி, கைது மெமோ தயார் செய்து வக்கீலுடன் பேச அனுமதியுங்கள்.”'
-      },
-      bn: {
-        title: 'গ্রেপ্তার বা হেফাজতে নেওয়ার হুমকি',
-        situation: 'পুলিশ থানায় নিয়ে যাওয়ার বা লকআপে ভরার হুমকি দিলে।',
-        immediateActions: [
-          'শান্ত থাকুন এবং গ্রেপ্তারের কারণ সুস্পষ্টভাবে জানতে চান।',
-          '৭ বছরের কম সাজার ক্ষেত্রে ধারা ৪১এ নোটিশ দেওয়া বাধ্যতামূলক।',
-          'ঘটনাস্থলে অ্যারেস্ট মেমো প্রস্তুত করার দাবি জানান।',
-          'পরিবার ও আইনজীবীকে ফোন করার অধিকার প্রয়োগ করুন।'
-        ],
-        doNotDo: [
-          'সাদা কাগজে সই করবেন না।'
-        ],
-        legalShield: 'সংবিধানের ২২ অনুচ্ছেদ ও ৪১বি ধারা সিআরপিসি।',
-        sayThis: '“স্যার, গ্রেপ্তার করলে কারণ জানান, অ্যারেস্ট মেমো তৈরি করুন এবং আইনজীবীর সাথে কথা বলতে দিন।”'
-      },
-      mr: {
-        title: 'अटक किंवा कोठडीची धमकी',
-        situation: 'पोलिस ठाण्यात चल असे सांगून अटकेची धमकी दिल्यास.',
-        immediateActions: [
-          'अटकेचे कारण स्पष्टपणे विचारा.',
-          '७ वर्षांखालील गुन्ह्यात कलम ४१A ची नोटीस मिळणे आवश्यक आहे.',
-          'डी.के. बसू अरेस्ट मेमो तयार करण्याची मागणी करा.',
-          'कुटुंबीय व वकिलाशी फोनवर बोला.'
-        ],
-        doNotDo: [
-          'कोऱ्या कागदावर स्वाक्षरी करू नका.'
-        ],
-        legalShield: 'संविधान कलम २२, कलम ४१B व ४१D CrPC.',
-        sayThis: '“साहेब, मला अटक करत असाल तर कारण सांगा, अरेस्ट मेमो द्या आणि वकिलांशी बोलू द्या.”'
-      },
-      gu: {
-        title: 'ધરપકડ અથવા કસ્ટડીની ધમકી',
-        situation: 'પોલીસ સ્ટેશન લઈ જવાની કે લોકઅપમાં પૂરવાની ધમકી આપે ત્યારે.',
-        immediateActions: [
-          'શાંત રહીને ધરપકડનું કારણ પૂછો.',
-          '૭ વર્ષથી ઓછી સજા હોય તો કલમ ૪૧A ની નોટિસ જરૂરી છે.',
-          'અરેસ્ટ મેમો બનાવવાની માંગણી કરો.',
-          'પરિવાર અને વકીલને ફોન કરો.'
-        ],
-        doNotDo: [
-          'ખાલી કાગળ પર સહી ન કરો.'
-        ],
-        legalShield: 'બંધારણની કલમ ૨૨, કલમ ૪૧B અને ૪૧D CrPC.',
-        sayThis: '“સાહેબ, ધરપકડ કરતા હોવ તો કારણ જણાવો અને અરેસ્ટ મેમો બનાવી વકીલ સાથે વાત કરવા દો.”'
-      },
-      kn: {
-        title: 'ಬಂಧನ ಅಥವಾ ಕಸ್ಟಡಿಯ ಬೆದರಿಕೆ',
-        situation: 'ಪೊಲೀಸರು ಠಾಣೆಗೆ ಕರೆದೊಯ್ಯುವ ಬೆದರಿಕೆ ಹಾಕಿದಾಗ.',
-        immediateActions: [
-          'ಬಂಧನದ ಕಾರಣವನ್ನು ಸ್ಪಷ್ಟವಾಗಿ ಕೇಳಿ.',
-          '7 ವರ್ಷಕ್ಕಿಂತ ಕಡಿಮೆ ಶಿಕ್ಷೆಯ ಪ್ರಕರಣಗಳಲ್ಲಿ ಸೆಕ್ಷನ್ 41A ನೋಟಿಸ್ ನೀಡಬೇಕು.',
-          'ಅರೆಸ್ಟ್ ಮೆಮೊ ಸಿದ್ಧಪಡಿಸಲು ಒತ್ತಾಯಿಸಿ.',
-          'ಕುಟುಂಬ ಮತ್ತು ವಕೀಲರಿಗೆ ಕರೆ ಮಾಡಿ.'
-        ],
-        doNotDo: [
-          'ಖಾಲಿ ಕಾಗದಗಳಿಗೆ ಸಹಿ ಮಾಡಬೇಡಿ.'
-        ],
-        legalShield: 'ಸಂವಿಧಾನದ ವಿಧಿ 22, ಸೆಕ್ಷನ್ 41B CrPC.',
-        sayThis: '“ಸರ್, ಬಂಧಿಸುವುದಾದರೆ ಕಾರಣ ತಿಳಿಸಿ, ಅರೆಸ್ಟ್ ಮೆಮೊ ನೀಡಿ ಮತ್ತು ವಕೀಲರೊಂದಿಗೆ ಮಾತನಾಡಲು ಬಿಡಿ.”'
-      },
-      ml: {
-        title: 'അറസ്റ്റ് അല്ലെങ്കിൽ കസ്റ്റഡി ഭീഷണി',
-        situation: 'പോലീസ് സ്റ്റേഷനിലേക്ക് കൊണ്ടുപോകുമെന്ന് ഭീഷണിപ്പെടുത്തുമ്പോൾ.',
-        immediateActions: [
-          'അറസ്റ്റിന്റെ കാരണം വ്യക്തമായി ചോദിക്കുക.',
-          '7 വർഷത്തിൽ താഴെ ശിക്ഷയുള്ള കേസിൽ സെക്ഷൻ 41A നോട്ടീസ് നൽകണം.',
-          'അറസ്റ്റ് മെമ്മോ തയ്യാറാക്കാൻ ആവശ്യപ്പെടുക.',
-          'കുടുംബത്തെയും വക്കീലിനെയും ഫോൺ ചെയ്യുക.'
-        ],
-        doNotDo: [
-          'വെള്ളക്കടലാസിൽ ഒപ്പിടരുത്.'
-        ],
-        legalShield: 'ഭരണഘടന ആർട്ടിക്കിൾ 22, സെക്ഷൻ 41B CrPC.',
-        sayThis: '“സാർ, അറസ്റ്റ് ചെയ്യുകയാണെങ്കിൽ കാരണം വ്യക്തമാക്കുകയും മെമ്മോ തയ്യാറാക്കുകയും ചെയ്യുക.”'
-      },
-      pa: {
-        title: 'ਗ੍ਰਿਫ਼ਤਾਰੀ ਜਾਂ ਹਿਰਾਸਤ ਦੀ ਧਮਕੀ',
-        situation: 'ਪੁਲਿਸ ਥਾਣੇ ਲੈ ਕੇ ਜਾਣ ਦੀ ਧਮਕੀ ਦੇਵੇ।',
-        immediateActions: [
-          'ਗ੍ਰਿਫ਼ਤਾਰੀ ਦਾ ਕਾਰਨ ਪੁੱਛੋ।',
-          '7 ਸਾਲ ਤੋਂ ਘੱਟ ਸਜ਼ਾ ਵਾਲੇ ਮਾਮਲਿਆਂ \'ਚ ਧਾਰਾ 41A ਨੋਟਿਸ ਲਾਜ਼ਮੀ ਹੈ।',
-          'ਅਰੈਸਟ ਮੈਮੋ ਬਣਾਉਣ ਦੀ ਮੰਗ ਕਰੋ।'
-        ],
-        doNotDo: [
-          'ਖ਼ਾਲੀ ਕਾਗ਼ਜ਼ਾਂ \'ਤੇ ਦਸਤਖ਼ਤ ਨਾ ਕਰੋ।'
-        ],
-        legalShield: 'ਸੰਵਿਧਾਨ ਦੀ ਧਾਰਾ 22, ਧਾਰਾ 41B CrPC.',
-        sayThis: '“ਸਰ, ਜੇਕਰ ਗ੍ਰਿਫ਼ਤਾਰ ਕਰ ਰਹੇ ਹੋ ਤਾਂ ਕਾਰਨ ਦੱਸੋ ਅਤੇ ਅਰੈਸਟ ਮੈਮੋ ਬਣਾਓ।”'
-      },
-      hinglish: {
-        title: 'Police Arrest Threat',
-        situation: 'Police officer station le jane ya custody threat de raha hai.',
-        immediateActions: [
-          'Calmly ask: “Am I under arrest or inquiry?”',
-          '7 years se kam punishment wale cases mein Section 41A notice mandatory hai.',
-          'Spot par hi formal D.K. Basu Arrest Memo demand karein.',
-          'Family aur lawyer ko call karne ka right exercise karein.'
-        ],
-        doNotDo: [
-          'Blank papers par sign na karein.',
-          '24 hours se zyada without Magistrate remand na rahein.'
-        ],
-        legalShield: 'Article 22 Constitution, Section 41B & 41D CrPC / BNSS.',
-        sayThis: '“Officer, grounds of arrest batayein, Arrest Memo banayein aur lawyer se baat karne dein.”'
       }
     }
   }

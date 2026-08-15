@@ -29,6 +29,7 @@ export interface TranslationDictionary {
   
   // Navigation Tabs
   navSituations: string;
+  navGuidebook: string;
   navRights: string;
   navDepartments: string;
   navDKBasu: string;
@@ -105,6 +106,7 @@ export const TRANSLATIONS: { en: TranslationDictionary } & Record<SupportedLangu
     emergencySubtitle: 'Immediate one-tap dialers for verified government and legal aid authorities.',
     
     navSituations: 'Situation Guide',
+    navGuidebook: 'Digital Book',
     navRights: 'Rights Library',
     navDepartments: 'Govt Portals',
     navDKBasu: 'D.K. Basu Rules',

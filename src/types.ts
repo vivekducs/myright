@@ -210,6 +210,27 @@ export interface EmergencyContact {
 }
 
 export interface DetailPageTarget {
-  type: 'situation' | 'right' | 'department' | 'dk-basu' | 'script';
+  type: 'situation' | 'right' | 'department' | 'dk-basu' | 'script' | 'guidebook';
   id: string;
+}
+
+export interface StatutoryProvision {
+  code: string;
+  section_or_article: string;
+  official_title: string;
+  official_source_url: string;
+}
+
+export interface GuidebookPage {
+  page_number: number;
+  chapter: string;
+  title: string;
+  icon: string;
+  statutory_provisions: StatutoryProvision[];
+  situation_trigger: string;
+  your_rights_summary: string[];
+  immediate_action_steps: string[];
+  what_to_say_script: string;
+  remedy_and_complaint_forum: string;
+  landmark_judgments: string[];
 }
