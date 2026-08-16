@@ -59,7 +59,31 @@ In India, legal literacy is often a privilege, not a right. Citizens face intimi
 
 ---
 
-## 🛠️ Technical Architecture (For the Judges)
+## 🏛️ Detailed System Architecture: How It Works & Helps Citizens
+
+MyRight operates on a hybrid architecture designed specifically for reliability in high-stress, low-connectivity environments.
+
+### 1. The PWA Offline Shell (Frontend)
+When a user visits the app, **Vite PWA** and **Workbox** immediately cache the core application shell, including the React bundle, Tailwind CSS styles, and the statically compiled legal databases (like the D.K. Basu guidelines and BNS code).
+- **How it helps:** If a citizen is detained in a police station lock-up where network signals are notoriously weak or blocked, the core app—including the Digital Guidebook and the e-FIR drafter—will still load in under 1 second.
+
+### 2. Edge-Routed AI Copilot (Vercel Serverless)
+When the user queries the AI (either via text or the Web Speech API mic), the request is sent to our Vercel Serverless API (`/api/chat`).
+- **Stateless Execution:** The Vercel edge functions format the prompt, inject the strict constitutional system instructions (e.g., BNSS rules), and proxy the request to the Google Gemini API.
+- **How it helps:** It ensures that user data and API keys are completely protected. Because the AI is heavily instructed to cite specific sections (like Article 20(3) or Section 35 BNSS), citizens receive highly authoritative guidance rather than generic AI fluff.
+
+### 3. Client-Side Document Processing (Privacy First)
+The **e-FIR & Legal Draft Generator** utilizes `jspdf` to convert the citizen's form inputs directly into a formatted PDF document.
+- **Zero-Data Retention:** The processing happens 100% within the browser's memory.
+- **How it helps:** Citizens can draft highly sensitive complaints without fearing that their Personally Identifiable Information (PII) is being saved on an external database.
+
+### 4. Overpass Geolocation Layer
+The `StationLocator` component uses the HTML5 Geolocation API to fetch the user's coordinates, then queries the public Overpass (OpenStreetMap) API for `amenity=police`.
+- **How it helps:** Removes the panic of figuring out jurisdiction. The app instantly plots the 5 nearest active police stations, enabling the citizen to physically navigate there to file a Zero FIR.
+
+---
+
+## 🛠️ Technical Specifications (For the Judges)
 
 - **Frontend:** React 19 + TypeScript + Vite for ultra-fast HMR and type safety.
 - **Styling:** Tailwind CSS v4 with custom Glassmorphism (`backdrop-filter`) and fluid Framer Motion (`motion/react`) animations running at 60fps.
