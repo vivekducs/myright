@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { get, set } from 'idb-keyval';
 import { Camera, Upload, Trash2, ShieldCheck, FileText, Plus, X } from 'lucide-react';
 import { SupportedLanguage } from '../types';
-import { getT } from '../utils/translations';
+import { getT } from '../data/translations';
 
 interface DocumentVaultProps {
   language: SupportedLanguage;
