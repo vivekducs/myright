@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { 
   AlertOctagon, 
   BookOpen, 
@@ -14,26 +15,32 @@ import {
   Layers,
   HeartHandshake,
   Compass,
-  Building2
+  Building2,
+  Download,
+  Globe,
+  Check
 } from 'lucide-react';
 import { SupportedLanguage } from '../types';
-import { getT } from '../data/translations';
+import { getT, LANGUAGE_OPTIONS } from '../data/translations';
 
 interface MobileBottomBarProps {
-  activeTab: string;
-  setActiveTab: (tab: string) => void;
   language: SupportedLanguage;
+  setLanguage: (lang: SupportedLanguage) => void;
   onOpenEmergencyModal: () => void;
 }
 
 export const MobileBottomBar: React.FC<MobileBottomBarProps> = ({
-  activeTab,
-  setActiveTab,
   language,
+  setLanguage,
   onOpenEmergencyModal,
 }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const activeTab = location.pathname.substring(1) || 'situations';
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
+  const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
   const t = getT(language);
+  const currentLangObj = LANGUAGE_OPTIONS.find((l) => l.code === language) || LANGUAGE_OPTIONS[0];
 
   const mainTabs = [
     { id: 'situations', label: t.navSituations.split(' ')[0], icon: Compass, badge: 'Hot' },
@@ -56,16 +63,16 @@ export const MobileBottomBar: React.FC<MobileBottomBarProps> = ({
     if (tabId === 'more') {
       setIsMoreMenuOpen(!isMoreMenuOpen);
     } else {
-      setActiveTab(tabId);
+      navigate(`/${tabId}`);
       setIsMoreMenuOpen(false);
-      window.scrollTo({ top: 380, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
   const handleSelectMoreTool = (toolId: string) => {
-    setActiveTab(toolId);
+    navigate(`/${toolId}`);
     setIsMoreMenuOpen(false);
-    window.scrollTo({ top: 380, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -93,18 +100,70 @@ export const MobileBottomBar: React.FC<MobileBottomBarProps> = ({
               <div className="w-12 h-1.5 rounded-full bg-[#E5CB90]/40 mx-auto" />
 
               <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="font-extrabold text-lg text-white flex items-center gap-2">
-                    <Sparkles className="w-5 h-5 text-[#E5CB90]" />
-                    <span>Citizen Legal Toolkit</span>
+                <div className="flex-1">
+                  <h3 className="font-black text-lg text-white flex items-center gap-2">
+                    <span>MyRight Mobile Hub</span>
                   </h3>
-                  <p className="text-xs text-[#E5CB90]/80">Quick access to interactive rights utilities</p>
+                  <div className="text-[10px] text-[#E5CB90]/80 mt-1 leading-tight">
+                    <span className="bg-[#E5CB90]/20 text-[#E5CB90] px-1.5 py-0.5 rounded mr-1">v2.5 Live PWA</span>
+                    Official Citizen Legal Literacy Platform &bull; Constitution of India &amp; BNSS 2024–2026
+                  </div>
+                  <div className="flex items-center gap-2 text-[9px] text-[#34A99D] font-bold mt-1.5 uppercase tracking-wider">
+                    <span className="flex items-center gap-1"><Check className="w-3 h-3" /> Offline Cached</span>
+                    <span className="flex items-center gap-1"><Check className="w-3 h-3" /> 100% Client Privacy</span>
+                  </div>
                 </div>
                 <button
                   onClick={() => setIsMoreMenuOpen(false)}
                   className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-[#FFF3C8] hover:bg-white/20"
                 >
                   <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Language & Install Actions */}
+              <div className="flex items-center gap-2">
+                <div className="relative flex-1">
+                  <button
+                    onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
+                    className="w-full flex items-center justify-center gap-2 py-2 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 text-xs font-bold text-white transition-all"
+                  >
+                    <Globe className="w-4 h-4 text-[#E5CB90]" />
+                    <span>{currentLangObj.nativeName}</span>
+                  </button>
+                  
+                  <AnimatePresence>
+                    {isLangDropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        className="absolute bottom-full mb-2 left-0 w-full max-h-48 overflow-y-auto bg-white rounded-2xl shadow-xl p-1 z-50 border border-slate-200"
+                      >
+                        {LANGUAGE_OPTIONS.map((lang) => (
+                          <button
+                            key={lang.code}
+                            onClick={() => {
+                              setLanguage(lang.code);
+                              setIsLangDropdownOpen(false);
+                            }}
+                            className={`w-full text-left px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2 ${
+                              language === lang.code ? 'bg-teal-50 text-teal-700' : 'text-slate-700 hover:bg-slate-50'
+                            }`}
+                          >
+                            <span>{lang.flag}</span>
+                            <span>{lang.nativeName}</span>
+                          </button>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+                <button
+                  className="flex-1 flex items-center justify-center gap-2 py-2 rounded-xl bg-[#E5CB90] text-[#1A3841] text-xs font-black shadow-md"
+                >
+                  <Download className="w-4 h-4" />
+                  <span>Install App</span>
                 </button>
               </div>
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { Routes, Route, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { EmergencyBar } from './components/EmergencyBar';
@@ -19,7 +20,10 @@ import { Category, DetailPageTarget, SupportedLanguage } from './types';
 import { Shield, PhoneCall, AlertTriangle } from 'lucide-react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<string>('situations');
+  const navigate = useNavigate();
+  const location = useLocation();
+  const activeTab = location.pathname.substring(1) || 'situations';
+
   const [selectedCategory, setSelectedCategory] = useState<Category>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedSituationId, setSelectedSituationId] = useState<string | null>(null);
@@ -29,13 +33,13 @@ export default function App() {
 
   const handleSelectTab = (tab: string) => {
     setDetailTarget(null);
-    setActiveTab(tab);
+    navigate(`/${tab}`);
   };
 
   const handleSelectQuickSituation = (situationId: string) => {
     setSelectedSituationId(situationId);
     setDetailTarget(null);
-    setActiveTab('situations');
+    navigate('/situations');
     // Smooth scroll down to situation navigator
     const el = document.getElementById('main-content-section');
     if (el) {
@@ -46,7 +50,7 @@ export default function App() {
   const handleSelectCategory = (category: string) => {
     setSelectedCategory(category as Category);
     setDetailTarget(null);
-    setActiveTab('rights');
+    navigate('/rights');
   };
 
   const handleOpenDetail = (target: DetailPageTarget) => {
@@ -65,8 +69,6 @@ export default function App() {
       <div className="relative z-10 flex flex-col min-h-screen">
         {/* Top Navbar */}
         <Navbar
-          activeTab={activeTab}
-          setActiveTab={handleSelectTab}
           language={language}
           setLanguage={setLanguage}
           onOpenEmergencyModal={() => setIsEmergencyModalOpen(true)}
@@ -80,7 +82,7 @@ export default function App() {
               setSearchQuery(q);
               if (q.trim()) {
                 setDetailTarget(null);
-                setActiveTab('rights');
+                navigate('/rights');
               }
             }}
             onSelectCategory={handleSelectCategory}
@@ -117,16 +119,11 @@ export default function App() {
                 />
               </motion.div>
             ) : (
-              <>
-                {/* Situation Navigator View */}
-                {activeTab === 'situations' && (
-                  <motion.div
-                    key="situations"
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -15 }}
-                    transition={{ duration: 0.2 }}
-                  >
+              <Routes location={location} key={location.pathname}>
+                <Route path="/" element={<Navigate to="/situations" replace />} />
+                
+                <Route path="/situations" element={
+                  <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.2 }}>
                     <SituationNavigator
                       selectedSituationId={selectedSituationId}
                       onSelectSituation={(id) => setSelectedSituationId(id)}
@@ -134,36 +131,22 @@ export default function App() {
                       onSelectTarget={handleOpenDetail}
                     />
                   </motion.div>
-                )}
+                } />
 
-                {/* Digital Guidebook View (Interactive Electronic Handbook) */}
-                {activeTab === 'guidebook' && (
-                  <motion.div
-                    key="guidebook"
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -15 }}
-                    transition={{ duration: 0.2 }}
-                  >
+                <Route path="/guidebook" element={
+                  <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.2 }}>
                     <DigitalGuidebook
                       language={language}
                       onOpenSituation={(id) => {
                         setSelectedSituationId(id);
-                        setActiveTab('situations');
+                        navigate('/situations');
                       }}
                     />
                   </motion.div>
-                )}
+                } />
 
-                {/* Legal Rights Compendium View */}
-                {activeTab === 'rights' && (
-                  <motion.div
-                    key="rights"
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -15 }}
-                    transition={{ duration: 0.2 }}
-                  >
+                <Route path="/rights" element={
+                  <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.2 }}>
                     <LegalArticlesExplorer
                       selectedCategory={selectedCategory}
                       onSelectCategory={setSelectedCategory}
@@ -172,89 +155,47 @@ export default function App() {
                       onSelectTarget={handleOpenDetail}
                     />
                   </motion.div>
-                )}
+                } />
 
-                {/* Official Government Departments & Portals */}
-                {activeTab === 'departments' && (
-                  <motion.div
-                    key="departments"
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -15 }}
-                    transition={{ duration: 0.2 }}
-                  >
+                <Route path="/departments" element={
+                  <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.2 }}>
                     <DepartmentDirectory
                       language={language}
                       onSelectTarget={handleOpenDetail}
                     />
                   </motion.div>
-                )}
+                } />
 
-                {/* D.K. Basu Guidelines Checklist */}
-                {activeTab === 'dk-basu' && (
-                  <motion.div
-                    key="dk-basu"
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -15 }}
-                    transition={{ duration: 0.2 }}
-                  >
+                <Route path="/dk-basu" element={
+                  <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.2 }}>
                     <DKBasuCard language={language} />
                   </motion.div>
-                )}
+                } />
 
-                {/* Verbal Scripts Simulator */}
-                {activeTab === 'scripts' && (
-                  <motion.div
-                    key="scripts"
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -15 }}
-                    transition={{ duration: 0.2 }}
-                  >
+                <Route path="/scripts" element={
+                  <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.2 }}>
                     <VerbalScripts language={language} />
                   </motion.div>
-                )}
+                } />
 
-                {/* AI Legal Advisor */}
-                {activeTab === 'ai-advisor' && (
-                  <motion.div
-                    key="ai-advisor"
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -15 }}
-                    transition={{ duration: 0.2 }}
-                  >
+                <Route path="/ai-advisor" element={
+                  <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.2 }}>
                     <AIAdvisor language={language} />
                   </motion.div>
-                )}
+                } />
 
-                {/* Pocket Rights Pass Generator */}
-                {activeTab === 'pocket-pass' && (
-                  <motion.div
-                    key="pocket-pass"
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -15 }}
-                    transition={{ duration: 0.2 }}
-                  >
+                <Route path="/pocket-pass" element={
+                  <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.2 }}>
                     <RightsCardGenerator language={language} />
                   </motion.div>
-                )}
+                } />
 
-                {/* Myths & Quiz */}
-                {activeTab === 'quiz' && (
-                  <motion.div
-                    key="quiz"
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -15 }}
-                    transition={{ duration: 0.2 }}
-                  >
+                <Route path="/quiz" element={
+                  <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.2 }}>
                     <MythBusterQuiz language={language} />
                   </motion.div>
-                )}
-              </>
+                } />
+              </Routes>
             )}
 
           </AnimatePresence>
@@ -262,9 +203,8 @@ export default function App() {
 
         {/* Mobile App Navigation Dock */}
         <MobileBottomBar
-          activeTab={activeTab}
-          setActiveTab={handleSelectTab}
           language={language}
+          setLanguage={setLanguage}
           onOpenEmergencyModal={() => setIsEmergencyModalOpen(true)}
         />
 

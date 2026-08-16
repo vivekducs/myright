@@ -1,5 +1,23 @@
 @import "tailwindcss";
 
+@theme {
+  --color-teal-50: #fbf7eb;
+  --color-teal-100: #f5ecd1;
+  --color-teal-200: #eed5a3;
+  --color-teal-300: #e7b66a;
+  --color-teal-400: #e0a33c;
+  --color-teal-500: #d48b29;
+  --color-teal-600: #ba6e1e;
+  --color-teal-700: #9a531b;
+  --color-teal-800: #80441d;
+  --color-teal-900: #68391a;
+  --color-teal-950: #3b1d0a;
+  
+  --color-slate-700: #1e3a8a;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  --color-slate-950: #020617;
+}
 @layer base {
   :root {
     --primary-white: #FFFFFF;
