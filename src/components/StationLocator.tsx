@@ -26,9 +26,9 @@ export const StationLocator: React.FC<StationLocatorProps> = ({ language }) => {
     const R = 6371; // Earth's radius in km
     const dLat = (lat2 - lat1) * (Math.PI / 180);
     const dLon = (lon2 - lon1) * (Math.PI / 180);
-    const a = 
+    const a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * 
+      Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
       Math.sin(dLon / 2) * Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return R * c;
@@ -47,7 +47,7 @@ export const StationLocator: React.FC<StationLocatorProps> = ({ language }) => {
         );
         out center;
       `;
-      
+
       const response = await fetch('https://overpass-api.de/api/interpreter', {
         method: 'POST',
         body: query
@@ -58,14 +58,14 @@ export const StationLocator: React.FC<StationLocatorProps> = ({ language }) => {
       }
 
       const data = await response.json();
-      
+
       const parsedStations: PoliceStation[] = data.elements.map((el: any) => {
         // 'center' is available for ways/relations if 'out center' is used.
         // For nodes, lat/lon are on the element itself.
         const elLat = el.lat || el.center?.lat;
         const elLon = el.lon || el.center?.lon;
         const name = el.tags?.name || el.tags?.['name:en'] || 'Police Station';
-        
+
         return {
           id: el.id,
           name,
@@ -77,7 +77,7 @@ export const StationLocator: React.FC<StationLocatorProps> = ({ language }) => {
 
       // Sort by distance
       parsedStations.sort((a, b) => a.distance - b.distance);
-      
+
       setStations(parsedStations);
       setLoadingState('success');
     } catch (err: any) {
@@ -89,7 +89,7 @@ export const StationLocator: React.FC<StationLocatorProps> = ({ language }) => {
   const findLocation = () => {
     setLoadingState('locating');
     setErrorMsg('');
-    
+
     if (!navigator.geolocation) {
       setErrorMsg('Geolocation is not supported by your browser.');
       setLoadingState('error');
@@ -104,7 +104,7 @@ export const StationLocator: React.FC<StationLocatorProps> = ({ language }) => {
       },
       (error) => {
         setLoadingState('error');
-        switch(error.code) {
+        switch (error.code) {
           case error.PERMISSION_DENIED:
             setErrorMsg("Location access denied. Please enable location permissions.");
             break;
@@ -138,7 +138,7 @@ export const StationLocator: React.FC<StationLocatorProps> = ({ language }) => {
           Find Nearest <span className="text-teal-600">Police Station</span>
         </h1>
         <p className="text-slate-500 font-medium leading-relaxed">
-          Quickly locate police stations within a 10km radius for immediate assistance. 
+          Quickly locate police stations within a 10km radius for immediate assistance.
           Uses GPS and open data; no location information is stored on our servers.
         </p>
 
@@ -169,7 +169,7 @@ export const StationLocator: React.FC<StationLocatorProps> = ({ language }) => {
           <AlertCircle className="w-10 h-10 text-red-500 mx-auto mb-3" />
           <h3 className="text-red-800 font-bold mb-2">Location Error</h3>
           <p className="text-red-600 text-sm mb-6">{errorMsg}</p>
-          <button 
+          <button
             onClick={findLocation}
             className="px-6 py-2 bg-red-100 text-red-700 rounded-full font-bold hover:bg-red-200 transition-colors"
           >
@@ -192,7 +192,7 @@ export const StationLocator: React.FC<StationLocatorProps> = ({ language }) => {
             <h3 className="font-bold text-slate-800">
               Found {stations.length} stations nearby
             </h3>
-            <button 
+            <button
               onClick={findLocation}
               className="text-xs font-bold text-teal-600 hover:text-teal-700 flex items-center gap-1 bg-teal-50 px-3 py-1.5 rounded-full"
             >
@@ -203,7 +203,7 @@ export const StationLocator: React.FC<StationLocatorProps> = ({ language }) => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {stations.map((station, index) => (
-              <div 
+              <div
                 key={station.id}
                 className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-teal-300 transition-all group flex flex-col justify-between"
               >

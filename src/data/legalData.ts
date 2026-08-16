@@ -520,6 +520,82 @@ export const LEGAL_RIGHTS: LegalRight[] = [
         exactDialogue: '“Puttaswamy ruling ke under digital privacy Article 21 fundamental right hai. Search warrant ke bina phone check nahi hoga.”'
       }
     }
+  },
+  {
+    id: 'search-warrant',
+    title: 'Home Search Requires a Valid Warrant',
+    category: 'search',
+    lawRef: 'Section 105 BNSS / Section 93 CrPC',
+    scJudgment: 'State of Punjab vs Baldev Singh',
+    summary: 'Police cannot arbitrarily enter or search your home without a valid search warrant issued by a Magistrate, except in emergency cases like hot pursuit.',
+    keyPoints: [
+      'A valid Search Warrant must specify the place to be searched.',
+      'Two independent and respectable witnesses of the locality are required (Panch witnesses).',
+      'You have the right to ask for the physical search of the police officers before they enter to prevent planting of evidence.',
+      'A formal search list (Panchnama) must be prepared and a copy given to the occupant.'
+    ],
+    whatPoliceMustDo: [
+      'Produce the original Search Warrant signed by a Magistrate.',
+      'Call two independent witnesses from the neighborhood.',
+      'Allow the occupant to be present during the search.'
+    ],
+    whatPoliceCannotDo: [
+      'Enter without a warrant (unless chasing a dangerous criminal).',
+      'Search female occupants without a female officer present.',
+      'Deny a copy of the seized items list.'
+    ],
+    exactDialogue: '“Under Section 105 BNSS, please show me your Magistrate-issued Search Warrant before entering, and call two independent witnesses as required by law.”',
+    priority: 'high',
+    iconName: 'Search',
+    translations: {
+      hi: {
+        title: 'घर की तलाशी के लिए वारंट अनिवार्य',
+        summary: 'पुलिस बिना मजिस्ट्रेट वारंट के मनमाने ढंग से आपके घर की तलाशी नहीं ले सकती।',
+        exactDialogue: '“बिना मजिस्ट्रेट वारंट के आप अंदर नहीं आ सकते। कृपया कानून के अनुसार दो स्वतंत्र गवाहों को बुलाएं।”'
+      },
+      hinglish: {
+        title: 'Home Search ke liye Warrant Zaroori Hai',
+        summary: 'Bina Magistrate warrant ke police arbitrarily home search nahi kar sakti.',
+        exactDialogue: '“Section 105 BNSS ke mutabik pehle valid Search Warrant dikhayein aur witnesses bulayein.”'
+      }
+    }
+  },
+  {
+    id: 'fundamental-rights-speech',
+    title: 'Right to Free Speech & Peaceful Protest',
+    category: 'fundamental_rights',
+    lawRef: 'Article 19(1)(a) & 19(1)(b) Constitution of India',
+    scJudgment: 'Shreya Singhal vs Union of India',
+    summary: 'Every citizen has the constitutional right to freely express their opinions and assemble peacefully without arms.',
+    keyPoints: [
+      'Right to Freedom of Speech and Expression (Article 19(1)(a)).',
+      'Right to assemble peacefully without arms (Article 19(1)(b)).',
+      'Police cannot arbitrarily arrest you for expressing dissent or criticism of the government online or offline, provided it does not incite violence.',
+      'Section 66A of IT Act has been struck down; you cannot be arrested merely for "offensive" social media posts.'
+    ],
+    whatPoliceMustDo: [
+      'Protect citizens assembling peacefully.',
+      'Respect the constitutional right to dissent.'
+    ],
+    whatPoliceCannotDo: [
+      'Use force or lathi charge on a peaceful, unarmed gathering without prior warning.',
+      'Arrest someone solely for a critical social media post (unless it incites riots/violence).'
+    ],
+    exactDialogue: '“I am exercising my fundamental right to peaceful protest under Article 19. We are unarmed and not inciting any violence.”',
+    priority: 'critical',
+    iconName: 'Volume2',
+    translations: {
+      hi: {
+        title: 'अभिव्यक्ति की स्वतंत्रता और शांतिपूर्ण विरोध का अधिकार',
+        summary: 'प्रत्येक नागरिक को शांतिपूर्ण ढंग से अपनी बात रखने और विरोध प्रदर्शन का संवैधानिक अधिकार है।',
+        exactDialogue: '“मैं अनुच्छेद 19 के तहत अपने शांतिपूर्ण विरोध के मौलिक अधिकार का प्रयोग कर रहा हूँ।”'
+      },
+      hinglish: {
+        title: 'Free Speech aur Peaceful Protest ka Adhikar',
+        summary: 'Citizens ko Article 19 ke under peacefully assemble aur express karne ka right hai.',
+        exactDialogue: '“Article 19 ke tehat yeh mera peaceful protest ka fundamental right hai.”'
+      }
+    }
   }
 ];
 
@@ -2374,82 +2450,6 @@ export const SITUATION_STEPS: SituationStep[] = [
           steps: ['एसडीएम के समक्ष जमानत अर्जी लगाएं; 24 घंटे पार होने पर हाईकोर्ट में याचिका दाखिल करें।'],
           helplineOrPortal: '15100 / 112'
         }
-      }
-    }
-  },
-  {
-    id: 'search-warrant',
-    title: 'Home Search Requires a Valid Warrant',
-    category: 'search',
-    lawRef: 'Section 105 BNSS / Section 93 CrPC',
-    scJudgment: 'State of Punjab vs Baldev Singh',
-    summary: 'Police cannot arbitrarily enter or search your home without a valid search warrant issued by a Magistrate, except in emergency cases like hot pursuit.',
-    keyPoints: [
-      'A valid Search Warrant must specify the place to be searched.',
-      'Two independent and respectable witnesses of the locality are required (Panch witnesses).',
-      'You have the right to ask for the physical search of the police officers before they enter to prevent planting of evidence.',
-      'A formal search list (Panchnama) must be prepared and a copy given to the occupant.'
-    ],
-    whatPoliceMustDo: [
-      'Produce the original Search Warrant signed by a Magistrate.',
-      'Call two independent witnesses from the neighborhood.',
-      'Allow the occupant to be present during the search.'
-    ],
-    whatPoliceCannotDo: [
-      'Enter without a warrant (unless chasing a dangerous criminal).',
-      'Search female occupants without a female officer present.',
-      'Deny a copy of the seized items list.'
-    ],
-    exactDialogue: '“Under Section 105 BNSS, please show me your Magistrate-issued Search Warrant before entering, and call two independent witnesses as required by law.”',
-    priority: 'high',
-    iconName: 'Search',
-    translations: {
-      hi: {
-        title: 'घर की तलाशी के लिए वारंट अनिवार्य',
-        summary: 'पुलिस बिना मजिस्ट्रेट वारंट के मनमाने ढंग से आपके घर की तलाशी नहीं ले सकती।',
-        exactDialogue: '“बिना मजिस्ट्रेट वारंट के आप अंदर नहीं आ सकते। कृपया कानून के अनुसार दो स्वतंत्र गवाहों को बुलाएं।”'
-      },
-      hinglish: {
-        title: 'Home Search ke liye Warrant Zaroori Hai',
-        summary: 'Bina Magistrate warrant ke police arbitrarily home search nahi kar sakti.',
-        exactDialogue: '“Section 105 BNSS ke mutabik pehle valid Search Warrant dikhayein aur witnesses bulayein.”'
-      }
-    }
-  },
-  {
-    id: 'fundamental-rights-speech',
-    title: 'Right to Free Speech & Peaceful Protest',
-    category: 'fundamental_rights',
-    lawRef: 'Article 19(1)(a) & 19(1)(b) Constitution of India',
-    scJudgment: 'Shreya Singhal vs Union of India',
-    summary: 'Every citizen has the constitutional right to freely express their opinions and assemble peacefully without arms.',
-    keyPoints: [
-      'Right to Freedom of Speech and Expression (Article 19(1)(a)).',
-      'Right to assemble peacefully without arms (Article 19(1)(b)).',
-      'Police cannot arbitrarily arrest you for expressing dissent or criticism of the government online or offline, provided it does not incite violence.',
-      'Section 66A of IT Act has been struck down; you cannot be arrested merely for "offensive" social media posts.'
-    ],
-    whatPoliceMustDo: [
-      'Protect citizens assembling peacefully.',
-      'Respect the constitutional right to dissent.'
-    ],
-    whatPoliceCannotDo: [
-      'Use force or lathi charge on a peaceful, unarmed gathering without prior warning.',
-      'Arrest someone solely for a critical social media post (unless it incites riots/violence).'
-    ],
-    exactDialogue: '“I am exercising my fundamental right to peaceful protest under Article 19. We are unarmed and not inciting any violence.”',
-    priority: 'critical',
-    iconName: 'Volume2',
-    translations: {
-      hi: {
-        title: 'अभिव्यक्ति की स्वतंत्रता और शांतिपूर्ण विरोध का अधिकार',
-        summary: 'प्रत्येक नागरिक को शांतिपूर्ण ढंग से अपनी बात रखने और विरोध प्रदर्शन का संवैधानिक अधिकार है।',
-        exactDialogue: '“मैं अनुच्छेद 19 के तहत अपने शांतिपूर्ण विरोध के मौलिक अधिकार का प्रयोग कर रहा हूँ।”'
-      },
-      hinglish: {
-        title: 'Free Speech aur Peaceful Protest ka Adhikar',
-        summary: 'Citizens ko Article 19 ke under peacefully assemble aur express karne ka right hai.',
-        exactDialogue: '“Article 19 ke tehat yeh mera peaceful protest ka fundamental right hai.”'
       }
     }
   }
