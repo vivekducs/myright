@@ -4,6 +4,7 @@ import { Shield, Car, ShieldAlert, FileText, Smartphone, UserCheck, Search, Arro
 import { ThreeDCard } from './ThreeDCard';
 import { SupportedLanguage } from '../types';
 import { getT } from '../data/translations';
+import { AudioTranscriber } from './AudioTranscriber';
 
 interface HeroSectionProps {
   searchQuery: string;
@@ -189,14 +190,23 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 placeholder={t.searchPlaceholder}
                 className="w-full bg-transparent text-xs sm:text-base font-bold text-[#1A3841] placeholder:text-[#458393]/70 focus:outline-hidden py-1.5"
               />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery('')}
-                  className="px-4 py-1.5 rounded-full bg-[#E5CB90]/60 hover:bg-[#E5CB90] text-xs font-black text-[#1A3841] cursor-pointer transition-colors mr-1"
-                >
-                  Clear
-                </button>
-              )}
+              <div className="flex items-center gap-1.5 mr-1">
+                <AudioTranscriber
+                  variant="inline"
+                  onTranscribed={(transcript) => {
+                    setSearchQuery(transcript);
+                    onSelectCategory('all');
+                  }}
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="px-3 py-1 rounded-full bg-[#E5CB90]/60 hover:bg-[#E5CB90] text-xs font-black text-[#1A3841] cursor-pointer transition-colors"
+                  >
+                    Clear
+                  </button>
+                )}
+              </div>
             </div>
 
             {/* 4-Step Legal Shield Workflow Pills */}

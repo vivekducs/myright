@@ -30,11 +30,11 @@ export const Navbar: React.FC<NavbarProps> = ({
   const navItems = [
     { id: 'situations', label: t.navSituations, icon: Compass, badge: '30s Guide' },
     { id: 'guidebook', label: t.navGuidebook || 'Digital Book', icon: BookMarked, isSpecial: true },
+    { id: 'ai-advisor', label: t.navAIAdvisor || 'AI Legal Shield', icon: Sparkles, badge: 'Live AI & Chat' },
     { id: 'rights', label: t.navRights, icon: BookOpen },
     { id: 'departments', label: t.navDepartments, icon: Building2 },
     { id: 'dk-basu', label: t.navDKBasu, icon: Shield },
     { id: 'scripts', label: t.navScripts, icon: MessageSquareText },
-    { id: 'ai-advisor', label: t.navAIAdvisor, icon: Shield },
     { id: 'pocket-pass', label: t.navPocketPass, icon: FileBadge },
     { id: 'quiz', label: t.navQuiz, icon: HelpCircle },
   ];

@@ -230,5 +230,126 @@ export const SCRIPTS_DATA: ScriptDialogue[] = [
         tip: 'घबराएं नहीं, स्वतंत्र पड़ोसियों को बुलाएं और हर वस्तु की जब्ती सूची (Panchanama) बनवाएं।'
       }
     }
+  },
+  {
+    id: 'script-traffic-key-snatch',
+    scenario: 'Traffic cop reaches inside vehicle to snatch your ignition key or threatens to tow while you are seated',
+    category: 'traffic',
+    policeAsks: '“Switch off the engine! Give me the keys or I will tow your vehicle right now!”',
+    citizenResponseEnglish: '“Officer, under the Motor Vehicles Act and police conduct rules, police have no legal authority to snatch keys from a vehicle or tow while an occupant is seated inside (Sec 127 MVA). Here are my valid digital documents on DigiLocker/mParivahan.”',
+    citizenResponseHindi: '“सर, मोटर वाहन अधिनियम और पुलिस आचरण नियमों के अनुसार आप गाड़ी की चाबी नहीं छीन सकते और न ही अंदर बैठे व्यक्ति के साथ गाड़ी टो कर सकते हैं। मैं डिजीलॉकर पर वैध दस्तावेज दिखा रहा हूँ।”',
+    citizenResponses: {
+      en: '“Officer, under the Motor Vehicles Act and police conduct rules, police have no legal authority to snatch keys from a vehicle or tow while an occupant is seated inside (Sec 127 MVA). Here are my valid digital documents on DigiLocker/mParivahan.”',
+      hi: '“सर, मोटर वाहन अधिनियम और पुलिस आचरण नियमों के अनुसार आप गाड़ी की चाबी नहीं छीन सकते और न ही अंदर बैठे व्यक्ति के साथ गाड़ी टो कर सकते हैं। मैं डिजीलॉकर पर वैध दस्तावेज दिखा रहा हूँ।”',
+      te: '“సార్, మోటార్ వెహికల్ యాక్ట్ ప్రకారం వాహనం కీ లాక్కోవడం లేదా లోపల కూర్చున్నప్పుడు టో చేయడం చట్టవిరుద్ధం. నేను డిజిలాకర్‌లో పత్రాలు చూపిస్తున్నాను.”',
+      ta: '“ஐயா, மோட்டார் வாகனச் சட்டப்படி சாவியைப் பறிக்கவோ அல்லது ஆட்கள் உள்ளே இருக்கும்போது வண்டியை இழுத்துச் செல்லவோ உங்களுக்கு அதிகாரமில்லை.”',
+      bn: '“স্যার, মোটর ভেহিকল আইন অনুযায়ী গাড়ির চাবি কেড়ে নেওয়া বা ভেতরে চালক থাকা অবস্থায় টো করা বেআইনি। আমি ডিজিলকার দেখাচ্ছি।”',
+      mr: '“साहेब, मोटार वाहन कायद्यानुसार गाडीची चावी हिसकावून घेणे किंवा आत बसलेले असताना टो करणे बेकायदेशीर आहे. मी डिजीलाँकरवर कागदपत्रे दाखवत आहे.”',
+      gu: '“સાહેબ, મોટર વ્હીકલ એક્ટ મુજબ વાહનની ચાવી છીનવી લેવી કે અંદર બેઠા હોઈએ ત્યારે ટો કરવું ગેરકાયદેસર છે.”',
+      kn: '“ಸರ್, ಮೋಟಾರು ವಾಹನ ಕಾಯ್ದೆಯಡಿ ಕೀ ಕಿತ್ತುಕೊಳ್ಳುವುದು ಅಥವಾ ಒಳಗೆ ಕುಳಿತಿರುವಾಗ ವಾಹನ ಟೋ ಮಾಡುವುದು ಅಕ್ರಮ. ನಾನು ಡಿಜಿಲಾಕರ್‌ನಲ್ಲಿ ದಾಖಲೆ ತೋರಿಸುತ್ತಿದ್ದೇನೆ.”',
+      ml: '“സാർ, മോട്ടോർ വാഹന നിയമപ്രകാരം താക്കോൽ ഊരിയെടുക്കാനോ ആളുകൾ ഉള്ളിലിരിക്കുമ്പോൾ വാഹനം ടോ ചെയ്യാനോ പാടില്ല.”',
+      pa: '“ਸਰ, ਮੋਟਰ ਵਹੀਕਲ ਐਕਟ ਅਨੁਸਾਰ ਚਾਬੀ ਖੋਹਣਾ ਜਾਂ ਅੰਦਰ ਬੈਠੇ ਹੋਣ ਵੇਲੇ ਗੱਡੀ ਟੋਅ ਕਰਨਾ ਗੈਰ-ਕਾਨੂੰਨੀ ਹੈ।”',
+      hinglish: '“Sir, Motor Vehicles Act ke under key snatch karna aur seated person ke sath tow karna strictly prohibited hai. Main DigiLocker documents verify karwa raha hoon.”',
+    },
+    legalBasis: 'Motor Vehicles Act Section 127, IT Act Sec 4 & MoRTH Circulars',
+    tip: 'Keep your car windows rolled up with a 2-inch crack to communicate calmly.',
+    translations: {
+      hi: {
+        scenario: 'ट्रैफिक पुलिस गाड़ी की चाबी निकाले या अंदर बैठे गाड़ी टो करने की धमकी दे',
+        policeAsks: '“गाड़ी बंद करो, चाबी दो वरना अभी गाड़ी क्रेन से उठवा दूंगा!”',
+        tip: 'खिड़की को केवल 2 इंच खोलकर बात करें और डिजीलॉकर से कागजात दिखाएं।'
+      }
+    }
+  },
+  {
+    id: 'script-informal-summons',
+    scenario: 'Police officer calls you on phone: “Come to the police station immediately or face consequences”',
+    category: 'arrest',
+    policeAsks: '“Tu kal subah 10 baje thane aa, warna ghar se utha lenge!”',
+    citizenResponseEnglish: '“Officer, under Section 35(3) of the Bharatiya Nagarik Suraksha Sanhita (BNSS) / Section 41A CrPC, please issue a written Notice of Appearance specifying the matter and GD/FIR number. I will gladly appear with my legal counsel upon receiving the formal notice.”',
+    citizenResponseHindi: '“सर, बीएनएसएस की धारा 35(3) (पूर्व 41A) के तहत कृपया मुझे लिखित नोटिस (Notice of Appearance) और एफआईआर/जीडी नंबर भेजें। औपचारिक नोटिस मिलते ही मैं अपने वकील के साथ उपस्थित हो जाऊंगा।”',
+    citizenResponses: {
+      en: '“Officer, under Section 35(3) of the Bharatiya Nagarik Suraksha Sanhita (BNSS) / Section 41A CrPC, please issue a written Notice of Appearance specifying the matter and GD/FIR number. I will gladly appear with my legal counsel upon receiving the formal notice.”',
+      hi: '“सर, बीएनएसएस की धारा 35(3) (पूर्व 41A) के तहत कृपया मुझे लिखित नोटिस (Notice of Appearance) और एफआईआर/जीडी नंबर भेजें। औपचारिक नोटिस मिलते ही मैं अपने वकील के साथ उपस्थित हो जाऊंगा।”',
+      te: '“సార్, BNSS సెక్షన్ 35(3) కింద రాతపూర్వక నోటీసు పంపండి. అధికారిక నోటీసు అందిన వెంటనే నేను న్యాయవాదితో కలిసి హాజరవుతాను.”',
+      ta: '“ஐயா, சட்டப்படி பிரிவு 35(3) BNSS-ன் கீழ் எழுத்துப்பூர்வமான முறையான நோட்டீஸ் அனுப்பவும். அதன் பிறகு வழக்கறிஞருடன் நேரில் வருகிறேன்.”',
+      bn: '“স্যার, বিএনএসএস ধারা ৩৫(৩) অনুযায়ী আমাকে লিখিত নোটিশ পাঠান। লিখিত নোটিশ পেলে আমি আমার আইনজীবীর সাথে উপস্থিত হব।”',
+      mr: '“साहेब, BNSS कलम ३५(३) नुसार मला लेखी नोटीस पाठवा. औपचारिक नोटीस मिळाल्यावर मी माझ्या वकीलासह उपस्थित राहीन.”',
+      gu: '“સાહેબ, કલમ ૩૫(૩) હેઠળ લેખિત નોટિસ મોકલો. નોટિસ મળ્યા પછી હું મારા વકીલ સાથે હાજર થઈશ.”',
+      kn: '“ಸರ್, ಬಿಎನ್‌ಎಸ್‌ಎಸ್ ಸೆಕ್ಷನ್ 35(3) ಅಡಿಯಲ್ಲಿ ಲಿಖಿತ ನೋಟಿಸ್ ಕಳುಹಿಸಿ. ನೋಟಿಸ್ ಸಿಕ್ಕ ನಂತರ ನನ್ನ ವಕೀಲರೊಂದಿಗೆ ಬರುತ್ತೇನೆ.”',
+      ml: '“സാർ, ബിഎൻഎസ്എസ് സെക്ഷൻ 35(3) പ്രകാരം രേഖാമൂലമുള്ള നോട്ടീസ് അയക്കുക. ഔദ്യോഗിക നോട്ടീസ് കിട്ടിയാൽ അഭിഭാഷകനോടൊപ്പം ഹാജരാകാം.”',
+      pa: '“ਸਰ, BNSS ਦੀ ਧਾਰਾ 35(3) ਅਧੀਨ ਲਿਖਤੀ ਨੋਟਿਸ ਭੇਜੋ। ਨੋਟਿਸ ਮਿਲਣ ਤੇ ਮੈਂ ਵਕੀਲ ਨਾਲ ਹਾਜ਼ਰ ਹੋਵਾਂਗਾ।”',
+      hinglish: '“Sir, Section 35(3) BNSS ke under formal written Notice of Appearance aur FIR/GD number issue karein. Formal notice aate hi main lawyer ke saath present ho jaunga.”',
+    },
+    legalBasis: 'Section 35(3) BNSS 2023 & Arnesh Kumar Guidelines',
+    tip: 'Never go alone to a police station on an unrecorded verbal phone summons.',
+    translations: {
+      hi: {
+        scenario: 'पुलिस फोन करके धमकाए कि तुरंत थाने हाजिर हो जाओ',
+        policeAsks: '“थाने आओ तुरंत, नहीं तो घर से उठा लेंगे!”',
+        tip: 'फोन कॉल पर कभी अकेले थाने न जाएं। हमेशा लिखित नोटिस 35(3) BNSS की मांग करें।'
+      }
+    }
+  },
+  {
+    id: 'script-coerced-blank-paper',
+    scenario: 'Police officers threaten you to sign blank papers or pre-typed self-incriminating confessions',
+    category: 'fundamental_rights',
+    policeAsks: '“Sign this confession paper right now or we will send you to jail!”',
+    citizenResponseEnglish: '“Officer, under Article 20(3) of the Constitution and Section 23 of Bharatiya Sakshya Adhiniyam (BSA), no person can be compelled to be a witness against themselves, and police confessions are inadmissible in court. I reserve my right to consult my advocate.”',
+    citizenResponseHindi: '“सर, संविधान के आर्टिकल 20(3) और भारतीय साक्ष्य अधिनियम की धारा 23 के तहत किसी को खुद के खिलाफ गवाही या सादे कागज पर दस्तखत के लिए मजबूर नहीं किया जा सकता। मैं केवल अपने वकील की मौजूदगी में ही बयान दूंगा।”',
+    citizenResponses: {
+      en: '“Officer, under Article 20(3) of the Constitution and Section 23 of Bharatiya Sakshya Adhiniyam (BSA), no person can be compelled to be a witness against themselves, and police confessions are inadmissible in court. I reserve my right to consult my advocate.”',
+      hi: '“सर, संविधान के आर्टिकल 20(3) और भारतीय साक्ष्य अधिनियम की धारा 23 के तहत किसी को खुद के खिलाफ गवाही या सादे कागज पर दस्तखत के लिए मजबूर नहीं किया जा सकता। मैं केवल अपने वकील की मौजूदगी में ही बयान दूंगा।”',
+      te: '“సార్, రాజ్యాంగంలోని ఆర్టికల్ 20(3) ప్రకారం పోలీసుల ముందు ఇచ్చే ఒప్పుకోలు చెల్లదు. నేను న్యాయవాది సమక్షంలో మాత్రమే సంతకం చేస్తాను.”',
+      ta: '“ஐயா, அரசியலமைப்பு பிரிவு 20(3)-ன் படி ஒப்புதல் வாக்குமூலத்தில் கட்டாயப்படுத்தி கையெழுத்து வாங்க முடியாது. நீதிமன்றத்தில் இது செல்லாது.”',
+      bn: '“স্যার, সংবিধানের ২০(৩) অনুচ্ছেদ অনুযায়ী পুলিশি জবানবন্দি আদালতে অগ্রহণযোগ্য। আমি আইনজীবীর উপস্থিতি ছাড়া স্বাক্ষর করব না।”',
+      mr: '“साहेब, कलम २०(३) नुसार कोऱ्या कागदावर स्वाक्षरी करण्यास सक्ती करता येत नाही. मी केवळ माझ्या वकिलांच्या उपस्थितीतच साक्ष देईन.”',
+      gu: '“સાહેબ, બંધારણની કલમ ૨૦(૩) મુજબ કોઈને પોતાની વિરુદ્ધ કબૂલાત કરવા દબાણ કરી શકાતું નથી.”',
+      kn: '“ಸರ್, ವಿಧಿ 20(3) ರ ಪ್ರಕಾರ ಪೊಲೀಸ್ ಎದುರು ನೀಡುವ ಹೇಳಿಕೆ ನ್ಯಾಯಾಲಯದಲ್ಲಿ ಮಾನ್ಯವಲ್ಲ. ವಕೀಲರಿಲ್ಲದೆ ನಾನು ಸಹಿ ಹಾಕುವುದಿಲ್ಲ.”',
+      ml: '“സാർ, ഭരണഘടനയുടെ ആർട്ടിക്കിൾ 20(3) പ്രകാരം സ്വയം കുറ്റസമ്മതം നടത്താൻ നിർബന്ധിക്കാൻ കഴിയില്ല.”',
+      pa: '“ਸਰ, ਧਾਰਾ 20(3) ਅਧੀਨ ਪੁਲਿਸ ਹਿਰਾਸਤ ਵਿੱਚ ਲਿਆ ਬਿਆਨ ਅਦਾਲਤ ਵਿੱਚ ਜਾਇਜ਼ ਨਹੀਂ ਹੈ।”',
+      hinglish: '“Sir, Article 20(3) and Section 23 BSA ke under forced confession inadmissible hai. Main advocate ke absence mein blank paper par sign nahi karunga.”',
+    },
+    legalBasis: 'Article 20(3) Constitution & Section 23 Bharatiya Sakshya Adhiniyam (BSA)',
+    tip: 'If forced under duress, immediately retract the statement before the Judicial Magistrate within 24 hours.',
+    translations: {
+      hi: {
+        scenario: 'पुलिस सादे कागज पर या जुर्म कबूलने के लिए जबरन हस्ताक्षर कराने का दबाव बनाए',
+        policeAsks: '“इस कागज पर दस्तखत कर, नहीं तो अंदर कर देंगे!”',
+        tip: 'मजिस्ट्रेट के सामने पहली पेशी पर ही चिल्लाकर बताएं कि दस्तखत जबरन लिए गए थे।'
+      }
+    }
+  },
+  {
+    id: 'script-moral-policing',
+    scenario: 'Police harass consenting adult couple in public park or hotel and threaten to call parents',
+    category: 'women_child',
+    policeAsks: '“Who is this with you? Are you married? Give me your parents phone number!”',
+    citizenResponseEnglish: '“Officer, we are consenting adults. Under Article 21 and the Supreme Court ruling in Shafin Jahan, adults have the fundamental right to associate and socialize peacefully. There is no law requiring marriage certificates or parent verification in public.”',
+    citizenResponseHindi: '“सर, हम दोनों बालिग (वयस्क) नागरिक हैं। सुप्रीम कोर्ट के फैसलों और आर्टिकल 21 के तहत शांतिपूर्वक साथ बैठना या घूमना हमारा मौलिक अधिकार है। किसी कानून में माता-पिता को फोन करने या शादी का सबूत मांगने का प्रावधान नहीं है।”',
+    citizenResponses: {
+      en: '“Officer, we are consenting adults. Under Article 21 and the Supreme Court ruling in Shafin Jahan, adults have the fundamental right to associate and socialize peacefully. There is no law requiring marriage certificates or parent verification in public.”',
+      hi: '“सर, हम दोनों बालिग (वयस्क) नागरिक हैं। सुप्रीम कोर्ट के फैसलों और आर्टिकल 21 के तहत शांतिपूर्वक साथ बैठना या घूमना हमारा मौलिक अधिकार है। किसी कानून में माता-पिता को फोन करने या शादी का सबूत मांगने का प्रावधान नहीं है।”',
+      te: '“సార్, మేము వయోజనులం. ఆర్టికల్ 21 ప్రకారం శాంతియుతంగా కలిసి ఉండటం మా ప్రాథమిక హక్కు. తల్లిదండ్రులకు ఫోన్ చేయమని చట్టంలో లేదు.”',
+      ta: '“ஐயா, நாங்கள் இருவரும் மேஜர். அரசியலமைப்பு பிரிவு 21-ன் படி ஒன்றாக நடமாட எங்களுக்கு முழு சுதந்திரம் உள்ளது.”',
+      bn: '“স্যার, আমরা প্রাপ্তবয়স্ক। সংবিধানের ২১ অনুচ্ছেদ অনুযায়ী শান্তিতে মেলামেশা করা আমাদের অধিকার। কোনো আইন ভঙ্গ হয়নি।”',
+      mr: '“साहेब, आम्ही सज्ञान नागरिक आहोत. कलम २१ नुसार शांततेत फिरणे हा आमचा मूलभूत हक्क आहे. पालकांना फोन करण्याचा नियम नाही.”',
+      gu: '“સાહેબ, અમે પુખ્ત વયના છીએ. કલમ ૨૧ હેઠળ શાંતિથી સાથે રહેવું અમારો મૂળભૂત અધિકાર છે.”',
+      kn: '“ಸರ್, ನಾವಿಬ್ಬರೂ ವಯಸ್ಕರು. ವಿಧಿ 21 ರ ಪ್ರಕಾರ ಒಟ್ಟಿಗೆ ಓಡಾಡುವುದು ನಮ್ಮ ಸಾಂವಿಧಾನಿಕ ಹಕ್ಕು.”',
+      ml: '“സാർ, ഞങ്ങൾ പ്രായപൂർത്തിയായവരാണ്. ആർട്ടിക്കിൾ 21 പ്രകാരം ഒരുമിച്ചു സഞ്ചരിക്കാൻ ഞങ്ങൾക്ക് അവകാശമുണ്ട്.”',
+      pa: '“ਸਰ, ਅਸੀਂ ਬਾਲਗ ਹਾਂ। ਧਾਰਾ 21 ਅਧੀਨ ਇਕੱਠੇ ਘੁੰਮਣਾ ਸਾਡਾ ਸੰਵਿਧਾਨਕ ਅਧਿਕਾਰ ਹੈ।”',
+      hinglish: '“Sir, hum dono consenting adults hain. Supreme Court ke judgments aur Article 21 ke under adults ko freely roam karne ka right hai. Parents ko call karne ka koi legal provision nahi hai.”',
+    },
+    legalBasis: 'Article 21 Constitution & Shafin Jahan v. Asokan K.M. (2018)',
+    tip: 'Stay composed, do not pay unauthorized on-the-spot hush money, and note officer names.',
+    translations: {
+      hi: {
+        scenario: 'पार्क या होटल में बालिग जोड़े को पुलिस रोके और माता-पिता को फोन करने की धमकी दे',
+        policeAsks: '“शादीशुदा हो? चलो अपने माता-पिता का नंबर दो!”',
+        tip: 'घबराएं नहीं, रिश्वत न दें। शांतिपूर्वक बताएं कि वयस्क नागरिकों को साथ घूमने की आजादी है।'
+      }
+    }
   }
 ];
+

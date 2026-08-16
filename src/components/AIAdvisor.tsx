@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
-import { Bot, Send, Sparkles, AlertCircle, ShieldCheck, CheckCircle2, XCircle, MessageSquare, Scale, Loader2, Volume2, RefreshCw } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Bot, Send, Sparkles, AlertCircle, ShieldCheck, CheckCircle2, XCircle, MessageSquare, Scale, Loader2, Volume2, Radio, Globe, MessageSquareText, Mic, ExternalLink, Link } from 'lucide-react';
 import { ThreeDCard } from './ThreeDCard';
 import { SupportedLanguage } from '../types';
 import { getT, LANGUAGE_OPTIONS } from '../data/translations';
+import { GeminiChatbot } from './GeminiChatbot';
+import { GeminiLiveVoice } from './GeminiLiveVoice';
+import { StatutorySearchGrounding } from './StatutorySearchGrounding';
+import { AudioTranscriber } from './AudioTranscriber';
+import { MarkdownRenderer } from './MarkdownRenderer';
 
 interface AIAdvisorProps {
   language: SupportedLanguage;
@@ -19,10 +24,14 @@ interface AIResponse {
   legalArticles?: string[];
   officerObligations?: string;
   emergencyHelpline?: string;
+  relatedSources?: { title: string; url: string; description?: string; department?: string }[];
   isUrgent?: boolean;
 }
 
+type AIAdvisorMode = 'advisor' | 'chat' | 'live-voice' | 'search-grounding';
+
 export const AIAdvisor: React.FC<AIAdvisorProps> = ({ language }) => {
+  const [activeMode, setActiveMode] = useState<AIAdvisorMode>('chat');
   const [question, setQuestion] = useState('');
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<AIResponse | null>(null);
@@ -137,7 +146,6 @@ export const AIAdvisor: React.FC<AIAdvisorProps> = ({ language }) => {
       setResponse(data);
     } catch (err: any) {
       console.error('AI Advisor error:', err);
-      // Fallback robust local response generator if API fails
       setResponse({
         summary: `Under Article 21 and Supreme Court judgments (D.K. Basu & Lalita Kumari), you have guaranteed legal protections regarding: "${q}".`,
         whatToDoNow: [
@@ -157,7 +165,7 @@ export const AIAdvisor: React.FC<AIAdvisorProps> = ({ language }) => {
             : 'Officer, I am cooperating fully with the law. Kindly follow statutory procedure and provide an official memo/receipt.',
         legalProvisions: [
           { law: 'Article 21, Constitution of India', explanation: 'Right to life, dignity, and fair procedural due process.' },
-          { law: 'Section 41B CrPC / BNSS 35', explanation: 'Mandatory arrest memo and identification badges for officers.' },
+          { law: 'Section 35 BNSS 2023 / Section 41B CrPC', explanation: 'Mandatory arrest memo and identification badges for officers.' },
           { law: 'D.K. Basu v. State of West Bengal', explanation: 'Binding Supreme Court 11-point procedural safeguards.' },
         ],
         emergencyHelpline: '112 (National Emergency) / 15100 (Free Legal Aid)',
@@ -189,15 +197,16 @@ export const AIAdvisor: React.FC<AIAdvisorProps> = ({ language }) => {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+      
+      {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E5CB90]/60 pb-4">
         <div>
-          <div className="flex items-center gap-2 mb-1.5">
+          <div className="flex items-center gap-2 mb-1.5 flex-wrap">
             <span className="px-4 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-[#458393] text-white shadow-xs">
-              AI Legal Guardian
+              AI Legal Suite
             </span>
             <span className="text-xs font-bold text-[#34A99D] px-3 py-0.5 rounded-full bg-[#34A99D]/15">
-              Trained on Indian Constitution, BNSS & Supreme Court Rulings
+              Powered by Gemini (3.5 Flash • 3.1 Flash Lite • 3.1 Pro • Live API)
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-black text-[#1A3841] tracking-tight">
@@ -208,214 +217,390 @@ export const AIAdvisor: React.FC<AIAdvisorProps> = ({ language }) => {
           </p>
         </div>
 
-        <div className="inline-flex items-center gap-2 bg-[#E5CB90]/50 px-4 py-2 rounded-full border-2 border-[#E5CB90] text-xs font-black text-[#1A3841] shadow-xs">
+        <div className="inline-flex items-center gap-2 bg-[#E5CB90]/50 px-4 py-2 rounded-full border-2 border-[#E5CB90] text-xs font-black text-[#1A3841] shadow-xs self-start sm:self-center">
           <span>{langConfig.flag}</span>
           <span>Response Language: {langConfig.name}</span>
         </div>
       </div>
 
-      {/* Query Input Card */}
-      <div className="p-6 sm:p-8 rounded-[36px] bg-[#FFF3C8] border-2 border-[#E5CB90] shadow-xl space-y-4">
-        <label className="block text-sm font-black text-[#1A3841]">
-          Describe your immediate situation or legal question:
-        </label>
-        
-        <div className="relative">
-          <textarea
-            id="ai-advisor-query-input"
-            rows={3}
-            value={question}
-            onChange={(e) => setQuestion(e.target.value)}
-            placeholder="e.g. Police stopped my car at night, snatched keys and asking to unlock my phone without warrant..."
-            className="w-full p-4 sm:p-5 rounded-3xl bg-white border-2 border-[#E5CB90] text-sm sm:text-base font-semibold text-[#1A3841] focus:outline-hidden focus:border-[#34A99D] shadow-inner placeholder-[#458393]/60"
-          />
-        </div>
-
-        {/* Quick Sample Scenarios Pills */}
-        <div className="space-y-2">
-          <span className="text-xs font-black uppercase tracking-wider text-[#458393] block">
-            Tap a common scenario to assess immediately:
+      {/* Sub-Mode Navigation Tabs */}
+      <div className="flex items-center gap-2 overflow-x-auto p-1.5 rounded-3xl bg-[#E5CB90]/35 border-2 border-[#E5CB90] shadow-xs">
+        <button
+          id="mode-tab-chat"
+          onClick={() => setActiveMode('chat')}
+          className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-black transition-all cursor-pointer whitespace-nowrap ${
+            activeMode === 'chat'
+              ? 'bg-[#1A3841] text-[#FFF3C8] shadow-md -translate-y-0.5'
+              : 'text-[#1A3841] hover:bg-[#FFF3C8]'
+          }`}
+        >
+          <MessageSquareText className="w-4 h-4 text-[#34A99D]" />
+          <span>Gemini Multi-Turn Chatbot</span>
+          <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#34A99D]/20 text-teal-800">
+            gemini-3.5-flash / 3.1-pro
           </span>
-          <div className="flex flex-wrap gap-2">
-            {sampleScenarios.map((sc, i) => (
-              <button
-                key={i}
-                onClick={() => {
-                  setQuestion(sc);
-                  handleAsk(sc);
-                }}
-                className="text-left text-xs font-bold px-4 py-2 rounded-full bg-white/90 hover:bg-[#E5CB90]/60 border-2 border-[#E5CB90] hover:border-[#34A99D] text-[#1A3841] transition-all cursor-pointer shadow-2xs hover:scale-[1.02]"
-              >
-                ⚡ {sc}
-              </button>
-            ))}
-          </div>
-        </div>
+        </button>
 
-        {/* Submit button */}
-        <div className="flex justify-end pt-2">
-          <button
-            id="ask-ai-submit-btn"
-            onClick={() => handleAsk()}
-            disabled={loading || !question.trim()}
-            className="flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#34A99D] to-[#458393] hover:from-[#34A99D] hover:to-[#1A3841] text-white font-black text-sm sm:text-base shadow-md hover:shadow-xl hover:-translate-y-0.5 disabled:opacity-50 transition-all cursor-pointer"
-          >
-            {loading ? (
-              <>
-                <Loader2 className="w-5 h-5 animate-spin" />
-                <span>Analyzing Indian Law...</span>
-              </>
-            ) : (
-              <>
-                <Send className="w-5 h-5" />
-                <span>Get Legal Assessment</span>
-              </>
-            )}
-          </button>
-        </div>
+        <button
+          id="mode-tab-live-voice"
+          onClick={() => setActiveMode('live-voice')}
+          className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-black transition-all cursor-pointer whitespace-nowrap ${
+            activeMode === 'live-voice'
+              ? 'bg-gradient-to-r from-emerald-600 to-teal-700 text-white shadow-md -translate-y-0.5'
+              : 'text-[#1A3841] hover:bg-[#FFF3C8]'
+          }`}
+        >
+          <Radio className="w-4 h-4 text-emerald-300 animate-pulse" />
+          <span>Live Voice Conversations</span>
+          <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-900 font-extrabold">
+            Live API
+          </span>
+        </button>
+
+        <button
+          id="mode-tab-search-grounding"
+          onClick={() => setActiveMode('search-grounding')}
+          className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-black transition-all cursor-pointer whitespace-nowrap ${
+            activeMode === 'search-grounding'
+              ? 'bg-blue-700 text-white shadow-md -translate-y-0.5'
+              : 'text-[#1A3841] hover:bg-[#FFF3C8]'
+          }`}
+        >
+          <Globe className="w-4 h-4 text-blue-200" />
+          <span>Google Search Grounding</span>
+          <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-100 text-blue-900">
+            gemini-3.5-flash
+          </span>
+        </button>
+
+        <button
+          id="mode-tab-advisor"
+          onClick={() => setActiveMode('advisor')}
+          className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-black transition-all cursor-pointer whitespace-nowrap ${
+            activeMode === 'advisor'
+              ? 'bg-[#458393] text-white shadow-md -translate-y-0.5'
+              : 'text-[#1A3841] hover:bg-[#FFF3C8]'
+          }`}
+        >
+          <Bot className="w-4 h-4 text-[#FFF3C8]" />
+          <span>Structured 30s Advisor</span>
+        </button>
       </div>
 
-      {/* Structured AI Advisory Output Card */}
-      {response && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <ThreeDCard className="w-full">
-            <div className="p-6 sm:p-8 rounded-[36px] bg-[#FFF3C8] border-2 border-[#34A99D] shadow-2xl space-y-6">
+      {/* Render Mode Content */}
+      <AnimatePresence mode="wait">
+        
+        {/* Mode 1: Gemini Chatbot */}
+        {activeMode === 'chat' && (
+          <motion.div
+            key="chat"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.2 }}
+          >
+            <GeminiChatbot language={language} />
+          </motion.div>
+        )}
+
+        {/* Mode 2: Live Voice Conversations (Live API) */}
+        {activeMode === 'live-voice' && (
+          <motion.div
+            key="live-voice"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.2 }}
+          >
+            <GeminiLiveVoice language={language} />
+          </motion.div>
+        )}
+
+        {/* Mode 3: Google Search Grounding Verifier */}
+        {activeMode === 'search-grounding' && (
+          <motion.div
+            key="search-grounding"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.2 }}
+          >
+            <StatutorySearchGrounding language={language} />
+          </motion.div>
+        )}
+
+        {/* Mode 4: Structured Single-Assessment Advisor */}
+        {activeMode === 'advisor' && (
+          <motion.div
+            key="advisor"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.2 }}
+            className="space-y-6"
+          >
+            {/* Query Input Card with Audio Transcription */}
+            <div className="p-6 sm:p-8 rounded-[36px] bg-[#FFF3C8] border-2 border-[#E5CB90] shadow-xl space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <label className="block text-sm font-black text-[#1A3841]">
+                  Describe your immediate situation or legal question:
+                </label>
+                <AudioTranscriber
+                  buttonLabel="Voice Input (gemini-3.5-flash)"
+                  onTranscribed={(transcript) => {
+                    setQuestion(transcript);
+                    handleAsk(transcript);
+                  }}
+                />
+              </div>
               
-              {/* Header Box */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#E5CB90]">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#34A99D] to-[#458393] text-white flex items-center justify-center shadow-md ring-2 ring-[#FFF3C8]">
-                    <Bot className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl sm:text-2xl font-black text-[#1A3841]">
-                      Legal Assessment & Action Plan
-                    </h3>
-                    <p className="text-xs text-[#458393] font-bold">
-                      Constitution of India & Bharatiya Nagarik Suraksha Sanhita (BNSS)
-                    </p>
-                  </div>
-                </div>
-
-                {response.emergencyHelpline && (
-                  <div className="px-4 py-2 rounded-full bg-red-100 border border-red-300 text-red-800 text-xs font-black self-start sm:self-center shadow-2xs">
-                    Helpline: {response.emergencyHelpline}
-                  </div>
-                )}
+              <div className="relative">
+                <textarea
+                  id="ai-advisor-query-input"
+                  rows={3}
+                  value={question}
+                  onChange={(e) => setQuestion(e.target.value)}
+                  placeholder="e.g. Police stopped my car at night, snatched keys and asking to unlock my phone without warrant..."
+                  className="w-full p-4 sm:p-5 rounded-3xl bg-white border-2 border-[#E5CB90] text-sm sm:text-base font-semibold text-[#1A3841] focus:outline-hidden focus:border-[#34A99D] shadow-inner placeholder-[#458393]/60"
+                />
               </div>
 
-              {/* Summary Statement */}
-              {response.summary && (
-                <div className="p-5 rounded-3xl bg-[#E5CB90]/40 border-2 border-[#E5CB90] text-sm sm:text-base font-bold text-[#1A3841] leading-relaxed">
-                  {response.summary}
-                </div>
-              )}
-
-              {/* Spoken Dialogue to officer */}
-              {response.exactWordsToSay && (
-                <div className="p-6 rounded-3xl bg-gradient-to-r from-[#458393] via-[#34A99D] to-[#458393] text-white shadow-lg space-y-3 relative overflow-hidden">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <div className="w-7 h-7 rounded-full bg-[#E5CB90]/30 flex items-center justify-center">
-                        <MessageSquare className="w-4 h-4 text-[#E5CB90]" />
-                      </div>
-                      <span className="text-xs font-black uppercase tracking-wider text-[#E5CB90]">
-                        {t.exactSpokenWords}
-                      </span>
-                    </div>
+              {/* Quick Sample Scenarios Pills */}
+              <div className="space-y-2">
+                <span className="text-xs font-black uppercase tracking-wider text-[#458393] block">
+                  Tap a common scenario to assess immediately:
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  {sampleScenarios.map((sc, i) => (
                     <button
-                      onClick={() => handleSpeakSpeech(response.exactWordsToSay || '')}
-                      className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFF3C8] text-[#1A3841] text-xs font-black hover:bg-[#E5CB90] hover:scale-105 transition-all shadow-xs cursor-pointer"
+                      key={i}
+                      onClick={() => {
+                        setQuestion(sc);
+                        handleAsk(sc);
+                      }}
+                      className="text-left text-xs font-bold px-4 py-2 rounded-full bg-white/90 hover:bg-[#E5CB90]/60 border-2 border-[#E5CB90] hover:border-[#34A99D] text-[#1A3841] transition-all cursor-pointer shadow-2xs hover:scale-[1.02]"
                     >
-                      <Volume2 className={`w-3.5 h-3.5 ${isSpeaking ? 'text-red-600 animate-spin' : 'text-[#458393]'}`} />
-                      <span>{isSpeaking ? t.playingAudio : t.listenAudio}</span>
+                      ⚡ {sc}
                     </button>
-                  </div>
-                  <p className="text-base sm:text-lg font-bold italic tracking-wide text-white leading-relaxed">
-                    "{response.exactWordsToSay}"
-                  </p>
+                  ))}
                 </div>
-              )}
-
-              {/* Steps: What to Do & What NOT to Do */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
-                {/* Do Now */}
-                {response.whatToDoNow && response.whatToDoNow.length > 0 && (
-                  <div className="p-6 rounded-3xl bg-emerald-50/95 border-2 border-emerald-300 shadow-sm space-y-3">
-                    <div className="flex items-center gap-2.5 text-emerald-800 text-xs font-black uppercase tracking-wider">
-                      <div className="w-7 h-7 rounded-full bg-emerald-200 flex items-center justify-center">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-700" />
-                      </div>
-                      <span>{t.immediateActions}</span>
-                    </div>
-                    <ul className="space-y-2.5">
-                      {response.whatToDoNow.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-emerald-950 font-bold leading-relaxed">
-                          <span className="w-5 h-5 rounded-full bg-emerald-200 text-emerald-900 flex items-center justify-center text-xs font-black shrink-0 mt-0.5 shadow-2xs">
-                            {idx + 1}
-                          </span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {/* Do Not Do */}
-                {response.whatNOTToDo && response.whatNOTToDo.length > 0 && (
-                  <div className="p-6 rounded-3xl bg-rose-50/95 border-2 border-rose-300 shadow-sm space-y-3">
-                    <div className="flex items-center gap-2.5 text-rose-800 text-xs font-black uppercase tracking-wider">
-                      <div className="w-7 h-7 rounded-full bg-rose-200 flex items-center justify-center">
-                        <XCircle className="w-4 h-4 text-rose-700" />
-                      </div>
-                      <span>{t.avoidMistakes}</span>
-                    </div>
-                    <ul className="space-y-2.5">
-                      {response.whatNOTToDo.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-rose-950 font-bold leading-relaxed">
-                          <span className="w-5 h-5 rounded-full bg-rose-200 text-rose-900 flex items-center justify-center text-xs font-black shrink-0 mt-0.5 shadow-2xs">
-                            ✕
-                          </span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
               </div>
 
-              {/* Legal provisions list */}
-              {response.legalProvisions && response.legalProvisions.length > 0 && (
-                <div className="space-y-2.5 pt-2">
-                  <div className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-[#1A3841]">
-                    <Scale className="w-4 h-4 text-[#34A99D]" />
-                    <span>{t.legalShield}</span>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {response.legalProvisions.map((lp, i) => (
-                      <div key={i} className="p-4 rounded-3xl bg-white border-2 border-[#E5CB90] shadow-2xs">
-                        <span className="font-mono text-xs font-black text-[#458393] block mb-1">
-                          {lp.law}
-                        </span>
-                        <p className="text-xs font-bold text-[#1A3841] leading-relaxed">
-                          {lp.explanation}
+              {/* Submit button */}
+              <div className="flex justify-end pt-2">
+                <button
+                  id="ask-ai-submit-btn"
+                  onClick={() => handleAsk()}
+                  disabled={loading || !question.trim()}
+                  className="flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#34A99D] to-[#458393] hover:from-[#34A99D] hover:to-[#1A3841] text-white font-black text-sm sm:text-base shadow-md hover:shadow-xl hover:-translate-y-0.5 disabled:opacity-50 transition-all cursor-pointer"
+                >
+                  {loading ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <span>Analyzing Indian Law...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5" />
+                      <span>Get Legal Assessment</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {/* Structured AI Advisory Output Card */}
+            {response && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ThreeDCard className="w-full">
+                  <div className="p-6 sm:p-8 rounded-[36px] bg-[#FFF3C8] border-2 border-[#34A99D] shadow-2xl space-y-6">
+                    
+                    {/* Header Box */}
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#E5CB90]">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#34A99D] to-[#458393] text-white flex items-center justify-center shadow-md ring-2 ring-[#FFF3C8]">
+                          <Bot className="w-6 h-6" />
+                        </div>
+                        <div>
+                          <h3 className="text-xl sm:text-2xl font-black text-[#1A3841]">
+                            Legal Assessment & Action Plan
+                          </h3>
+                          <p className="text-xs text-[#458393] font-bold">
+                            Constitution of India & Bharatiya Nagarik Suraksha Sanhita (BNSS)
+                          </p>
+                        </div>
+                      </div>
+
+                      {response.emergencyHelpline && (
+                        <div className="px-4 py-2 rounded-full bg-red-100 border border-red-300 text-red-800 text-xs font-black self-start sm:self-center shadow-2xs">
+                          Helpline: {response.emergencyHelpline}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Summary Statement */}
+                    {response.summary && (
+                      <div className="p-5 rounded-3xl bg-[#E5CB90]/40 border-2 border-[#E5CB90] shadow-2xs">
+                        <MarkdownRenderer content={response.summary} />
+                      </div>
+                    )}
+
+                    {/* Spoken Dialogue to officer */}
+                    {response.exactWordsToSay && (
+                      <div className="p-6 rounded-3xl bg-gradient-to-r from-[#458393] via-[#34A99D] to-[#458393] text-white shadow-lg space-y-3 relative overflow-hidden">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <div className="w-7 h-7 rounded-full bg-[#E5CB90]/30 flex items-center justify-center">
+                              <MessageSquare className="w-4 h-4 text-[#E5CB90]" />
+                            </div>
+                            <span className="text-xs font-black uppercase tracking-wider text-[#E5CB90]">
+                              {t.exactSpokenWords}
+                            </span>
+                          </div>
+                          <button
+                            onClick={() => handleSpeakSpeech(response.exactWordsToSay || '')}
+                            className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFF3C8] text-[#1A3841] text-xs font-black hover:bg-[#E5CB90] hover:scale-105 transition-all shadow-xs cursor-pointer"
+                          >
+                            <Volume2 className={`w-3.5 h-3.5 ${isSpeaking ? 'text-red-600 animate-spin' : 'text-[#458393]'}`} />
+                            <span>{isSpeaking ? t.playingAudio : t.listenAudio}</span>
+                          </button>
+                        </div>
+                        <p className="text-base sm:text-lg font-bold italic tracking-wide text-white leading-relaxed">
+                          "{response.exactWordsToSay}"
                         </p>
                       </div>
-                    ))}
-                  </div>
-                </div>
-              )}
+                    )}
 
-            </div>
-          </ThreeDCard>
-        </motion.div>
-      )}
+                    {/* Steps: What to Do & What NOT to Do */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      
+                      {/* Do Now */}
+                      {response.whatToDoNow && response.whatToDoNow.length > 0 && (
+                        <div className="p-6 rounded-3xl bg-emerald-50/95 border-2 border-emerald-300 shadow-sm space-y-3">
+                          <div className="flex items-center gap-2.5 text-emerald-800 text-xs font-black uppercase tracking-wider">
+                            <div className="w-7 h-7 rounded-full bg-emerald-200 flex items-center justify-center">
+                              <CheckCircle2 className="w-4 h-4 text-emerald-700" />
+                            </div>
+                            <span>{t.immediateActions}</span>
+                          </div>
+                          <ul className="space-y-2.5">
+                            {response.whatToDoNow.map((item, idx) => (
+                              <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-emerald-950 font-bold leading-relaxed">
+                                <span className="w-5 h-5 rounded-full bg-emerald-200 text-emerald-900 flex items-center justify-center text-xs font-black shrink-0 mt-0.5 shadow-2xs">
+                                  {idx + 1}
+                                </span>
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      {/* Do Not Do */}
+                      {response.whatNOTToDo && response.whatNOTToDo.length > 0 && (
+                        <div className="p-6 rounded-3xl bg-rose-50/95 border-2 border-rose-300 shadow-sm space-y-3">
+                          <div className="flex items-center gap-2.5 text-rose-800 text-xs font-black uppercase tracking-wider">
+                            <div className="w-7 h-7 rounded-full bg-rose-200 flex items-center justify-center">
+                              <XCircle className="w-4 h-4 text-rose-700" />
+                            </div>
+                            <span>{t.avoidMistakes}</span>
+                          </div>
+                          <ul className="space-y-2.5">
+                            {response.whatNOTToDo.map((item, idx) => (
+                              <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-rose-950 font-bold leading-relaxed">
+                                <span className="w-5 h-5 rounded-full bg-rose-200 text-rose-900 flex items-center justify-center text-xs font-black shrink-0 mt-0.5 shadow-2xs">
+                                  ✕
+                                </span>
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                    </div>
+
+                    {/* Legal provisions list */}
+                    {response.legalProvisions && response.legalProvisions.length > 0 && (
+                      <div className="space-y-2.5 pt-2">
+                        <div className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-[#1A3841]">
+                          <Scale className="w-4 h-4 text-[#34A99D]" />
+                          <span>{t.legalShield}</span>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          {response.legalProvisions.map((lp, i) => (
+                            <div key={i} className="p-4 rounded-3xl bg-white border-2 border-[#E5CB90] shadow-2xs">
+                              <span className="font-mono text-xs font-black text-[#458393] block mb-1">
+                                {lp.law}
+                              </span>
+                              <p className="text-xs font-bold text-[#1A3841] leading-relaxed">
+                                {lp.explanation}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Official Portal Citations & Related Sources */}
+                    {response.relatedSources && response.relatedSources.length > 0 && (
+                      <div className="space-y-3 pt-3 border-t border-[#E5CB90]/60">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-[#1A3841]">
+                            <Globe className="w-4 h-4 text-[#34A99D]" />
+                            <span>Official Statutory Sources & Citizen Portals</span>
+                          </div>
+                          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#34A99D]/15 text-[#1A3841] border border-[#34A99D]/30">
+                            Verified Links
+                          </span>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                          {response.relatedSources.map((source, sIdx) => (
+                            <a
+                              key={sIdx}
+                              href={source.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="group p-3 rounded-2xl bg-white hover:bg-[#FFF3C8] border border-[#E5CB90] hover:border-[#34A99D] shadow-2xs transition-all flex items-start justify-between gap-2"
+                            >
+                              <div className="space-y-0.5 flex-1 min-w-0">
+                                <div className="flex items-center gap-1.5">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-[#34A99D] group-hover:scale-125 transition-transform shrink-0" />
+                                  <span className="text-xs font-black text-[#1A3841] group-hover:text-[#458393] truncate">
+                                    {source.title}
+                                  </span>
+                                </div>
+                                {source.description && (
+                                  <p className="text-[11px] font-medium text-[#458393] line-clamp-1">
+                                    {source.description}
+                                  </p>
+                                )}
+                                {source.department && (
+                                  <span className="inline-block text-[9px] font-mono font-bold text-[#1A3841]/70 bg-stone-100 px-1.5 py-0.2 rounded-sm">
+                                    {source.department}
+                                  </span>
+                                )}
+                              </div>
+                              <ExternalLink className="w-3.5 h-3.5 text-[#34A99D] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0 mt-0.5" />
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                  </div>
+                </ThreeDCard>
+              </motion.div>
+            )}
+          </motion.div>
+        )}
+
+      </AnimatePresence>
+
     </div>
   );
 };

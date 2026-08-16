@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, Variants } from 'motion/react';
 import {
   BookOpen,
   ChevronLeft,
@@ -39,7 +39,7 @@ interface DigitalGuidebookProps {
   onOpenSituation?: (id: string) => void;
 }
 
-const slideVariants = {
+const slideVariants: Variants = {
   enter: (direction: number) => ({
     x: direction > 0 ? 300 : -300,
     opacity: 0,
@@ -53,7 +53,7 @@ const slideVariants = {
     rotateY: 0,
     scale: 1,
     transition: {
-      x: { type: 'spring', stiffness: 300, damping: 30 },
+      x: { type: 'spring' as const, stiffness: 300, damping: 30 },
       opacity: { duration: 0.25 },
       rotateY: { duration: 0.3 },
       scale: { duration: 0.25 },
@@ -66,7 +66,7 @@ const slideVariants = {
     rotateY: direction < 0 ? 15 : -15,
     scale: 0.96,
     transition: {
-      x: { type: 'spring', stiffness: 300, damping: 30 },
+      x: { type: 'spring' as const, stiffness: 300, damping: 30 },
       opacity: { duration: 0.2 },
     },
   }),

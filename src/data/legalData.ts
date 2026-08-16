@@ -1401,5 +1401,656 @@ export const SITUATION_STEPS: SituationStep[] = [
         }
       }
     }
+  },
+  {
+    id: 'traffic-police-checkpoints-detailed',
+    title: 'Traffic Police Checkpoints (Key Snatching, Towing, Document Checks)',
+    situation: 'A traffic cop stops your vehicle, attempts to forcibly pull out the car/bike keys from the ignition, threatens to tow the vehicle while you are inside, or demands physical documents despite having digital copies.',
+    category: 'traffic',
+    severity: 'warning',
+    legalShield: 'Motor Vehicles Act 1988 (Sec 127, 130), IT Act Sec 4, MoRTH DigiLocker/mParivahan Notifications, State Police Conduct Rules.',
+    landmarkCase: 'High Court Directives & MoRTH Circular RT-11036/64/2017-MVL - Key snatching prohibited; Sec 127 MVA bans towing occupied vehicles.',
+    summaryRights: [
+      'No Key Snatching: Under the Motor Vehicles Act (MVA) and state police conduct rules, traffic police have no legal authority to snatch the ignition keys of a running or stationary vehicle.',
+      'Towing Safeguard: Section 127 of the Motor Vehicles Act prohibits towing a vehicle if a driver or passenger is seated inside.',
+      'Digital Documents Validity: Under the Information Technology Act (Sec. 4) and Ministry of Road Transport and Highways (MoRTH) notifications, digital documents presented via DigiLocker or mParivahan carry equal legal validity to physical documents.',
+      'Rank Authority for Fines: Only an officer of the rank of Assistant Sub-Inspector (ASI) or above is empowered to compound (settle) on-spot traffic fines. A head constable or constable can only record the violation.'
+    ],
+    immediateActions: [
+      'Turn off the ignition yourself, remain seated, and roll down the window partially.',
+      'Show your verified documents on DigiLocker / mParivahan on your phone screen.',
+      'Ask: “Officer, what specific violation is this check for? Please show your e-challan device or official challan book.”',
+      'If a constable attempts extortion or removes keys, record the incident calmly and note their name badge.'
+    ],
+    doNotDo: [
+      'Do NOT pay informal cash bribes without an official printed or SMS e-challan receipt.',
+      'Do NOT leave keys in ignition if an officer unlawfully tries to grab them.',
+      'Do NOT allow towing while anyone is seated inside the vehicle (Sec 127 MVA).'
+    ],
+    sayThis: '“Officer, under the Motor Vehicles Act, key snatching is not permitted and my digital documents on DigiLocker are legally valid under MoRTH rules. What specific violation is this check for?”',
+    helpline: '112 (National Emergency) / State Traffic Police Helpline',
+    whereToComplain: {
+      authority: 'Traffic Police Joint Commissioner / DCP (Traffic), State Traffic Police WhatsApp Helpline, Police Complaints Authority (PCA)',
+      actSection: 'Motor Vehicles Act 1988 Section 127 & Rule 139 CMVR / IT Act Sec 4',
+      steps: [
+        'Step 1: Note down the officer’s name badge, rank, buckle number, and vehicle/location.',
+        'Step 2: Lodge a complaint with the Joint Commissioner / DCP (Traffic) of the city or district.',
+        'Step 3: Send a report to the State Traffic Police WhatsApp Helpline or Grievance portal with vehicle photo.',
+        'Step 4: File a complaint with the Police Complaints Authority (PCA) if physical assault or extortion occurred.'
+      ],
+      helplineOrPortal: 'echallan.parivahan.gov.in / 112',
+      portalUrl: 'https://echallan.parivahan.gov.in'
+    },
+    fastScan30Sec: {
+      situationText: 'Traffic police stopping vehicle, key snatching attempt, towing threat, or rejecting digital documents.',
+      topRightText: 'No Key Snatching • Sec 127 No Towing with Occupants • DigiLocker 100% Valid • ASI+ Rank for Fines.',
+      mustDoText: 'Turn off ignition yourself. Show DigiLocker. Ask officer’s violation & e-challan. Record name badge if extorted.',
+      complainToText: 'Joint Commissioner / DCP (Traffic), Traffic WhatsApp Helpline, or Police Complaints Authority (PCA).'
+    },
+    officialLinks: [
+      {
+        title: 'Ministry of Road Transport and Highways (MoRTH) Parivahan Portal',
+        url: 'https://parivahan.gov.in',
+        department: 'MoRTH, Government of India',
+        type: 'portal',
+        description: 'Official portal for DigiLocker document validity & e-Challan payment.'
+      }
+    ],
+    translations: {
+      hi: {
+        title: 'ट्रैफिक पुलिस चेकिंग (चाबी छीनना, टोइंग, डिजिटल दस्तावेज)',
+        situation: 'ट्रैफिक पुलिस गाड़ी रोके, जबरन इग्निशन से चाबी निकाले, अंदर बैठे होने पर टो करने की धमकी दे या डिजिलॉकर अस्वीकार करे।',
+        legalShield: 'मोटर वाहन अधिनियम 1988 (धारा 127, 130), आईटी एक्ट धारा 4, MoRTH डिजिलॉकर नोटिफिकेशन।',
+        summaryRights: [
+          'चाबी छीनना गैर-कानूनी है।',
+          'सवारी अंदर होने पर टोइंग प्रतिबंधित है (धारा 127 MVA)।',
+          'डिजिलॉकर/एमपरिवहन दस्तावेज पूरी तरह कानूनी रूप से मान्य हैं।',
+          'केवल एएसआई या ऊपर के अधिकारी ही ऑन-स्पॉट चालान काट सकते हैं।'
+        ],
+        immediateActions: [
+          'इग्निशन खुद बंद करें और बैठे रहें।',
+          'डिजिलॉकर पर सत्यापित दस्तावेज दिखाएं।',
+          'पूछें कि किस नियम उल्लंघन के लिए रोका गया है और ई-चालान डिवाइस दिखाने को कहें।',
+          'यदि चाबी छीनी जाए तो अधिकारी का नाम-बैज नोट करें।'
+        ],
+        doNotDo: [
+          'बिना रसीद कोई नकद राशि न दें।',
+          'गाड़ी के अंदर किसी के बैठे रहने पर टो न करने दें।'
+        ],
+        sayThis: '“सर, मोटर व्हीकल एक्ट के तहत गाड़ी की चाबी निकालना अवैध है और डिजिलॉकर दस्तावेज MoRTH नियमों के तहत पूरी तरह मान्य हैं। कृपया बताएं किस नियम के तहत रोका गया है?”',
+        whereToComplain: {
+          authority: 'डीसीपी (ट्रैफिक), राज्य ट्रैफिक पुलिस हेल्पलाइन, पुलिस कंप्लेंट्स अथॉरिटी',
+          steps: ['ट्रैफिक डीसीपी कार्यालय या परिवहन पोर्टल पर ई-चालान शिकायत दर्ज करें।'],
+          helplineOrPortal: '112 / echallan.parivahan.gov.in'
+        }
+      }
+    }
+  },
+  {
+    id: 'informal-thana-bulana',
+    title: 'Informal "Thana Bulana" (Phone Calls Summoning to Police Station)',
+    situation: 'A police officer calls you on your mobile phone and orders you to appear at the police station immediately without sharing details of any FIR or complaint.',
+    category: 'fundamental_rights',
+    severity: 'warning',
+    legalShield: 'Section 35(3) & Section 179 BNSS 2023 (earlier Sec 41A & 160 CrPC), Article 21 Constitution of India.',
+    landmarkCase: 'Arnesh Kumar v. State of Bihar & Satender Kumar Antil - Mandatory formal written notice; informal verbal summons are unlawful.',
+    summaryRights: [
+      'Mandatory Written Notice: Police have no legal right to summon any citizen informally or over WhatsApp without issuing a formal written notice under Section 35(3) BNSS (earlier 41A CrPC) or Section 179 BNSS (witness summons).',
+      'Protected Categories: Women, children under 15, individuals over 60, and persons with mental/physical disabilities cannot be summoned to the police station for questioning; they must be examined at their residence (BNSS Sec. 179(1) Proviso).',
+      'Right to Details: You are entitled to know the Crime Number / GD Entry and the subject matter of the inquiry in advance.'
+    ],
+    immediateActions: [
+      'Do not panic or immediately rush to the station alone.',
+      'Ask the caller politely: “Please provide the Crime/GD entry number and serve a formal notice under Section 35(3) or Section 179 of the BNSS with date, time, and reason.”',
+      'Record the phone call and note down the officer’s name, designation, and police station.',
+      'If you do visit after receiving written notice, always go with an advocate or a family member.'
+    ],
+    doNotDo: [
+      'Do NOT rush to the police station alone on a casual or threatening phone call without formal written notice.',
+      'Do NOT give oral confessions or sign statements over the phone or without a witness.',
+      'Do NOT let women, minors under 15, or seniors above 60 go to the station for witness inquiries.'
+    ],
+    sayThis: '“Officer, please provide the Crime or GD entry number and serve a formal notice under Section 35(3) or Section 179 of the BNSS with the date, time, and reason before I visit.”',
+    helpline: '112 (National Emergency) / 15100 (NALSA Free Legal Aid)',
+    whereToComplain: {
+      authority: 'Senior Superintendent of Police (SSP) & State Police Complaints Authority (PCA)',
+      actSection: 'Section 35(3) & Section 179 BNSS / State Police Conduct Rules',
+      steps: [
+        'Step 1: Preserve audio recording of the phone call and note caller number, date, and timestamp.',
+        'Step 2: Submit a written representation to the Senior Superintendent of Police (SSP) / DCP.',
+        'Step 3: If harassment continues without formal notice, lodge a complaint before the State Police Complaints Authority (PCA).'
+      ],
+      helplineOrPortal: 'pgportal.gov.in / SSP Office',
+      portalUrl: 'https://pgportal.gov.in'
+    },
+    fastScan30Sec: {
+      situationText: 'Police calling your mobile phone demanding you report to the police station immediately without notice.',
+      topRightText: 'Mandatory Written Notice (BNSS Sec 35(3)) • Women/Minors/Seniors questioned only at residence • Go with lawyer.',
+      mustDoText: 'Do not panic. Demand formal written notice with Crime/GD number. Record call. Never visit alone.',
+      complainToText: 'Senior Superintendent of Police (SSP) or Police Complaints Authority (PCA).'
+    },
+    officialLinks: [
+      {
+        title: 'India Code: Bharatiya Nagarik Suraksha Sanhita (BNSS) 2023',
+        url: 'https://www.indiacode.nic.in/handle/123456789/20063',
+        department: 'Ministry of Law and Justice',
+        type: 'act',
+        description: 'Statutory provisions for Notice of Appearance (Section 35(3)) and Witness Examination (Section 179).'
+      }
+    ],
+    translations: {
+      hi: {
+        title: 'अनौपचारिक "थाना बुलाना" (फोन पर तुरंत थाने आने का आदेश)',
+        situation: 'पुलिस अधिकारी आपके फोन पर कॉल करके बिना किसी एफआईआर या नोटिस के तुरंत थाने आने का आदेश या धमकी दे।',
+        legalShield: 'धारा 35(3) व धारा 179 बीएनएसएस 2023 (पूर्व धारा 41A/160 सीआरपीसी), संविधान का अनुच्छेद 21।',
+        summaryRights: [
+          'बिना लिखित नोटिस किसी भी नागरिक को थाने नहीं बुलाया जा सकता (धारा 35(3) BNSS)।',
+          'महिला, 15 वर्ष से कम उम्र के बच्चे और 60+ वरिष्ठ नागरिकों से केवल उनके घर पर ही पूछताछ की जा सकती है।',
+          'आपको एफआईआर नंबर और पूछताछ का विषय जानने का पूरा अधिकार है।'
+        ],
+        immediateActions: [
+          'घबराकर अकेले थाने न जाएं।',
+          'कॉल करने वाले से बीएनएसएस की धारा 35(3) या 179 के तहत औपचारिक लिखित नोटिस भेजने को कहें।',
+          'कॉल रिकॉर्ड करें और अधिकारी का नाम व थाना नोट करें।'
+        ],
+        doNotDo: [
+          'केवल फोन कॉल या धमकी के आधार पर अकेले थाने न जाएं।',
+          'फोन पर कोई बयान या स्वीकारोक्ति न दें।'
+        ],
+        sayThis: '“सर, कृपया बीएनएसएस की धारा 35(3) के तहत लिखित नोटिस भेजें जिसमें तारीख, समय और केस नंबर स्पष्ट हो।”',
+        whereToComplain: {
+          authority: 'वरिष्ठ पुलिस अधीक्षक (SSP) एवं राज्य पुलिस शिकायत प्राधिकरण (PCA)',
+          steps: ['कॉल रिकॉर्डिंग सुरक्षित रखकर एसएसपी को लिखित शिकायत भेजें।'],
+          helplineOrPortal: '112 / 15100'
+        }
+      }
+    }
+  },
+  {
+    id: 'forced-confessions-custody',
+    title: 'Forced Confessions, Beating, and Signed Blank Papers in Custody',
+    situation: 'Police detain you or a family member and use physical force, intimidation, or threats to extract a confession or make you sign blank sheets of paper.',
+    category: 'arrest',
+    severity: 'critical',
+    legalShield: 'Section 23 Bharatiya Sakshya Adhiniyam, 2023 (BSA), Article 20(3) & 21 Constitution of India, Section 182 BNSS, Section 53/54 BNSS.',
+    landmarkCase: 'Nandini Satpathy v. P.L. Dani & D.K. Basu v. State of West Bengal - Confessions to police are completely inadmissible in court; right against custodial torture.',
+    summaryRights: [
+      'Inadmissibility of Police Confessions: Under Section 23 of the Bharatiya Sakshya Adhiniyam, 2023 (BSA) (earlier Section 25 Indian Evidence Act), any confession made to a police officer is completely inadmissible as evidence in court.',
+      'Right to Silence: Article 20(3) of the Constitution guarantees that no person accused of an offense shall be compelled to be a witness against themselves.',
+      'No Inducement or Threat: Section 182 BNSS strictly forbids police from offering inducements, threats, or promises to extract confessions.',
+      'Mandatory Medical Documentation: Section 53/54 BNSS entitles the arrestee to a prompt medical examination by an independent medical officer.'
+    ],
+    immediateActions: [
+      'If forced to sign under physical coercion, remember the confession has no evidentiary value without judicial confirmation.',
+      'When produced before the Judicial Magistrate within 24 hours, immediately declare to the Magistrate that you were tortured or coerced, and show any visible injury marks.',
+      'Demand a fresh medical examination under Section 53/54 BNSS to document injuries on the judicial record.',
+      'Request the Magistrate to record the retraction of any coerced statement under Section 183 BNSS (earlier 164 CrPC).'
+    ],
+    doNotDo: [
+      'Do NOT remain silent before the Judicial Magistrate about custodial torture out of fear.',
+      'Do NOT sign documents willingly; if coerced, remember police confessions are inadmissible in trial.',
+      'Do NOT allow 24 hours to lapse without demanding production before the Magistrate.'
+    ],
+    sayThis: '“Your Honour, I was subjected to physical coercion and forced to sign papers in police custody. I request an immediate medical examination under Section 54 BNSS to record these injuries on court record.”',
+    helpline: '15100 (NALSA Free Legal Aid) / 14433 (NHRC Helpline)',
+    whereToComplain: {
+      authority: 'Judicial Magistrate during Remand Hearing, National Human Rights Commission (NHRC), High Court (Writ of Habeas Corpus / Custodial Violence)',
+      actSection: 'Section 23 BSA 2023, Section 53/54 & 182 BNSS, Constitution Art 226',
+      steps: [
+        'Step 1: Directly inform the Judicial Magistrate in open court during the 24-hour production hearing.',
+        'Step 2: Demand an order for an immediate independent medical examination at a government hospital.',
+        'Step 3: File an urgent complaint on the NHRC portal (hrcnet.nic.in / Toll-Free 14433).',
+        'Step 4: Approach the High Court under Article 226 for a Writ of Habeas Corpus and judicial inquiry into custodial violence.'
+      ],
+      helplineOrPortal: 'hrcnet.nic.in / NALSA 15100',
+      portalUrl: 'https://hrcnet.nic.in'
+    },
+    fastScan30Sec: {
+      situationText: 'Custodial torture, physical beatings, forced confessions, or forced signing of blank papers.',
+      topRightText: 'Police Confessions Zero Evidence (BSA Sec 23) • Right to Silence (Art 20(3)) • 24hr Magistrate Production • Sec 54 Medical Checkup.',
+      mustDoText: 'Speak directly to Magistrate during 24-hr remand. Show injuries. Demand Sec 54 independent medical checkup on record.',
+      complainToText: 'Judicial Magistrate First Class (JMFC), High Court (Art 226), or NHRC (14433).'
+    },
+    officialLinks: [
+      {
+        title: 'National Human Rights Commission (NHRC) Online Portal',
+        url: 'https://hrcnet.nic.in',
+        department: 'NHRC, India',
+        type: 'portal',
+        description: '24x7 online complaint filing portal for custodial violence and human rights abuses.'
+      }
+    ],
+    translations: {
+      hi: {
+        title: 'हिरासत में जबरन कबूलनामा, मारपीट व कोरे कागज पर हस्ताक्षर',
+        situation: 'पुलिस हिरासत में मारपीट, धमकी या कोरे कागजों पर जबरन दस्तखत कराकर झूठा अपराध कबूल कराने का प्रयास करे।',
+        legalShield: 'धारा 23 भारतीय साक्ष्य अधिनियम 2023, अनुच्छेद 20(3) व 21, धारा 182 व 53/54 बीएनएसएस।',
+        summaryRights: [
+          'पुलिस को दिया गया कोई भी कबूलनामा अदालत में साक्ष्य के रूप में शून्य (मान्य नहीं) है (धारा 23 BSA)।',
+          'अपने खिलाफ गवाही न देने का मौलिक अधिकार (अनुच्छेद 20(3))।',
+          'हिरासत में मारपीट पर मजिस्ट्रेट से तत्काल मेडिकल जांच की मांग का अधिकार (धारा 54 BNSS)।'
+        ],
+        immediateActions: [
+          'मजिस्ट्रेट के समक्ष 24 घंटे में पेशी के दौरान सीधे जज को बताएं कि मारपीट व जबरन दस्तखत कराए गए हैं।',
+          'चोट के निशान अदालत में दिखाकर धारा 54 बीएनएसएस के तहत सरकारी डॉक्टर से मेडिकल की मांग करें।',
+          'मुफ्त कानूनी सहायता वकील (15100) की मांग करें।'
+        ],
+        doNotDo: [
+          'डर के मारे मजिस्ट्रेट के सामने चुप न रहें।',
+          'हिरासत की मारपीट को बिना मेडिकल रिकॉर्ड दर्ज कराए न छोड़ें।'
+        ],
+        sayThis: '“माननीय जज महोदय, पुलिस हिरासत में मेरे साथ मारपीट की गई और जबरन कागजों पर दस्तखत कराए गए। धारा 54 बीएनएसएस के तहत तुरंत मेडिकल जांच कराई जाए।”',
+        whereToComplain: {
+          authority: 'न्यायिक मजिस्ट्रेट (JMFC) कोर्ट, राष्ट्रीय मानवाधिकार आयोग (NHRC), उच्च न्यायालय',
+          steps: ['पेशी के समय मजिस्ट्रेट को मौखिक व लिखित बयान दें तथा एनएचआरसी पोर्टल पर शिकायत दर्ज कराएं।'],
+          helplineOrPortal: '15100 / 14433'
+        }
+      }
+    }
+  },
+  {
+    id: 'night-police-entry-homes',
+    title: 'Night-Time Police Entry and Raids on Private Homes',
+    situation: 'Police officers knock on your door late at night or force their way inside your home without a search warrant.',
+    category: 'search',
+    severity: 'critical',
+    legalShield: 'BNSS Section 185, Section 43(5) & Section 100(3), Article 21 Constitution of India.',
+    landmarkCase: 'State of Maharashtra v. Christian Community Welfare Council (2003) & K.S. Puttaswamy (2017) - Inviolability of home and strict ban on night arrest of women.',
+    summaryRights: [
+      'Search Warrant Requirement: Except in cases of chasing a fleeing felon or urgent hot pursuit (BNSS Sec. 185), police cannot enter private residential premises without a search warrant issued by a Magistrate.',
+      'Night Arrest of Women Prohibited: Women cannot be arrested between sunset (6:00 PM) and sunrise (6:00 AM) unless extraordinary prior permission is granted in writing by a Judicial Magistrate First Class (BNSS Sec. 43(5)).',
+      'Female Officer Presence: A search of an area where women reside requires the presence of a female police officer and prior notice for them to withdraw to maintain privacy (BNSS Sec. 100(3)).'
+    ],
+    immediateActions: [
+      'Do not open the door completely; speak through a latch or safety door.',
+      'Ask: “Do you have a search warrant from the Magistrate or a written authorization?”',
+      'If female members are present, ask: “Is there a female officer present in uniform?”',
+      'Turn on audio/video recording inside your premises. Alert neighbors and dial 112 to log an emergency verification record.'
+    ],
+    doNotDo: [
+      'Do NOT open doors wide late at night without verifying search warrant and officer identification.',
+      'Do NOT allow male officers to enter rooms where women or children are resting without female officers.',
+      'Do NOT let officers search without independent local witnesses (Panchas) present.'
+    ],
+    sayThis: '“Officers, please show your judicial search warrant through the door. If female members are inside, under Section 43(5) and Section 100(3) BNSS, a female officer must be present.”',
+    helpline: '112 (National Emergency) / 1091 (Women Helpline)',
+    whereToComplain: {
+      authority: 'Office of the Commissioner / SSP, Judicial Magistrate having local jurisdiction, State Human Rights Commission',
+      actSection: 'BNSS Sec 185, Sec 43(5), Sec 100(3) & Protection of Human Rights Act',
+      steps: [
+        'Step 1: Call 112 immediately to create a recorded emergency log on the central police dispatch server.',
+        'Step 2: File a formal complaint for criminal trespass and illegal entry with the Commissioner of Police / SSP.',
+        'Step 3: Lodge a petition before the local Judicial Magistrate having territorial jurisdiction.',
+        'Step 4: File a complaint with the State Human Rights Commission (SHRC) / National Commission for Women (NCW).'
+      ],
+      helplineOrPortal: '112 / hrcnet.nic.in',
+      portalUrl: 'https://hrcnet.nic.in'
+    },
+    fastScan30Sec: {
+      situationText: 'Police knocking on door late at night, raiding home without warrant, or entering where women reside.',
+      topRightText: 'Warrant Required • No Night Arrest of Women (Sunset-Sunrise) • Female Officer Mandatory • Video Record.',
+      mustDoText: 'Speak through latch. Demand Magistrate search warrant. Ensure female officer present. Dial 112 to log inquiry.',
+      complainToText: 'Police Commissioner / SSP Office, Judicial Magistrate, or State Human Rights Commission.'
+    },
+    officialLinks: [
+      {
+        title: 'National Commission for Women (NCW) Legal Cell',
+        url: 'http://ncw.nic.in',
+        department: 'NCW, Government of India',
+        type: 'portal',
+        description: 'Direct portal for complaints regarding violation of women safety rules by law enforcement.'
+      }
+    ],
+    translations: {
+      hi: {
+        title: 'रात के समय घर में पुलिस का प्रवेश या गैर-कानूनी छापा',
+        situation: 'देर रात पुलिस आपके घर का दरवाजा खटखटाए, बिना सर्च वारंट घर में घुसने की कोशिश करे या महिलाओं को धमकाए।',
+        legalShield: 'बीएनएसएस धारा 185, धारा 43(5), धारा 100(3), संविधान का अनुच्छेद 21।',
+        summaryRights: [
+          'बिना मजिस्ट्रेट सर्च वारंट के घर में घुसना गैर-कानूनी है।',
+          'सूर्यास्त के बाद और सूर्योदय से पहले महिलाओं की गिरफ्तारी पर पूर्ण प्रतिबंध (धारा 43(5) BNSS)।',
+          'महिला निवास स्थल की तलाशी के लिए महिला पुलिस अधिकारी की मौजूदगी अनिवार्य है।'
+        ],
+        immediateActions: [
+          'दरवाजा पूरा न खोलें, जाली या लैच से बात करें।',
+          'मजिस्ट्रेट का लिखित सर्च वारंट दिखाने को कहें।',
+          'महिला पुलिस अधिकारी की मौजूदगी सुनिश्चित करें।',
+          'तुरंत 112 डायल करके आपातकालीन रिकॉर्ड दर्ज कराएं।'
+        ],
+        doNotDo: [
+          'रात में बिना वारंट व बिना महिला पुलिस के पुरुष पुलिसकर्मियों को अंदर न आने दें।',
+          'पड़ोसियों या गवाहों की अनुपस्थिति में तलाशी न होने दें।'
+        ],
+        sayThis: '“कृपया सर्च वारंट दिखाएं। बीएनएसएस धारा 43(5) के तहत सूर्यास्त के बाद महिलाओं की गिरफ्तारी या बिना महिला पुलिस के तलाशी अवैध है।”',
+        whereToComplain: {
+          authority: 'पुलिस कमिश्नर / एसएसपी, न्यायिक मजिस्ट्रेट, राज्य मानवाधिकार आयोग',
+          steps: ['112 पर कॉल करके रिकॉर्ड बनवाएं और एसएसपी को लिखित शिकायत दें।'],
+          helplineOrPortal: '112 / 1091'
+        }
+      }
+    }
+  },
+  {
+    id: 'mobile-passcode-device-seizure',
+    title: 'Demand for Mobile Phone Passcodes, Chats, or Laptop Seizure',
+    situation: 'An officer halts you, demands that you unlock your phone, scrolls through your private WhatsApp messages/gallery, or threatens to seize your electronic devices without justification.',
+    category: 'phone_privacy',
+    severity: 'warning',
+    legalShield: 'Article 21 Constitution (Fundamental Right to Privacy), Article 20(3), Section 105 BNSS, Section 63 BSA 2023.',
+    landmarkCase: 'Justice K.S. Puttaswamy (Retd.) v. Union of India (2017) & Virendra Khanna v. State of Karnataka - Smartphones carry intimate digital life; warrants & hash values are mandatory.',
+    summaryRights: [
+      'Right to Privacy: The Supreme Court (K.S. Puttaswamy v. Union of India) recognized privacy as a Fundamental Right under Article 21.',
+      'No Arbitrary Phone Checks: Police cannot casually search your personal electronic devices without a formal court warrant or a documented connection to a registered investigation.',
+      'Mandatory Hash Value / Seizure Protocol: If digital devices are seized, the officer must generate and record the device’s cryptographic Hash Value and provide a copy of the seizure memo (Panchnama) to prevent data tampering (BNSS Sec. 105; BSA Sec. 63).'
+    ],
+    immediateActions: [
+      'State firmly: “Officer, this device contains privileged personal and banking information. Under Article 21, I am not obligated to unlock it without a formal search warrant or written investigation order.”',
+      'If the device is taken forcefully, demand an immediate written Seizure Memo stating the exact IMEI/Serial number, condition of device, and time of seizure signed by two local witnesses.',
+      'Ensure you hold the phone yourself when presenting verified documents via DigiLocker without handing over an unlocked device.'
+    ],
+    doNotDo: [
+      'Do NOT hand over your phone in an unlocked state or reveal social media / banking passwords casually.',
+      'Do NOT surrender electronic devices without a signed seizure memo and cryptographic hash value.',
+      'Do NOT tamper with or delete active evidence if a legal warrant is served.'
+    ],
+    sayThis: '“Officer, this device contains privileged personal and banking data. Under Article 21 and the Puttaswamy judgment, I am not obligated to unlock it without a formal search warrant.”',
+    helpline: '1930 (National Cyber Crime) / 112',
+    whereToComplain: {
+      authority: 'Jurisdictional Magistrate Court, Chief Judicial Magistrate (CJM), High Court under Sec. 528 BNSS',
+      actSection: 'BNSS Sec 105, BSA Sec 63, IT Act 2000 & Constitution Art 21',
+      steps: [
+        'Step 1: File an urgent application before the Chief Judicial Magistrate (CJM) / Jurisdictional Magistrate for return of seized device (Superdari).',
+        'Step 2: Report unauthorized digital snooping or extortion to the Cyber Crime Cell via cybercrime.gov.in.',
+        'Step 3: Approach the High Court under Section 528 BNSS (earlier 482 CrPC) against illegal electronic seizure.'
+      ],
+      helplineOrPortal: 'cybercrime.gov.in / 1930',
+      portalUrl: 'https://cybercrime.gov.in'
+    },
+    fastScan30Sec: {
+      situationText: 'Police asking for phone passcode, reading WhatsApp/photos, or seizing laptop/mobile without warrant.',
+      topRightText: 'Fundamental Right to Privacy (Art 21) • Judicial Warrant Required • Mandatory Hash Value on Seizure • Hold phone yourself.',
+      mustDoText: 'Politely refuse unlocked phone hand-over. Present DigiLocker yourself. Demand seizure memo with IMEI/Hash if seized.',
+      complainToText: 'Chief Judicial Magistrate (CJM), Cyber Crime Cell (1930), or High Court.'
+    },
+    officialLinks: [
+      {
+        title: 'National Cyber Crime Reporting Portal (MHA)',
+        url: 'https://cybercrime.gov.in',
+        department: 'Ministry of Home Affairs',
+        type: 'portal',
+        description: 'Official national cyber portal to report digital harassment and device snooping.'
+      }
+    ],
+    translations: {
+      hi: {
+        title: 'मोबाइल फोन पासवर्ड, चैट मांगना या लैपटॉप जब्त करना',
+        situation: 'पुलिस फोन अनलॉक कराने, व्हाट्सएप संदेश पढ़ने, गैलरी देखने या बिना सर्च वारंट लैपटॉप/फोन जब्त करने की धमकी दे।',
+        legalShield: 'अनुच्छेद 21 (पुट्टास्वामी निजता का अधिकार), अनुच्छेद 20(3), बीएनएसएस धारा 105, बीएसए धारा 63।',
+        summaryRights: [
+          'स्मार्टफोन की निजता संविधान के अनुच्छेद 21 के तहत सुरक्षित मौलिक अधिकार है।',
+          'बिना अदालती सर्च वारंट पुलिस फोन का पासवर्ड मांगने के लिए बाध्य नहीं कर सकती।',
+          'उपकरण जब्त करने पर हैश वैल्यू व दो गवाहों के हस्ताक्षर वाला जब्ती मेमो देना अनिवार्य है।'
+        ],
+        immediateActions: [
+          'विनम्रतापूर्वक कहें कि फोन में बैंकिंग व निजी डेटा है जिसे बिना सर्च वारंट अनलॉक नहीं किया जा सकता।',
+          'दस्तावेज दिखाने के लिए फोन हाथ में रखकर खुद स्क्रीन दिखाएं।',
+          'जबरन फोन लेने पर तुरंत आईएमईआई नंबर और गवाहों सहित जब्ती रसीद मांगें।'
+        ],
+        doNotDo: [
+          'फोन अनलॉक करके पुलिस के हाथ में न दें।',
+          'बिना पंचनामा और हैश वैल्यू के डिवाइस जब्त न होने दें।'
+        ],
+        sayThis: '“सर, पुट्टास्वामी फैसले और अनुच्छेद 21 के तहत मेरा फोन निजी है। बिना आधिकारिक सर्च वारंट के मैं इसे अनलॉक करने के लिए बाध्य नहीं हूँ।”',
+        whereToComplain: {
+          authority: 'मुख्य न्यायिक मजिस्ट्रेट (CJM), साइबर क्राइम सेल, उच्च न्यायालय',
+          steps: ['सीजेएम अदालत में फोन वापसी की अर्जी लगाएं और 1930 पर शिकायत दर्ज करें।'],
+          helplineOrPortal: '1930 / cybercrime.gov.in'
+        }
+      }
+    }
+  },
+  {
+    id: 'landlord-tenant-civil-disputes',
+    title: 'Police Intervening in Landlord-Tenant / Civil Property Disputes',
+    situation: 'A landlord or business partner brings the local police to your house/shop to threaten eviction, lock the premises, or force a financial settlement without a court order.',
+    category: 'fundamental_rights',
+    severity: 'warning',
+    legalShield: 'Transfer of Property Act 1882, Specific Relief Act 1963, Article 21 & 300A Constitution, Section 173 BNSS.',
+    landmarkCase: 'Bishandas v. State of Punjab (1961) & Express Newspapers - Executive and police have zero power to dispossess tenants or decide title without a Civil Court decree.',
+    summaryRights: [
+      'Bar on Civil Jurisdiction: Police powers under the BNSS are restricted to maintaining public order and investigating criminal offenses. Police have zero authority to resolve civil disputes, enforce rent agreements, or execute evictions without a specific civil court decree.',
+      'Eviction Safeguards: Eviction without due process of law violates Article 21, Article 300A, and Transfer of Property Act protections.',
+      'No Forced Settlements: Police officers cannot act as collection agents or force you to sign compromise deeds at the station.'
+    ],
+    immediateActions: [
+      'State clearly: “This is a civil matter governed by a contract/lease agreement. There is no cognizable criminal offense. Only the Civil Court has jurisdiction.”',
+      'Do not sign any compromise deed or agreement under police pressure at the station.',
+      'Show your rent agreement, payment receipts, or possession proof.',
+      'File an immediate civil suit for permanent injunction before the Civil Court to restrain illegal dispossession.'
+    ],
+    doNotDo: [
+      'Do NOT vacate premises or surrender keys under police intimidation without a civil court bailiff.',
+      'Do NOT sign any settlement deed, promissory note, or undertaking at the police station.',
+      'Do NOT pay disputed civil rent or damages to police officers.'
+    ],
+    sayThis: '“Officer, this is purely a civil property dispute governed by contract law. Under the law, police have no jurisdiction to evict or resolve civil matters without a competent Civil Court decree.”',
+    helpline: '15100 (NALSA Legal Aid) / 112',
+    whereToComplain: {
+      authority: 'Civil Court (Suit for Injunction), Superintendent of Police (SP), State Police Complaints Authority (PCA)',
+      actSection: 'Specific Relief Act Sec 6, Transfer of Property Act Sec 108 & Police Conduct Rules',
+      steps: [
+        'Step 1: File an urgent civil suit under Section 6 of the Specific Relief Act for permanent / temporary injunction against illegal dispossession.',
+        'Step 2: Submit a written complaint to the Superintendent of Police (SP) / DCP against the police officers for illegal interference in civil matters.',
+        'Step 3: Lodge a complaint with the Police Complaints Authority (PCA) for abuse of official position and collusion with landlords.'
+      ],
+      helplineOrPortal: 'District Civil Court Registry / PCA',
+      portalUrl: 'https://pgportal.gov.in'
+    },
+    fastScan30Sec: {
+      situationText: 'Landlord bringing police to evict you, lock premises, cut utilities, or enforce civil settlement.',
+      topRightText: 'Police Zero Civil Jurisdiction • Only Civil Court can Evict • No Forced Station Settlements • Sec 6 Injunction.',
+      mustDoText: 'Do not vacate. Show lease agreement. State civil jurisdiction only. File civil court injunction suit immediately.',
+      complainToText: 'Civil Court (Injunction), District SP/DCP, or Police Complaints Authority (PCA).'
+    },
+    officialLinks: [
+      {
+        title: 'National Legal Services Authority (NALSA) Portal',
+        url: 'https://nalsa.gov.in',
+        department: 'Ministry of Law and Justice',
+        type: 'portal',
+        description: 'Get free civil legal assistance and duty advocates for tenant protection.'
+      }
+    ],
+    translations: {
+      hi: {
+        title: 'मकान मालिक-किरायेदार विवाद व दीवानी मामलों में पुलिस का दखल',
+        situation: 'मकान मालिक पुलिस लाकर जबरन घर/दुकान खाली कराने, ताला लगाने या जबरन समझौते का दबाव बनाए।',
+        legalShield: 'संपत्ति अंतरण अधिनियम 1882, विनिर्दिष्ट अनुतोष अधिनियम 1963, संविधान का अनुच्छेद 21 व 300A।',
+        summaryRights: [
+          'पुलिस को दीवानी (सिविल) मामलों में फैसला करने या जबरन बेदखली का कोई कानूनी अधिकार नहीं है।',
+          'केवल सक्षम सिविल कोर्ट के आदेश/डिक्री के बिना किसी को बेदखल नहीं किया जा सकता।',
+          'थाने में जबरन समझौता पत्र पर हस्ताक्षर कराना अवैध है।'
+        ],
+        immediateActions: [
+          'स्पष्ट कहें कि यह दीवानी अनुबंध का मामला है और पुलिस का इसमें अधिकार क्षेत्र नहीं है।',
+          'किरायानामा व रसीदें दिखाएं।',
+          'सिविल कोर्ट में तत्काल स्टे/इंजंक्शन (निषेधाज्ञा) का मुकदमा दायर करें।'
+        ],
+        doNotDo: [
+          'पुलिस के दबाव में आकर चाबी न सौंपें और मकान खाली न करें।',
+          'थाने में किसी समझौते या हलफनामे पर दस्तखत न करें।'
+        ],
+        sayThis: '“सर, यह विशुद्ध रूप से दीवानी (सिविल) संपत्ति का विवाद है। पुलिस को बिना सिविल कोर्ट आदेश के बेदखली करने का अधिकार नहीं है।”',
+        whereToComplain: {
+          authority: 'सिविल कोर्ट (स्टे अर्जी), पुलिस अधीक्षक (SP), पुलिस शिकायत प्राधिकरण (PCA)',
+          steps: ['सिविल जज के समक्ष तुरंत इंजंक्शन का दावा करें और एसपी को पुलिस दखलंदाजी की शिकायत दें।'],
+          helplineOrPortal: '15100 / 112'
+        }
+      }
+    }
+  },
+  {
+    id: 'moral-policing-couples',
+    title: 'Harassment of Consenting Couples in Public / Moral Policing',
+    situation: 'Police stop an adult couple sitting in a park, café, or hotel room, threaten to call their parents, or demand money under the pretext of "obscenity" or "public nuisance".',
+    category: 'women_child',
+    severity: 'warning',
+    legalShield: 'Article 19(1)(a), Article 19(1)(d) & Article 21 Constitution, Section 296 BNS (earlier Sec 294 IPC).',
+    landmarkCase: 'Shafin Jahan v. Asokan K.M. (Hadiya Case 2018) & Navtej Singh Johar (2018) - Consenting adults possess absolute constitutional freedom of choice, association, and privacy.',
+    summaryRights: [
+      'Right to Association & Liberty: Consenting adults (18+) have the constitutional right to associate freely in public or private spaces (Articles 19 and 21).',
+      'Scope of Obscenity (BNS Sec. 296 / earlier IPC 294): Sitting together, talking, or holding hands in public does not constitute obscenity or a criminal offense.',
+      'Hotel Privacy: Consenting adult citizens holding valid government ID can stay together in hotels/homestays without legal interference.',
+      'No Moral Policing: Police have no legal power to call parents, demand marriage proof, or moral police adult citizens.'
+    ],
+    immediateActions: [
+      'State calmly: “We are both consenting adults (18+). We are not committing any illegal act or public nuisance.”',
+      'Refuse calls to family or informal financial settlements.',
+      'If threatened with an obscenity charge, request the officer to cite the specific act of nuisance and note their name and badge number.',
+      'Show valid government ID (Aadhaar, Voter ID, Passport) proving you are 18+.'
+    ],
+    doNotDo: [
+      'Do NOT panic, succumb to extortion, or pay informal spot bribes.',
+      'Do NOT provide phone numbers of parents or relatives under intimidation if you are an adult.',
+      'Do NOT allow officers to click your pictures or record videos of you unlawfully.'
+    ],
+    sayThis: '“Officer, we are both consenting adults (18+) exercising our rights under Article 19 and Article 21. We are not committing any public nuisance or unlawful act.”',
+    helpline: '112 (National Emergency) / 1091 (Women Helpline) / 7827170170 (NCW)',
+    whereToComplain: {
+      authority: 'DCP / SP of the district, State Women’s Commission (NCW / SWC), State Police Complaints Authority (PCA)',
+      actSection: 'Section 296 BNS 2023, National Commission for Women Act, Police Conduct Rules',
+      steps: [
+        'Step 1: Note down the police station, names of officers, vehicle registration, and badge details.',
+        'Step 2: File a formal written complaint with the Deputy Commissioner of Police (DCP) / Superintendent of Police (SP).',
+        'Step 3: Lodge a harassment petition with the National Commission for Women (NCW) at ncw.nic.in.',
+        'Step 4: File a complaint before the State Police Complaints Authority (PCA) for moral policing and intimidation.'
+      ],
+      helplineOrPortal: 'ncw.nic.in / 7827170170',
+      portalUrl: 'http://ncw.nic.in'
+    },
+    fastScan30Sec: {
+      situationText: 'Police harassing consenting adult couple in park/hotel, threatening to call parents, or extorting money.',
+      topRightText: 'Consenting Adults (18+) Liberty (Art 21) • Sitting/Talking not Obscenity (BNS 296) • No Right to Call Parents • Hotel Stay Legal.',
+      mustDoText: 'Show adult ID. State Article 21 adult consent rights. Refuse parent calls/bribes. Note officer name/badge.',
+      complainToText: 'District DCP/SP, National Commission for Women (7827170170), or Police Complaints Authority.'
+    },
+    officialLinks: [
+      {
+        title: 'National Commission for Women (NCW)',
+        url: 'http://ncw.nic.in',
+        department: 'NCW India',
+        type: 'portal',
+        description: 'Helpline 7827170170 for complaints against moral policing and harassment of women.'
+      }
+    ],
+    translations: {
+      hi: {
+        title: 'पार्क/होटल में बालिग जोड़ों का उत्पीड़न व मॉरल पुलिसिंग',
+        situation: 'पार्क, कैफे या होटल में बैठे बालिग जोड़े को पुलिस रोके, माता-पिता को फोन करने की धमकी दे या अश्लीलता के नाम पर पैसे मांगे।',
+        legalShield: 'संविधान का अनुच्छेद 19 व 21 (व्यक्तिगत स्वतंत्रता व निजता), बीएनएस धारा 296।',
+        summaryRights: [
+          '18+ बालिग नागरिकों को सार्वजनिक व निजी स्थानों पर साथ रहने व बातचीत करने की पूर्ण संवैधानिक स्वतंत्रता है।',
+          'साथ बैठना या बात करना कोई अपराध या अश्लीलता नहीं है (BNS धारा 296)।',
+          'बालिग नागरिकों के परिजनों को फोन करने या शादी का सबूत मांगने का पुलिस को कोई अधिकार नहीं है।'
+        ],
+        immediateActions: [
+          'शांत रहकर बताएं कि आप दोनों बालिग (18+) हैं।',
+          'आयु प्रमाण (आधार कार्ड/वोटर आईडी) दिखाएं।',
+          'अवैध वसूली या परिजनों को कॉल करने से स्पष्ट मना करें और अधिकारी का नाम नोट करें।'
+        ],
+        doNotDo: [
+          'घबराकर पैसे या रिश्वत न दें।',
+          'डरकर परिजनों का नंबर न दें।'
+        ],
+        sayThis: '“सर, हम दोनों बालिग (18+) हैं और संविधान के अनुच्छेद 21 के तहत अपने अधिकारों का उपयोग कर रहे हैं। हम कोई गैर-कानूनी काम नहीं कर रहे हैं।”',
+        whereToComplain: {
+          authority: 'जिला डीसीपी/एसपी, राष्ट्रीय महिला आयोग (NCW), पुलिस शिकायत प्राधिकरण (PCA)',
+          steps: ['अधिकारी का नाम-बैज नोट करके डीसीपी और महिला आयोग में लिखित शिकायत दर्ज कराएं।'],
+          helplineOrPortal: '112 / 7827170170'
+        }
+      }
+    }
+  },
+  {
+    id: 'preventive-detention-protests',
+    title: 'Preventive Detention / Lock-Up Before Protests or Elections',
+    situation: 'Police detain you prior to a planned peaceful assembly, protest, or during election cycles citing "preventive measures".',
+    category: 'arrest',
+    severity: 'warning',
+    legalShield: 'Section 170 BNSS (earlier Sec 151 CrPC), Sections 126 & 128 BNSS (earlier Sec 107/116 CrPC), Article 19(1)(b) & Article 22 Constitution.',
+    landmarkCase: 'Ahmed Noormohmed Bhatinda v. State of Gujarat & D.K. Basu - Preventive detention under Sec 151/170 cannot exceed 24 hours without Judicial Magistrate authorization.',
+    summaryRights: [
+      'Strict 24-Hour Limit: Under Section 170 BNSS (earlier 151 CrPC), preventive detention cannot exceed 24 hours unless further detention is authorized by a Judicial Magistrate.',
+      'Right to Bail: Preventive detentions under Section 126/128/170 BNSS are strictly bailable; you are entitled to release immediately upon executing a personal bond.',
+      'Right to Know Reasons: You must be informed of the specific anticipated cognizable offense that prompted the detention.',
+      'Right to Legal Representation: Right to consult a lawyer and apply for immediate bail before the Executive Magistrate / SDM.'
+    ],
+    immediateActions: [
+      'Ask: “Under which section am I being detained?”',
+      'State your willingness to submit a personal bond for release before the Executive Magistrate.',
+      'Ensure the exact time of detention is noted in the general diary (GD) to trigger the 24-hour constitutional clock.',
+      'Contact your advocate or NALSA (15100) to move an immediate bail application before the SDM / Executive Magistrate.'
+    ],
+    doNotDo: [
+      'Do NOT allow detention to exceed 24 hours without demanding production before a Magistrate.',
+      'Do NOT sign bonds with unreasonable monetary sureties beyond your financial capacity.',
+      'Do NOT resist peacefully or engage in aggressive physical confrontation.'
+    ],
+    sayThis: '“Under Section 170 of the BNSS, preventive detention is strictly bailable and cannot exceed 24 hours. I am ready to furnish a personal bond before the Executive Magistrate for my immediate release.”',
+    helpline: '15100 (NALSA Free Legal Aid) / 112',
+    whereToComplain: {
+      authority: 'Executive Magistrate / Sub-Divisional Magistrate (SDM), High Court (Writ of Habeas Corpus under Art. 226)',
+      actSection: 'Section 170 & 126 BNSS, Constitution of India Article 226',
+      steps: [
+        'Step 1: Submit an immediate bail and personal bond application before the Executive Magistrate / SDM.',
+        'Step 2: If held beyond 24 hours without judicial order, instruct an advocate or family member to file an urgent Writ of Habeas Corpus under Article 226 in the High Court.',
+        'Step 3: Lodge a complaint with the State Human Rights Commission (SHRC) for illegal preventive detention.'
+      ],
+      helplineOrPortal: 'Executive Magistrate Court / NALSA 15100',
+      portalUrl: 'https://nalsa.gov.in'
+    },
+    fastScan30Sec: {
+      situationText: 'Detained before protest, rally, or elections under preventive arrest sections.',
+      topRightText: 'Strict 24-Hour Max Limit (BNSS Sec 170) • Right to Bail on Personal Bond • GD Time Log Essential • Free Legal Aid (15100).',
+      mustDoText: 'Ask exact detention section. Offer personal bond to SDM. Ensure GD timestamp recorded. Call legal aid (15100).',
+      complainToText: 'Executive Magistrate / SDM, High Court (Habeas Corpus), or State Human Rights Commission.'
+    },
+    officialLinks: [
+      {
+        title: 'National Legal Services Authority (NALSA) 24x7 Helpline',
+        url: 'https://nalsa.gov.in',
+        department: 'NALSA India',
+        type: 'portal',
+        description: 'Dial 15100 for instant free legal aid lawyer assistance during preventive detention.'
+      }
+    ],
+    translations: {
+      hi: {
+        title: 'विरोध प्रदर्शन या चुनाव से पूर्व एहतियातन हिरासत (प्रिवेंटिव डिटेंशन)',
+        situation: 'शांतिपूर्ण प्रदर्शन, रैली या चुनाव से पहले पुलिस आपको "शांति भंग" या "एहतियातन" हिरासत में ले ले।',
+        legalShield: 'बीएनएसएस धारा 170 (पूर्व धारा 151 सीआरपीसी), धारा 126/128, संविधान का अनुच्छेद 19(1)(b) व 22।',
+        summaryRights: [
+          'एहतियातन हिरासत अधिकतम 24 घंटे से अधिक नहीं हो सकती (धारा 170 BNSS)।',
+          'यह पूर्णतः जमानती है; आप पर्सनल बॉन्ड (निजी मुचलके) पर तुरंत रिहाई के हकदार हैं।',
+          'कार्यपालक मजिस्ट्रेट (SDM) के समक्ष पेशी व मुफ्त विधिक सहायता (15100) का अधिकार।'
+        ],
+        immediateActions: [
+          'पूछें कि किस धारा के तहत हिरासत में लिया गया है।',
+          'एसडीएम के समक्ष पर्सनल बॉन्ड भरकर रिहाई की मांग करें।',
+          'जनरल डायरी (GD) में हिरासत का सटीक समय दर्ज करवाएं।',
+          'वकील या नालसा हेल्पलाइन 15100 पर संपर्क करें।'
+        ],
+        doNotDo: [
+          '24 घंटे से अधिक बिना मजिस्ट्रेट आदेश के हिरासत में न रहें।',
+          'अनुचित या अत्यधिक जमानत राशि वाले बॉन्ड पर हस्ताक्षर न करें।'
+        ],
+        sayThis: '“बीएनएसएस धारा 170 के तहत एहतियातन हिरासत जमानती है और 24 घंटे से अधिक नहीं हो सकती। मैं एसडीएम के समक्ष निजी मुचलका भरने के लिए तैयार हूँ।”',
+        whereToComplain: {
+          authority: 'उपमंडल मजिस्ट्रेट (SDM) कोर्ट, उच्च न्यायालय (हैबियस कॉर्पस याचिका), मानवाधिकार आयोग',
+          steps: ['एसडीएम के समक्ष जमानत अर्जी लगाएं; 24 घंटे पार होने पर हाईकोर्ट में याचिका दाखिल करें।'],
+          helplineOrPortal: '15100 / 112'
+        }
+      }
+    }
   }
 ];

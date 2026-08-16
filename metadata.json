@@ -1,6 +1,6 @@
 {
   "name": "MyRight - Citizen Legal Empowerment & Police Rights Navigator",
   "description": "MyRight is India's premier citizen legal rights navigator and police interaction guide, featuring interactive situation guides, D.K. Basu arrest protocols, official department portals, and statutory explanations in 11 Indian languages.",
-  "requestFramePermissions": [],
+  "requestFramePermissions": ["microphone"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
