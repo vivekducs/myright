@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Shield, PhoneCall, Globe, BookOpen, AlertOctagon, HelpCircle, MessageSquareText, FileBadge, Check, Sparkles, ChevronDown, Compass, Building2, BookMarked, Search } from 'lucide-react';
+import { Shield, PhoneCall, Globe, BookOpen, AlertOctagon, HelpCircle, MessageSquareText, FileBadge, Check, Sparkles, ChevronDown, Compass, Building2, BookMarked, Search, MapPin } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { SupportedLanguage } from '../types';
 import { getT } from '../data/translations';
@@ -31,6 +31,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'ai-advisor', label: t.navAIAdvisor || 'AI Legal Shield', icon: Sparkles, badge: 'Live AI & Chat' },
     { id: 'rights', label: t.navRights, icon: BookOpen },
     { id: 'departments', label: t.navDepartments, icon: Building2 },
+    { id: 'locator', label: 'Find Police', icon: MapPin, badge: 'GPS' },
     { id: 'dk-basu', label: t.navDKBasu, icon: Shield },
     { id: 'scripts', label: t.navScripts, icon: MessageSquareText },
     { id: 'pocket-pass', label: t.navPocketPass, icon: FileBadge },

@@ -13,6 +13,10 @@ The application features a modern frontend built with React, Vite, and Tailwind 
 - **Real-Time Voice Conversations:** A WebSocket-based live voice channel that allows users to speak with the AI counselor in real-time, receiving spoken answers citing constitutional protections and statutory sections.
 - **Audio Transcription and Text-to-Speech:** Capabilities to transcribe spoken audio and generate clear, authoritative text-to-speech responses.
 - **Search Grounding Legal Verification:** Verifies the latest legal rules, circulars, or Supreme Court decisions based on the user's query and state jurisdiction.
+- **Multi-Lingual Support:** Read rules and scripts in English, Hindi, Telugu, Tamil, Bengali, Marathi, Gujarati, Kannada, Malayalam, Punjabi, and Hinglish.
+- **Geo-Located Police Locator:** One-tap GPS feature to find nearest police stations within a 10km radius using OpenStreetMap data, and get instant directions.
+- **Live AI Legal Shield:** A persistent, sticky AI assistant available on every screen that accepts voice input and provides spoken legal advice in multiple languages.
+- **Digital Constitution Book:** A beautifully rendered, physical-book-like interface for reading core statutory rights and Supreme Court precedents.
 
 ## Technology Stack
 

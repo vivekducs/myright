@@ -11,6 +11,7 @@ import { AIAdvisor } from './components/AIAdvisor';
 import { RightsCardGenerator } from './components/RightsCardGenerator';
 import { LegalArticlesExplorer } from './components/LegalArticlesExplorer';
 import { MythBusterQuiz } from './components/MythBusterQuiz';
+import { StationLocator } from './components/StationLocator';
 import { DepartmentDirectory } from './components/DepartmentDirectory';
 import { DigitalGuidebook } from './components/DigitalGuidebook';
 import { DetailPage } from './components/DetailPage';
@@ -202,6 +203,12 @@ export default function App() {
                 <Route path="/pocket-pass" element={
                   <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.2 }}>
                     <RightsCardGenerator language={language} />
+                  </motion.div>
+                } />
+
+                <Route path="/locator" element={
+                  <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.2 }}>
+                    <StationLocator language={language} />
                   </motion.div>
                 } />
 
