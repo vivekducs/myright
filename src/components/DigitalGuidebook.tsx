@@ -386,7 +386,7 @@ export const DigitalGuidebook: React.FC<DigitalGuidebookProps> = ({
                   <ul className="space-y-2">
                     {currentBookPage.landmark_judgments.map((judgment, idx) => (
                       <li key={idx} className="font-serif text-xs text-slate-600">
-                        ⚖ {judgment}
+                         {judgment}
                       </li>
                     ))}
                   </ul>

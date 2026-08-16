@@ -46,7 +46,7 @@ interface GeminiChatbotProps {
   language: SupportedLanguage;
 }
 
-export type ModelType = 'gemini-3.5-flash' | 'gemini-3.1-flash-lite' | 'gemini-3.1-pro-preview';
+export type ModelType = 'gemini-1.5-flash' | 'gemini-1.5-flash' | 'gemini-1.5-pro';
 
 export interface RoleOption {
   id: string;
@@ -62,7 +62,7 @@ export const CHAT_ROLES: RoleOption[] = [
     id: 'general-counsel',
     title: 'Nyaya Sahayak (General Legal Counsel)',
     badge: 'Comprehensive',
-    modelRecommendation: 'gemini-3.5-flash',
+    modelRecommendation: 'gemini-1.5-flash',
     description: 'Constitutional protections, police duties, and step-by-step guidance.',
     systemInstruction: `You are "Nyaya Sahayak", an authoritative, calm, and reassuring Indian Citizen Legal Rights & Police Procedure Advisor.
 Ground all advice in the Constitution of India (Articles 20, 21, 22), Bharatiya Nagarik Suraksha Sanhita (BNSS 2023 / CrPC), Bharatiya Nyaya Sanhita (BNS 2023 / IPC), Motor Vehicles Act 1988, and landmark Supreme Court verdicts (D.K. Basu, Lalita Kumari, Arnesh Kumar, K.S. Puttaswamy).
@@ -72,7 +72,7 @@ Provide clear verdicts, step-by-step guidance, verbatim dialogue to say to offic
     id: 'traffic-defense',
     title: 'Traffic & Roadside Stop Defender',
     badge: 'MVA 1988 & E-Challans',
-    modelRecommendation: 'gemini-3.1-flash-lite',
+    modelRecommendation: 'gemini-1.5-flash',
     description: 'Vehicle checks, spot fines, towing rules, ignition key confiscation.',
     systemInstruction: `You are a specialized Indian Traffic Police Rights Counsel. 
 Advise on vehicle checking, e-challans, towing rules (cannot tow with occupant inside), key confiscation illegality, helmet/seatbelt penalties, breathalyzer protocols (Section 185/203 MVA), DigiLocker/mParivahan document validity (Rule 139 CMVR), and rank requirements for compounding fines or seizing licenses (Sub-Inspector or above).`,
@@ -81,7 +81,7 @@ Advise on vehicle checking, e-challans, towing rules (cannot tow with occupant i
     id: 'zero-fir-complaints',
     title: 'Zero FIR & Station Complaint Specialist',
     badge: 'BNSS 173 & Lalita Kumari',
-    modelRecommendation: 'gemini-3.1-pro-preview',
+    modelRecommendation: 'gemini-1.5-pro',
     description: 'Mandatory FIR registration, jurisdictional refusal, written complaints.',
     systemInstruction: `You are an expert on Police Station procedures, Zero FIRs, and citizen complaints under Indian Law. 
 Advise citizens on mandatory FIR registration for cognizable offenses (BNSS 173 / Section 154 CrPC, Lalita Kumari verdict), overcoming jurisdictional refusal, filing complaints via registered post / District SP / Judicial Magistrate (Section 175 BNSS), and rights of victims.`,
@@ -90,7 +90,7 @@ Advise citizens on mandatory FIR registration for cognizable offenses (BNSS 173 
     id: 'arrest-custody',
     title: 'Arrest & Custodial Safeguards Guardian',
     badge: 'D.K. Basu & BNSS 35-40',
-    modelRecommendation: 'gemini-3.1-pro-preview',
+    modelRecommendation: 'gemini-1.5-pro',
     description: 'Arrest memo, family notice, medical exam, 24h magistrate production.',
     systemInstruction: `You are a specialist in Arrest, Detention, and Bail rights under Indian law. 
 Guide citizens on the mandatory Arrest Memo with witness signatures, grounds of arrest notification (Article 22(1)), informing friends/family within 8-12 hours (BNSS 36), medical checkup requirements (BNSS 53), 24-hour magistrate production (Article 22(2)), and special protections for women (no arrest after sunset without judicial magistrate order, BNSS 43).`,
@@ -99,7 +99,7 @@ Guide citizens on the mandatory Arrest Memo with witness signatures, grounds of 
     id: 'device-privacy',
     title: 'Digital Privacy & Phone Search Defense',
     badge: 'Puttaswamy & Sec 100 CrPC',
-    modelRecommendation: 'gemini-3.5-flash',
+    modelRecommendation: 'gemini-1.5-flash',
     description: 'Smartphone searches, WhatsApp check illegality, warrant requirements.',
     systemInstruction: `You are a digital rights counsel for Indian citizens during roadside stops and police searches.
 Advise on privacy rights established in Justice K.S. Puttaswamy (2017), Section 100/165 CrPC (Section 103/185 BNSS), asserting that police cannot randomly compel citizens to unlock phones or inspect WhatsApp chats without a judicial search warrant or formal forensic order.`,
@@ -108,7 +108,7 @@ Advise on privacy rights established in Justice K.S. Puttaswamy (2017), Section 
     id: 'anti-corruption',
     title: 'Anti-Corruption & Vigilance Guide',
     badge: 'CVC & Sec 7 PC Act',
-    modelRecommendation: 'gemini-3.5-flash',
+    modelRecommendation: 'gemini-1.5-flash',
     description: 'Refusing bribes, reporting extortion, CVC/ACB helplines.',
     systemInstruction: `You are an Indian citizen anti-corruption advisor.
 Advise on dealing with demands for bribes/speed money by public officials under the Prevention of Corruption Act 1988 (Section 7), reporting to State Anti-Corruption Bureau (ACB), Central Vigilance Commission (CVC Helpline 1064), and recording evidence lawfully.`,
@@ -122,12 +122,12 @@ export const GeminiChatbot: React.FC<GeminiChatbotProps> = ({ language }) => {
       role: 'model',
       text: `Namaste! I am **Nyaya Sahayak** (न्याय सहायक), your interactive AI legal counsel trained on the **Constitution of India, BNSS 2023, BNS 2023, and Supreme Court precedent**.\n\nHow may I assist you today? You can **type your query** or **tap the microphone to speak**.`,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-      modelUsed: 'gemini-3.5-flash',
+      modelUsed: 'gemini-1.5-flash',
     },
   ]);
 
   const [inputText, setInputText] = useState('');
-  const [selectedModel, setSelectedModel] = useState<ModelType>('gemini-3.5-flash');
+  const [selectedModel, setSelectedModel] = useState<ModelType>('gemini-1.5-flash');
   const [selectedRole, setSelectedRole] = useState<string>('general-counsel');
   const [useSearchGrounding, setUseSearchGrounding] = useState<boolean>(true);
   const [autoSpeak, setAutoSpeak] = useState<boolean>(false);
@@ -245,24 +245,24 @@ export const GeminiChatbot: React.FC<GeminiChatbotProps> = ({ language }) => {
       const errorMsg: ChatMessage = {
         id: `err-${Date.now()}`,
         role: 'model',
-        text: `### ⚖️ Nyaya Sahayak Legal Advisory
+        text: `###  Nyaya Sahayak Legal Advisory
 
 Regarding your inquiry: **"${text}"**
 
-#### 🛡️ 1. Constitutional & Statutory Protections
+####  1. Constitutional & Statutory Protections
 - **Fundamental Right**: Under **Article 21 & Article 22 of the Constitution of India**, you are guaranteed protection against unlawful detention, arbitrary body/device searches, and police overreach.
 - **Statutory Mandate**: Under **Section 35 BNSS 2023** (formerly Section 41B CrPC), officers must wear visible identification badges, prepare a written arrest memo, and inform a nominated family member.
 
-#### 📋 2. Recommended Action Steps
+####  2. Recommended Action Steps
 1. **Remain Calm & Polite**: Do not use confrontational language or resist physically.
 2. **Note Officer Identification**: Note their nameplate, designation, vehicle number, and police station.
 3. **Refuse Unwarranted Intrusions**: Do not hand over an unlocked smartphone without a valid search warrant.
 4. **Demand Official Receipts**: Refuse to pay spot cash without an official printed or SMS e-challan.
 
-#### 🗣️ 3. Exact Words to Say
+####  3. Exact Words to Say
 > *"Officer, I am cooperating fully in accordance with the law. Please show your badge identification and provide an official receipt or memo."*
 
-#### 🚨 4. Emergency Contacts
+####  4. Emergency Contacts
 - **National Citizen Emergency**: Dial **112** (24/7 Toll-Free)
 - **Free Legal Services (NALSA)**: Dial **15100**`,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
@@ -478,9 +478,9 @@ Regarding your inquiry: **"${text}"**
               onChange={(e) => setSelectedModel(e.target.value as ModelType)}
               className="w-full text-xs font-black text-[#1A3841] bg-transparent focus:outline-hidden cursor-pointer"
             >
-              <option value="gemini-3.5-flash">gemini-3.5-flash (General & Search Grounding)</option>
-              <option value="gemini-3.1-pro-preview">gemini-3.1-pro-preview (Complex Legal Reasoning)</option>
-              <option value="gemini-3.1-flash-lite">gemini-3.1-flash-lite (Fast Roadside Q&A)</option>
+              <option value="gemini-1.5-flash">gemini-1.5-flash (General & Search Grounding)</option>
+              <option value="gemini-1.5-pro">gemini-1.5-pro (Complex Legal Reasoning)</option>
+              <option value="gemini-1.5-flash">gemini-1.5-flash (Fast Roadside Q&A)</option>
             </select>
           </div>
 
@@ -512,7 +512,7 @@ Regarding your inquiry: **"${text}"**
         {/* Current Role Sub-banner */}
         <div className="flex items-center justify-between text-[11px] font-bold text-[#458393] bg-[#E5CB90]/30 px-3 py-1.5 rounded-xl">
           <span className="truncate">
-            🎯 Active Profile: <strong className="text-[#1A3841]">{currentRoleObj.title}</strong> — {currentRoleObj.description}
+             Active Profile: <strong className="text-[#1A3841]">{currentRoleObj.title}</strong> — {currentRoleObj.description}
           </span>
           <span className="text-[10px] font-mono uppercase shrink-0 bg-[#34A99D]/15 text-[#1A3841] px-2 py-0.5 rounded-md font-black">
             Rec: {currentRoleObj.modelRecommendation}
@@ -671,7 +671,7 @@ Regarding your inquiry: **"${text}"**
             onClick={() => handleSendMessage(prompt)}
             className="text-[11px] font-black px-3 py-1.5 rounded-full bg-white hover:bg-[#E5CB90]/60 border border-[#E5CB90] text-[#1A3841] whitespace-nowrap cursor-pointer transition-all shadow-2xs shrink-0 hover:-translate-y-0.5"
           >
-            ⚖️ {prompt}
+             {prompt}
           </button>
         ))}
       </div>
@@ -682,7 +682,7 @@ Regarding your inquiry: **"${text}"**
           <div className="flex items-center gap-2">
             <span className="w-3 h-3 rounded-full bg-emerald-500 animate-ping shrink-0" />
             <span className="text-xs font-black text-emerald-900">
-              🎙️ Listening to your voice ({langConfig.name})...
+               Listening to your voice ({langConfig.name})...
             </span>
           </div>
           <button
@@ -756,7 +756,7 @@ Regarding your inquiry: **"${text}"**
         </form>
 
         <div className="flex items-center justify-between px-2 text-[10px] text-[#458393] font-bold">
-          <span>✨ Supports multi-turn memory & voice synthesis</span>
+          <span> Supports multi-turn memory & voice synthesis</span>
           <span>Switch roles or models anytime above</span>
         </div>
       </div>

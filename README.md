@@ -9,57 +9,57 @@
 
 ---
 
-## 🏆 The Vision (Why this wins)
+##  The Vision (Why this wins)
 In India, legal literacy is often a privilege, not a right. Citizens face intimidation during police encounters due to a lack of awareness of their fundamental rights and the recent transition to the new **Bharatiya Nyaya Sanhita (BNS)**. 
 
 **MyRight** is not just an app; it's a **digital legal shield**. Built as a high-performance, AI-powered Progressive Web App (PWA), it demystifies complex laws, provides real-time situational guidance, and equips citizens with actionable tools—even when they have **zero internet connectivity** in a police station.
 
 ---
 
-## 🚀 Core Features (Maximum Impact)
+##  Core Features (Maximum Impact)
 
-### 1. 🧠 AI Legal Copilot (Powered by Google Gemini)
+### 1.  AI Legal Copilot (Powered by Google Gemini)
 - **What it does:** A conversational AI advisor fine-tuned to interpret the new BNSS/CrPC laws.
 - **Impact:** Citizens can ask complex legal questions in plain language (e.g., *"Can the police search my car without a warrant at night?"*) and receive accurate, jurisdiction-specific advice instantly.
 - **Tech:** Securely routed through Vercel Serverless Functions to protect API keys, ensuring enterprise-grade security and low-latency responses.
 
-### 2. 📄 Automated e-FIR & Legal Draft Generator
+### 2.  Automated e-FIR & Legal Draft Generator
 - **What it does:** The **ComplaintBuilder** guides users through a simple wizard to capture incident details, instantly generating a legally sound, perfectly formatted **PDF draft** (using `jspdf`).
 - **Impact:** Eliminates the need for expensive lawyers just to draft a basic complaint or a Zero FIR. The user can print it and submit it directly to the Duty Officer.
 
-### 3. 🛡️ True Offline-First PWA (Zero-Internet Resilience)
+### 3.  True Offline-First PWA (Zero-Internet Resilience)
 - **What it does:** Aggressive caching strategies using Service Workers and Vite PWA Workbox.
 - **Impact:** Police stations and rural areas often have terrible cell reception. MyRight caches all critical legal compendiums, static assets, and UI logic. If a citizen is detained and has no internet, the app's core reading and drafting tools **still work flawlessly**.
 
-### 4. 🌙 Stealth AMOLED Dark Mode
+### 4.  Stealth AMOLED Dark Mode
 - **What it does:** A system-aware, deeply integrated Dark Mode built with Tailwind CSS variables.
 - **Impact:** Crucial for safety during late-night traffic stops. It prevents the phone screen from blinding the user or drawing unnecessary attention, while saving battery life during emergencies.
 
-### 5. 📳 Native Haptic Feedback Integration
+### 5.  Native Haptic Feedback Integration
 - **What it does:** Leverages the browser's `navigator.vibrate` API to provide physical feedback.
 - **Impact:** Makes the web app feel exactly like a downloaded iOS/Android app. **Light haptics** guide UI navigation, while **Heavy burst haptics** confirm critical actions like pressing the SOS button or generating a legal document.
 
-### 6. 📍 Geolocation & Nearest Police Station Finder
+### 6.  Geolocation & Nearest Police Station Finder
 - **What it does:** Integrates with the Overpass API to instantly ping the user's GPS coordinates and list the nearest active police jurisdictions.
 - **Impact:** Crucial for filing a Zero FIR or knowing exactly which jurisdiction you are currently standing in during an emergency.
 
-### 7. 🗣️ Seamless Multilingual Accessibility
+### 7.  Seamless Multilingual Accessibility
 - **What it does:** Real-time UI translation (English, Hindi, etc.) without page reloads.
 - **Impact:** Legal protection shouldn't be limited to English speakers. This ensures the app is accessible to the masses, democratizing legal literacy across India.
 
-### 8. 🚨 1-Tap SOS & Emergency Strip
+### 8.  1-Tap SOS & Emergency Strip
 - **What it does:** A persistent, highly visible SOS button that immediately triggers national helplines (112) and displays a quick-reference guide on how to handle immediate intimidation.
 
-### 9. ⚖️ D.K. Basu Arrest Guidelines & Pocket Pass
+### 9.  D.K. Basu Arrest Guidelines & Pocket Pass
 - **What it does:** A dedicated module outlining the Supreme Court's mandatory guidelines for police arrests (Right to know grounds, Right to inform a relative, etc.), alongside a printable "Citizen Pocket Pass".
 
-### 10. 🎮 Gamified Legal Literacy (Myth Buster)
+### 10.  Gamified Legal Literacy (Myth Buster)
 - **What it does:** An interactive quiz section that tests users on common legal misconceptions.
 - **Impact:** Transforms boring legal reading into an engaging, sticky experience that encourages users to learn their rights proactively.
 
 ---
 
-## 🏛️ Detailed System Architecture: How It Works & Helps Citizens
+##  Detailed System Architecture: How It Works & Helps Citizens
 
 MyRight operates on a hybrid architecture designed specifically for reliability in high-stress, low-connectivity environments.
 
@@ -83,7 +83,7 @@ The `StationLocator` component uses the HTML5 Geolocation API to fetch the user'
 
 ---
 
-## 🛠️ Technical Specifications (For the Judges)
+##  Technical Specifications (For the Judges)
 
 - **Frontend:** React 19 + TypeScript + Vite for ultra-fast HMR and type safety.
 - **Styling:** Tailwind CSS v4 with custom Glassmorphism (`backdrop-filter`) and fluid Framer Motion (`motion/react`) animations running at 60fps.
@@ -94,7 +94,7 @@ The `StationLocator` component uses the HTML5 Geolocation API to fetch the user'
 
 ---
 
-## 🎤 How to Pitch This
+##  How to Pitch This
 
 1. **The Hook:** *"Have you ever felt a knot in your stomach when stopped by the police, even if you did nothing wrong? That fear stems from a lack of knowledge."*
 2. **The Solution:** Introduce MyRight. Emphasize that it's a **PWA** because citizens shouldn't have to wait to download a 50MB app from the App Store during an emergency.

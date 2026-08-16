@@ -237,7 +237,7 @@ export const AIAdvisor: React.FC<AIAdvisorProps> = ({ language }) => {
           <MessageSquareText className="w-4 h-4 text-[#34A99D]" />
           <span>Gemini Multi-Turn Chatbot</span>
           <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#34A99D]/20 text-teal-800">
-            gemini-3.5-flash / 3.1-pro
+            gemini-1.5-flash / 3.1-pro
           </span>
         </button>
 
@@ -253,7 +253,7 @@ export const AIAdvisor: React.FC<AIAdvisorProps> = ({ language }) => {
           <Globe className="w-4 h-4 text-blue-200" />
           <span>Google Search Grounding</span>
           <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-100 text-blue-900">
-            gemini-3.5-flash
+            gemini-1.5-flash
           </span>
         </button>
 

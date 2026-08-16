@@ -188,7 +188,7 @@ export const DetailPage: React.FC<DetailPageProps> = ({
           </button>
 
           <span className="px-3.5 py-1 rounded-full bg-[#34A99D]/15 border border-[#34A99D]/40 text-[#1A3841] text-xs font-black">
-            🇮🇳 {langConfig.name}
+             {langConfig.name}
           </span>
         </div>
       </div>

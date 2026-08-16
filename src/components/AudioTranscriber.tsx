@@ -119,7 +119,7 @@ export const AudioTranscriber: React.FC<AudioTranscriberProps> = ({
         ) : isTranscribing ? (
           <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#E5CB90]/60 text-[#1A3841] text-xs font-black shadow-xs">
             <Loader2 className="w-3.5 h-3.5 animate-spin text-[#34A99D]" />
-            <span>Transcribing (gemini-3.5-flash)...</span>
+            <span>Transcribing (gemini-1.5-flash)...</span>
           </div>
         ) : (
           <button
@@ -166,7 +166,7 @@ export const AudioTranscriber: React.FC<AudioTranscriberProps> = ({
           <Mic className="w-4 h-4 text-[#34A99D]" />
           <span>{buttonLabel}</span>
           <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#34A99D]/15 text-[#34A99D] font-extrabold">
-            gemini-3.5-flash
+            gemini-1.5-flash
           </span>
         </button>
       )}

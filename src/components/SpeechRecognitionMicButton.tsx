@@ -123,7 +123,7 @@ export const SpeechRecognitionMicButton: React.FC<SpeechRecognitionMicButtonProp
 
         {isListening && (interimTranscript || transcript) && (
           <div className="text-[11px] font-bold text-[#1A3841] bg-white/95 px-3 py-1 rounded-xl border border-red-300 shadow-xs max-w-sm">
-            <span className="text-red-600 font-black">🎙️ Live: </span>
+            <span className="text-red-600 font-black"> Live: </span>
             <span>{interimTranscript || transcript}</span>
           </div>
         )}

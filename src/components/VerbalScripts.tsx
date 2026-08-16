@@ -30,11 +30,11 @@ export const VerbalScripts: React.FC<VerbalScriptsProps> = ({ language }) => {
 
   const categories = [
     { id: 'all', label: 'All Scenarios' },
-    { id: 'traffic', label: '🚦 Traffic Stops' },
-    { id: 'search', label: '🔍 Phone & Bag Search' },
-    { id: 'arrest', label: '⚖️ Arrest Safeguards' },
-    { id: 'police_station', label: '🏛️ FIR & Station' },
-    { id: 'women_rights', label: '🛡️ Women Protection' },
+    { id: 'traffic', label: ' Traffic Stops' },
+    { id: 'search', label: ' Phone & Bag Search' },
+    { id: 'arrest', label: ' Arrest Safeguards' },
+    { id: 'police_station', label: ' FIR & Station' },
+    { id: 'women_rights', label: ' Women Protection' },
   ];
 
   // Helper for computing similarity between spoken text and target script
@@ -188,7 +188,7 @@ export const VerbalScripts: React.FC<VerbalScriptsProps> = ({ language }) => {
             </div>
             <div>
               <h3 className="text-base sm:text-lg font-black text-[#1A3841]">
-                🎙️ High-Stress Voice Matcher (Speak Situation)
+                 High-Stress Voice Matcher (Speak Situation)
               </h3>
               <p className="text-xs text-[#458393] font-bold">
                 Too stressed to type? Speak what the officer said or describe what's happening to find your exact legal script.
@@ -401,7 +401,7 @@ export const VerbalScripts: React.FC<VerbalScriptsProps> = ({ language }) => {
                     Backed by {item.legalBasis} and Supreme Court procedural mandates.
                   </p>
                   <p className="text-[#458393] font-bold text-xs pt-1.5 border-t border-[#E5CB90]/70 pl-6">
-                    💡 Tip: {tipText}
+                     Tip: {tipText}
                   </p>
                 </div>
 

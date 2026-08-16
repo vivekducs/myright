@@ -25,24 +25,24 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (!ai) {
       const lastMsg = messages[messages.length - 1]?.text || "";
       return res.json({
-        text: `### ⚖️ Nyaya Sahayak Legal Advisory
+        text: `###  Nyaya Sahayak Legal Advisory
 
 Regarding your inquiry: **"${lastMsg}"**
 
-#### 🛡️ 1. Your Core Rights
+####  1. Your Core Rights
 - **Constitutional Shield**: Under **Article 21 (Right to Personal Liberty)** and **Article 22** of the Constitution of India, arbitrary detention, unwarranted searches, or intimidation by law enforcement are prohibited.
 - **Statutory Protections**: Under **BNSS 2023 (Sections 35, 36, 47, 53)** and **MVA 1988**, police must display visible name badges and issue stamped receipts or electronic e-challans.
 
-#### 📋 2. What To Do Right Now
+####  2. What To Do Right Now
 1. **Stay Composed**: Speak politely and avoid physical confrontation or agitation.
 2. **Identify Officer**: Note the officer's nameplate, badge number, police station jurisdiction, and vehicle number.
 3. **Assert Legal Safeguards**: If stopped without justification, ask politely: *"Officer, am I free to leave, or am I being detained for a specific inquiry?"*
 4. **Mandatory Documentation**: Never pay unreceipted cash. Insist on a formal **Arrest Memo**, **Panchanama Seizure Memo**, or **e-Challan**.
 
-#### 🗣️ 3. Exact Words to Say
+####  3. Exact Words to Say
 > *"Officer, I am cooperating fully under the law. Please provide the official memo/receipt with your badge credentials as mandated by statutory procedure."*
 
-#### 🚨 4. Emergency Escalation
+####  4. Emergency Escalation
 - **National Emergency Helpline**: Dial **112** (24/7)
 - **Free Legal Aid (NALSA)**: Dial **15100** (Free advocate assistance)
 - **Anti-Corruption Bureau**: Dial **1064** / **1800-11-5555**`,

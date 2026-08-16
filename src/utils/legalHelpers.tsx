@@ -230,7 +230,7 @@ export const LegalCitationsAndSourcesSection: React.FC<{
             {step.landmarkCase && (
               <div className="text-xs font-bold text-indigo-950 bg-indigo-50/80 p-2.5 rounded-xl border border-indigo-200">
                 <span className="text-indigo-800 font-black block text-[10px] uppercase">Landmark Ruling:</span>
-                ⚖️ {step.landmarkCase}
+                 {step.landmarkCase}
               </div>
             )}
           </div>

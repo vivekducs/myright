@@ -106,7 +106,7 @@ export const StickyAIAssistant: React.FC<StickyAIAssistantProps> = ({ language }
           role: m.role,
           text: m.content
         })),
-        model: 'gemini-3.5-flash',
+        model: 'gemini-1.5-flash',
         language: language === 'hi' ? 'Hindi' : 'English',
         systemInstruction: `You are a concise, helpful sticky AI legal assistant for Indian citizens. Be brief, clear, and reassuring. Keep responses under 3 sentences if possible. Always refer to BNSS or BNS for criminal law.`
       };

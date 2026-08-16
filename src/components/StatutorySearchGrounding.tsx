@@ -93,7 +93,7 @@ export const StatutorySearchGrounding: React.FC<StatutorySearchGroundingProps> =
               Google Search Grounding
             </span>
             <span className="text-xs font-bold text-[#34A99D] px-2.5 py-0.5 rounded-full bg-[#34A99D]/15">
-              gemini-3.5-flash with googleSearch tool
+              gemini-1.5-flash with googleSearch tool
             </span>
           </div>
           <h3 className="text-xl sm:text-2xl font-black text-[#1A3841] tracking-tight">
@@ -163,7 +163,7 @@ export const StatutorySearchGrounding: React.FC<StatutorySearchGroundingProps> =
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
             <AudioTranscriber
               variant="inline"
-              buttonLabel="Voice Record (gemini-3.5-flash)"
+              buttonLabel="Voice Record (gemini-1.5-flash)"
               onTranscribed={(transcript) => {
                 setQuery(transcript);
                 handleVerify(transcript);
@@ -207,7 +207,7 @@ export const StatutorySearchGrounding: React.FC<StatutorySearchGroundingProps> =
               }}
               className="text-left text-xs font-bold px-3.5 py-1.5 rounded-full bg-white hover:bg-[#E5CB90]/60 border border-[#E5CB90] hover:border-blue-500 text-[#1A3841] transition-all cursor-pointer shadow-2xs"
             >
-              🔍 {preset}
+               {preset}
             </button>
           ))}
         </div>

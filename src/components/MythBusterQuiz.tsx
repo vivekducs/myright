@@ -124,7 +124,7 @@ export const MythBusterQuiz: React.FC<MythBusterQuizProps> = ({ language }) => {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-[#458393]">
-              💡 Tap any card to flip in 3D and reveal the official statutory legal reality.
+               Tap any card to flip in 3D and reveal the official statutory legal reality.
             </span>
           </div>
 
@@ -332,7 +332,7 @@ export const MythBusterQuiz: React.FC<MythBusterQuizProps> = ({ language }) => {
 
                 <p className="text-sm font-bold text-[#1A3841] max-w-md mx-auto leading-relaxed">
                   {score >= 4
-                    ? '🎉 Outstanding! You are exceptionally well-informed about your fundamental rights and police procedures under Indian law.'
+                    ? ' Outstanding! You are exceptionally well-informed about your fundamental rights and police procedures under Indian law.'
                     : 'Good attempt! Explore the D.K. Basu guidelines and legal articles to brush up on your citizen safeguards.'}
                 </p>
 

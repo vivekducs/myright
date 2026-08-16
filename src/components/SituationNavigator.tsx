@@ -478,7 +478,7 @@ export const SituationNavigator: React.FC<SituationNavigatorProps> = ({
                     </span>
                     {currentStep.landmarkCase && (
                       <span className="text-xs font-semibold text-slate-600 block mt-0.5">
-                        ⚖️ {currentStep.landmarkCase}
+                         {currentStep.landmarkCase}
                       </span>
                     )}
                   </div>
