@@ -8,6 +8,7 @@ import { GeminiChatbot } from './GeminiChatbot';
 import { GeminiLiveVoice } from './GeminiLiveVoice';
 import { StatutorySearchGrounding } from './StatutorySearchGrounding';
 import { AudioTranscriber } from './AudioTranscriber';
+import { SpeechRecognitionMicButton } from './SpeechRecognitionMicButton';
 import { MarkdownRenderer } from './MarkdownRenderer';
 
 interface AIAdvisorProps {
@@ -339,20 +340,38 @@ export const AIAdvisor: React.FC<AIAdvisorProps> = ({ language }) => {
             transition={{ duration: 0.2 }}
             className="space-y-6"
           >
-            {/* Query Input Card with Audio Transcription */}
+            {/* Query Input Card with Browser Speech Recognition API */}
             <div className="p-6 sm:p-8 rounded-[36px] bg-[#FFF3C8] border-2 border-[#E5CB90] shadow-xl space-y-4">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <label className="block text-sm font-black text-[#1A3841]">
                   Describe your immediate situation or legal question:
                 </label>
-                <AudioTranscriber
-                  buttonLabel="Voice Input (gemini-3.5-flash)"
-                  onTranscribed={(transcript) => {
-                    setQuestion(transcript);
-                    handleAsk(transcript);
-                  }}
-                />
+                <div className="flex items-center gap-2 flex-wrap">
+                  <AudioTranscriber
+                    variant="inline"
+                    buttonLabel="Record (Gemini 3.5)"
+                    onTranscribed={(transcript) => {
+                      setQuestion(transcript);
+                      handleAsk(transcript);
+                    }}
+                  />
+                </div>
               </div>
+
+              {/* Real-Time Browser Speech Recognition Mic Control */}
+              <SpeechRecognitionMicButton
+                language={language}
+                buttonLabel={`Speak Situation in ${langConfig.name}`}
+                placeholderHint="Speak your situation naturally (e.g. Police stopped my bike, took keys and demanding fine without receipt)..."
+                onTranscriptChange={(text, isFinal) => {
+                  setQuestion(text);
+                }}
+                onAutoSubmit={(finalText) => {
+                  if (finalText.trim()) {
+                    handleAsk(finalText);
+                  }
+                }}
+              />
               
               <div className="relative">
                 <textarea

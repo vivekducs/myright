@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Search, Globe, ExternalLink, CheckCircle2, ShieldCheck, Sparkles, Loader2, AlertCircle, Scale, Building } from 'lucide-react';
 import { SupportedLanguage } from '../types';
 import { AudioTranscriber } from './AudioTranscriber';
+import { SpeechRecognitionMicButton } from './SpeechRecognitionMicButton';
 import { MarkdownRenderer } from './MarkdownRenderer';
 
 interface StatutorySearchGroundingProps {
@@ -145,32 +146,48 @@ export const StatutorySearchGrounding: React.FC<StatutorySearchGroundingProps> =
         </div>
 
         {/* Voice Input & Submit Actions */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">
-          <AudioTranscriber
-            buttonLabel="Voice Query (gemini-3.5-flash)"
-            onTranscribed={(transcript) => {
-              setQuery(transcript);
-              handleVerify(transcript);
+        <div className="space-y-3 pt-2">
+          <SpeechRecognitionMicButton
+            language={language}
+            buttonLabel="Speak Legal Question (Live Speech API)"
+            onTranscriptChange={(text) => {
+              setQuery(text);
+            }}
+            onAutoSubmit={(finalText) => {
+              if (finalText.trim()) {
+                handleVerify(finalText);
+              }
             }}
           />
 
-          <button
-            onClick={() => handleVerify()}
-            disabled={loading || !query.trim()}
-            className="flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-blue-700 hover:bg-blue-800 text-white text-xs sm:text-sm font-black shadow-md hover:shadow-xl disabled:opacity-50 transition-all cursor-pointer"
-          >
-            {loading ? (
-              <>
-                <Loader2 className="w-4 h-4 animate-spin" />
-                <span>Searching Google & Verifying Statutes...</span>
-              </>
-            ) : (
-              <>
-                <Search className="w-4 h-4" />
-                <span>Run Google Search Grounding Check</span>
-              </>
-            )}
-          </button>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
+            <AudioTranscriber
+              variant="inline"
+              buttonLabel="Voice Record (gemini-3.5-flash)"
+              onTranscribed={(transcript) => {
+                setQuery(transcript);
+                handleVerify(transcript);
+              }}
+            />
+
+            <button
+              onClick={() => handleVerify()}
+              disabled={loading || !query.trim()}
+              className="flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-blue-700 hover:bg-blue-800 text-white text-xs sm:text-sm font-black shadow-md hover:shadow-xl disabled:opacity-50 transition-all cursor-pointer"
+            >
+              {loading ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span>Searching Google & Verifying Statutes...</span>
+                </>
+              ) : (
+                <>
+                  <Search className="w-4 h-4" />
+                  <span>Run Google Search Grounding Check</span>
+                </>
+              )}
+            </button>
+          </div>
         </div>
 
       </div>

@@ -4,6 +4,7 @@ import { Send, Bot, User, Sparkles, Globe, Search, Copy, Check, Volume2, Loader2
 import { SupportedLanguage } from '../types';
 import { getT, LANGUAGE_OPTIONS } from '../data/translations';
 import { AudioTranscriber } from './AudioTranscriber';
+import { SpeechRecognitionMicButton } from './SpeechRecognitionMicButton';
 import { MarkdownRenderer } from './MarkdownRenderer';
 
 interface ChatMessage {
@@ -411,7 +412,7 @@ export const GeminiChatbot: React.FC<GeminiChatbotProps> = ({ language }) => {
         ))}
       </div>
 
-      {/* Input Composer with Microphone Transcription Button */}
+      {/* Input Composer with SpeechRecognition Mic & Audio Transcription */}
       <div className="shrink-0 space-y-2">
         <form
           onSubmit={(e) => {
@@ -420,7 +421,16 @@ export const GeminiChatbot: React.FC<GeminiChatbotProps> = ({ language }) => {
           }}
           className="flex items-center gap-2 bg-white p-2 rounded-3xl border-2 border-[#E5CB90] focus-within:border-[#34A99D] shadow-md transition-all"
         >
-          {/* Audio Transcriber inline mic */}
+          {/* Browser Speech Recognition API Mic */}
+          <SpeechRecognitionMicButton
+            language={language}
+            variant="compact"
+            onTranscriptChange={(text) => {
+              setInputText(text);
+            }}
+          />
+
+          {/* Audio Transcriber fallback */}
           <AudioTranscriber
             variant="inline"
             onTranscribed={(transcript) => {
@@ -433,7 +443,7 @@ export const GeminiChatbot: React.FC<GeminiChatbotProps> = ({ language }) => {
             type="text"
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
-            placeholder="Ask your legal rights question or describe an ongoing interaction..."
+            placeholder={`Ask in ${langConfig.name} or English (type or tap mic to speak)...`}
             className="flex-1 px-3 py-2 text-xs sm:text-sm font-semibold text-[#1A3841] bg-transparent focus:outline-hidden placeholder-[#458393]/60"
           />
 
