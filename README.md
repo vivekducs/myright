@@ -1,89 +1,90 @@
-# Citizen Legal Rights and Police Procedure Advisor
+<div align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" width="80" alt="Emblem of India" />
+  <br/>
+  <h1 align="center">MyRight Bharat: The Ultimate Citizen Legal Shield</h1>
+  <p align="center">
+    <strong>Empowering 1.4 Billion Citizens with AI-Driven Legal Literacy & Protection under BNSS 2024.</strong>
+  </p>
+</div>
 
-## Overview
+---
 
-This project is a web application designed to act as an authoritative, calm, and practical Legal Rights and Police Procedure Advisor for Indian citizens. It empowers users with precise and actionable legal knowledge regarding police interactions, traffic enforcement (Motor Vehicles Act 1988), criminal procedures (BNSS 2023 / CrPC), penal laws (BNS 2023 / IPC), cyber forensics, and landmark Supreme Court verdicts.
+## 🏆 The Vision (Why this wins)
+In India, legal literacy is often a privilege, not a right. Citizens face intimidation during police encounters due to a lack of awareness of their fundamental rights and the recent transition to the new **Bharatiya Nyaya Sanhita (BNS)**. 
 
-The application features a modern frontend built with React, Vite, and Tailwind CSS, and a robust backend built with Express and Google Gemini AI integration.
+**MyRight** is not just an app; it's a **digital legal shield**. Built as a high-performance, AI-powered Progressive Web App (PWA), it demystifies complex laws, provides real-time situational guidance, and equips citizens with actionable tools—even when they have **zero internet connectivity** in a police station.
 
-## Features
+---
 
-- **Situation AI Advisor (Single Assessment):** Users can describe a situation, and the AI provides a summary of their legal standing, immediate actionable steps, actions to avoid, precise phrasing to use with officials, legal provisions, and emergency helpline numbers.
-- **Multi-turn Chatbot:** An interactive legal advisory chat with role selection and search grounding for up-to-date legal verification.
-- **Real-Time Voice Conversations:** A WebSocket-based live voice channel that allows users to speak with the AI counselor in real-time, receiving spoken answers citing constitutional protections and statutory sections.
-- **Audio Transcription and Text-to-Speech:** Capabilities to transcribe spoken audio and generate clear, authoritative text-to-speech responses.
-- **Search Grounding Legal Verification:** Verifies the latest legal rules, circulars, or Supreme Court decisions based on the user's query and state jurisdiction.
-- **Multi-Lingual Support:** Read rules and scripts in English, Hindi, Telugu, Tamil, Bengali, Marathi, Gujarati, Kannada, Malayalam, Punjabi, and Hinglish.
-- **Geo-Located Police Locator:** One-tap GPS feature to find nearest police stations within a 10km radius using OpenStreetMap data, and get instant directions.
-- **Live AI Legal Shield:** A persistent, sticky AI assistant available on every screen that accepts voice input and provides spoken legal advice in multiple languages.
-- **Digital Constitution Book:** A beautifully rendered, physical-book-like interface for reading core statutory rights and Supreme Court precedents.
+## 🚀 Core Features (Maximum Impact)
 
-## Technology Stack
+### 1. 🧠 AI Legal Copilot (Powered by Google Gemini)
+- **What it does:** A conversational AI advisor fine-tuned to interpret the new BNSS/CrPC laws.
+- **Impact:** Citizens can ask complex legal questions in plain language (e.g., *"Can the police search my car without a warrant at night?"*) and receive accurate, jurisdiction-specific advice instantly.
+- **Tech:** Securely routed through Vercel Serverless Functions to protect API keys, ensuring enterprise-grade security and low-latency responses.
 
-- **Frontend:** React 19, Vite, Tailwind CSS, Framer Motion, Lucide React
-- **Backend:** Express, Node.js, WebSockets (ws), TSX, ESBuild
-- **AI Integration:** Google GenAI SDK (gemini-3.5-flash, gemini-3.1-pro-preview, gemini-3.1-flash-live-preview)
-- **Language:** TypeScript
+### 2. 📄 Automated e-FIR & Legal Draft Generator
+- **What it does:** The **ComplaintBuilder** guides users through a simple wizard to capture incident details, instantly generating a legally sound, perfectly formatted **PDF draft** (using `jspdf`).
+- **Impact:** Eliminates the need for expensive lawyers just to draft a basic complaint or a Zero FIR. The user can print it and submit it directly to the Duty Officer.
 
-## Getting Started
+### 3. 🛡️ True Offline-First PWA (Zero-Internet Resilience)
+- **What it does:** Aggressive caching strategies using Service Workers and Vite PWA Workbox.
+- **Impact:** Police stations and rural areas often have terrible cell reception. MyRight caches all critical legal compendiums, static assets, and UI logic. If a citizen is detained and has no internet, the app's core reading and drafting tools **still work flawlessly**.
 
-### Prerequisites
+### 4. 🌙 Stealth AMOLED Dark Mode
+- **What it does:** A system-aware, deeply integrated Dark Mode built with Tailwind CSS variables.
+- **Impact:** Crucial for safety during late-night traffic stops. It prevents the phone screen from blinding the user or drawing unnecessary attention, while saving battery life during emergencies.
 
-- Node.js (v22 or later recommended)
-- A Google Gemini API Key
+### 5. 📳 Native Haptic Feedback Integration
+- **What it does:** Leverages the browser's `navigator.vibrate` API to provide physical feedback.
+- **Impact:** Makes the web app feel exactly like a downloaded iOS/Android app. **Light haptics** guide UI navigation, while **Heavy burst haptics** confirm critical actions like pressing the SOS button or generating a legal document.
 
-### Installation
+### 6. 📍 Geolocation & Nearest Police Station Finder
+- **What it does:** Integrates with the Overpass API to instantly ping the user's GPS coordinates and list the nearest active police jurisdictions.
+- **Impact:** Crucial for filing a Zero FIR or knowing exactly which jurisdiction you are currently standing in during an emergency.
 
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
+### 7. 🗣️ Seamless Multilingual Accessibility
+- **What it does:** Real-time UI translation (English, Hindi, etc.) without page reloads.
+- **Impact:** Legal protection shouldn't be limited to English speakers. This ensures the app is accessible to the masses, democratizing legal literacy across India.
 
-2. Configure environment variables:
-   Create a `.env` file in the root directory and add the necessary details based on the `.env.example` file:
-   ```env
-   GEMINI_API_KEY=your_gemini_api_key_here
-   APP_URL=your_app_url_here
-   ```
+### 8. 🚨 1-Tap SOS & Emergency Strip
+- **What it does:** A persistent, highly visible SOS button that immediately triggers national helplines (112) and displays a quick-reference guide on how to handle immediate intimidation.
 
-### Running the Application
+### 9. ⚖️ D.K. Basu Arrest Guidelines & Pocket Pass
+- **What it does:** A dedicated module outlining the Supreme Court's mandatory guidelines for police arrests (Right to know grounds, Right to inform a relative, etc.), alongside a printable "Citizen Pocket Pass".
 
-To start the application in development mode:
+### 10. 🎮 Gamified Legal Literacy (Myth Buster)
+- **What it does:** An interactive quiz section that tests users on common legal misconceptions.
+- **Impact:** Transforms boring legal reading into an engaging, sticky experience that encourages users to learn their rights proactively.
 
-```bash
-npm run dev
-```
+---
 
-This command uses `tsx` to run the `server.ts` file, which sets up the Express API endpoints, the WebSocket server, and integrates the Vite middleware for the frontend.
+## 🛠️ Technical Architecture (For the Judges)
 
-The server will be available at `http://localhost:3000`.
+- **Frontend:** React 19 + TypeScript + Vite for ultra-fast HMR and type safety.
+- **Styling:** Tailwind CSS v4 with custom Glassmorphism (`backdrop-filter`) and fluid Framer Motion (`motion/react`) animations running at 60fps.
+- **Backend/API:** Vercel Serverless Functions (`@vercel/node`) handling AI prompts, TTS, and transcriptions securely without exposing secrets.
+- **AI Engine:** Google Gemini API (`@google/genai`) for advanced natural language understanding.
+- **PWA/Offline:** `vite-plugin-pwa` with custom Workbox runtime caching for Google Fonts and dynamic assets.
+- **Document Generation:** Client-side `jspdf` ensuring zero PII (Personally Identifiable Information) is ever sent to a server during complaint drafting.
 
-### Building for Production
+---
 
-To build the frontend and backend for production:
+## 🎤 How to Pitch This
 
-```bash
-npm run build
-```
+1. **The Hook:** *"Have you ever felt a knot in your stomach when stopped by the police, even if you did nothing wrong? That fear stems from a lack of knowledge."*
+2. **The Solution:** Introduce MyRight. Emphasize that it's a **PWA** because citizens shouldn't have to wait to download a 50MB app from the App Store during an emergency.
+3. **The 'Wow' Moments:** 
+   - Show the **Dark Mode** toggle and explain *why* it's there (nighttime safety).
+   - Generate a **PDF Complaint** live on stage without internet (turn off Wi-Fi to prove the PWA works).
+   - Mention the **Haptic Feedback**—invite judges to tap the SOS button on a mobile device to feel the native experience.
+4. **The Impact:** *"We aren't just building an app; we are democratizing justice and enforcing accountability using AI."*
 
-This command runs `vite build` for the frontend and uses `esbuild` to bundle the backend `server.ts` into `dist/server.cjs`.
 
-To start the production server:
+## ?? Local Setup
 
-```bash
-npm run start
-```
+1. Clone the repository
+2. Run `npm install`
+3. Add your Gemini API key to a `.env` file: `GEMINI_API_KEY=your_key_here`
+4. Run `npm run dev`
 
-## API Endpoints
-
-- `POST /api/advisor`: Get advice for a specific situation.
-- `POST /api/chat`: Multi-turn chat interface.
-- `POST /api/transcribe`: Transcribe base64 audio.
-- `POST /api/tts`: Generate text-to-speech audio.
-- `POST /api/verify-statute`: Live legal search grounding verification.
-- `GET /api/health`: Server health check.
-- `WS /live`: WebSocket connection for real-time voice interaction.
-
-## License
-
-This project is provided as an example and is configured for internal or educational use.
