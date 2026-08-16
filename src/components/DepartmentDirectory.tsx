@@ -30,14 +30,14 @@ export const DepartmentDirectory: React.FC<DepartmentDirectoryProps> = ({
   const t = getT(language);
 
   const categories = [
-    { id: 'all', label: 'All Departments' },
-    { id: 'police', label: 'Police & Home Affairs' },
-    { id: 'traffic', label: 'Traffic & Transport' },
-    { id: 'cyber', label: 'Cyber Crime 1930' },
-    { id: 'legal_aid', label: 'Legal Aid & NALSA' },
-    { id: 'human_rights', label: 'Human Rights' },
-    { id: 'women_child', label: 'Women & Child Safety' },
-    { id: 'rti_vigilance', label: 'RTI & Anti-Corruption' },
+    { id: 'all', label: t.allDepartmentsCat },
+    { id: 'police', label: t.policeHomeAffairsCat },
+    { id: 'traffic', label: t.trafficTransportCat },
+    { id: 'cyber', label: t.cyberCrimeCat },
+    { id: 'legal_aid', label: t.legalAidCat },
+    { id: 'human_rights', label: t.humanRightsCat },
+    { id: 'women_child', label: t.womenChildSafetyCat },
+    { id: 'rti_vigilance', label: t.rtiVigilanceCat },
   ];
 
   const filteredDepts = OFFICIAL_DEPARTMENTS.filter((dept) => {
@@ -59,10 +59,10 @@ export const DepartmentDirectory: React.FC<DepartmentDirectoryProps> = ({
       <div className="p-6 sm:p-10 rounded-[36px] bg-[#FFF3C8] border-3 border-[#34A99D] shadow-lg space-y-4">
         <div className="flex flex-wrap items-center gap-2">
           <span className="px-4 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-[#34A99D] text-white shadow-xs">
-            Official Government Directory
+            {t.officialGovDirectory}
           </span>
           <span className="px-3.5 py-1 rounded-full text-xs font-black bg-[#E5CB90]/80 text-[#1A3841] border border-[#E5CB90]">
-            100% Verified .gov.in & .nic.in Portals
+            {t.verifiedGovPortals}
           </span>
         </div>
 
@@ -81,7 +81,7 @@ export const DepartmentDirectory: React.FC<DepartmentDirectoryProps> = ({
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search department, ministry, helpline number, or grievance portal..."
+            placeholder={t.searchDeptsPlaceholder}
             className="w-full pl-12 pr-4 py-3.5 rounded-full bg-white border-2 border-[#E5CB90] focus:border-[#34A99D] focus:ring-4 focus:ring-[#34A99D]/20 outline-hidden text-sm font-bold text-[#1A3841] placeholder:text-[#458393]/60 transition-all shadow-xs"
           />
         </div>

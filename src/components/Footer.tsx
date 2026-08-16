@@ -244,9 +244,6 @@ export const Footer: React.FC<FooterProps> = ({ language }) => {
           </div>
 
           <div className="flex items-center gap-4">
-            <span className="text-[11px] text-[#FFF3C8]/60">
-              Sand & Jade Circular Theme
-            </span>
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}

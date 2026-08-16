@@ -31,6 +31,7 @@ import {
 } from 'lucide-react';
 import { GUIDEBOOK_PAGES } from '../data/guidebook';
 import { GuidebookPage, SupportedLanguage } from '../types';
+import { getT } from '../data/translations';
 import { AshokStambha } from './AshokStambha';
 
 interface DigitalGuidebookProps {
@@ -77,6 +78,7 @@ export const DigitalGuidebook: React.FC<DigitalGuidebookProps> = ({
   initialPage = 1,
   onOpenSituation,
 }) => {
+  const t = getT(language);
   // 1-indexed page number matching page_number in dataset
   const [currentPage, setCurrentPage] = useState<number>(initialPage);
   const [direction, setDirection] = useState<number>(0);
@@ -240,7 +242,7 @@ export const DigitalGuidebook: React.FC<DigitalGuidebookProps> = ({
                 Indian Citizen Police Rights & Legal Guidebook
               </h2>
               <p className="text-xs sm:text-sm text-[#E5CB90]/90 font-medium mt-1">
-                A 5-chapter interactive slide manual: <span className="text-white font-bold">Situation → Your Rights → What To Do → Where To Complain</span>
+                A comprehensive interactive handbook with statutory citations and legal remedies.
               </p>
             </div>
           </div>
@@ -489,7 +491,7 @@ export const DigitalGuidebook: React.FC<DigitalGuidebookProps> = ({
                           1
                         </span>
                         <h3 className="text-xs font-black uppercase tracking-wider text-amber-900">
-                          Step 1: The Trigger Situation
+                          {t.stepSituation}
                         </h3>
                       </div>
                       <p className="text-sm sm:text-base font-semibold text-[#1A3841] leading-relaxed">
@@ -510,7 +512,7 @@ export const DigitalGuidebook: React.FC<DigitalGuidebookProps> = ({
                           2
                         </span>
                         <h3 className="text-xs font-black uppercase tracking-wider text-[#1A3841]">
-                          Step 2: Your Guaranteed Rights
+                          {t.stepRights}
                         </h3>
                       </div>
                       <ul className="space-y-2.5">
@@ -539,7 +541,7 @@ export const DigitalGuidebook: React.FC<DigitalGuidebookProps> = ({
                           3
                         </span>
                         <h3 className="text-xs font-black uppercase tracking-wider text-blue-900">
-                          Step 3: What To Do Now (Under 30s)
+                          {t.stepAction}
                         </h3>
                       </div>
                       <ul className="space-y-2.5">
@@ -570,7 +572,7 @@ export const DigitalGuidebook: React.FC<DigitalGuidebookProps> = ({
                           4
                         </span>
                         <h3 className="text-xs font-black uppercase tracking-wider text-emerald-900">
-                          Step 4: Where To Complain If Violated
+                          {t.stepComplain}
                         </h3>
                       </div>
                       <p className="text-xs sm:text-sm font-bold text-[#1A3841] mb-3">
@@ -598,7 +600,7 @@ export const DigitalGuidebook: React.FC<DigitalGuidebookProps> = ({
                     <div className="flex items-center gap-2.5">
                       <MessageSquare className="w-5 h-5 text-[#34A99D]" />
                       <span className="text-xs font-black uppercase tracking-wider text-[#E5CB90]">
-                        Verbal Script • What To Say to the Officer (Word-for-Word)
+                        {t.exactSpokenWords}
                       </span>
                     </div>
                     <button
@@ -607,7 +609,7 @@ export const DigitalGuidebook: React.FC<DigitalGuidebookProps> = ({
                       className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-xs font-bold text-white transition-all cursor-pointer shadow-xs"
                     >
                       {copiedScript ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-                      <span>{copiedScript ? 'Copied!' : 'Copy Script'}</span>
+                      <span>{copiedScript ? t.copiedText : t.copyText}</span>
                     </button>
                   </div>
                   <blockquote className="text-sm sm:text-base font-semibold italic text-white/95 leading-relaxed bg-black/20 p-4 rounded-2xl border border-white/10">
