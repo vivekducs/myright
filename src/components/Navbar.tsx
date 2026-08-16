@@ -44,9 +44,9 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-18 gap-4 sm:gap-8">
-          
+
           {/* Circular Brand Logo with State Emblem & Tiranga Indicator */}
-          <div 
+          <div
             id="brand-logo"
             onClick={() => navigate('/situations')}
             className="flex items-center gap-2.5 cursor-pointer group shrink-0"
@@ -72,7 +72,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {/* Desktop Nav - Clean Text Links with Hover Animation */}
-          <nav className="hidden lg:flex flex-1 items-center justify-center gap-3 xl:gap-5 h-full flex-wrap py-2">
+          <nav className="hidden xl:flex flex-1 items-center gap-6 h-full overflow-x-auto no-scrollbar scroll-smooth mask-edges">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeTab === item.id;
@@ -81,28 +81,26 @@ export const Navbar: React.FC<NavbarProps> = ({
                   key={item.id}
                   id={`nav-tab-${item.id}`}
                   onClick={() => navigate(`/${item.id}`)}
-                  className={`group relative flex items-center gap-1.5 py-6 text-xs font-bold transition-colors cursor-pointer ${
-                    isActive
+                  className={`group relative flex items-center gap-1.5 py-6 text-xs font-bold transition-colors cursor-pointer ${isActive
                       ? 'text-teal-700'
                       : item.isSpecial
-                      ? 'text-teal-600 hover:text-teal-800'
-                      : 'text-slate-500 hover:text-slate-900'
-                  }`}
+                        ? 'text-teal-600 hover:text-teal-800'
+                        : 'text-slate-500 hover:text-slate-900'
+                    }`}
                 >
                   <Icon className={`w-3.5 h-3.5 transition-colors ${isActive ? 'text-teal-600' : 'text-slate-400 group-hover:text-slate-600'}`} />
-                  <span className="tracking-wide">{item.label}</span>
-                  
+                  <span className="whitespace-nowrap tracking-wide">{item.label}</span>
+
                   {/* Subtle Badge */}
                   {item.badge && !isActive && (
                     <span className="absolute -top-3 -right-2 text-[8px] bg-teal-50 text-teal-700 px-1 py-0.5 rounded-sm font-extrabold border border-teal-100 shadow-sm opacity-90 group-hover:opacity-100 transition-opacity">
                       {item.badge}
                     </span>
                   )}
-                  
+
                   {/* Animated Bottom Border */}
-                  <span className={`absolute bottom-0 left-0 w-full h-[2.5px] rounded-t-full transition-all duration-300 ${
-                    isActive ? 'bg-teal-600 scale-x-100' : 'bg-slate-300 scale-x-0 group-hover:scale-x-100'
-                  }`} />
+                  <span className={`absolute bottom-0 left-0 w-full h-[2.5px] rounded-t-full transition-all duration-300 ${isActive ? 'bg-teal-600 scale-x-100' : 'bg-slate-300 scale-x-0 group-hover:scale-x-100'
+                    }`} />
                 </button>
               );
             })}
@@ -131,7 +129,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               id="mobile-menu-toggle"
               aria-label="Toggle navigation menu"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 flex items-center justify-center transition-transform hover:scale-105 cursor-pointer"
+              className="xl:hidden w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 flex items-center justify-center transition-transform hover:scale-105 cursor-pointer"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 {mobileMenuOpen ? (
@@ -152,7 +150,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden py-4 border-t border-slate-100 space-y-2 bg-white"
+              className="xl:hidden py-4 border-t border-slate-100 space-y-2 bg-white"
             >
               <div className="grid grid-cols-2 gap-2">
                 {navItems.map((item) => {
@@ -166,11 +164,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                         navigate(`/${item.id}`);
                         setMobileMenuOpen(false);
                       }}
-                      className={`flex items-center gap-2.5 p-3.5 rounded-2xl text-xs font-bold transition-all cursor-pointer shadow-xs ${
-                        isActive
+                      className={`flex items-center gap-2.5 p-3.5 rounded-2xl text-xs font-bold transition-all cursor-pointer shadow-xs ${isActive
                           ? 'bg-slate-900 text-white shadow-md'
                           : 'bg-slate-50 hover:bg-slate-100 text-slate-800'
-                      }`}
+                        }`}
                     >
                       <div className={`w-8 h-8 rounded-full flex items-center justify-center ${isActive ? 'bg-white/20' : 'bg-teal-50 text-teal-600'}`}>
                         <Icon className="w-4 h-4" />
