@@ -399,6 +399,43 @@ Formatting & Presentation Guidelines:
     }
   });
 
+  // --- API 3B: Text-to-Speech Audio Generation (gemini-3.1-flash-tts-preview) ---
+  app.post("/api/tts", async (req, res) => {
+    try {
+      const { text, voiceName } = req.body;
+      if (!text || typeof text !== "string") {
+        return res.status(400).json({ error: "Text string is required for TTS generation." });
+      }
+
+      const ai = getAIClient();
+      if (!ai) {
+        return res.status(200).json({ audioBase64: null, offline: true });
+      }
+
+      // Truncate long text for fast audio response
+      const cleanText = text.replace(/[*_#`>\[\]\(\)]/g, "").slice(0, 500);
+
+      const response = await ai.models.generateContent({
+        model: "gemini-3.1-flash-tts-preview",
+        contents: [{ parts: [{ text: `Say clearly in a calm, authoritative legal counselor voice: ${cleanText}` }] }],
+        config: {
+          responseModalities: [Modality.AUDIO],
+          speechConfig: {
+            voiceConfig: {
+              prebuiltVoiceConfig: { voiceName: voiceName || "Zephyr" },
+            },
+          },
+        },
+      });
+
+      const audioBase64 = response.candidates?.[0]?.content?.parts?.[0]?.inlineData?.data || null;
+      return res.json({ audioBase64, mimeType: "audio/wav" });
+    } catch (err: any) {
+      console.error("TTS generation error:", err);
+      return res.json({ audioBase64: null, error: err?.message });
+    }
+  });
+
   // --- API 4: Live Search Grounding Legal Verification (gemini-3.5-flash) ---
   app.post("/api/verify-statute", async (req, res) => {
     try {
