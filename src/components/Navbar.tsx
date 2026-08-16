@@ -72,7 +72,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {/* Desktop Nav - Clean Text Links with Hover Animation */}
-          <nav className="hidden xl:flex flex-1 items-center gap-6 h-full overflow-x-auto no-scrollbar scroll-smooth mask-edges">
+          <nav className="hidden lg:flex flex-1 items-center justify-center gap-3 xl:gap-5 h-full flex-wrap py-2">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeTab === item.id;
@@ -90,7 +90,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   }`}
                 >
                   <Icon className={`w-3.5 h-3.5 transition-colors ${isActive ? 'text-teal-600' : 'text-slate-400 group-hover:text-slate-600'}`} />
-                  <span className="whitespace-nowrap tracking-wide">{item.label}</span>
+                  <span className="tracking-wide">{item.label}</span>
                   
                   {/* Subtle Badge */}
                   {item.badge && !isActive && (
@@ -131,7 +131,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               id="mobile-menu-toggle"
               aria-label="Toggle navigation menu"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 flex items-center justify-center transition-transform hover:scale-105 cursor-pointer"
+              className="lg:hidden w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 flex items-center justify-center transition-transform hover:scale-105 cursor-pointer"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 {mobileMenuOpen ? (
@@ -152,7 +152,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="xl:hidden py-4 border-t border-slate-100 space-y-2 bg-white"
+              className="lg:hidden py-4 border-t border-slate-100 space-y-2 bg-white"
             >
               <div className="grid grid-cols-2 gap-2">
                 {navItems.map((item) => {
