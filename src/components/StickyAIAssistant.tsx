@@ -94,8 +94,15 @@ export const StickyAIAssistant: React.FC<StickyAIAssistantProps> = ({ language }
     setIsTyping(true);
 
     try {
+      // Gemini requires the first message to be from the 'user'
+      // We must filter out the initial greeting if it's the first message
+      let validHistory = newHistory;
+      if (validHistory.length > 0 && validHistory[0].role !== 'user') {
+        validHistory = validHistory.slice(1);
+      }
+
       const payload = {
-        messages: newHistory.map(m => ({
+        messages: validHistory.map(m => ({
           role: m.role,
           text: m.content
         })),
