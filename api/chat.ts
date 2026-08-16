@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { getAIClient } from "./_lib/ai";
+import { getAIClient } from "./_lib/ai.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
@@ -51,13 +51,13 @@ Regarding your inquiry: **"${lastMsg}"**
       });
     }
 
-    let selectedModel = "gemini-3.5-flash";
-    if (model === "gemini-3.1-pro-preview" || model === "gemini-3.1-flash-lite" || model === "gemini-3.7-flash") {
+    let selectedModel = "gemini-1.5-flash";
+    if (model === "gemini-1.5-pro" || model === "gemini-1.5-flash" || model === "gemini-1.5-flash") {
       selectedModel = model;
     } else if (model === "fast") {
-      selectedModel = "gemini-3.1-flash-lite";
+      selectedModel = "gemini-1.5-flash";
     } else if (model === "pro" || model === "complex") {
-      selectedModel = "gemini-3.1-pro-preview";
+      selectedModel = "gemini-1.5-pro";
     }
 
     const defaultSystemInstruction = `You are "Nyaya Sahayak" (न्याय सहायक), an elite Indian Citizen Legal Rights & Police Procedure Advisor.

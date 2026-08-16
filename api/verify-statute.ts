@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { getAIClient } from "./_lib/ai";
+import { getAIClient } from "./_lib/ai.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
@@ -27,7 +27,7 @@ Provide a clear statutory summary including:
 3. Relevant official citations or circulars.`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-3.5-flash",
+      model: "gemini-1.5-flash",
       contents: prompt,
       config: {
         tools: [{ googleSearch: {} }],

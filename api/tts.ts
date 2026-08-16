@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { getAIClient } from "./_lib/ai";
+import { getAIClient } from "./_lib/ai.js";
 import { Modality } from "@google/genai";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -22,7 +22,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const cleanText = text.replace(/[*_#`>\[\]\(\)]/g, "").slice(0, 500);
 
     const response = await ai.models.generateContent({
-      model: "gemini-3.1-flash-tts-preview",
+      model: "gemini-1.5-flash",
       contents: [{ parts: [{ text: `Say clearly in a calm, authoritative legal counselor voice: ${cleanText}` }] }],
       config: {
         responseModalities: [Modality.AUDIO],
