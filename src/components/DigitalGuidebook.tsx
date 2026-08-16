@@ -40,34 +40,30 @@ interface DigitalGuidebookProps {
   onOpenSituation?: (id: string) => void;
 }
 
-const slideVariants: Variants = {
+const bookVariants: Variants = {
   enter: (direction: number) => ({
-    x: direction > 0 ? 300 : -300,
+    x: direction > 0 ? 40 : -40,
     opacity: 0,
-    rotateY: direction > 0 ? 15 : -15,
-    scale: 0.96,
+    rotateY: direction > 0 ? 5 : -5,
   }),
   center: {
     zIndex: 1,
     x: 0,
     opacity: 1,
     rotateY: 0,
-    scale: 1,
     transition: {
-      x: { type: 'spring' as const, stiffness: 300, damping: 30 },
-      opacity: { duration: 0.25 },
-      rotateY: { duration: 0.3 },
-      scale: { duration: 0.25 },
+      x: { type: 'spring', stiffness: 300, damping: 30 },
+      opacity: { duration: 0.3 },
+      rotateY: { duration: 0.4 },
     },
   },
   exit: (direction: number) => ({
     zIndex: 0,
-    x: direction < 0 ? 300 : -300,
+    x: direction < 0 ? 40 : -40,
     opacity: 0,
-    rotateY: direction < 0 ? 15 : -15,
-    scale: 0.96,
+    rotateY: direction < 0 ? 5 : -5,
     transition: {
-      x: { type: 'spring' as const, stiffness: 300, damping: 30 },
+      x: { type: 'spring', stiffness: 300, damping: 30 },
       opacity: { duration: 0.2 },
     },
   }),
@@ -79,7 +75,6 @@ export const DigitalGuidebook: React.FC<DigitalGuidebookProps> = ({
   onOpenSituation,
 }) => {
   const t = getT(language);
-  // 1-indexed page number matching page_number in dataset
   const [currentPage, setCurrentPage] = useState<number>(initialPage);
   const [direction, setDirection] = useState<number>(0);
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -118,10 +113,8 @@ export const DigitalGuidebook: React.FC<DigitalGuidebookProps> = ({
     setIsSpeaking(false);
   };
 
-  // Keyboard navigation for carousel
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Don't trigger if user is typing in an input field
       if (['input', 'textarea', 'select'].includes((e.target as HTMLElement)?.tagName?.toLowerCase())) {
         return;
       }
@@ -131,12 +124,10 @@ export const DigitalGuidebook: React.FC<DigitalGuidebookProps> = ({
         handleNextPage();
       }
     };
-
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handlePrevPage, handleNextPage]);
 
-  // Clean up speech on unmount
   useEffect(() => {
     return () => {
       window.speechSynthesis?.cancel();
@@ -171,604 +162,263 @@ export const DigitalGuidebook: React.FC<DigitalGuidebookProps> = ({
 
   const getChapterIcon = (iconName: string) => {
     switch (iconName) {
-      case 'scale':
-        return <Scale className="w-5 h-5" />;
-      case 'shield-alert':
-        return <ShieldAlert className="w-5 h-5" />;
-      case 'lock':
-        return <Lock className="w-5 h-5" />;
-      case 'hard-drive':
-        return <HardDrive className="w-5 h-5" />;
-      case 'file-text':
-        return <FileText className="w-5 h-5" />;
-      case 'alert-octagon':
-        return <AlertOctagon className="w-5 h-5" />;
-      case 'car':
-        return <Car className="w-5 h-5" />;
-      case 'phone-call':
-        return <PhoneCall className="w-5 h-5" />;
-      default:
-        return <Shield className="w-5 h-5" />;
+      case 'scale': return <Scale className="w-5 h-5" />;
+      case 'shield-alert': return <ShieldAlert className="w-5 h-5" />;
+      case 'lock': return <Lock className="w-5 h-5" />;
+      case 'hard-drive': return <HardDrive className="w-5 h-5" />;
+      case 'file-text': return <FileText className="w-5 h-5" />;
+      case 'alert-octagon': return <AlertOctagon className="w-5 h-5" />;
+      case 'car': return <Car className="w-5 h-5" />;
+      case 'phone-call': return <PhoneCall className="w-5 h-5" />;
+      default: return <Shield className="w-5 h-5" />;
     }
   };
-
-  const filteredPages = GUIDEBOOK_PAGES.filter((p) => {
-    if (!searchQuery.trim()) return true;
-    const q = searchQuery.toLowerCase();
-    return (
-      p.title.toLowerCase().includes(q) ||
-      p.chapter.toLowerCase().includes(q) ||
-      p.situation_trigger.toLowerCase().includes(q) ||
-      p.your_rights_summary.some((r) => r.toLowerCase().includes(q)) ||
-      p.statutory_provisions.some((sp) =>
-        `${sp.code} ${sp.section_or_article} ${sp.official_title}`.toLowerCase().includes(q)
-      )
-    );
-  });
 
   return (
     <div
       id="digital-guidebook-root"
-      className={`w-full max-w-6xl mx-auto space-y-6 ${
-        isFullscreen ? 'fixed inset-0 z-50 bg-[#FFF3C8] overflow-y-auto p-4 sm:p-8' : ''
+      className={`w-full max-w-7xl mx-auto space-y-6 ${
+        isFullscreen ? 'fixed inset-0 z-50 bg-[#e6ddd0] overflow-y-auto p-4 sm:p-8' : ''
       }`}
     >
-      {/* ========================================================================= */}
-      {/* 1. OFFICIAL BOOK HEADER & TOP CONTROLS */}
-      {/* ========================================================================= */}
-      <div className="bg-[#1A3841] text-[#FFF3C8] rounded-3xl p-5 sm:p-7 border-2 border-[#E5CB90]/60 shadow-xl relative overflow-hidden">
-        {/* National Flag Tricolour Accent Line */}
-        <div className="absolute top-0 left-0 right-0 h-1.5 flex">
-          <div className="w-1/3 bg-[#FF671F]" />
-          <div className="w-1/3 bg-[#FFFFFF]" />
-          <div className="w-1/3 bg-[#046A38]" />
-        </div>
-
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mt-1">
-          <div className="flex items-start sm:items-center gap-4">
-            <div className="p-2.5 rounded-2xl bg-white/10 border border-[#E5CB90]/40 shrink-0 shadow-inner">
-              <AshokStambha size={44} showText={false} goldTone={true} />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-[10px] sm:text-xs font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-[#E5CB90] text-[#1A3841]">
-                  Official Citizen Digital Handbook
-                </span>
-                <span className="text-[10px] text-[#34A99D] font-bold hidden sm:inline">
-                  • BNSS 2023 / BNS 2023 / Constitution of India
-                </span>
-              </div>
-              <h2 className="font-display text-2xl sm:text-3xl font-black text-white tracking-tight mt-1">
-                Indian Citizen Police Rights & Legal Guidebook
-              </h2>
-              <p className="text-xs sm:text-sm text-[#E5CB90]/90 font-medium mt-1">
-                A comprehensive interactive handbook with statutory citations and legal remedies.
-              </p>
-            </div>
+      {/* 1. Header Toolbar */}
+      <div className="bg-[#1A3841] text-[#FFF3C8] rounded-t-xl rounded-b-sm p-4 sm:p-6 border-b-4 border-[#8B4513] shadow-lg relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <div className="p-2 rounded-full bg-[#FFF3C8]/10 border border-[#FFF3C8]/20 shrink-0">
+            <BookOpen className="w-6 h-6 text-[#E5CB90]" />
           </div>
-
-          {/* Quick Action Controls */}
-          <div className="flex flex-wrap items-center gap-2.5 self-start lg:self-center">
-            <button
-              id="guidebook-listen-btn"
-              onClick={() =>
-                handleSpeak(
-                  `${currentBookPage.title}. ${currentBookPage.situation_trigger}. Rights: ${currentBookPage.your_rights_summary.join(
-                    '. '
-                  )}. Action: ${currentBookPage.immediate_action_steps.join('. ')}`
-                )
-              }
-              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-bold transition-all cursor-pointer shadow-xs ${
-                isSpeaking
-                  ? 'bg-red-600 text-white animate-pulse'
-                  : 'bg-[#34A99D] hover:bg-[#458393] text-white'
-              }`}
-              title="Listen to this page (Audio Voiceover)"
-            >
-              {isSpeaking ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
-              <span>{isSpeaking ? 'Stop Audio' : 'Listen Page'}</span>
-            </button>
-
-            <button
-              id="guidebook-print-btn"
-              onClick={handlePrintPage}
-              className="flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white/10 hover:bg-white/20 text-[#FFF3C8] text-xs font-bold border border-white/20 transition-all cursor-pointer shadow-xs"
-              title="Print this page or export as PDF"
-            >
-              <Printer className="w-3.5 h-3.5" />
-              <span>Print / PDF</span>
-            </button>
-
-            <button
-              id="guidebook-fullscreen-btn"
-              onClick={() => setIsFullscreen(!isFullscreen)}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-white/10 hover:bg-white/20 text-[#FFF3C8] text-xs font-bold border border-white/20 transition-all cursor-pointer shadow-xs"
-              title="Toggle Fullscreen Book Reader"
-            >
-              {isFullscreen ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
-            </button>
+          <div>
+            <h2 className="font-serif text-xl sm:text-2xl font-bold text-white tracking-wide">
+              The Citizen's Legal Hand-Book
+            </h2>
+            <p className="font-serif text-xs sm:text-sm text-[#E5CB90]/90 italic">
+              Constitutional Rights & BNSS 2023 Procedures
+            </p>
           </div>
         </div>
 
-        {/* Carousel Slide Track & Quick Search */}
-        <div className="mt-6 pt-5 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between gap-3">
-          {/* Search within Guidebook */}
-          <div className="relative w-full sm:w-80">
-            <Search className="w-4 h-4 text-[#1A3841]/60 absolute left-3.5 top-1/2 -translate-y-1/2" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search BNS, BNSS, arrest, FIR, search..."
-              className="w-full pl-10 pr-4 py-2 rounded-full bg-[#FFF3C8] text-[#1A3841] text-xs font-medium placeholder-[#1A3841]/50 focus:outline-none focus:ring-2 focus:ring-[#34A99D] shadow-inner"
-            />
-          </div>
-
-          {/* Carousel Navigation Toolbar */}
-          <div className="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-end">
-            <button
-              id="guidebook-top-prev-btn"
-              onClick={handlePrevPage}
-              disabled={currentPage === 1}
-              className={`p-1.5 rounded-full border transition-all cursor-pointer ${
-                currentPage === 1
-                  ? 'opacity-30 border-white/10 text-white/30 cursor-not-allowed'
-                  : 'bg-white/10 hover:bg-[#34A99D] text-white border-white/30'
-              }`}
-              title="Previous Page (Left Arrow)"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-
-            <span className="text-xs text-[#E5CB90] font-black px-2">
-              Slide {currentPage} of {totalPages}
-            </span>
-
-            <button
-              id="guidebook-top-next-btn"
-              onClick={handleNextPage}
-              disabled={currentPage === totalPages}
-              className={`p-1.5 rounded-full border transition-all cursor-pointer ${
-                currentPage === totalPages
-                  ? 'opacity-30 border-white/10 text-white/30 cursor-not-allowed'
-                  : 'bg-white/10 hover:bg-[#34A99D] text-white border-white/30'
-              }`}
-              title="Next Page (Right Arrow)"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-
-        {/* 5-Slide Carousel Tab Strip */}
-        <div className="flex items-center gap-2 mt-4 pt-3 border-t border-white/10 overflow-x-auto pb-1 scrollbar-none">
-          {GUIDEBOOK_PAGES.map((page) => {
-            const isCurrent = page.page_number === currentPage;
-            return (
-              <button
-                key={page.page_number}
-                id={`guidebook-tab-${page.page_number}`}
-                onClick={() => handleJumpToPage(page.page_number)}
-                className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-black transition-all cursor-pointer shrink-0 ${
-                  isCurrent
-                    ? 'bg-[#E5CB90] text-[#1A3841] shadow-md scale-105'
-                    : 'bg-white/10 hover:bg-white/20 text-white/80'
-                }`}
-              >
-                <span
-                  className={`w-4 h-4 rounded-full text-[10px] flex items-center justify-center font-black ${
-                    isCurrent ? 'bg-[#1A3841] text-[#E5CB90]' : 'bg-white/20 text-white'
-                  }`}
-                >
-                  {page.page_number}
-                </span>
-                <span className="truncate max-w-[140px] sm:max-w-[200px]">{page.title}</span>
-              </button>
-            );
-          })}
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => handleSpeak(`${currentBookPage.title}. ${currentBookPage.situation_trigger}. Rights: ${currentBookPage.your_rights_summary.join('. ')}. Action: ${currentBookPage.immediate_action_steps.join('. ')}`)}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-bold font-serif border ${
+              isSpeaking ? 'bg-red-900/50 border-red-500/50 text-red-200' : 'bg-transparent border-[#E5CB90]/40 text-[#E5CB90] hover:bg-[#E5CB90]/10'
+            }`}
+          >
+            {isSpeaking ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+            <span>{isSpeaking ? 'Stop Reading' : 'Read Aloud'}</span>
+          </button>
+          <button
+            onClick={handlePrintPage}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-transparent border border-[#E5CB90]/40 hover:bg-[#E5CB90]/10 text-[#E5CB90] text-xs font-bold font-serif"
+          >
+            <Printer className="w-4 h-4" />
+            <span>Print</span>
+          </button>
+          <button
+            onClick={() => setIsFullscreen(!isFullscreen)}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-transparent border border-[#E5CB90]/40 hover:bg-[#E5CB90]/10 text-[#E5CB90] text-xs font-bold font-serif"
+          >
+            {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
+          </button>
         </div>
       </div>
 
-      {/* ========================================================================= */}
-      {/* 2. STATE-MANAGED FLIPBOOK CAROUSEL SLIDE CONTAINER */}
-      {/* ========================================================================= */}
-      <div className="relative overflow-hidden">
-        {/* Large Floating Carousel Navigation Buttons on Left & Right for Desktop */}
+      {/* 2. The Book Interface */}
+      <div className="relative min-h-[700px] perspective-[2000px]">
+        {/* Previous/Next floating buttons */}
         <button
-          id="guidebook-floating-prev"
           onClick={handlePrevPage}
           disabled={currentPage === 1}
-          aria-label="Previous Page"
-          className={`hidden md:flex absolute left-2 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full items-center justify-center shadow-xl border-2 transition-all cursor-pointer ${
-            currentPage === 1
-              ? 'opacity-0 pointer-events-none'
-              : 'bg-[#1A3841] hover:bg-[#34A99D] text-[#FFF3C8] hover:text-white border-[#E5CB90] hover:scale-110 active:scale-95'
+          className={`absolute left-0 sm:-left-6 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white border border-slate-200 shadow-xl transition-all ${
+            currentPage === 1 ? 'opacity-0' : 'opacity-100 hover:scale-110 cursor-pointer text-slate-800'
           }`}
-          title="Previous Page [←]"
         >
           <ChevronLeft className="w-6 h-6" />
         </button>
-
         <button
-          id="guidebook-floating-next"
           onClick={handleNextPage}
           disabled={currentPage === totalPages}
-          aria-label="Next Page"
-          className={`hidden md:flex absolute right-2 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full items-center justify-center shadow-xl border-2 transition-all cursor-pointer ${
-            currentPage === totalPages
-              ? 'opacity-0 pointer-events-none'
-              : 'bg-[#34A99D] hover:bg-[#1A3841] text-white hover:text-[#FFF3C8] border-[#E5CB90] hover:scale-110 active:scale-95'
+          className={`absolute right-0 sm:-right-6 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white border border-slate-200 shadow-xl transition-all ${
+            currentPage === totalPages ? 'opacity-0' : 'opacity-100 hover:scale-110 cursor-pointer text-slate-800'
           }`}
-          title="Next Page [→]"
         >
           <ChevronRight className="w-6 h-6" />
         </button>
 
-        {/* Carousel Slide Stage */}
-        <div className="relative min-h-[640px]">
-          <AnimatePresence custom={direction} mode="wait">
-            <motion.div
-              key={currentPage}
-              custom={direction}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              className="bg-white rounded-3xl border-3 border-[#E5CB90] shadow-2xl overflow-hidden"
-            >
-              {/* Book Spine / Binding Texture Effect */}
-              <div className="absolute top-0 bottom-0 left-0 w-3 bg-gradient-to-r from-[#1A3841]/40 via-[#1A3841]/10 to-transparent z-10 pointer-events-none" />
+        <AnimatePresence custom={direction} mode="wait">
+          <motion.div
+            key={currentPage}
+            custom={direction}
+            variants={bookVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            className="w-full h-full flex flex-col md:flex-row shadow-[0_20px_50px_rgba(0,0,0,0.3)] rounded-r-xl rounded-l-xl bg-[#fdfbf7] relative"
+          >
+            {/* Book Cover Texture Overlay */}
+            <div className="absolute inset-0 pointer-events-none rounded-xl" style={{
+              backgroundImage: 'url("https://www.transparenttextures.com/patterns/cream-paper.png")',
+              opacity: 0.6
+            }} />
+            
+            {/* Center Spine (Visible only on desktop two-page spread) */}
+            <div className="hidden md:block absolute top-0 bottom-0 left-1/2 w-16 -ml-8 bg-gradient-to-r from-transparent via-black/10 to-transparent pointer-events-none z-10" />
+            <div className="hidden md:block absolute top-0 bottom-0 left-1/2 w-[1px] bg-black/10 pointer-events-none z-10" />
 
-              {/* Slide Top Header Bar */}
-              <div className="bg-[#1A3841] text-[#FFF3C8] px-6 sm:px-8 py-3.5 flex items-center justify-between border-b-2 border-[#E5CB90]/40">
-                <div className="flex items-center gap-2.5">
-                  <span className="w-7 h-7 rounded-full bg-[#34A99D] text-white font-black text-xs flex items-center justify-center shadow-xs">
-                    {currentBookPage.page_number}
-                  </span>
-                  <div>
-                    <span className="text-[10px] font-black uppercase tracking-widest text-[#E5CB90] block">
-                      {currentBookPage.chapter}
-                    </span>
-                    <span className="text-xs font-bold text-white/90 truncate max-w-xs sm:max-w-md block">
-                      {currentBookPage.title}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-black px-2.5 py-0.5 rounded-full bg-white/15 text-[#E5CB90] border border-white/20">
-                    Page {currentPage} / {totalPages}
-                  </span>
-                </div>
+            {/* --- LEFT PAGE (Page 1 of spread) --- */}
+            <div className="w-full md:w-1/2 p-6 sm:p-10 lg:p-12 border-b md:border-b-0 md:border-r border-black/10 relative">
+              {/* Page Number (Left) */}
+              <div className="absolute top-6 left-8 text-xs font-serif text-slate-400 font-bold">
+                {currentPage * 2 - 1}
               </div>
 
-              {/* Slide Body Content */}
-              <div className="p-6 sm:p-8 lg:p-10 space-y-8">
-                {/* Header Title & Statutory Badges */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b-2 border-[#E5CB90]/40">
-                  <div className="flex items-start gap-3.5">
-                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#34A99D] to-[#1A3841] text-white flex items-center justify-center shrink-0 shadow-md">
-                      {getChapterIcon(currentBookPage.icon)}
-                    </div>
-                    <div>
-                      <h1 className="font-display text-2xl sm:text-3xl font-black text-[#1A3841] tracking-tight">
-                        {currentBookPage.title}
-                      </h1>
-                      <p className="text-xs sm:text-sm text-[#458393] font-bold mt-0.5">
-                        Verified under statutory provisions of the Republic of India
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Statutory Provisions Quick Badges */}
-                  <div className="flex flex-wrap gap-2 self-start md:self-center">
-                    {currentBookPage.statutory_provisions.map((sp, idx) => (
-                      <a
-                        key={idx}
-                        href={sp.official_source_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1A3841]/5 hover:bg-[#34A99D]/15 text-[#1A3841] hover:text-[#34A99D] border border-[#1A3841]/20 text-[11px] font-bold transition-all cursor-pointer"
-                        title={`${sp.official_title} - Click to verify on India Code`}
-                      >
-                        <Scale className="w-3 h-3 text-[#34A99D]" />
-                        <span>
-                          {sp.code}: {sp.section_or_article}
-                        </span>
-                        <ExternalLink className="w-2.5 h-2.5 opacity-60" />
-                      </a>
-                    ))}
-                  </div>
-                </div>
-
-                {/* 4-Step Action Framework Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  {/* STEP 1: The Trigger Situation */}
-                  <div className="p-6 rounded-3xl bg-amber-50/70 border-2 border-amber-200/80 shadow-xs flex flex-col justify-between">
-                    <div>
-                      <div className="flex items-center gap-2 mb-3">
-                        <span className="w-6 h-6 rounded-full bg-amber-600 text-white text-xs font-black flex items-center justify-center">
-                          1
-                        </span>
-                        <h3 className="text-xs font-black uppercase tracking-wider text-amber-900">
-                          {t.stepSituation}
-                        </h3>
-                      </div>
-                      <p className="text-sm sm:text-base font-semibold text-[#1A3841] leading-relaxed">
-                        "{currentBookPage.situation_trigger}"
-                      </p>
-                    </div>
-                    <div className="mt-4 pt-3 border-t border-amber-200/60 flex items-center gap-2 text-xs text-amber-800 font-bold">
-                      <ShieldAlert className="w-4 h-4 text-amber-600 shrink-0" />
-                      <span>Immediate high-stress legal encounter</span>
-                    </div>
-                  </div>
-
-                  {/* STEP 2: Guaranteed Rights */}
-                  <div className="p-6 rounded-3xl bg-teal-50/70 border-2 border-teal-200/80 shadow-xs flex flex-col justify-between">
-                    <div>
-                      <div className="flex items-center gap-2 mb-3">
-                        <span className="w-6 h-6 rounded-full bg-[#34A99D] text-white text-xs font-black flex items-center justify-center">
-                          2
-                        </span>
-                        <h3 className="text-xs font-black uppercase tracking-wider text-[#1A3841]">
-                          {t.stepRights}
-                        </h3>
-                      </div>
-                      <ul className="space-y-2.5">
-                        {currentBookPage.your_rights_summary.map((right, rIdx) => (
-                          <li
-                            key={rIdx}
-                            className="flex items-start gap-2.5 text-xs sm:text-sm font-medium text-[#1A3841]"
-                          >
-                            <CheckCircle2 className="w-4 h-4 text-[#34A99D] shrink-0 mt-0.5" />
-                            <span>{right}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="mt-4 pt-3 border-t border-teal-200/60 flex items-center gap-2 text-xs text-[#458393] font-bold">
-                      <Shield className="w-4 h-4 text-[#34A99D] shrink-0" />
-                      <span>Protected by Constitution & BNSS 2023</span>
-                    </div>
-                  </div>
-
-                  {/* STEP 3: What To Do Under 30 Seconds */}
-                  <div className="p-6 rounded-3xl bg-blue-50/70 border-2 border-blue-200/80 shadow-xs flex flex-col justify-between">
-                    <div>
-                      <div className="flex items-center gap-2 mb-3">
-                        <span className="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-black flex items-center justify-center">
-                          3
-                        </span>
-                        <h3 className="text-xs font-black uppercase tracking-wider text-blue-900">
-                          {t.stepAction}
-                        </h3>
-                      </div>
-                      <ul className="space-y-2.5">
-                        {currentBookPage.immediate_action_steps.map((action, aIdx) => (
-                          <li
-                            key={aIdx}
-                            className="flex items-start gap-2.5 text-xs sm:text-sm font-medium text-[#1A3841]"
-                          >
-                            <span className="w-4 h-4 rounded-full bg-blue-200 text-blue-900 text-[10px] font-black flex items-center justify-center shrink-0 mt-0.5">
-                              {aIdx + 1}
-                            </span>
-                            <span>{action}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="mt-4 pt-3 border-t border-blue-200/60 flex items-center gap-2 text-xs text-blue-800 font-bold">
-                      <Sparkles className="w-4 h-4 text-blue-600 shrink-0" />
-                      <span>Take proactive, legally sound steps</span>
-                    </div>
-                  </div>
-
-                  {/* STEP 4: Where To Complain */}
-                  <div className="p-6 rounded-3xl bg-emerald-50/70 border-2 border-emerald-200/80 shadow-xs flex flex-col justify-between">
-                    <div>
-                      <div className="flex items-center gap-2 mb-3">
-                        <span className="w-6 h-6 rounded-full bg-emerald-700 text-white text-xs font-black flex items-center justify-center">
-                          4
-                        </span>
-                        <h3 className="text-xs font-black uppercase tracking-wider text-emerald-900">
-                          {t.stepComplain}
-                        </h3>
-                      </div>
-                      <p className="text-xs sm:text-sm font-bold text-[#1A3841] mb-3">
-                        Official Grievance Authority:
-                      </p>
-                      <div className="p-3.5 rounded-2xl bg-white border border-emerald-300 text-xs sm:text-sm font-bold text-emerald-950 shadow-xs">
-                        {currentBookPage.remedy_and_complaint_forum}
-                      </div>
-                    </div>
-                    <div className="mt-4 pt-3 border-t border-emerald-200/60 flex items-center justify-between text-xs text-emerald-800 font-bold">
-                      <span className="flex items-center gap-1.5">
-                        <Building2 className="w-4 h-4 text-emerald-700 shrink-0" />
-                        National Escalation Channels
-                      </span>
-                      <span className="text-[11px] bg-emerald-200/80 px-2 py-0.5 rounded-md">
-                        Helpline 15100 / 112
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Verbal What To Say Script */}
-                <div className="p-6 rounded-3xl bg-[#1A3841] text-[#FFF3C8] border-2 border-[#E5CB90] shadow-md">
-                  <div className="flex items-center justify-between gap-4 mb-3">
-                    <div className="flex items-center gap-2.5">
-                      <MessageSquare className="w-5 h-5 text-[#34A99D]" />
-                      <span className="text-xs font-black uppercase tracking-wider text-[#E5CB90]">
-                        {t.exactSpokenWords}
-                      </span>
-                    </div>
-                    <button
-                      id="guidebook-copy-script-btn"
-                      onClick={() => handleCopyScript(currentBookPage.what_to_say_script)}
-                      className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-xs font-bold text-white transition-all cursor-pointer shadow-xs"
+              {/* Chapter Header */}
+              <div className="mb-8 pt-4">
+                <span className="font-serif text-sm font-black text-rose-900 tracking-[0.2em] uppercase border-b border-rose-900/30 pb-1 mb-4 inline-block">
+                  Chapter {currentBookPage.page_number}
+                </span>
+                <h1 className="font-serif text-3xl sm:text-4xl font-bold text-slate-900 leading-tight mb-4">
+                  {currentBookPage.title}
+                </h1>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {currentBookPage.statutory_provisions.map((sp, idx) => (
+                    <a
+                      key={idx}
+                      href={sp.official_source_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-slate-100/80 hover:bg-rose-50 text-slate-700 font-serif text-[11px] border border-slate-300 transition-colors"
                     >
-                      {copiedScript ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-                      <span>{copiedScript ? t.copiedText : t.copyText}</span>
-                    </button>
-                  </div>
-                  <blockquote className="text-sm sm:text-base font-semibold italic text-white/95 leading-relaxed bg-black/20 p-4 rounded-2xl border border-white/10">
-                    "{currentBookPage.what_to_say_script}"
-                  </blockquote>
-                </div>
-
-                {/* Supreme Court Landmark Judgments Banner */}
-                {currentBookPage.landmark_judgments && currentBookPage.landmark_judgments.length > 0 && (
-                  <div className="p-5 rounded-3xl bg-[#FFF3C8] border-2 border-[#E5CB90] flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-[#E5CB90] text-[#1A3841] flex items-center justify-center shrink-0 shadow-xs">
-                      <Scale className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <span className="text-[11px] font-black uppercase tracking-wider text-[#1A3841] block">
-                        Supreme Court of India • Landmark Binding Precedents
-                      </span>
-                      <div className="space-y-1.5 mt-1.5">
-                        {currentBookPage.landmark_judgments.map((judgment, jIdx) => (
-                          <p key={jIdx} className="text-xs sm:text-sm font-extrabold text-[#458393]">
-                            ⚖️ {judgment}
-                          </p>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Bottom Carousel Navigation Controls */}
-              <div className="bg-[#FFF3C8] px-6 sm:px-8 py-5 border-t-2 border-[#E5CB90] flex flex-col sm:flex-row items-center justify-between gap-4">
-                <button
-                  id="guidebook-bottom-prev-btn"
-                  onClick={handlePrevPage}
-                  disabled={currentPage === 1}
-                  className={`flex items-center gap-2 px-6 py-3 rounded-full text-xs font-black transition-all cursor-pointer shadow-md ${
-                    currentPage === 1
-                      ? 'opacity-40 cursor-not-allowed bg-gray-300 text-gray-600'
-                      : 'bg-[#1A3841] hover:bg-[#458393] text-white hover:scale-105 active:scale-95'
-                  }`}
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                  <span>Previous Page</span>
-                </button>
-
-                {/* Page Indicator Indicators */}
-                <div className="flex items-center gap-2">
-                  {GUIDEBOOK_PAGES.map((page) => (
-                    <button
-                      key={page.page_number}
-                      onClick={() => handleJumpToPage(page.page_number)}
-                      className={`h-3 rounded-full transition-all cursor-pointer ${
-                        page.page_number === currentPage
-                          ? 'w-8 bg-[#34A99D] shadow-xs'
-                          : 'w-3 bg-[#1A3841]/20 hover:bg-[#1A3841]/50'
-                      }`}
-                      title={`Go to Page ${page.page_number}: ${page.title}`}
-                    />
+                      <Scale className="w-3 h-3 text-rose-800" />
+                      <span>{sp.code}: {sp.section_or_article}</span>
+                    </a>
                   ))}
                 </div>
-
-                <button
-                  id="guidebook-bottom-next-btn"
-                  onClick={handleNextPage}
-                  disabled={currentPage === totalPages}
-                  className={`flex items-center gap-2 px-6 py-3 rounded-full text-xs font-black transition-all cursor-pointer shadow-md ${
-                    currentPage === totalPages
-                      ? 'opacity-40 cursor-not-allowed bg-gray-300 text-gray-600'
-                      : 'bg-[#34A99D] hover:bg-[#1A3841] text-white hover:scale-105 active:scale-95'
-                  }`}
-                >
-                  <span>Next Page</span>
-                  <ChevronRight className="w-4 h-4" />
-                </button>
               </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      </div>
 
-      {/* ========================================================================= */}
-      {/* 3. FLIPBOOK CAROUSEL MINIATURE SLIDE CARDS (QUICK JUMP GRID) */}
-      {/* ========================================================================= */}
-      <div className="bg-white rounded-3xl p-6 sm:p-8 border-2 border-[#E5CB90] shadow-lg">
-        <div className="flex items-center justify-between gap-4 mb-6">
-          <div className="flex items-center gap-3">
-            <BookOpen className="w-6 h-6 text-[#34A99D]" />
-            <div>
-              <h3 className="font-display text-xl font-bold text-[#1A3841]">
-                Complete 5-Page Legal Guidebook Slides
-              </h3>
-              <p className="text-xs text-[#458393] font-semibold">
-                Click any slide to jump directly into that chapter
-              </p>
+              {/* The Situation */}
+              <div className="mb-8">
+                <h3 className="font-serif text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">
+                  <ShieldAlert className="w-5 h-5 text-rose-700" />
+                  The Situation
+                </h3>
+                <p className="font-serif text-slate-700 leading-relaxed text-sm sm:text-base first-letter:text-4xl first-letter:font-bold first-letter:text-rose-900 first-letter:mr-1 first-letter:float-left">
+                  {currentBookPage.situation_trigger}
+                </p>
+              </div>
+
+              {/* Your Rights */}
+              <div className="mb-8">
+                <h3 className="font-serif text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">
+                  <Shield className="w-5 h-5 text-emerald-700" />
+                  Your Legal Rights
+                </h3>
+                <ul className="space-y-3">
+                  {currentBookPage.your_rights_summary.map((right, idx) => (
+                    <li key={idx} className="flex items-start gap-3 font-serif text-slate-700 text-sm sm:text-base leading-relaxed">
+                      <span className="text-emerald-700 mt-1">❧</span>
+                      <span>{right}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-          </div>
-          <span className="text-xs font-black text-[#1A3841] bg-[#E5CB90]/60 px-3 py-1 rounded-full">
-            5 Core Pages
-          </span>
-        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {GUIDEBOOK_PAGES.map((page) => {
-            const isCurrent = page.page_number === currentPage;
-            return (
-              <button
-                key={page.page_number}
-                id={`guidebook-card-${page.page_number}`}
-                onClick={() => {
-                  handleJumpToPage(page.page_number);
-                  const el = document.getElementById('digital-guidebook-root');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className={`p-5 rounded-2xl text-left border-2 transition-all cursor-pointer flex flex-col justify-between gap-3 relative ${
-                  isCurrent
-                    ? 'bg-[#1A3841] text-[#FFF3C8] border-[#34A99D] shadow-lg scale-[1.02]'
-                    : 'bg-[#FFF3C8]/40 hover:bg-[#FFF3C8] text-[#1A3841] border-[#E5CB90] hover:border-[#34A99D]'
-                }`}
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <span
-                      className={`w-7 h-7 rounded-xl flex items-center justify-center font-black text-xs ${
-                        isCurrent ? 'bg-[#34A99D] text-white' : 'bg-[#E5CB90] text-[#1A3841]'
-                      }`}
-                    >
-                      {page.page_number}
-                    </span>
-                    <span
-                      className={`text-[10px] font-black uppercase tracking-wider ${
-                        isCurrent ? 'text-[#E5CB90]' : 'text-[#458393]'
-                      }`}
-                    >
-                      {page.chapter.split(':')[0]}
-                    </span>
-                  </div>
-                  <h4 className="text-sm font-black line-clamp-1">{page.title}</h4>
-                  <p
-                    className={`text-xs line-clamp-2 mt-1.5 ${
-                      isCurrent ? 'text-white/80' : 'text-[#1A3841]/75'
-                    }`}
+            {/* --- RIGHT PAGE (Page 2 of spread) --- */}
+            <div className="w-full md:w-1/2 p-6 sm:p-10 lg:p-12 relative">
+               {/* Page Number (Right) */}
+               <div className="absolute top-6 right-8 text-xs font-serif text-slate-400 font-bold hidden md:block">
+                {currentPage * 2}
+              </div>
+
+              {/* Immediate Actions */}
+              <div className="mb-8 md:pt-4">
+                <h3 className="font-serif text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">
+                  <AlertOctagon className="w-5 h-5 text-blue-700" />
+                  Immediate Actions (What To Do)
+                </h3>
+                <ol className="list-decimal list-outside ml-5 space-y-3 font-serif text-slate-700 text-sm sm:text-base leading-relaxed">
+                  {currentBookPage.immediate_action_steps.map((action, idx) => (
+                    <li key={idx} className="pl-1 text-slate-700">{action}</li>
+                  ))}
+                </ol>
+              </div>
+
+              {/* What to say script */}
+              <div className="mb-8">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="font-serif text-lg font-bold text-slate-800 flex items-center gap-2">
+                    <MessageSquare className="w-5 h-5 text-amber-700" />
+                    Exact Words To Say
+                  </h3>
+                  <button
+                    onClick={() => handleCopyScript(currentBookPage.what_to_say_script)}
+                    className="p-1.5 hover:bg-slate-200 rounded transition-colors text-slate-500"
+                    title="Copy Script"
                   >
-                    {page.situation_trigger}
+                    {copiedScript ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+                  </button>
+                </div>
+                <div className="bg-[#f0e8d5] p-5 rounded border border-[#dcd1ba] shadow-inner">
+                  <p className="font-serif text-slate-800 font-bold italic leading-relaxed text-sm sm:text-base">
+                    "{currentBookPage.what_to_say_script}"
                   </p>
                 </div>
+              </div>
 
-                <div
-                  className={`pt-3 border-t text-[11px] font-bold flex items-center justify-between ${
-                    isCurrent
-                      ? 'border-white/20 text-[#E5CB90]'
-                      : 'border-[#E5CB90] text-[#34A99D]'
-                  }`}
-                >
-                  <span>{page.statutory_provisions.length} Statutory Laws</span>
-                  <span>{isCurrent ? '● Active Slide' : 'View Slide →'}</span>
+              {/* Remedy & Complaints */}
+              <div className="mb-8">
+                <h3 className="font-serif text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">
+                  <Building2 className="w-5 h-5 text-slate-700" />
+                  Where To Complain
+                </h3>
+                <p className="font-serif text-slate-700 leading-relaxed text-sm sm:text-base p-4 bg-slate-100/50 border border-slate-200 rounded">
+                  {currentBookPage.remedy_and_complaint_forum}
+                </p>
+              </div>
+
+              {/* Landmark Judgments */}
+              {currentBookPage.landmark_judgments && currentBookPage.landmark_judgments.length > 0 && (
+                <div className="mt-8 pt-6 border-t border-slate-300">
+                  <h4 className="font-serif text-sm font-bold text-slate-500 uppercase tracking-widest mb-3">
+                    Binding Supreme Court Precedents
+                  </h4>
+                  <ul className="space-y-2">
+                    {currentBookPage.landmark_judgments.map((judgment, idx) => (
+                      <li key={idx} className="font-serif text-xs text-slate-600">
+                        ⚖ {judgment}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              </button>
-            );
-          })}
+              )}
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* 3. Table of Contents / Index (Bottom) */}
+      <div className="bg-[#fdfbf7] rounded-xl p-6 border-2 border-[#e6ddd0] shadow-sm">
+        <h3 className="font-serif text-xl font-bold text-slate-800 mb-4 border-b border-slate-200 pb-2">
+          Index of Chapters
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3">
+          {GUIDEBOOK_PAGES.map((page) => (
+            <button
+              key={page.page_number}
+              onClick={() => handleJumpToPage(page.page_number)}
+              className={`flex items-baseline justify-between text-left group cursor-pointer ${
+                currentPage === page.page_number ? 'text-rose-800 font-bold' : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <span className="font-serif text-sm truncate mr-2 group-hover:underline">
+                {page.page_number}. {page.title}
+              </span>
+              <span className="font-serif text-xs text-slate-400 group-hover:text-slate-600">
+                Pg. {page.page_number * 2 - 1}
+              </span>
+            </button>
+          ))}
         </div>
       </div>
     </div>
