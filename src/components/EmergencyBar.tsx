@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Phone, Copy, Check, ShieldAlert, X, AlertTriangle, ExternalLink } from 'lucide-react';
+import { Phone, Copy, Check, ShieldAlert, X, AlertTriangle, ExternalLink, MessageCircleWarning, Plus, Trash2, MapPin } from 'lucide-react';
 import { EMERGENCY_CONTACTS } from '../data/legalData';
 import { SupportedLanguage } from '../types';
 import { getT } from '../data/translations';
+
+interface CustomContact {
+  id: string;
+  name: string;
+  number: string;
+}
 
 interface EmergencyBarProps {
   isOpen: boolean;
@@ -13,7 +19,77 @@ interface EmergencyBarProps {
 
 export const EmergencyBar: React.FC<EmergencyBarProps> = ({ isOpen, onClose, language }) => {
   const [copiedNumber, setCopiedNumber] = useState<string | null>(null);
+  const [customContacts, setCustomContacts] = useState<CustomContact[]>([]);
+  const [newName, setNewName] = useState('');
+  const [newNumber, setNewNumber] = useState('');
+  const [isLocating, setIsLocating] = useState(false);
   const t = getT(language);
+
+  React.useEffect(() => {
+    const saved = localStorage.getItem('myright_sos_contacts');
+    if (saved) {
+      try {
+        setCustomContacts(JSON.parse(saved));
+      } catch(e) {}
+    }
+  }, []);
+
+  const saveContacts = (contacts: CustomContact[]) => {
+    setCustomContacts(contacts);
+    localStorage.setItem('myright_sos_contacts', JSON.stringify(contacts));
+  };
+
+  const handleAddContact = () => {
+    if (!newName.trim() || !newNumber.trim()) return;
+    if (customContacts.length >= 3) {
+      alert("You can only add up to 3 SOS contacts.");
+      return;
+    }
+    const updated = [...customContacts, { id: crypto.randomUUID(), name: newName.trim(), number: newNumber.trim() }];
+    saveContacts(updated);
+    setNewName('');
+    setNewNumber('');
+  };
+
+  const handleDeleteContact = (id: string) => {
+    saveContacts(customContacts.filter(c => c.id !== id));
+  };
+
+  const handleSOSAlert = () => {
+    if (customContacts.length === 0) {
+      alert("Please add at least one emergency contact first.");
+      return;
+    }
+    
+    setIsLocating(true);
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setIsLocating(false);
+        const { latitude, longitude } = pos.coords;
+        const mapsLink = `https://maps.google.com/?q=${latitude},${longitude}`;
+        const message = `EMERGENCY SOS! I need help immediately. My current location is: ${mapsLink}`;
+        
+        const numbers = customContacts.map(c => c.number).join(',');
+        // For Android/iOS sms protocol
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        const separator = isIOS ? '&' : '?';
+        window.location.href = `sms:${numbers}${separator}body=${encodeURIComponent(message)}`;
+      },
+      (error) => {
+        setIsLocating(false);
+        console.error("GPS Error:", error);
+        alert("Could not get your location. Ensure GPS is enabled.");
+        
+        // Fallback without location
+        const message = `EMERGENCY SOS! I need help immediately, but my GPS is off. Please contact me!`;
+        const numbers = customContacts.map(c => c.number).join(',');
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        const separator = isIOS ? '&' : '?';
+        window.location.href = `sms:${numbers}${separator}body=${encodeURIComponent(message)}`;
+      },
+      { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
+    );
+  };
 
   const handleCopy = (num: string) => {
     navigator.clipboard.writeText(num);
@@ -108,6 +184,70 @@ export const EmergencyBar: React.FC<EmergencyBarProps> = ({ isOpen, onClose, lan
               {/* Modal Content */}
               <div className="p-6 sm:p-8 space-y-5 max-h-[75vh] overflow-y-auto">
                 
+                {/* Personal SOS Contacts Section */}
+                <div className="p-5 rounded-3xl bg-white border-2 border-red-200 shadow-sm space-y-4">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <h4 className="font-black text-[#1A3841] flex items-center gap-2">
+                        <MessageCircleWarning className="w-5 h-5 text-red-600" />
+                        My SOS Contacts
+                      </h4>
+                      <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Save up to 3 trusted contacts (Stored Locally)</p>
+                    </div>
+                    
+                    <button
+                      onClick={handleSOSAlert}
+                      disabled={isLocating || customContacts.length === 0}
+                      className="px-4 py-2 bg-gradient-to-r from-red-600 to-rose-600 text-white font-black text-xs rounded-xl shadow-lg shadow-red-500/30 flex items-center gap-1.5 hover:scale-105 active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isLocating ? <MapPin className="w-4 h-4 animate-bounce" /> : <MessageCircleWarning className="w-4 h-4 animate-pulse" />}
+                      {isLocating ? 'Locating...' : 'SEND SOS MSG'}
+                    </button>
+                  </div>
+
+                  {customContacts.length > 0 && (
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                      {customContacts.map(contact => (
+                        <div key={contact.id} className="p-3 bg-red-50 rounded-xl border border-red-100 flex justify-between items-center group">
+                          <div className="overflow-hidden">
+                            <p className="font-bold text-xs text-red-900 truncate">{contact.name}</p>
+                            <p className="font-black text-sm text-red-700">{contact.number}</p>
+                          </div>
+                          <button onClick={() => handleDeleteContact(contact.id)} className="p-1.5 text-red-400 hover:text-red-600 hover:bg-red-100 rounded-lg">
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {customContacts.length < 3 && (
+                    <div className="flex flex-col sm:flex-row gap-2">
+                      <input 
+                        type="text" 
+                        placeholder="Name (e.g. Brother)" 
+                        value={newName} 
+                        onChange={e => setNewName(e.target.value)}
+                        className="flex-1 px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-red-400 focus:ring-1 focus:ring-red-400"
+                      />
+                      <input 
+                        type="tel" 
+                        placeholder="Phone Number" 
+                        value={newNumber} 
+                        onChange={e => setNewNumber(e.target.value)}
+                        className="flex-1 px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-red-400 focus:ring-1 focus:ring-red-400"
+                      />
+                      <button 
+                        onClick={handleAddContact}
+                        disabled={!newName.trim() || !newNumber.trim()}
+                        className="px-4 py-2 bg-slate-800 text-white font-bold text-sm rounded-xl hover:bg-slate-700 transition-colors disabled:bg-slate-300 flex items-center justify-center gap-1 shrink-0"
+                      >
+                        <Plus className="w-4 h-4" /> Add
+                      </button>
+                    </div>
+                  )}
+                </div>
+
                 {/* Immediate Rule Reminder */}
                 <div className="p-5 rounded-3xl bg-red-50 border-2 border-red-200 flex items-start gap-3 shadow-2xs">
                   <div className="w-8 h-8 rounded-full bg-red-200 flex items-center justify-center shrink-0 mt-0.5">

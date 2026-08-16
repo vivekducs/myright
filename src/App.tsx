@@ -18,8 +18,11 @@ import { DetailPage } from './components/DetailPage';
 import { Footer } from './components/Footer';
 import { MobileBottomBar } from './components/MobileBottomBar';
 import { StickyAIAssistant } from './components/StickyAIAssistant';
+import { DocumentVault } from './components/DocumentVault';
+import { ComplaintBuilder } from './components/ComplaintBuilder';
 import { Category, DetailPageTarget, SupportedLanguage } from './types';
 import { Shield, PhoneCall, AlertTriangle } from 'lucide-react';
+import { triggerLightHaptic } from './utils/haptics';
 
 export default function App() {
   const navigate = useNavigate();
@@ -34,6 +37,7 @@ export default function App() {
   const [isEmergencyModalOpen, setIsEmergencyModalOpen] = useState<boolean>(false);
 
   const handleSelectTab = (tab: string) => {
+    triggerLightHaptic();
     setDetailTarget(null);
     navigate(`/${tab}`);
   };
@@ -49,6 +53,7 @@ export default function App() {
   const showHeroSection = !detailTarget && isHomeRoute;
 
   const handleSelectQuickSituation = (situationId: string) => {
+    triggerLightHaptic();
     setSelectedSituationId(situationId);
     setDetailTarget(null);
     navigate('/situations');
@@ -62,12 +67,14 @@ export default function App() {
   };
 
   const handleSelectCategory = (category: string) => {
+    triggerLightHaptic();
     setSelectedCategory(category as Category);
     setDetailTarget(null);
     navigate('/rights');
   };
 
   const handleOpenDetail = (target: DetailPageTarget) => {
+    triggerLightHaptic();
     setDetailTarget(target);
     setTimeout(() => {
       const el = document.getElementById('main-content');
@@ -209,6 +216,18 @@ export default function App() {
                 <Route path="/locator" element={
                   <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.2 }}>
                     <StationLocator language={language} />
+                  </motion.div>
+                } />
+
+                <Route path="/vault" element={
+                  <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.2 }}>
+                    <DocumentVault language={language} />
+                  </motion.div>
+                } />
+
+                <Route path="/complaint" element={
+                  <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.2 }}>
+                    <ComplaintBuilder language={language} />
                   </motion.div>
                 } />
 

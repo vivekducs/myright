@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Shield, PhoneCall, Globe, BookOpen, AlertOctagon, HelpCircle, MessageSquareText, FileBadge, Check, Sparkles, ChevronDown, Compass, Building2, BookMarked, Search, MapPin } from 'lucide-react';
+import { Shield, PhoneCall, Globe, BookOpen, AlertOctagon, HelpCircle, MessageSquareText, FileBadge, Check, Sparkles, ChevronDown, Compass, Building2, BookMarked, Search, MapPin, Vault, Wallet, FileEdit, Moon, Sun } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { SupportedLanguage } from '../types';
 import { getT } from '../data/translations';
 import ashokChakra from '../data/Ashok chakra.png';
 import { TirangaHeader } from './TirangaHeader';
+import { useDarkMode } from '../utils/useDarkMode';
+import { triggerHeavyHaptic } from '../utils/haptics';
 
 interface NavbarProps {
   language: SupportedLanguage;
@@ -22,6 +24,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const location = useLocation();
   const activeTab = location.pathname.substring(1) || 'situations';
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   const t = getT(language);
 
@@ -35,6 +38,8 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'dk-basu', label: t.navDKBasu, icon: Shield },
     { id: 'scripts', label: t.navScripts, icon: MessageSquareText },
     { id: 'pocket-pass', label: t.navPocketPass, icon: FileBadge },
+    { id: 'vault', label: 'My Vault', icon: Wallet, badge: 'Secure' },
+    { id: 'complaint', label: 'Draft e-FIR', icon: FileEdit },
     { id: 'quiz', label: t.navQuiz, icon: HelpCircle },
   ];
 
@@ -107,15 +112,27 @@ export const Navbar: React.FC<NavbarProps> = ({
             })}
           </nav>
 
-          {/* Right Actions: SOS Button */}
+          {/* Right Actions: Theme Toggle and SOS Button */}
           <div className="flex items-center gap-2 sm:gap-2.5">
+
+            {/* Dark Mode Toggle */}
+            <button
+              onClick={toggleDarkMode}
+              className="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 flex items-center justify-center transition-transform hover:scale-105 cursor-pointer dark:bg-slate-800 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-700"
+              aria-label="Toggle dark mode"
+            >
+              {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            </button>
 
             {/* Fast SOS Emergency Trigger Button */}
             <motion.button
               id="emergency-sos-btn"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              onClick={onOpenEmergencyModal}
+              onClick={() => {
+                triggerHeavyHaptic();
+                onOpenEmergencyModal();
+              }}
               className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-rose-500 to-red-600 text-white font-bold text-xs sm:text-sm shadow-md shadow-red-500/20 hover:shadow-red-500/40 transition-all cursor-pointer shrink-0 border border-red-400/30"
             >
               <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">

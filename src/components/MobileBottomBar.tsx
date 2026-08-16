@@ -18,10 +18,13 @@ import {
   Building2,
   Download,
   Globe,
-  Check
+  Check,
+  Wallet,
+  FileEdit
 } from 'lucide-react';
 import { SupportedLanguage } from '../types';
 import { getT, LANGUAGE_OPTIONS } from '../data/translations';
+import { triggerLightHaptic, triggerHeavyHaptic } from '../utils/haptics';
 
 interface MobileBottomBarProps {
   language: SupportedLanguage;
@@ -56,10 +59,13 @@ export const MobileBottomBar: React.FC<MobileBottomBarProps> = ({
     { id: 'scripts', label: t.navScripts, desc: 'Exact phrases to speak to officers', icon: MessageSquareText, color: 'from-[#458393] to-[#1A3841]' },
     { id: 'ai-advisor', label: t.navAIAdvisor, desc: 'AI Copilot under BNSS & CrPC', icon: Bot, color: 'from-[#E5CB90] to-[#34A99D]' },
     { id: 'pocket-pass', label: t.navPocketPass, desc: 'Printable citizen legal ID pass', icon: FileBadge, color: 'from-[#34A99D] to-[#1A3841]' },
+    { id: 'vault', label: 'My Vault', desc: 'Secure local storage for ID docs', icon: Wallet, color: 'from-[#1A3841] to-[#458393]' },
+    { id: 'complaint', label: 'e-FIR Draft', desc: 'Generate official police complaint', icon: FileEdit, color: 'from-[#34A99D] to-[#1A3841]' },
     { id: 'quiz', label: t.navQuiz, desc: 'Test legal knowledge & bust myths', icon: HelpCircle, color: 'from-[#458393] to-[#34A99D]' },
   ];
 
   const handleTabClick = (tabId: string) => {
+    triggerLightHaptic();
     if (tabId === 'more') {
       setIsMoreMenuOpen(!isMoreMenuOpen);
     } else {
@@ -70,6 +76,7 @@ export const MobileBottomBar: React.FC<MobileBottomBarProps> = ({
   };
 
   const handleSelectMoreTool = (toolId: string) => {
+    triggerLightHaptic();
     navigate(`/${toolId}`);
     setIsMoreMenuOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -264,7 +271,10 @@ export const MobileBottomBar: React.FC<MobileBottomBarProps> = ({
               id="mobile-center-sos-btn"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              onClick={onOpenEmergencyModal}
+              onClick={() => {
+                triggerHeavyHaptic();
+                onOpenEmergencyModal();
+              }}
               className="w-14 h-14 rounded-full bg-gradient-to-tr from-red-600 via-rose-500 to-red-600 text-white shadow-xl shadow-red-600/50 flex flex-col items-center justify-center border-3 border-[#FFF3C8] cursor-pointer relative group"
             >
               <span className="absolute inset-0 rounded-full bg-red-400 animate-ping opacity-30" />
@@ -294,13 +304,13 @@ export const MobileBottomBar: React.FC<MobileBottomBarProps> = ({
             id="mobile-nav-more"
             onClick={() => handleTabClick('more')}
             className={`flex-1 py-1.5 flex flex-col items-center justify-center gap-0.5 rounded-full transition-all cursor-pointer ${
-              isMoreMenuOpen || ['scripts', 'ai-advisor', 'pocket-pass', 'quiz'].includes(activeTab)
+              isMoreMenuOpen || ['scripts', 'ai-advisor', 'pocket-pass', 'quiz', 'vault', 'complaint'].includes(activeTab)
                 ? 'text-[#E5CB90]'
                 : 'text-[#FFF3C8]/70 hover:text-white'
             }`}
           >
             <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
-              isMoreMenuOpen || ['scripts', 'ai-advisor', 'pocket-pass', 'quiz'].includes(activeTab)
+              isMoreMenuOpen || ['scripts', 'ai-advisor', 'pocket-pass', 'quiz', 'vault', 'complaint'].includes(activeTab)
                 ? 'bg-[#E5CB90]/20 ring-2 ring-[#E5CB90]'
                 : ''
             }`}>

@@ -5,7 +5,6 @@ import { ThreeDCard } from './ThreeDCard';
 import { SupportedLanguage } from '../types';
 import { getT, LANGUAGE_OPTIONS } from '../data/translations';
 import { GeminiChatbot } from './GeminiChatbot';
-import { GeminiLiveVoice } from './GeminiLiveVoice';
 import { StatutorySearchGrounding } from './StatutorySearchGrounding';
 import { AudioTranscriber } from './AudioTranscriber';
 import { SpeechRecognitionMicButton } from './SpeechRecognitionMicButton';
@@ -29,7 +28,7 @@ interface AIResponse {
   isUrgent?: boolean;
 }
 
-type AIAdvisorMode = 'advisor' | 'chat' | 'live-voice' | 'search-grounding';
+type AIAdvisorMode = 'advisor' | 'chat' | 'search-grounding';
 
 export const AIAdvisor: React.FC<AIAdvisorProps> = ({ language }) => {
   const [activeMode, setActiveMode] = useState<AIAdvisorMode>('chat');
@@ -207,7 +206,7 @@ export const AIAdvisor: React.FC<AIAdvisorProps> = ({ language }) => {
               AI Legal Suite
             </span>
             <span className="text-xs font-bold text-[#34A99D] px-3 py-0.5 rounded-full bg-[#34A99D]/15">
-              Powered by Gemini (3.5 Flash • 3.1 Flash Lite • 3.1 Pro • Live API)
+              Powered by Gemini (3.5 Flash • 3.1 Flash Lite • 3.1 Pro)
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-black text-[#1A3841] tracking-tight">
@@ -239,22 +238,6 @@ export const AIAdvisor: React.FC<AIAdvisorProps> = ({ language }) => {
           <span>Gemini Multi-Turn Chatbot</span>
           <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#34A99D]/20 text-teal-800">
             gemini-3.5-flash / 3.1-pro
-          </span>
-        </button>
-
-        <button
-          id="mode-tab-live-voice"
-          onClick={() => setActiveMode('live-voice')}
-          className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-black transition-all cursor-pointer whitespace-nowrap ${
-            activeMode === 'live-voice'
-              ? 'bg-gradient-to-r from-emerald-600 to-teal-700 text-white shadow-md -translate-y-0.5'
-              : 'text-[#1A3841] hover:bg-[#FFF3C8]'
-          }`}
-        >
-          <Radio className="w-4 h-4 text-emerald-300 animate-pulse" />
-          <span>Live Voice Conversations</span>
-          <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-900 font-extrabold">
-            Live API
           </span>
         </button>
 
@@ -301,19 +284,6 @@ export const AIAdvisor: React.FC<AIAdvisorProps> = ({ language }) => {
             transition={{ duration: 0.2 }}
           >
             <GeminiChatbot language={language} />
-          </motion.div>
-        )}
-
-        {/* Mode 2: Live Voice Conversations (Live API) */}
-        {activeMode === 'live-voice' && (
-          <motion.div
-            key="live-voice"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.2 }}
-          >
-            <GeminiLiveVoice language={language} />
           </motion.div>
         )}
 

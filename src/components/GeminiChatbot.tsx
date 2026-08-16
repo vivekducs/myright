@@ -29,9 +29,9 @@ import {
 import { SupportedLanguage } from '../types';
 import { getT, LANGUAGE_OPTIONS } from '../data/translations';
 import { AudioTranscriber } from './AudioTranscriber';
-import { SpeechRecognitionMicButton } from './SpeechRecognitionMicButton';
 import { MarkdownRenderer } from './MarkdownRenderer';
 import { useSpeechRecognition } from '../utils/useSpeechRecognition';
+import { triggerHeavyHaptic } from '../utils/haptics';
 
 export interface ChatMessage {
   id: string;
@@ -179,6 +179,8 @@ export const GeminiChatbot: React.FC<GeminiChatbotProps> = ({ language }) => {
   const handleSendMessage = async (textToSend?: string) => {
     const text = textToSend || inputText;
     if (!text.trim() || isLoading) return;
+
+    triggerHeavyHaptic();
 
     // Stop active speech recognition if running
     if (isListening) {
