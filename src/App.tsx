@@ -16,6 +16,7 @@ import { DigitalGuidebook } from './components/DigitalGuidebook';
 import { DetailPage } from './components/DetailPage';
 import { Footer } from './components/Footer';
 import { MobileBottomBar } from './components/MobileBottomBar';
+import { StickyAIAssistant } from './components/StickyAIAssistant';
 import { Category, DetailPageTarget, SupportedLanguage } from './types';
 import { Shield, PhoneCall, AlertTriangle } from 'lucide-react';
 
@@ -220,6 +221,9 @@ export default function App() {
 
         {/* Footer */}
         <Footer language={language} />
+
+        {/* Global Sticky AI Assistant */}
+        <StickyAIAssistant language={language} />
       </div>
     </div>
   );

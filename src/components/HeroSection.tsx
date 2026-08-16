@@ -173,39 +173,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             {t.heroSubtitle}
           </p>
 
-          {/* Quick Search Bar with Clean White Minimal Geometry & 3D Focus Glow */}
-          <div className="max-w-2xl mx-auto pt-3">
-            <div className="relative flex items-center bg-white rounded-full border-2 border-slate-200 shadow-lg shadow-slate-200/40 hover:shadow-xl focus-within:border-teal-600 focus-within:ring-4 focus-within:ring-teal-500/15 transition-all p-2">
-              <div className="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center text-teal-600 ml-1 mr-3 shrink-0">
-                <Search className="w-5 h-5" />
-              </div>
-              <input
-                id="hero-search-input"
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={t.searchPlaceholder}
-                className="w-full bg-transparent text-xs sm:text-base font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-hidden py-1.5"
-              />
-              <div className="flex items-center gap-1.5 mr-1">
-                <AudioTranscriber
-                  variant="inline"
-                  onTranscribed={(transcript) => {
-                    setSearchQuery(transcript);
-                    onSelectCategory('all');
-                  }}
-                />
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery('')}
-                    className="px-3 py-1 rounded-full bg-slate-100 hover:bg-slate-200 text-xs font-bold text-slate-700 cursor-pointer transition-colors"
-                  >
-                    Clear
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
+
         </div>
 
         {/* Situation Action Cards - 3D White Glass Cards */}

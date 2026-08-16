@@ -108,17 +108,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             })}
           </nav>
 
-          {/* Right Actions: Search & SOS Button */}
+          {/* Right Actions: SOS Button */}
           <div className="flex items-center gap-2 sm:gap-2.5">
-            
-            {/* Quick Search Trigger */}
-            <button
-              onClick={() => navigate('/rights')}
-              className="w-9 h-9 rounded-full bg-white/50 hover:bg-white border border-slate-200/60 shadow-sm text-slate-500 hover:text-teal-600 flex items-center justify-center transition-all hover:shadow-md cursor-pointer"
-              title="Search Rights & Laws"
-            >
-              <Search className="w-4 h-4" />
-            </button>
 
             {/* Fast SOS Emergency Trigger Button */}
             <motion.button
