@@ -195,6 +195,9 @@ export const SituationNavigator: React.FC<SituationNavigatorProps> = ({
               onClick={() => {
                 setActiveStepId(step.id);
                 onSelectSituation(step.id);
+                setTimeout(() => {
+                  document.getElementById('situation-detail-card')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 150);
               }}
               className={`p-4 rounded-3xl text-left font-bold text-xs transition-all duration-200 border flex flex-col justify-between cursor-pointer hover:-translate-y-1 hover:shadow-lg min-h-[100px] ${
                 isSelected
@@ -245,8 +248,8 @@ export const SituationNavigator: React.FC<SituationNavigatorProps> = ({
           exit={{ opacity: 0, y: -15 }}
           transition={{ duration: 0.25 }}
         >
-          <ThreeDCard className="w-full">
-            <div className="p-6 sm:p-8 rounded-[36px] bg-white border border-slate-200/90 shadow-xl space-y-6">
+          <ThreeDCard className="w-full" id="situation-detail-card">
+            <div className="p-6 sm:p-8 rounded-[36px] bg-white border border-slate-200/90 shadow-xl space-y-6 mt-4">
               
               {/* Header Box */}
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-slate-100">

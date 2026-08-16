@@ -51,11 +51,13 @@ export default function App() {
     setSelectedSituationId(situationId);
     setDetailTarget(null);
     navigate('/situations');
-    // Smooth scroll down to situation navigator
-    const el = document.getElementById('main-content-section');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+    // Smooth scroll down to main content area
+    setTimeout(() => {
+      const el = document.getElementById('main-content');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
   };
 
   const handleSelectCategory = (category: string) => {
@@ -66,10 +68,12 @@ export default function App() {
 
   const handleOpenDetail = (target: DetailPageTarget) => {
     setDetailTarget(target);
-    const el = document.getElementById('main-content-section');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+    setTimeout(() => {
+      const el = document.getElementById('main-content');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
   };
 
   return (
