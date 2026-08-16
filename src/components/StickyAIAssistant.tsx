@@ -78,26 +78,43 @@ export const StickyAIAssistant: React.FC<StickyAIAssistantProps> = ({ language }
     window.speechSynthesis.speak(utterance);
   };
 
-  const handleSend = () => {
-    if (!inputText.trim()) return;
+  const handleSend = async () => {
+    if (!inputText.trim() || isTyping) return;
 
+    const currentInput = inputText.trim();
     const newMsg: ChatMessage = {
       id: Date.now().toString(),
       role: 'user',
-      content: inputText,
+      content: currentInput,
     };
 
-    setMessages((prev) => [...prev, newMsg]);
+    const newHistory = [...messages, newMsg];
+    setMessages(newHistory);
     setInputText('');
     setIsTyping(true);
 
-    // Mock AI Response
-    setTimeout(() => {
-      const isHindi = language === 'hi';
-      const responseContent = isHindi 
-        ? "नमस्ते! मैं आपका एआई कानूनी सहायक हूँ। मैं समझता हूँ कि पुलिस से जुड़े मामले तनावपूर्ण हो सकते हैं। कृपया घबराएं नहीं, आपको चुप रहने और कानूनी सलाह लेने का अधिकार है (अनुच्छेद 20(3))।"
-        : "Hello! I am your AI Legal Assistant. I understand police situations can be stressful. Please stay calm, you have the right to remain silent and seek legal counsel (Article 20(3)).";
-      
+    try {
+      const payload = {
+        messages: newHistory.map(m => ({
+          role: m.role,
+          text: m.content
+        })),
+        model: 'gemini-3.5-flash',
+        language: language === 'hi' ? 'Hindi' : 'English',
+        systemInstruction: `You are a concise, helpful sticky AI legal assistant for Indian citizens. Be brief, clear, and reassuring. Keep responses under 3 sentences if possible. Always refer to BNSS or BNS for criminal law.`
+      };
+
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error('API Error');
+
+      const data = await res.json();
+      const responseContent = data.text || "I'm sorry, I cannot provide advice at this moment.";
+
       const aiMsg: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
@@ -107,8 +124,22 @@ export const StickyAIAssistant: React.FC<StickyAIAssistantProps> = ({ language }
       setMessages((prev) => [...prev, aiMsg]);
       setIsTyping(false);
       speakText(responseContent);
-      
-    }, 1500);
+    } catch (err) {
+      console.error(err);
+      const isHindi = language === 'hi';
+      const fallbackContent = isHindi 
+        ? "माफ़ करें, मुझे सर्वर से जुड़ने में समस्या हो रही है। कृपया पुनः प्रयास करें।"
+        : "Sorry, I am having trouble connecting to the server. Please try again.";
+        
+      const aiMsg: ChatMessage = {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: fallbackContent,
+      };
+      setMessages((prev) => [...prev, aiMsg]);
+      setIsTyping(false);
+      speakText(fallbackContent);
+    }
   };
 
   // Add initial greeting when opened
