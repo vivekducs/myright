@@ -136,22 +136,22 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   ];
 
   return (
-    <section className="relative overflow-hidden pt-8 pb-12 px-4 sm:px-6 lg:px-8 border-b border-[#E5CB90]/60">
-      {/* Decorative Vintage Summer Circular Orbs */}
-      <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-[#E5CB90]/50 to-[#34A99D]/20 blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 -left-28 w-80 h-80 rounded-full bg-gradient-to-tr from-[#34A99D]/30 to-[#458393]/20 blur-2xl pointer-events-none" />
+    <section className="relative overflow-hidden pt-8 pb-12 px-4 sm:px-6 lg:px-8 border-b border-slate-100">
+      {/* Decorative Subtle Ambient Orbs */}
+      <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-teal-100/40 to-blue-100/30 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 -left-28 w-80 h-80 rounded-full bg-gradient-to-tr from-indigo-100/30 to-teal-50/40 blur-2xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         
-        {/* Top Floating Circular Badge */}
+        {/* Top Floating Pill Badge */}
         <div className="flex justify-center mb-5">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             whileHover={{ scale: 1.05 }}
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#E5CB90]/60 hover:bg-[#E5CB90]/90 border border-[#E5CB90] shadow-sm hover:shadow-md text-xs font-black text-[#1A3841] backdrop-blur-sm text-center transition-all cursor-default"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 hover:bg-slate-100 border border-slate-200/80 shadow-xs text-xs font-extrabold text-slate-800 backdrop-blur-md text-center transition-all cursor-default"
           >
-            <div className="w-5 h-5 rounded-full bg-[#458393] flex items-center justify-center text-[#FFF3C8]">
+            <div className="w-5 h-5 rounded-full bg-teal-600 flex items-center justify-center text-white shadow-xs">
               <Sparkles className="w-3 h-3 shrink-0" />
             </div>
             <span>{t.heroBadge}</span>
@@ -161,22 +161,22 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         {/* Main Headline */}
         <div className="text-center max-w-4xl mx-auto space-y-4">
           <motion.h1
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#1A3841] leading-tight"
+            transition={{ duration: 0.4 }}
+            className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-tight"
           >
-            {t.heroTitle} <span className="text-[#34A99D] underline decoration-[#E5CB90] decoration-wavy">{t.heroTitleHighlight}</span>
+            {t.heroTitle} <span className="text-teal-600 underline decoration-teal-300 decoration-wavy">{t.heroTitleHighlight}</span>
           </motion.h1>
 
-          <p className="text-sm sm:text-lg text-[#458393] max-w-2xl mx-auto font-bold leading-relaxed">
+          <p className="text-sm sm:text-lg text-slate-600 max-w-2xl mx-auto font-medium leading-relaxed">
             {t.heroSubtitle}
           </p>
 
-          {/* Quick Search Bar with Circular Rounded-Full Geometry */}
+          {/* Quick Search Bar with Clean White Minimal Geometry & 3D Focus Glow */}
           <div className="max-w-2xl mx-auto pt-3">
-            <div className="relative flex items-center bg-[#FFF3C8] rounded-full border-2 border-[#E5CB90] shadow-lg hover:shadow-xl focus-within:border-[#34A99D] focus-within:ring-4 focus-within:ring-[#34A99D]/20 transition-all p-2">
-              <div className="w-10 h-10 rounded-full bg-[#34A99D]/15 flex items-center justify-center text-[#458393] ml-1 mr-3 shrink-0">
+            <div className="relative flex items-center bg-white rounded-full border-2 border-slate-200 shadow-lg shadow-slate-200/40 hover:shadow-xl focus-within:border-teal-600 focus-within:ring-4 focus-within:ring-teal-500/15 transition-all p-2">
+              <div className="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center text-teal-600 ml-1 mr-3 shrink-0">
                 <Search className="w-5 h-5" />
               </div>
               <input
@@ -185,7 +185,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={t.searchPlaceholder}
-                className="w-full bg-transparent text-xs sm:text-base font-bold text-[#1A3841] placeholder:text-[#458393]/70 focus:outline-hidden py-1.5"
+                className="w-full bg-transparent text-xs sm:text-base font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-hidden py-1.5"
               />
               <div className="flex items-center gap-1.5 mr-1">
                 <AudioTranscriber
@@ -198,7 +198,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 {searchQuery && (
                   <button
                     onClick={() => setSearchQuery('')}
-                    className="px-3 py-1 rounded-full bg-[#E5CB90]/60 hover:bg-[#E5CB90] text-xs font-black text-[#1A3841] cursor-pointer transition-colors"
+                    className="px-3 py-1 rounded-full bg-slate-100 hover:bg-slate-200 text-xs font-bold text-slate-700 cursor-pointer transition-colors"
                   >
                     Clear
                   </button>
@@ -208,14 +208,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
         </div>
 
-        {/* Situation Action Cards */}
+        {/* Situation Action Cards - 3D White Glass Cards */}
         <div className="mt-12">
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-full bg-[#34A99D]/20 flex items-center justify-center text-[#34A99D]">
+              <div className="w-8 h-8 rounded-full bg-teal-50 flex items-center justify-center text-teal-600">
                 <Compass className="w-4 h-4" />
               </div>
-              <h2 className="text-xs sm:text-sm font-black uppercase tracking-wider text-[#1A3841]">
+              <h2 className="text-xs sm:text-sm font-black uppercase tracking-wider text-slate-900">
                 {t.quickSituationsHeading}
               </h2>
             </div>
@@ -237,27 +237,27 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: idx * 0.08 }}
+                    transition={{ delay: idx * 0.06 }}
                     whileHover={{ y: -8, scale: 1.02 }}
                     whileTap={{ scale: 0.96 }}
-                    className="h-full p-5 rounded-3xl bg-gradient-to-b from-[#FFF3C8] via-[#FFF3C8] to-[#E5CB90]/40 border-2 border-[#E5CB90] group-hover:border-[#34A99D] shadow-sm hover:shadow-2xl hover:shadow-[#34A99D]/15 transition-all duration-300 flex flex-col justify-between"
+                    className="h-full p-5 rounded-3xl bg-white border border-slate-200/90 group-hover:border-teal-500 shadow-md group-hover:shadow-2xl group-hover:shadow-teal-500/15 transition-all duration-300 flex flex-col justify-between"
                   >
                     <div>
                       {/* Circular Icon Container */}
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#34A99D] to-[#458393] flex items-center justify-center text-[#FFF3C8] shadow-md mb-3.5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 ring-4 ring-[#FFF3C8]">
+                      <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-600 flex items-center justify-center text-white shadow-md shadow-teal-500/25 mb-3.5 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 ring-4 ring-teal-50">
                         <Icon className="w-6 h-6" />
                       </div>
-                      <h3 className="font-extrabold text-sm text-[#1A3841] group-hover:text-[#34A99D] leading-snug line-clamp-2 mb-1.5 transition-colors">
+                      <h3 className="font-extrabold text-sm text-slate-900 group-hover:text-teal-600 leading-snug line-clamp-2 mb-1.5 transition-colors">
                         {item.label}
                       </h3>
-                      <p className="text-xs text-[#458393] font-semibold line-clamp-2">
+                      <p className="text-xs text-slate-500 font-medium line-clamp-2">
                         {item.sub}
                       </p>
                     </div>
 
-                    <div className="mt-4 pt-2.5 border-t border-[#E5CB90]/70 flex items-center justify-between text-xs font-black text-[#34A99D] group-hover:text-[#1A3841]">
+                    <div className="mt-4 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-teal-600 group-hover:text-slate-900">
                       <span>View Rights</span>
-                      <div className="w-6 h-6 rounded-full bg-[#34A99D]/15 group-hover:bg-[#34A99D] group-hover:text-white flex items-center justify-center transition-all">
+                      <div className="w-6 h-6 rounded-full bg-teal-50 group-hover:bg-teal-600 group-hover:text-white flex items-center justify-center transition-all">
                         <ArrowRight className="w-3.5 h-3.5" />
                       </div>
                     </div>

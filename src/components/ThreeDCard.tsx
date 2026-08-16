@@ -12,7 +12,7 @@ interface ThreeDCardProps {
 export const ThreeDCard: React.FC<ThreeDCardProps> = ({
   children,
   className = '',
-  intensity = 15,
+  intensity = 12,
   id,
   onClick
 }) => {
@@ -20,6 +20,7 @@ export const ThreeDCard: React.FC<ThreeDCardProps> = ({
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
   const [glarePos, setGlarePos] = useState({ x: 50, y: 50, opacity: 0 });
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
@@ -38,11 +39,16 @@ export const ThreeDCard: React.FC<ThreeDCardProps> = ({
     setGlarePos({
       x: (x / rect.width) * 100,
       y: (y / rect.height) * 100,
-      opacity: 0.18,
+      opacity: 0.12,
     });
   };
 
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
   const handleMouseLeave = () => {
+    setIsHovered(false);
     setRotateX(0);
     setRotateY(0);
     setGlarePos(prev => ({ ...prev, opacity: 0 }));
@@ -53,6 +59,7 @@ export const ThreeDCard: React.FC<ThreeDCardProps> = ({
       id={id}
       ref={cardRef}
       onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
       style={{
@@ -61,19 +68,21 @@ export const ThreeDCard: React.FC<ThreeDCardProps> = ({
       animate={{
         rotateX,
         rotateY,
+        z: isHovered ? 12 : 0,
       }}
-      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      className={`relative perspective-1000 transition-all duration-300 ${className}`}
+      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+      className={`relative perspective-1000 transition-shadow duration-300 ${className}`}
     >
-      {/* Subtle dynamic sheen reflection using vintage gold / teal */}
+      {/* Dynamic light reflection glare on top of clean white surfaces */}
       <div
-        className="pointer-events-none absolute inset-0 rounded-3xl z-10 transition-opacity duration-300"
+        className="pointer-events-none absolute inset-0 rounded-[28px] z-20 transition-opacity duration-300 overflow-hidden"
         style={{
           opacity: glarePos.opacity,
-          background: `radial-gradient(circle at ${glarePos.x}% ${glarePos.y}%, rgba(229, 203, 144, 0.45), transparent 65%)`,
+          background: `radial-gradient(circle at ${glarePos.x}% ${glarePos.y}%, rgba(255, 255, 255, 0.9), rgba(13, 148, 136, 0.08) 35%, transparent 70%)`,
         }}
       />
       {children}
     </motion.div>
   );
 };
+

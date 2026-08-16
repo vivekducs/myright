@@ -2,81 +2,115 @@
 
 @layer base {
   :root {
-    --vintage-sand: #E5CB90;
-    --vintage-cream: #FFF3C8;
-    --vintage-teal: #34A99D;
-    --vintage-ocean: #458393;
-    --vintage-deep: #1A3841;
-    --vintage-charcoal: #233438;
+    --primary-white: #FFFFFF;
+    --surface-white: #FFFFFF;
+    --surface-subtle: #F8FAFC;
+    --surface-elevated: #F1F5F9;
+    --border-subtle: #E2E8F0;
+    --border-strong: #CBD5E1;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --text-muted: #94A3B8;
+    --accent-teal: #0D9488;
+    --accent-blue: #2563EB;
+    --accent-indigo: #4F46E5;
+    --accent-amber: #D97706;
   }
 
   body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    background-color: #FFF3C8;
-    color: #1A3841;
+    background-color: #FFFFFF;
+    color: #0F172A;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, .font-display {
-    font-family: 'Outfit', 'Cinzel', serif, sans-serif;
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   }
 }
 
-/* Custom Vintage Summer Color Utilities */
-.bg-vintage-sand { background-color: #E5CB90; }
-.bg-vintage-cream { background-color: #FFF3C8; }
-.bg-vintage-teal { background-color: #34A99D; }
-.bg-vintage-ocean { background-color: #458393; }
-.bg-vintage-deep { background-color: #1A3841; }
-
-.text-vintage-sand { color: #E5CB90; }
-.text-vintage-cream { color: #FFF3C8; }
-.text-vintage-teal { color: #34A99D; }
-.text-vintage-ocean { color: #458393; }
-.text-vintage-deep { color: #1A3841; }
-
-.border-vintage-sand { border-color: #E5CB90; }
-.border-vintage-cream { border-color: #FFF3C8; }
-.border-vintage-teal { border-color: #34A99D; }
-.border-vintage-ocean { border-color: #458393; }
-
-/* 3D tilt perspective container */
+/* 3D Depth & Perspective */
 .perspective-1000 {
   perspective: 1000px;
+}
+
+.perspective-2000 {
+  perspective: 2000px;
 }
 
 .preserve-3d {
   transform-style: preserve-3d;
 }
 
-/* Vintage Paper grain and subtle gold sunlit glow */
-.vintage-sun-gradient {
-  background: linear-gradient(135deg, #FFF3C8 0%, #FFF8DC 50%, #E5CB90 100%);
+.backface-hidden {
+  backface-visibility: hidden;
 }
 
-.vintage-ocean-gradient {
-  background: linear-gradient(135deg, #458393 0%, #34A99D 50%, #1A3841 100%);
+/* Ultra Clean 3D Card Shadows & Glassmorphism */
+.glass-white {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
 }
 
-.vintage-card-gradient {
-  background: linear-gradient(180deg, rgba(255, 243, 200, 0.95) 0%, rgba(229, 203, 144, 0.4) 100%);
+.glass-card-elevated {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.95) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.06), 0 4px 12px -4px rgba(15, 23, 42, 0.03);
 }
 
-.vintage-teal-gradient {
-  background: linear-gradient(135deg, #34A99D 0%, #458393 100%);
+.card-3d-shadow {
+  box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08),
+              0 0 1px 1px rgba(226, 232, 240, 0.8);
 }
 
-/* Custom Scrollbar */
+.card-3d-hover:hover {
+  transform: translateY(-6px) rotateX(2deg);
+  box-shadow: 0 30px 60px -20px rgba(15, 23, 42, 0.12),
+              0 0 1px 1px rgba(13, 148, 136, 0.3);
+}
+
+/* Animated Gradient Mesh */
+.bg-mesh-light {
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(13, 148, 136, 0.05) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(37, 99, 235, 0.05) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, rgba(217, 119, 6, 0.03) 0px, transparent 50%);
+}
+
+/* Smooth Modern Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #FFF3C8;
+  background: #F8FAFC;
 }
 ::-webkit-scrollbar-thumb {
-  background: #458393;
-  border-radius: 4px;
+  background: #CBD5E1;
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #34A99D;
+  background: #94A3B8;
 }
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+

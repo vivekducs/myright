@@ -58,216 +58,219 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFF3C8] text-[#1A3841] flex flex-col font-sans selection:bg-[#E5CB90] selection:text-[#1A3841]">
+    <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-teal-100 selection:text-teal-900 relative">
+      {/* Subtle top ambient gradient mesh */}
+      <div className="fixed inset-0 bg-mesh-light pointer-events-none z-0" />
       
-      {/* Top Navbar */}
-      <Navbar
-        activeTab={activeTab}
-        setActiveTab={handleSelectTab}
-        language={language}
-        setLanguage={setLanguage}
-        onOpenEmergencyModal={() => setIsEmergencyModalOpen(true)}
-      />
+      <div className="relative z-10 flex flex-col min-h-screen">
+        {/* Top Navbar */}
+        <Navbar
+          activeTab={activeTab}
+          setActiveTab={handleSelectTab}
+          language={language}
+          setLanguage={setLanguage}
+          onOpenEmergencyModal={() => setIsEmergencyModalOpen(true)}
+        />
 
-      {/* Hero Section (Hidden when inside a detail page to maximize minimal distraction-free reading) */}
-      {!detailTarget && (
-        <HeroSection
-          searchQuery={searchQuery}
-          setSearchQuery={(q) => {
-            setSearchQuery(q);
-            if (q.trim()) {
-              setDetailTarget(null);
-              setActiveTab('rights');
-            }
-          }}
-          onSelectCategory={handleSelectCategory}
-          onSelectQuickSituation={handleSelectQuickSituation}
+        {/* Hero Section (Hidden when inside a detail page to maximize minimal distraction-free reading) */}
+        {!detailTarget && (
+          <HeroSection
+            searchQuery={searchQuery}
+            setSearchQuery={(q) => {
+              setSearchQuery(q);
+              if (q.trim()) {
+                setDetailTarget(null);
+                setActiveTab('rights');
+              }
+            }}
+            onSelectCategory={handleSelectCategory}
+            onSelectQuickSituation={handleSelectQuickSituation}
+            language={language}
+          />
+        )}
+
+        {/* Emergency Strip */}
+        <EmergencyBar
+          isOpen={isEmergencyModalOpen}
+          onClose={() => setIsEmergencyModalOpen(false)}
           language={language}
         />
-      )}
 
-      {/* Emergency Strip */}
-      <EmergencyBar
-        isOpen={isEmergencyModalOpen}
-        onClose={() => setIsEmergencyModalOpen(false)}
-        language={language}
-      />
+        {/* Main Content Area */}
+        <main id="main-content-section" className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+          <AnimatePresence mode="wait">
+            
+            {/* Detail Page / Dedicated Single View */}
+            {detailTarget ? (
+              <motion.div
+                key={`detail-${detailTarget.type}-${detailTarget.id}`}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.2 }}
+              >
+                <DetailPage
+                  target={detailTarget}
+                  language={language}
+                  onBack={() => setDetailTarget(null)}
+                  onSelectTarget={handleOpenDetail}
+                />
+              </motion.div>
+            ) : (
+              <>
+                {/* Situation Navigator View */}
+                {activeTab === 'situations' && (
+                  <motion.div
+                    key="situations"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <SituationNavigator
+                      selectedSituationId={selectedSituationId}
+                      onSelectSituation={(id) => setSelectedSituationId(id)}
+                      language={language}
+                      onSelectTarget={handleOpenDetail}
+                    />
+                  </motion.div>
+                )}
 
-      {/* Main Content Area */}
-      <main id="main-content-section" className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-        <AnimatePresence mode="wait">
-          
-          {/* Detail Page / Dedicated Single View */}
-          {detailTarget ? (
-            <motion.div
-              key={`detail-${detailTarget.type}-${detailTarget.id}`}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.2 }}
-            >
-              <DetailPage
-                target={detailTarget}
-                language={language}
-                onBack={() => setDetailTarget(null)}
-                onSelectTarget={handleOpenDetail}
-              />
-            </motion.div>
-          ) : (
-            <>
-              {/* Situation Navigator View */}
-              {activeTab === 'situations' && (
-                <motion.div
-                  key="situations"
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <SituationNavigator
-                    selectedSituationId={selectedSituationId}
-                    onSelectSituation={(id) => setSelectedSituationId(id)}
-                    language={language}
-                    onSelectTarget={handleOpenDetail}
-                  />
-                </motion.div>
-              )}
+                {/* Digital Guidebook View (Interactive Electronic Handbook) */}
+                {activeTab === 'guidebook' && (
+                  <motion.div
+                    key="guidebook"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <DigitalGuidebook
+                      language={language}
+                      onOpenSituation={(id) => {
+                        setSelectedSituationId(id);
+                        setActiveTab('situations');
+                      }}
+                    />
+                  </motion.div>
+                )}
 
-              {/* Digital Guidebook View (Interactive Electronic Handbook) */}
-              {activeTab === 'guidebook' && (
-                <motion.div
-                  key="guidebook"
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <DigitalGuidebook
-                    language={language}
-                    onOpenSituation={(id) => {
-                      setSelectedSituationId(id);
-                      setActiveTab('situations');
-                    }}
-                  />
-                </motion.div>
-              )}
+                {/* Legal Rights Compendium View */}
+                {activeTab === 'rights' && (
+                  <motion.div
+                    key="rights"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <LegalArticlesExplorer
+                      selectedCategory={selectedCategory}
+                      onSelectCategory={setSelectedCategory}
+                      searchQuery={searchQuery}
+                      language={language}
+                      onSelectTarget={handleOpenDetail}
+                    />
+                  </motion.div>
+                )}
 
-              {/* Legal Rights Compendium View */}
-              {activeTab === 'rights' && (
-                <motion.div
-                  key="rights"
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <LegalArticlesExplorer
-                    selectedCategory={selectedCategory}
-                    onSelectCategory={setSelectedCategory}
-                    searchQuery={searchQuery}
-                    language={language}
-                    onSelectTarget={handleOpenDetail}
-                  />
-                </motion.div>
-              )}
+                {/* Official Government Departments & Portals */}
+                {activeTab === 'departments' && (
+                  <motion.div
+                    key="departments"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <DepartmentDirectory
+                      language={language}
+                      onSelectTarget={handleOpenDetail}
+                    />
+                  </motion.div>
+                )}
 
-              {/* Official Government Departments & Portals */}
-              {activeTab === 'departments' && (
-                <motion.div
-                  key="departments"
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <DepartmentDirectory
-                    language={language}
-                    onSelectTarget={handleOpenDetail}
-                  />
-                </motion.div>
-              )}
+                {/* D.K. Basu Guidelines Checklist */}
+                {activeTab === 'dk-basu' && (
+                  <motion.div
+                    key="dk-basu"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <DKBasuCard language={language} />
+                  </motion.div>
+                )}
 
-              {/* D.K. Basu Guidelines Checklist */}
-              {activeTab === 'dk-basu' && (
-                <motion.div
-                  key="dk-basu"
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <DKBasuCard language={language} />
-                </motion.div>
-              )}
+                {/* Verbal Scripts Simulator */}
+                {activeTab === 'scripts' && (
+                  <motion.div
+                    key="scripts"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <VerbalScripts language={language} />
+                  </motion.div>
+                )}
 
-              {/* Verbal Scripts Simulator */}
-              {activeTab === 'scripts' && (
-                <motion.div
-                  key="scripts"
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <VerbalScripts language={language} />
-                </motion.div>
-              )}
+                {/* AI Legal Advisor */}
+                {activeTab === 'ai-advisor' && (
+                  <motion.div
+                    key="ai-advisor"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <AIAdvisor language={language} />
+                  </motion.div>
+                )}
 
-              {/* AI Legal Advisor */}
-              {activeTab === 'ai-advisor' && (
-                <motion.div
-                  key="ai-advisor"
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <AIAdvisor language={language} />
-                </motion.div>
-              )}
+                {/* Pocket Rights Pass Generator */}
+                {activeTab === 'pocket-pass' && (
+                  <motion.div
+                    key="pocket-pass"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <RightsCardGenerator language={language} />
+                  </motion.div>
+                )}
 
-              {/* Pocket Rights Pass Generator */}
-              {activeTab === 'pocket-pass' && (
-                <motion.div
-                  key="pocket-pass"
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <RightsCardGenerator language={language} />
-                </motion.div>
-              )}
+                {/* Myths & Quiz */}
+                {activeTab === 'quiz' && (
+                  <motion.div
+                    key="quiz"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <MythBusterQuiz language={language} />
+                  </motion.div>
+                )}
+              </>
+            )}
 
-              {/* Myths & Quiz */}
-              {activeTab === 'quiz' && (
-                <motion.div
-                  key="quiz"
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <MythBusterQuiz language={language} />
-                </motion.div>
-              )}
-            </>
-          )}
+          </AnimatePresence>
+        </main>
 
-        </AnimatePresence>
-      </main>
+        {/* Mobile App Navigation Dock */}
+        <MobileBottomBar
+          activeTab={activeTab}
+          setActiveTab={handleSelectTab}
+          language={language}
+          onOpenEmergencyModal={() => setIsEmergencyModalOpen(true)}
+        />
 
-      {/* Mobile App Navigation Dock */}
-      <MobileBottomBar
-        activeTab={activeTab}
-        setActiveTab={handleSelectTab}
-        language={language}
-        onOpenEmergencyModal={() => setIsEmergencyModalOpen(true)}
-      />
-
-      {/* Footer */}
-      <Footer language={language} />
-
+        {/* Footer */}
+        <Footer language={language} />
+      </div>
     </div>
   );
 }
