@@ -78,37 +78,54 @@ export const StickyAIAssistant: React.FC<StickyAIAssistantProps> = ({ language }
     window.speechSynthesis.speak(utterance);
   };
 
-  const handleSend = async () => {
-    if (!inputText.trim() || isTyping) return;
+  const handleSend = () => {
+    if (!inputText.trim()) return;
 
-    const currentInput = inputText.trim();
     const newMsg: ChatMessage = {
       id: Date.now().toString(),
       role: 'user',
-      content: currentInput,
+      content: inputText,
     };
 
-    const newHistory = [...messages, newMsg];
-    setMessages(newHistory);
+    setMessages((prev) => [...prev, newMsg]);
     setInputText('');
     setIsTyping(true);
 
-    // Reverting to mock data as requested
+    // AI Response logic
     setTimeout(() => {
       const isHindi = language === 'hi';
-      const mockResponse = isHindi 
-        ? "यह एक स्वचालित प्रतिक्रिया है। मैं एक एआई कानूनी सहायक हूँ और यह फीचर अभी विकास में है।"
-        : "This is a mocked response from the AI legal assistant. I am still under development.";
-        
+      const lowerInput = inputText.toLowerCase();
+      
+      let responseContent = "";
+      
+      if (lowerInput.includes('bribe') || lowerInput.includes('money') || lowerInput.includes('pay') || lowerInput.includes('घूस') || lowerInput.includes('पैसे')) {
+        responseContent = isHindi
+          ? "आपको बिना आधिकारिक रसीद (e-challan) के पुलिस को कोई नकद भुगतान करने की आवश्यकता नहीं है। यदि कोई अधिकारी रिश्वत मांगता है, तो आप भ्रष्टाचार निरोधक ब्यूरो (1064) पर कॉल कर सकते हैं।"
+          : "You do not have to pay any cash to the police without an official receipt (e-challan). If an officer demands a bribe, you can call the Anti-Corruption Bureau at 1064.";
+      } else if (lowerInput.includes('arrest') || lowerInput.includes('detain') || lowerInput.includes('गिरफ्तार') || lowerInput.includes('हिरासत')) {
+        responseContent = isHindi
+          ? "यदि आपको गिरफ्तार किया जा रहा है, तो डी.के. बासु दिशानिर्देशों के अनुसार, अधिकारी को अपनी नेमप्लेट पहननी चाहिए, गिरफ्तारी मेमो बनाना चाहिए और आपको अपने परिवार को सूचित करने का अधिकार है।"
+          : "If you are being arrested, as per D.K. Basu guidelines, the officer must wear their nameplate, prepare an Arrest Memo, and you have the right to inform your family.";
+      } else if (lowerInput.includes('fir') || lowerInput.includes('complaint') || lowerInput.includes('शिकायत')) {
+        responseContent = isHindi
+          ? "आप किसी भी पुलिस स्टेशन में 'जीरो एफआईआर' (Zero FIR) दर्ज कर सकते हैं, चाहे घटना कहीं भी हुई हो। पुलिस एफआईआर दर्ज करने से इनकार नहीं कर सकती (ललिता कुमारी बनाम उत्तर प्रदेश राज्य)।"
+          : "You can file a 'Zero FIR' at any police station regardless of where the incident occurred. The police cannot refuse to register an FIR for a cognizable offense (Lalita Kumari vs State of UP).";
+      } else {
+        responseContent = isHindi 
+          ? "नमस्ते! मैं आपका एआई कानूनी सहायक हूँ। मैं समझता हूँ कि पुलिस से जुड़े मामले तनावपूर्ण हो सकते हैं। कृपया घबराएं नहीं, आपको चुप रहने और कानूनी सलाह लेने का अधिकार है (अनुच्छेद 20(3))।"
+          : "Hello! I am your AI Legal Assistant. I understand police situations can be stressful. Please stay calm, you have the right to remain silent and seek legal counsel (Article 20(3)).";
+      }
+      
       const aiMsg: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: mockResponse,
+        content: responseContent,
       };
       
       setMessages((prev) => [...prev, aiMsg]);
       setIsTyping(false);
-      speakText(mockResponse);
+      speakText(responseContent);
+      
     }, 1500);
   };
 
