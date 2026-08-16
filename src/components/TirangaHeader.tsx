@@ -15,9 +15,9 @@ export const TirangaHeader: React.FC<TirangaHeaderProps> = ({ language, setLangu
   const t = getT(language);
   const currentLangObj = LANGUAGE_OPTIONS.find((l) => l.code === language) || LANGUAGE_OPTIONS[0];
   return (
-    <div className="w-full bg-slate-900 text-slate-100 text-xs select-none border-b border-slate-800">
+    <div className="w-full bg-[#0B1A2C] text-slate-200 text-xs select-none border-b border-[#142A45] shadow-md relative z-50">
       {/* --- The Indian National Tricolour (Tiranga) Top Ribbon with Ashoka Chakra --- */}
-      <div className="w-full h-1.5 flex relative overflow-hidden">
+      <div className="w-full h-1 flex relative overflow-hidden opacity-90">
         {/* Saffron (Kesaria) */}
         <div className="w-1/3 bg-[#FF671F]" title="Saffron - Courage & Sacrifice" />
         {/* White (Shwet) with navy Chakra accent */}
@@ -33,10 +33,10 @@ export const TirangaHeader: React.FC<TirangaHeaderProps> = ({ language, setLangu
       {/* Official Government of India Top Banner */}
       <div className="w-full px-4 sm:px-6 lg:px-8 py-1.5 flex items-center justify-between gap-3">
         {/* Left: Ashok Stambha & National Portal Tag */}
-        <div className="flex items-center gap-2.5">
-          <img src={flagSvg} alt="Indian Flag" className="h-4 w-6 object-cover shadow-sm border border-slate-700/50 rounded-[1px]" />
+        <div className="flex items-center gap-3">
+          <img src={flagSvg} alt="Indian Flag" className="h-3.5 w-5 object-cover shadow-sm border border-slate-700/50 rounded-[1px]" />
           <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] sm:text-xs">
-            <span className="text-[10px] text-teal-400 font-bold bg-teal-950/60 px-2 py-0.5 rounded-full border border-teal-800/60 hidden md:inline-flex items-center gap-1">
+            <span className="text-[10px] text-teal-300 font-medium tracking-wide bg-teal-950/40 px-2 py-0.5 rounded-sm border border-teal-800/30 hidden md:inline-flex items-center gap-1.5 shadow-[0_0_10px_rgba(20,184,166,0.1)]">
               <ShieldCheck className="w-3 h-3 text-teal-400" />
               Citizen Police Rights & Legal Literacy Portal
             </span>
@@ -44,46 +44,46 @@ export const TirangaHeader: React.FC<TirangaHeaderProps> = ({ language, setLangu
         </div>
 
         {/* Right: Accessibility & Language */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-5">
           
-          <div className="hidden lg:flex items-center gap-3 text-[10px] text-slate-300 font-medium">
-            <a href="#main-content" className="hover:text-white transition-colors cursor-pointer outline-none focus:ring-1 focus:ring-teal-400 rounded-sm">Skip to main content</a>
-            <span className="text-slate-600">|</span>
-            <div className="flex items-center gap-1.5">
+          <div className="hidden lg:flex items-center gap-3.5 text-[10px] text-slate-400 font-medium tracking-wide">
+            <a href="#main-content" className="hover:text-white transition-colors cursor-pointer outline-none focus:ring-1 focus:ring-teal-400 rounded-sm hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">Skip to main content</a>
+            <span className="text-slate-700">|</span>
+            <div className="flex items-center gap-2">
               <button 
                 onClick={() => document.documentElement.style.fontSize = '90%'} 
-                className="hover:text-white transition-colors cursor-pointer"
+                className="hover:text-white transition-colors cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
                 title="Decrease Text Size"
               >
                 A-
               </button>
               <button 
                 onClick={() => document.documentElement.style.fontSize = '100%'} 
-                className="hover:text-white transition-colors cursor-pointer font-bold"
+                className="hover:text-white transition-colors cursor-pointer font-bold hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
                 title="Normal Text Size"
               >
                 A
               </button>
               <button 
                 onClick={() => document.documentElement.style.fontSize = '110%'} 
-                className="hover:text-white transition-colors cursor-pointer"
+                className="hover:text-white transition-colors cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
                 title="Increase Text Size"
               >
                 A+
               </button>
             </div>
-            <span className="text-slate-600">|</span>
+            <span className="text-slate-700">|</span>
           </div>
 
           {/* Language Selector in Top Header */}
           <div className="relative z-50 ml-auto sm:ml-0">
             <button
               onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
-              className="flex items-center gap-1.5 text-xs font-bold text-slate-200 hover:text-white transition-colors cursor-pointer"
+              className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-300 hover:text-white transition-colors cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] tracking-wide"
             >
-              <Globe className="w-3.5 h-3.5 text-amber-400" />
+              <Globe className="w-3.5 h-3.5 text-amber-500" />
               <span>{currentLangObj.nativeName}</span>
-              <ChevronDown className={`w-3 h-3 text-slate-400 transition-transform ${isLangDropdownOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown className={`w-3 h-3 text-slate-500 transition-transform ${isLangDropdownOpen ? 'rotate-180' : ''}`} />
             </button>
 
             <AnimatePresence>

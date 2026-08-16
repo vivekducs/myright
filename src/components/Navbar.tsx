@@ -38,7 +38,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-xl border-b border-slate-200/80 shadow-xs transition-all">
+    <header className="sticky top-0 z-40 bg-white/75 backdrop-blur-2xl border-b border-white/50 shadow-[0_4px_30px_rgba(0,0,0,0.03)] transition-all">
       {/* --- National Tiranga Banner & Satyameva Jayate Header --- */}
       <TirangaHeader language={language} setLanguage={setLanguage} />
 
@@ -49,30 +49,30 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div 
             id="brand-logo"
             onClick={() => navigate('/situations')}
-            className="flex items-center gap-3 cursor-pointer group shrink-0"
+            className="flex items-center gap-2.5 cursor-pointer group shrink-0"
           >
             <div className="relative">
-              <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-md group-hover:scale-105 transition-all duration-300 ring-2 ring-slate-200 p-1">
-                <img src={ashokChakra} alt="Ashok Chakra" className="w-full h-full object-contain" />
+              <div className="w-11 h-11 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                <img src={ashokChakra} alt="Ashok Chakra" className="w-full h-full object-contain drop-shadow-sm" />
               </div>
             </div>
             <div>
               <div className="flex items-center gap-1.5 sm:gap-2">
-                <span className="font-display text-xl sm:text-2xl font-black tracking-tight text-slate-900 group-hover:text-teal-600 transition-colors">
+                <span className="font-display text-xl sm:text-2xl font-black tracking-tight text-slate-800 group-hover:text-teal-700 transition-colors">
                   My<span className="text-teal-600">Right</span>
                 </span>
-                <span className="text-[9px] sm:text-[10px] font-extrabold tracking-wider uppercase px-2 py-0.5 rounded-full bg-amber-50 text-amber-900 border border-amber-200 shadow-xs">
+                <span className="text-[9px] sm:text-[10px] font-extrabold tracking-wider uppercase px-1.5 py-0.5 rounded-sm bg-gradient-to-r from-amber-100 to-amber-50 text-amber-900 border border-amber-200/50 shadow-sm">
                   भारत
                 </span>
               </div>
-              <p className="text-[11px] text-slate-500 font-semibold hidden sm:block">
-                Citizen Police Rights & 30-Sec Action Navigator
+              <p className="text-[10px] text-slate-500 font-medium hidden sm:block tracking-wide uppercase mt-0.5">
+                Citizen Police Rights & Action Navigator
               </p>
             </div>
           </div>
 
-          {/* Desktop Nav - Circular Pill Group */}
-          <nav className="hidden xl:flex items-center gap-1 bg-slate-100/80 p-1.5 rounded-full border border-slate-200/80 shadow-xs backdrop-blur-xs">
+          {/* Desktop Nav - Clean Text Links with Hover Animation */}
+          <nav className="hidden xl:flex items-center gap-6 h-full">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeTab === item.id;
@@ -81,21 +81,28 @@ export const Navbar: React.FC<NavbarProps> = ({
                   key={item.id}
                   id={`nav-tab-${item.id}`}
                   onClick={() => navigate(`/${item.id}`)}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-black transition-all duration-200 cursor-pointer relative ${
+                  className={`group relative flex items-center gap-1.5 py-6 text-xs font-bold transition-colors cursor-pointer ${
                     isActive
-                      ? 'bg-slate-900 text-white shadow-md -translate-y-0.5'
+                      ? 'text-teal-700'
                       : item.isSpecial
-                      ? 'bg-teal-50 text-teal-800 hover:bg-teal-600 hover:text-white'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-white'
+                      ? 'text-teal-600 hover:text-teal-800'
+                      : 'text-slate-500 hover:text-slate-900'
                   }`}
                 >
-                  <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-teal-400' : 'text-slate-500'}`} />
-                  <span className="whitespace-nowrap">{item.label}</span>
+                  <Icon className={`w-3.5 h-3.5 transition-colors ${isActive ? 'text-teal-600' : 'text-slate-400 group-hover:text-slate-600'}`} />
+                  <span className="whitespace-nowrap tracking-wide">{item.label}</span>
+                  
+                  {/* Subtle Badge */}
                   {item.badge && !isActive && (
-                    <span className="text-[8px] bg-teal-600 text-white px-1.5 py-0.2 rounded-full font-extrabold ml-0.5">
+                    <span className="absolute -top-3 -right-2 text-[8px] bg-teal-50 text-teal-700 px-1 py-0.5 rounded-sm font-extrabold border border-teal-100 shadow-sm opacity-90 group-hover:opacity-100 transition-opacity">
                       {item.badge}
                     </span>
                   )}
+                  
+                  {/* Animated Bottom Border */}
+                  <span className={`absolute bottom-0 left-0 w-full h-[2.5px] rounded-t-full transition-all duration-300 ${
+                    isActive ? 'bg-teal-600 scale-x-100' : 'bg-slate-300 scale-x-0 group-hover:scale-x-100'
+                  }`} />
                 </button>
               );
             })}
@@ -107,7 +114,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Quick Search Trigger */}
             <button
               onClick={() => navigate('/rights')}
-              className="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-600 hover:text-slate-900 flex items-center justify-center transition-all hover:scale-105 cursor-pointer"
+              className="w-9 h-9 rounded-full bg-white/50 hover:bg-white border border-slate-200/60 shadow-sm text-slate-500 hover:text-teal-600 flex items-center justify-center transition-all hover:shadow-md cursor-pointer"
               title="Search Rights & Laws"
             >
               <Search className="w-4 h-4" />
@@ -116,16 +123,16 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Fast SOS Emergency Trigger Button */}
             <motion.button
               id="emergency-sos-btn"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={onOpenEmergencyModal}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-extrabold text-xs sm:text-sm shadow-md hover:shadow-lg hover:shadow-red-500/25 transition-all cursor-pointer shrink-0 border border-white/20"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-rose-500 to-red-600 text-white font-bold text-xs sm:text-sm shadow-md shadow-red-500/20 hover:shadow-red-500/40 transition-all cursor-pointer shrink-0 border border-red-400/30"
             >
-              <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center">
-                <PhoneCall className="w-3.5 h-3.5 animate-pulse" />
+              <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
+                <PhoneCall className="w-3.5 h-3.5 animate-pulse drop-shadow-md" />
               </div>
-              <span className="hidden xs:inline sm:inline">SOS</span>
-              <span>112</span>
+              <span className="hidden xs:inline sm:inline tracking-wide">SOS</span>
+              <span className="tracking-wider">112</span>
             </motion.button>
 
             {/* Mobile quick menu trigger */}
