@@ -93,60 +93,23 @@ export const StickyAIAssistant: React.FC<StickyAIAssistantProps> = ({ language }
     setInputText('');
     setIsTyping(true);
 
-    try {
-      // Gemini requires the first message to be from the 'user'
-      // We must filter out the initial greeting if it's the first message
-      let validHistory = newHistory;
-      if (validHistory.length > 0 && validHistory[0].role !== 'user') {
-        validHistory = validHistory.slice(1);
-      }
-
-      const payload = {
-        messages: validHistory.map(m => ({
-          role: m.role,
-          text: m.content
-        })),
-        model: 'gemini-1.5-flash',
-        language: language === 'hi' ? 'Hindi' : 'English',
-        systemInstruction: `You are a concise, helpful sticky AI legal assistant for Indian citizens. Be brief, clear, and reassuring. Keep responses under 3 sentences if possible. Always refer to BNSS or BNS for criminal law.`
-      };
-
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-
-      if (!res.ok) throw new Error('API Error');
-
-      const data = await res.json();
-      const responseContent = data.text || "I'm sorry, I cannot provide advice at this moment.";
-
-      const aiMsg: ChatMessage = {
-        id: (Date.now() + 1).toString(),
-        role: 'assistant',
-        content: responseContent,
-      };
-      
-      setMessages((prev) => [...prev, aiMsg]);
-      setIsTyping(false);
-      speakText(responseContent);
-    } catch (err) {
-      console.error(err);
+    // Reverting to mock data as requested
+    setTimeout(() => {
       const isHindi = language === 'hi';
-      const fallbackContent = isHindi 
-        ? "माफ़ करें, मुझे सर्वर से जुड़ने में समस्या हो रही है। कृपया पुनः प्रयास करें।"
-        : "Sorry, I am having trouble connecting to the server. Please try again.";
+      const mockResponse = isHindi 
+        ? "यह एक स्वचालित प्रतिक्रिया है। मैं एक एआई कानूनी सहायक हूँ और यह फीचर अभी विकास में है।"
+        : "This is a mocked response from the AI legal assistant. I am still under development.";
         
       const aiMsg: ChatMessage = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: fallbackContent,
+        content: mockResponse,
       };
+      
       setMessages((prev) => [...prev, aiMsg]);
       setIsTyping(false);
-      speakText(fallbackContent);
-    }
+      speakText(mockResponse);
+    }, 1500);
   };
 
   // Add initial greeting when opened

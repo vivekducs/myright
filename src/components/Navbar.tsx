@@ -6,7 +6,6 @@ import { SupportedLanguage } from '../types';
 import { getT } from '../data/translations';
 import ashokChakra from '../data/Ashok chakra.png';
 import { TirangaHeader } from './TirangaHeader';
-import { useDarkMode } from '../utils/useDarkMode';
 import { triggerHeavyHaptic } from '../utils/haptics';
 
 interface NavbarProps {
@@ -24,7 +23,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   const location = useLocation();
   const activeTab = location.pathname.substring(1) || 'situations';
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   const t = getT(language);
 
@@ -114,15 +112,6 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Right Actions: Theme Toggle and SOS Button */}
           <div className="flex items-center gap-2 sm:gap-2.5">
-
-            {/* Dark Mode Toggle */}
-            <button
-              onClick={toggleDarkMode}
-              className="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 flex items-center justify-center transition-transform hover:scale-105 cursor-pointer dark:bg-slate-800 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-700"
-              aria-label="Toggle dark mode"
-            >
-              {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-            </button>
 
             {/* Fast SOS Emergency Trigger Button */}
             <motion.button
