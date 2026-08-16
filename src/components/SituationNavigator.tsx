@@ -21,6 +21,7 @@ import { SITUATION_STEPS } from '../data/legalData';
 import { ThreeDCard } from './ThreeDCard';
 import { DetailPageTarget, SupportedLanguage } from '../types';
 import { getT, LANGUAGE_OPTIONS } from '../data/translations';
+import { LegalCitationsAndSourcesSection } from '../utils/legalHelpers';
 
 interface SituationNavigatorProps {
   selectedSituationId: string | null;
@@ -491,6 +492,9 @@ export const SituationNavigator: React.FC<SituationNavigatorProps> = ({
                   </button>
                 )}
               </div>
+
+              {/* Comprehensive Sources, Legal Citations & Official Learn More Links */}
+              <LegalCitationsAndSourcesSection step={currentStep} />
 
             </div>
           </ThreeDCard>

@@ -530,6 +530,20 @@ export const SITUATION_STEPS: SituationStep[] = [
     situation: 'A police officer stops you on the road, at a checkpoint, or in a public space and begins questioning you.',
     category: 'fundamental_rights',
     severity: 'warning',
+    sourceActName: 'Constitution of India & Bharatiya Nagarik Suraksha Sanhita (BNSS) 2023 / CrPC 1973',
+    sourceSectionOrArticle: 'Article 21 & Section 35(3) BNSS / Section 41A CrPC',
+    sources: [
+      'Constitution of India (Article 21 - Protection of Life and Personal Liberty)',
+      'Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023 - Gazette Notification No. 46 of 2023',
+      'Code of Criminal Procedure, 1973 (Act No. 2 of 1974) - Section 41A',
+      'Model Police Manual - Bureau of Police Research & Development (BPR&D), Ministry of Home Affairs'
+    ],
+    legalCitations: [
+      'Article 21, Constitution of India - Fundamental guarantee against unlawful executive restraint',
+      'Article 20(3), Constitution of India - Privilege against self-incrimination during inquiry',
+      'Section 35(3) BNSS 2023 / Section 41A CrPC 1973 - Notice of appearance mandatory for offences with imprisonment ≤ 7 years',
+      'Nandini Satpathy v. P.L. Dani, AIR 1978 SC 1025 / (1978) 2 SCC 424 - Right to remain silent during police questioning'
+    ],
     legalShield: 'Article 21 (Personal Liberty), Article 20(3) (Protection against self-incrimination), Section 41A CrPC / Sec 35(3) BNSS.',
     landmarkCase: 'Nandini Satpathy v. P.L. Dani (1978) - Right against compulsory self-incrimination during police questioning.',
     summaryRights: [
@@ -577,7 +591,18 @@ export const SITUATION_STEPS: SituationStep[] = [
         url: 'https://legislative.gov.in/constitution-of-india',
         department: 'Ministry of Law and Justice',
         type: 'act',
+        gazetteRef: 'Constitution of India (As modified up to 2024)',
+        citationRef: 'Art. 21, Part III',
         description: 'Protection of life and personal liberty of all citizens.'
+      },
+      {
+        title: 'India Code: Bharatiya Nagarik Suraksha Sanhita (BNSS) 2023',
+        url: 'https://www.indiacode.nic.in/handle/123456789/20063',
+        department: 'Ministry of Law and Justice',
+        type: 'gazette',
+        gazetteRef: 'Gazette of India, Extra., Pt. II, Sec. 1, No. 46 (25 Dec 2023)',
+        citationRef: 'Act No. 46 of 2023',
+        description: 'Official Gazette text of BNSS Section 35 (Notice of appearance).'
       },
       {
         title: 'NALSA Legal Services Portal',
@@ -623,6 +648,22 @@ export const SITUATION_STEPS: SituationStep[] = [
     situation: 'A police officer tells you “You are under arrest” or forcefully takes you to the police station.',
     category: 'arrest',
     severity: 'critical',
+    sourceActName: 'Constitution of India & BNSS 2023 / CrPC 1973',
+    sourceSectionOrArticle: 'Article 22(1)-(2), Sections 36, 38, 47, 53, 58 BNSS 2023 / Sections 41B, 41D, 50, 54, 57 CrPC',
+    sources: [
+      'Constitution of India (Article 22 - Protection against Arrest and Detention)',
+      'Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023 - Sections 36, 38, 47, 53, 58',
+      'Code of Criminal Procedure, 1973 - Sections 41B, 41D, 50, 54, 57',
+      'Legal Services Authorities Act, 1987 (Act No. 39 of 1987) - Section 12'
+    ],
+    legalCitations: [
+      'Article 22(1), Constitution of India - Mandatory informing of grounds of arrest & right to consult counsel',
+      'Article 22(2) & Section 58 BNSS / Section 57 CrPC - Mandatory judicial production before Magistrate within 24 hours',
+      'Section 36 BNSS / Section 41B CrPC - Statutory requirement for signed Arrest Memo witnessed by family/respectable person',
+      'Section 38 BNSS / Section 41D CrPC - Right of arrested person to meet advocate of choice during interrogation',
+      'D.K. Basu v. State of West Bengal, (1997) 1 SCC 416 / AIR 1997 SC 610 - 11 mandatory constitutional arrest guidelines',
+      'Arnesh Kumar v. State of Bihar, (2014) 8 SCC 273 - Strict bar against routine mechanical arrests for offences under 7 years'
+    ],
     legalShield: 'Article 22(1) & (2) Constitution of India, Section 41B, 41D, 50, 54, 57 CrPC (Sec 36, 38, 47, 53, 58 BNSS).',
     landmarkCase: 'D.K. Basu v. State of West Bengal (1997) & Arnesh Kumar v. State of Bihar (2014) - Mandatory Arrest Memo, family intimation within 8-12 hours, 24-hr magistrate production.',
     summaryRights: [
@@ -673,7 +714,16 @@ export const SITUATION_STEPS: SituationStep[] = [
         url: 'https://main.sci.gov.in',
         department: 'Supreme Court of India',
         type: 'judgement',
+        citationRef: '(1997) 1 SCC 416 / AIR 1997 SC 610',
         description: 'The 11 mandatory guidelines for every arrest in India.'
+      },
+      {
+        title: 'Supreme Court Arnesh Kumar Judgment (2014)',
+        url: 'https://main.sci.gov.in',
+        department: 'Supreme Court of India',
+        type: 'judgement',
+        citationRef: '(2014) 8 SCC 273',
+        description: 'Checklist and restrictions on mechanical arrests by police.'
       },
       {
         title: 'National Legal Services Authority (NALSA)',
@@ -717,6 +767,22 @@ export const SITUATION_STEPS: SituationStep[] = [
     situation: 'You go to a police station to report a serious crime (theft, assault, fraud, harassment) and the officer refuses to lodge an FIR or sends you away.',
     category: 'fir',
     severity: 'critical',
+    sourceActName: 'Bharatiya Nagarik Suraksha Sanhita (BNSS) 2023 & Bharatiya Nyaya Sanhita (BNS) 2023',
+    sourceSectionOrArticle: 'Section 173(1)-(4) & 175(3) BNSS 2023 / Section 154 & 156(3) CrPC, Section 199 BNS / Section 166A IPC',
+    sources: [
+      'Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023 - Section 173 (Information in cognizable cases & Zero FIR)',
+      'Bharatiya Nyaya Sanhita (BNS), 2023 - Section 199 (Public servant disobeying direction of law)',
+      'Code of Criminal Procedure, 1973 - Sections 154, 154(3), 156(3)',
+      'Ministry of Home Affairs Circular No. 15011/35/2013-SC/ST-W on Mandatory Registration of Zero FIR'
+    ],
+    legalCitations: [
+      'Section 173(1) BNSS 2023 / Section 154(1) CrPC 1973 - Mandatory registration of information in cognizable offences (Zero FIR concept codified in Sec 173(1))',
+      'Section 173(4) BNSS 2023 / Section 154(3) CrPC 1973 - Statutory right to submit complaint in writing via Speed Post to District Superintendent of Police',
+      'Section 175(3) BNSS 2023 / Section 156(3) CrPC 1973 - Power of Judicial Magistrate First Class to order police investigation and FIR registration',
+      'Section 199 BNS 2023 / Section 166A Indian Penal Code - Up to 2 years rigorous imprisonment for police officer refusing to register FIR in crimes against women/specified offenses',
+      'Lalita Kumari v. Govt. of U.P., (2014) 2 SCC 1 / AIR 2014 SC 187 (5-Judge Constitution Bench) - Mandatory FIR registration for all cognizable complaints',
+      'Priyanka Srivastava v. State of U.P., (2015) 6 SCC 287 - Mandatory affidavit supporting application before Magistrate under Section 156(3)'
+    ],
     legalShield: 'Section 154(1) & 154(3) CrPC (Sec 173(1) & 173(4) BNSS), Section 166A IPC / Sec 199 BNS (Criminal liability of police officer).',
     landmarkCase: 'Lalita Kumari v. Govt. of U.P. (Constitution Bench, Supreme Court 2014) - Registration of FIR is MANDATORY if information discloses a cognizable offence.',
     summaryRights: [
@@ -763,7 +829,17 @@ export const SITUATION_STEPS: SituationStep[] = [
         url: 'https://main.sci.gov.in',
         department: 'Supreme Court of India',
         type: 'judgement',
+        citationRef: '(2014) 2 SCC 1 / AIR 2014 SC 187',
         description: 'Constitution Bench ruling on mandatory FIR registration.'
+      },
+      {
+        title: 'India Code: Bharatiya Nagarik Suraksha Sanhita (BNSS) Section 173',
+        url: 'https://www.indiacode.nic.in/handle/123456789/20063',
+        department: 'Ministry of Law and Justice',
+        type: 'gazette',
+        gazetteRef: 'Gazette of India Extraordinary No. 46 of 2023',
+        citationRef: 'BNSS 2023 Sec 173',
+        description: 'Codified Zero FIR and digital information registration provisions.'
       },
       {
         title: 'Digital Police CCTNS Citizen Portal',
@@ -814,6 +890,21 @@ export const SITUATION_STEPS: SituationStep[] = [
     situation: 'Police officers arrive at your residence, office, or stop your car demanding to search your premises or seize personal belongings.',
     category: 'search',
     severity: 'warning',
+    sourceActName: 'Bharatiya Nagarik Suraksha Sanhita (BNSS) 2023 / CrPC 1973',
+    sourceSectionOrArticle: 'Sections 103, 185, 49(2) BNSS 2023 / Sections 100, 165, 51(2) CrPC',
+    sources: [
+      'Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023 - Sections 103, 105 & 185',
+      'Code of Criminal Procedure, 1973 - Sections 100, 165 & 51(2)',
+      'Constitution of India (Articles 20(3) & 21 - Privacy and protection against forced self-incrimination)'
+    ],
+    legalCitations: [
+      'Section 103(4)-(7) BNSS 2023 / Section 100(4)-(7) CrPC - Mandatory search in presence of two or more independent and respectable local inhabitants (Panch witnesses)',
+      'Section 185 BNSS 2023 / Section 165 CrPC - Mandatory recording of reasonable grounds in writing before conducting emergency search without warrant',
+      'Section 49(2) BNSS 2023 / Section 51(2) CrPC - Search of female persons strictly by female officer with strict regard to decency',
+      'Section 105 BNSS 2023 - Mandatory audio-video electronic recording (videography) of search and seizure operations',
+      'State of Punjab v. Baldev Singh, (1999) 6 SCC 172 - Strict compliance with search safeguards is mandatory to prevent unlawful seizures',
+      'K.S. Puttaswamy v. Union of India, (2017) 10 SCC 1 - Protection of personal spaces, privacy, and digital media'
+    ],
     legalShield: 'Section 100 & 165 CrPC (Sec 103 & 185 BNSS), Section 51(2) CrPC / Sec 49(2) BNSS, Article 20(3) & 21.',
     landmarkCase: 'State of Punjab v. Baldev Singh (1999) & K.S. Puttaswamy v. Union of India (2017) - Mandatory presence of 2 independent local witnesses (Panch), search memo, and digital privacy.',
     summaryRights: [
@@ -856,10 +947,12 @@ export const SITUATION_STEPS: SituationStep[] = [
     },
     officialLinks: [
       {
-        title: 'Code of Criminal Procedure - Section 100 (Search Procedures)',
+        title: 'India Code: Code of Criminal Procedure / BNSS Section 100 & 103',
         url: 'https://indiacode.nic.in',
         department: 'Ministry of Law and Justice',
         type: 'act',
+        gazetteRef: 'BNSS 2023 Sec 103 & CrPC 1973 Sec 100',
+        citationRef: 'Act No. 46 of 2023',
         description: 'Mandatory rules governing search of closed places and witness presence.'
       }
     ],
@@ -895,6 +988,22 @@ export const SITUATION_STEPS: SituationStep[] = [
     situation: 'A police officer uses abusive language, threatens violence or false charges, or physically assaults you or someone in custody.',
     category: 'fundamental_rights',
     severity: 'critical',
+    sourceActName: 'Bharatiya Nyaya Sanhita (BNS) 2023 / Indian Penal Code 1860 & Constitution of India',
+    sourceSectionOrArticle: 'Article 21 Constitution, Sections 115, 116, 199 BNS 2023 / Sections 330, 331, 166A IPC',
+    sources: [
+      'Constitution of India (Article 21 - Right to Life, Bodily Integrity & Dignity)',
+      'Bharatiya Nyaya Sanhita (BNS), 2023 - Sections 115, 116 & 199',
+      'Indian Penal Code, 1860 - Sections 330, 331, 354, 506',
+      'Police Act, 1861 (Act No. 5 of 1861) - Section 29 (Penalties for neglect of duty/violence)',
+      'Protection of Human Rights Act, 1993 (Act No. 10 of 1994)'
+    ],
+    legalCitations: [
+      'Article 21, Constitution of India - Absolute constitutional guarantee against torture and degrading treatment in custody',
+      'Section 115 & 116 BNS 2023 / Section 330 & 331 IPC - Voluntarily causing hurt/grievous hurt to extort confession is punishable up to 10 years rigorous imprisonment',
+      'Section 199 BNS 2023 / Section 166A IPC - Public servant disobeying lawful direction regarding custody and records',
+      'D.K. Basu v. State of West Bengal, (1997) 1 SCC 416 - Custodial violence is an unmitigated attack on the rule of law; personal liability on errant officers',
+      'Prakash Singh v. Union of India, (2006) 8 SCC 1 - Mandatory setup of Police Complaints Authority to adjudicate police misconduct'
+    ],
     legalShield: 'Article 21 (Right to Dignity & Life), Section 330/331 IPC (Sec 115/116 BNS - Torture for confession), Section 166A IPC (Sec 199 BNS), Section 29 Police Act, 1861.',
     landmarkCase: 'D.K. Basu v. State of West Bengal (AIR 1997 SC 610) & Prakash Singh v. Union of India (2006) - Custodial violence is a severe crime; State must compensate and prosecute guilty officers.',
     summaryRights: [
@@ -942,6 +1051,8 @@ export const SITUATION_STEPS: SituationStep[] = [
         url: 'https://hrcnet.nic.in',
         department: 'NHRC India',
         type: 'portal',
+        gazetteRef: 'Protection of Human Rights Act, 1993',
+        citationRef: 'Act No. 10 of 1994',
         description: 'Direct portal for registering custodial violence & police atrocities complaints.'
       },
       {
@@ -986,6 +1097,21 @@ export const SITUATION_STEPS: SituationStep[] = [
     situation: 'A police officer demands cash, online UPI transfer, or gifts to register an FIR, clear a passport verification, release a vehicle, or avoid arrest.',
     category: 'fundamental_rights',
     severity: 'critical',
+    sourceActName: 'Prevention of Corruption Act, 1988 (Amended 2018) & Bharatiya Nyaya Sanhita 2023',
+    sourceSectionOrArticle: 'Sections 7, 7A, 8, 13 Prevention of Corruption Act 1988 / Section 308 BNS / Section 384 IPC',
+    sources: [
+      'Prevention of Corruption Act, 1988 (Act No. 49 of 1988 as amended by Act No. 16 of 2018)',
+      'Bharatiya Nyaya Sanhita (BNS), 2023 - Section 308 (Extortion)',
+      'Central Vigilance Commission Act, 2003 (Act No. 45 of 2003)',
+      'Delhi Special Police Establishment Act, 1946 (Governing CBI anti-corruption jurisdiction)'
+    ],
+    legalCitations: [
+      'Section 7, Prevention of Corruption Act 1988 - Public servant obtaining or demanding undue advantage punishable with imprisonment of 3 to 7 years',
+      'Section 7A, Prevention of Corruption Act 1988 - Taking undue advantage to influence public servant by corrupt or illegal means',
+      'Section 8(2) Proviso, Prevention of Corruption Act - 7-day whistleblower immunity for citizens coerced to pay bribe if reported to investigating agency',
+      'Section 13, Prevention of Corruption Act 1988 - Criminal misconduct by a public servant and illicit enrichment',
+      'State of Maharashtra v. Balaram Bapu Patil, (1983) 2 SCC 28 - Rigorous evidentiary parameters for trap operations and anti-corruption prosecutions'
+    ],
     legalShield: 'Prevention of Corruption Act, 1988 (Section 7, 7A & 13) & Section 384 IPC / Sec 308 BNS (Extortion).',
     landmarkCase: 'State of Maharashtra v. Balaram Bapu Patil & Central Vigilance Commission Directives - Demanding bribe by public servant is a non-bailable cognizable offence.',
     summaryRights: [
@@ -1032,6 +1158,8 @@ export const SITUATION_STEPS: SituationStep[] = [
         url: 'https://cvc.gov.in',
         department: 'Government of India',
         type: 'portal',
+        gazetteRef: 'Central Vigilance Commission Act, 2003',
+        citationRef: 'Act No. 45 of 2003',
         description: 'Official apex integrity body for reporting corruption by public servants.'
       },
       {
@@ -1074,6 +1202,21 @@ export const SITUATION_STEPS: SituationStep[] = [
     situation: 'Your rights have been violated by a police officer (refused FIR, illegal custody, harassment, bribery, assault) and you need the exact legal escalation ladder.',
     category: 'departments',
     severity: 'info',
+    sourceActName: 'Code of Criminal Procedure 1973 / BNSS 2023 & Constitution of India',
+    sourceSectionOrArticle: 'Articles 32 & 226 Constitution, Sections 154(3), 156(3), 200 CrPC / Sections 173(4), 175(3), 223 BNSS',
+    sources: [
+      'Constitution of India (Articles 32 & 226 - Constitutional Remedies and High Court Writs)',
+      'Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023 - Sections 173(4), 175(3) & 223',
+      'Code of Criminal Procedure, 1973 - Sections 154(3), 156(3) & 200',
+      'Supreme Court Police Reform Directives in Prakash Singh v. Union of India (2006)'
+    ],
+    legalCitations: [
+      'Section 173(4) BNSS 2023 / Section 154(3) CrPC 1973 - Remedy to send written information to Superintendent of Police',
+      'Section 175(3) BNSS 2023 / Section 156(3) CrPC 1973 - Jurisdiction of Magistrate to direct investigation into cognizable offenses',
+      'Section 223 BNSS 2023 / Section 200 CrPC 1973 - Examination of complainant and taking cognizance on private criminal complaint',
+      'Article 226, Constitution of India - Power of High Courts to issue Writs of Habeas Corpus, Mandamus, and Certiorari against police authorities',
+      'Prakash Singh v. Union of India, (2006) 8 SCC 1 - Mandatory establishment of District and State Police Complaints Authorities (PCA)'
+    ],
     legalShield: 'Section 154(3), 156(3), 200 CrPC (Sec 173(4), 175(3), 223 BNSS), Police Act 1861, Article 226/32 Constitution of India.',
     landmarkCase: 'Prakash Singh v. Union of India (2006) 8 SCC 1 - Supreme Court directed mandatory establishment of Police Complaints Authorities (PCA) at State & District levels.',
     summaryRights: [
@@ -1170,6 +1313,21 @@ export const SITUATION_STEPS: SituationStep[] = [
     situation: 'You are driving and a traffic cop flags you down at a naka / intersection, threatens to tow your vehicle, or attempts to snatch the ignition key.',
     category: 'traffic',
     severity: 'warning',
+    sourceActName: 'Motor Vehicles Act, 1988 (Amended 2019) & Central Motor Vehicles Rules 1989',
+    sourceSectionOrArticle: 'Section 130, 132, 134, 127 MVA 1988 & Rule 139 CMVR 1989',
+    sources: [
+      'Motor Vehicles Act, 1988 (Act No. 59 of 1988 as amended by Act No. 32 of 2019)',
+      'Central Motor Vehicles Rules, 1989 - Rule 139 (Production of licences and certificates in electronic form)',
+      'Ministry of Road Transport and Highways (MoRTH) Notification RT-11036/64/2017-MVL',
+      'Information Technology Act, 2000 (Section 4 - Legal recognition of electronic records)'
+    ],
+    legalCitations: [
+      'Rule 139, Central Motor Vehicles Rules 1989 - Electronic documents presented via DigiLocker or mParivahan are at par with physical certificates',
+      'Section 130, Motor Vehicles Act 1988 - Duty to produce license and certificate of registration to uniform officer',
+      'Section 127, Motor Vehicles Act 1988 - Prohibition on towing or moving vehicles while driver/occupants are seated inside',
+      'Section 200, Motor Vehicles Act 1988 - Compounding of offences only by authorized gazetted/sub-inspector rank officers',
+      'State Police Regulations & High Court Directives - Physical key snatching or deflating tyres has zero statutory backing'
+    ],
     legalShield: 'Motor Vehicles Act, 1988 & Central Motor Vehicles Rules (Rule 139 for DigiLocker/mParivahan), State Police Manuals.',
     landmarkCase: 'High Court & MVA Directives - Police cannot snatch vehicle keys or deflate tyres; only SI-rank officers can compound spot fines.',
     summaryRights: [
@@ -1214,6 +1372,8 @@ export const SITUATION_STEPS: SituationStep[] = [
         url: 'https://echallan.parivahan.gov.in',
         department: 'MoRTH',
         type: 'portal',
+        gazetteRef: 'Rule 139 Central Motor Vehicles Rules, 1989',
+        citationRef: 'MoRTH Notification RT-11036/64/2017-MVL',
         description: 'Verify, track, and dispute traffic challans online.'
       }
     ],
@@ -1248,6 +1408,20 @@ export const SITUATION_STEPS: SituationStep[] = [
     situation: 'A woman is being called to a police station for questioning, or police attempt to arrest a woman at night or without female officers.',
     category: 'women_child',
     severity: 'critical',
+    sourceActName: 'Bharatiya Nagarik Suraksha Sanhita (BNSS) 2023 & Code of Criminal Procedure 1973',
+    sourceSectionOrArticle: 'Section 43(5) & 179(1) BNSS 2023 / Section 46(4) & 160(1) CrPC',
+    sources: [
+      'Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023 - Sections 43(5) & 179(1)',
+      'Code of Criminal Procedure, 1973 - Sections 46(4), 160(1) & 51(2)',
+      'Constitution of India (Articles 14, 15(3) & 21 - Special protections for women)',
+      'National Commission for Women Act, 1990 (Act No. 20 of 1990)'
+    ],
+    legalCitations: [
+      'Section 43(5) BNSS 2023 / Section 46(4) CrPC - Absolute prohibition on arrest of women between sunset and sunrise except in exceptional circumstances with prior written permission of Judicial Magistrate First Class',
+      'Section 179(1) Proviso BNSS 2023 / Section 160(1) Proviso CrPC - Strict mandate that female witnesses cannot be summoned to police station; questioning must occur at their residence',
+      'Section 49(2) BNSS 2023 / Section 51(2) CrPC - Frisking and search of female person solely by female officer with strict decency',
+      'Sheela Barse v. State of Maharashtra, (1983) 2 SCC 96 - Comprehensive Supreme Court guidelines on safety, separate lockups, and rights of women in police custody'
+    ],
     legalShield: 'Section 160(1) & 46(4) CrPC (Sec 179(1) & 43(5) BNSS), Sheela Barse v. State of Maharashtra.',
     landmarkCase: 'Sheela Barse v. State of Maharashtra (1983) & Supreme Court Directives - No woman can be arrested between sunset and sunrise; questioning must be at home.',
     summaryRights: [
@@ -1294,6 +1468,8 @@ export const SITUATION_STEPS: SituationStep[] = [
         url: 'http://ncw.nic.in',
         department: 'NCW India',
         type: 'portal',
+        gazetteRef: 'National Commission for Women Act, 1990',
+        citationRef: 'Act No. 20 of 1990',
         description: 'Statutory body dedicated to protecting women’s legal and constitutional rights.'
       }
     ],
@@ -1330,6 +1506,21 @@ export const SITUATION_STEPS: SituationStep[] = [
     situation: 'Police officers stop you during a routine naka and forcefully demand you unlock your phone, reveal passwords, or open WhatsApp chats.',
     category: 'phone_privacy',
     severity: 'warning',
+    sourceActName: 'Constitution of India & Bharatiya Sakshya Adhiniyam (BSA) 2023 / Indian Evidence Act 1872',
+    sourceSectionOrArticle: 'Article 21 & Article 20(3) Constitution, Section 63 BSA 2023 / Section 65B IEA, Section 105 BNSS',
+    sources: [
+      'Constitution of India (Articles 20(3) & 21 - Protection of Personal Privacy & Self-Incrimination)',
+      'Bharatiya Sakshya Adhiniyam (BSA), 2023 - Section 63 (Admissibility of electronic records and hash value integrity)',
+      'Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023 - Section 105 (Audio-visual electronic recording)',
+      'Information Technology Act, 2000 (Section 43 & 66 - Unauthorized access to computer systems)'
+    ],
+    legalCitations: [
+      'Article 21, Constitution of India - Privacy is a fundamental constitutional right extending to digital storage and communication',
+      'Article 20(3), Constitution of India - Right against self-incrimination protects against forced disclosure of biometric or cryptographic passcodes',
+      'Section 105 BNSS 2023 - Digital seizure requires strict procedural recording, witness endorsement, and generation of cryptographic hash',
+      'Justice K.S. Puttaswamy (Retd.) v. Union of India, (2017) 10 SCC 1 (9-Judge Bench) - Smartphones hold the digital persona and intimate private lives of individuals; arbitrary warrantless searches violate Article 21',
+      'Virendra Khanna v. State of Karnataka, 2021 SCC OnLine Kar 5032 - Judicial guidelines on electronic device seizures and passwords'
+    ],
     legalShield: 'Article 21 (Fundamental Right to Privacy), Article 20(3) (Protection against self-incrimination), Section 91 & 100 CrPC.',
     landmarkCase: 'Justice K.S. Puttaswamy (Retd.) v. Union of India (2017) 10 SCC 1 - Privacy is a fundamental constitutional right; smartphones contain intimate personal data and cannot be searched randomly without judicial warrant.',
     summaryRights: [
@@ -1374,6 +1565,7 @@ export const SITUATION_STEPS: SituationStep[] = [
         url: 'https://main.sci.gov.in',
         department: 'Supreme Court of India',
         type: 'judgement',
+        citationRef: '(2017) 10 SCC 1',
         description: 'Landmark 9-Judge bench judgment declaring privacy as a fundamental right.'
       }
     ],
@@ -1408,6 +1600,21 @@ export const SITUATION_STEPS: SituationStep[] = [
     situation: 'A traffic cop stops your vehicle, attempts to forcibly pull out the car/bike keys from the ignition, threatens to tow the vehicle while you are inside, or demands physical documents despite having digital copies.',
     category: 'traffic',
     severity: 'warning',
+    sourceActName: 'Motor Vehicles Act 1988 (Sec 127, 130) & Rule 139 CMVR',
+    sourceSectionOrArticle: 'Section 127, 130, 200 MVA 1988 & Rule 139 Central Motor Vehicles Rules 1989',
+    sources: [
+      'Motor Vehicles Act, 1988 (Section 127 - Removal of motor vehicles abandoned or left unattended)',
+      'Motor Vehicles Act, 1988 (Section 130 - Duty to produce licence and certificate of registration)',
+      'Central Motor Vehicles Rules, 1989 - Rule 139 (Production of electronic documents)',
+      'Ministry of Road Transport and Highways (MoRTH) Circular RT-11036/64/2017-MVL',
+      'Information Technology Act, 2000 - Section 4 (Legal recognition of electronic records)'
+    ],
+    legalCitations: [
+      'Section 127, Motor Vehicles Act 1988 - Expressly restricts towing or moving of motor vehicles when any person or passenger is occupying the vehicle',
+      'Rule 139, Central Motor Vehicles Rules 1989 (as amended) - Production of electronic documents via DigiLocker / mParivahan has full statutory equivalence to physical documents',
+      'Section 200, Motor Vehicles Act 1988 - Only officers of the rank of Assistant Sub-Inspector (ASI) / Sub-Inspector (SI) and above are legally empowered to compound fines on spot',
+      'High Court & MoRTH Directives - Police officers possess no legal authority to forcefully remove ignition keys from running vehicles or deflate tyres'
+    ],
     legalShield: 'Motor Vehicles Act 1988 (Sec 127, 130), IT Act Sec 4, MoRTH DigiLocker/mParivahan Notifications, State Police Conduct Rules.',
     landmarkCase: 'High Court Directives & MoRTH Circular RT-11036/64/2017-MVL - Key snatching prohibited; Sec 127 MVA bans towing occupied vehicles.',
     summaryRights: [
@@ -1453,6 +1660,8 @@ export const SITUATION_STEPS: SituationStep[] = [
         url: 'https://parivahan.gov.in',
         department: 'MoRTH, Government of India',
         type: 'portal',
+        gazetteRef: 'Rule 139 Central Motor Vehicles Rules 1989',
+        citationRef: 'Notification RT-11036/64/2017-MVL',
         description: 'Official portal for DigiLocker document validity & e-Challan payment.'
       }
     ],
@@ -1492,6 +1701,20 @@ export const SITUATION_STEPS: SituationStep[] = [
     situation: 'A police officer calls you on your mobile phone and orders you to appear at the police station immediately without sharing details of any FIR or complaint.',
     category: 'fundamental_rights',
     severity: 'warning',
+    sourceActName: 'Bharatiya Nagarik Suraksha Sanhita (BNSS) 2023 & Constitution of India',
+    sourceSectionOrArticle: 'Section 35(3) & Section 179 BNSS 2023 / Section 41A & 160 CrPC, Article 21 Constitution',
+    sources: [
+      'Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023 - Section 35(3) (Notice of appearance)',
+      'Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023 - Section 179 (Police officer\'s power to require attendance of witnesses)',
+      'Constitution of India (Article 21 - Protection of life and personal liberty)',
+      'Code of Criminal Procedure, 1973 - Section 41A & Section 160'
+    ],
+    legalCitations: [
+      'Section 35(3) BNSS 2023 (earlier Sec 41A CrPC) - Mandatory issuance of formal written notice of appearance for any offense punishable up to 7 years imprisonment',
+      'Section 179(1) Proviso BNSS 2023 (earlier Sec 160(1) CrPC) - Strictly bars summoning women, children below 15, elders above 60, or disabled persons to station for questioning',
+      'Arnesh Kumar v. State of Bihar, (2014) 8 SCC 273 - Informal or threatening verbal summons without written compliance checklist violate fundamental rights and warrant disciplinary action',
+      'Satender Kumar Antil v. CBI, (2022) 10 SCC 51 - Strict adherence to Section 41A / Section 35(3) statutory notice procedures'
+    ],
     legalShield: 'Section 35(3) & Section 179 BNSS 2023 (earlier Sec 41A & 160 CrPC), Article 21 Constitution of India.',
     landmarkCase: 'Arnesh Kumar v. State of Bihar & Satender Kumar Antil - Mandatory formal written notice; informal verbal summons are unlawful.',
     summaryRights: [
@@ -1535,6 +1758,8 @@ export const SITUATION_STEPS: SituationStep[] = [
         url: 'https://www.indiacode.nic.in/handle/123456789/20063',
         department: 'Ministry of Law and Justice',
         type: 'act',
+        gazetteRef: 'Gazette of India, Extraordinary, Part II, Section 1 (Act No. 46 of 2023)',
+        citationRef: 'BNSS 2023 Section 35(3) & Section 179',
         description: 'Statutory provisions for Notice of Appearance (Section 35(3)) and Witness Examination (Section 179).'
       }
     ],
@@ -1572,6 +1797,22 @@ export const SITUATION_STEPS: SituationStep[] = [
     situation: 'Police detain you or a family member and use physical force, intimidation, or threats to extract a confession or make you sign blank sheets of paper.',
     category: 'arrest',
     severity: 'critical',
+    sourceActName: 'Bharatiya Sakshya Adhiniyam (BSA) 2023 & Bharatiya Nagarik Suraksha Sanhita (BNSS) 2023',
+    sourceSectionOrArticle: 'Section 23 BSA 2023 / Section 25 IEA 1872, Section 53/54 & 182 BNSS 2023, Article 20(3) & 21 Constitution',
+    sources: [
+      'Bharatiya Sakshya Adhiniyam (BSA), 2023 - Section 23 (Confession to police officer not to be proved)',
+      'Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023 - Section 53 & Section 54 (Examination of arrested person by medical officer)',
+      'Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023 - Section 182 (No inducement to be offered)',
+      'Constitution of India (Article 20(3) - Right against self-incrimination & Article 21 - Protection against torture)',
+      'Universal Declaration of Human Rights & UN Convention Against Torture (Article 5)'
+    ],
+    legalCitations: [
+      'Section 23 BSA 2023 (earlier Section 25 Indian Evidence Act) - Unconditional absolute bar on admitting confessions made to any police officer in evidence before a court of law',
+      'Article 20(3), Constitution of India - No person accused of any offense shall be compelled to be a witness against himself (Nemo Tenetur Seipsum Accusare)',
+      'Section 54 BNSS 2023 (earlier Section 54 CrPC) - Right of arrested person to immediate medical examination on judicial record documenting visible bruises, fractures, or custodial torture marks',
+      'Nandini Satpathy v. P.L. Dani, (1978) 2 SCC 424 - Accused citizen holds fundamental right to silence; mental or physical coercion to extract statements is unconstitutional',
+      'D.K. Basu v. State of West Bengal, (1997) 1 SCC 416 - Custodial violence is a direct strike at the rule of law; mandatory compensation and departmental prosecution of offending officers'
+    ],
     legalShield: 'Section 23 Bharatiya Sakshya Adhiniyam, 2023 (BSA), Article 20(3) & 21 Constitution of India, Section 182 BNSS, Section 53/54 BNSS.',
     landmarkCase: 'Nandini Satpathy v. P.L. Dani & D.K. Basu v. State of West Bengal - Confessions to police are completely inadmissible in court; right against custodial torture.',
     summaryRights: [
@@ -1617,6 +1858,8 @@ export const SITUATION_STEPS: SituationStep[] = [
         url: 'https://hrcnet.nic.in',
         department: 'NHRC, India',
         type: 'portal',
+        gazetteRef: 'Protection of Human Rights Act, 1993',
+        citationRef: 'Section 12 PHRA 1993',
         description: '24x7 online complaint filing portal for custodial violence and human rights abuses.'
       }
     ],
@@ -1654,6 +1897,20 @@ export const SITUATION_STEPS: SituationStep[] = [
     situation: 'Police officers knock on your door late at night or force their way inside your home without a search warrant.',
     category: 'search',
     severity: 'critical',
+    sourceActName: 'Bharatiya Nagarik Suraksha Sanhita (BNSS) 2023 & Constitution of India',
+    sourceSectionOrArticle: 'Section 185, Section 43(5) & Section 103 BNSS 2023 / Section 165 & 46(4) CrPC',
+    sources: [
+      'Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023 - Section 185 (Search by police officer)',
+      'Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023 - Section 43(5) (Arrest of female person at night)',
+      'Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023 - Section 103 (Persons in charge of closed place to allow search)',
+      'Constitution of India (Article 21 - Protection of Home, Dignity & Personal Liberty)'
+    ],
+    legalCitations: [
+      'Section 185 BNSS 2023 (earlier Section 165 CrPC) - Strict prerequisite of recording written grounds of urgency before any warrantless residential search, forwarded immediately to the Judicial Magistrate',
+      'Section 43(5) BNSS 2023 (earlier Section 46(4) CrPC) - Statutory embargo on arresting female citizens between sunset and sunrise without prior written magisterial sanction',
+      'Section 103(2) BNSS 2023 - Search of apartments where women observe pardanashin custom requires prior notice to withdraw and female officer presence',
+      'State of Maharashtra v. Christian Community Welfare Council of India, (2003) 8 SCC 546 - Supreme Court mandates on female officer presence and strict decorum during home raids'
+    ],
     legalShield: 'BNSS Section 185, Section 43(5) & Section 100(3), Article 21 Constitution of India.',
     landmarkCase: 'State of Maharashtra v. Christian Community Welfare Council (2003) & K.S. Puttaswamy (2017) - Inviolability of home and strict ban on night arrest of women.',
     summaryRights: [
@@ -1698,6 +1955,8 @@ export const SITUATION_STEPS: SituationStep[] = [
         url: 'http://ncw.nic.in',
         department: 'NCW, Government of India',
         type: 'portal',
+        gazetteRef: 'National Commission for Women Act 1990',
+        citationRef: 'Section 10 NCW Act',
         description: 'Direct portal for complaints regarding violation of women safety rules by law enforcement.'
       }
     ],
@@ -1736,6 +1995,20 @@ export const SITUATION_STEPS: SituationStep[] = [
     situation: 'An officer halts you, demands that you unlock your phone, scrolls through your private WhatsApp messages/gallery, or threatens to seize your electronic devices without justification.',
     category: 'phone_privacy',
     severity: 'warning',
+    sourceActName: 'Bharatiya Nagarik Suraksha Sanhita (BNSS) 2023 & Bharatiya Sakshya Adhiniyam (BSA) 2023',
+    sourceSectionOrArticle: 'Section 105 BNSS 2023, Section 63 BSA 2023, Article 21 & Article 20(3) Constitution',
+    sources: [
+      'Constitution of India (Articles 20(3) & 21 - Constitutional Privacy and Protection against Self-Incrimination)',
+      'Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023 - Section 105 (Recording of search and seizure through audio-video electronic means)',
+      'Bharatiya Sakshya Adhiniyam (BSA), 2023 - Section 63 (Admissibility of electronic records and hash value validation)',
+      'Information Technology Act, 2000 - Section 66E (Violation of privacy)'
+    ],
+    legalCitations: [
+      'Justice K.S. Puttaswamy (Retd.) v. Union of India, (2017) 10 SCC 1 - 9-Judge Constitution Bench established that digital devices contain intimate personal privacy protected under Article 21',
+      'Article 20(3), Constitution of India - Constitutional protection against forced passcode disclosure without judicial warrant',
+      'Section 105 BNSS 2023 - Mandatory digital recording of seizure process and delivery of inventory to occupant',
+      'Virendra Khanna v. State of Karnataka, 2021 SCC OnLine Kar 5032 - Strict protocol requiring cryptographic Hash Values (SHA-256) and Panchnama for digital device custody'
+    ],
     legalShield: 'Article 21 Constitution (Fundamental Right to Privacy), Article 20(3), Section 105 BNSS, Section 63 BSA 2023.',
     landmarkCase: 'Justice K.S. Puttaswamy (Retd.) v. Union of India (2017) & Virendra Khanna v. State of Karnataka - Smartphones carry intimate digital life; warrants & hash values are mandatory.',
     summaryRights: [
@@ -1778,6 +2051,8 @@ export const SITUATION_STEPS: SituationStep[] = [
         url: 'https://cybercrime.gov.in',
         department: 'Ministry of Home Affairs',
         type: 'portal',
+        gazetteRef: 'Information Technology Act, 2000',
+        citationRef: 'Section 66E IT Act',
         description: 'Official national cyber portal to report digital harassment and device snooping.'
       }
     ],
@@ -1815,6 +2090,20 @@ export const SITUATION_STEPS: SituationStep[] = [
     situation: 'A landlord or business partner brings the local police to your house/shop to threaten eviction, lock the premises, or force a financial settlement without a court order.',
     category: 'fundamental_rights',
     severity: 'warning',
+    sourceActName: 'Transfer of Property Act 1882 & Specific Relief Act 1963',
+    sourceSectionOrArticle: 'Section 6 Specific Relief Act 1963, Section 108 Transfer of Property Act 1882, Article 300A Constitution',
+    sources: [
+      'Specific Relief Act, 1963 - Section 6 (Suit by person dispossessed of immovable property)',
+      'Transfer of Property Act, 1882 - Section 108 & 111 (Rights and liabilities of lessor and lessee)',
+      'Constitution of India (Article 300A - Persons not to be deprived of property save by authority of law)',
+      'Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023 - Section 164 & 167 (Disputes as to immovable property)'
+    ],
+    legalCitations: [
+      'Section 6, Specific Relief Act 1963 - Direct summary remedy against unlawful dispossession without following due process of civil law',
+      'Article 300A, Constitution of India - Constitutional protection against arbitrary deprivation of tenancy and possession rights',
+      'Bishandas v. State of Punjab, AIR 1961 SC 1570 - The State, its police, and executive officers cannot take the law into their own hands to dispossess citizens without a decree from a competent civil court',
+      'Express Newspapers Pvt. Ltd. v. Union of India, (1986) 1 SCC 133 - Police intervention in civil contracts or tenant evictions is ultra vires and unlawful'
+    ],
     legalShield: 'Transfer of Property Act 1882, Specific Relief Act 1963, Article 21 & 300A Constitution, Section 173 BNSS.',
     landmarkCase: 'Bishandas v. State of Punjab (1961) & Express Newspapers - Executive and police have zero power to dispossess tenants or decide title without a Civil Court decree.',
     summaryRights: [
@@ -1858,6 +2147,8 @@ export const SITUATION_STEPS: SituationStep[] = [
         url: 'https://nalsa.gov.in',
         department: 'Ministry of Law and Justice',
         type: 'portal',
+        gazetteRef: 'Legal Services Authorities Act, 1987',
+        citationRef: 'Section 12 LSA Act 1987',
         description: 'Get free civil legal assistance and duty advocates for tenant protection.'
       }
     ],
@@ -1895,6 +2186,21 @@ export const SITUATION_STEPS: SituationStep[] = [
     situation: 'Police stop an adult couple sitting in a park, café, or hotel room, threaten to call their parents, or demand money under the pretext of "obscenity" or "public nuisance".',
     category: 'women_child',
     severity: 'warning',
+    sourceActName: 'Bharatiya Nyaya Sanhita (BNS) 2023 & Constitution of India',
+    sourceSectionOrArticle: 'Section 296 BNS 2023 / Section 294 IPC, Articles 19(1)(a), 19(1)(d) & 21 Constitution',
+    sources: [
+      'Constitution of India (Article 19(1)(a), Article 19(1)(d) & Article 21 - Personal Liberty and Privacy)',
+      'Bharatiya Nyaya Sanhita (BNS), 2023 - Section 296 (Obscene acts and songs)',
+      'Indian Penal Code, 1860 - Section 294',
+      'National Commission for Women Act, 1990 (Act No. 20 of 1990)'
+    ],
+    legalCitations: [
+      'Article 21, Constitution of India - The right of consenting adult citizens to choose partners and associate without state harassment is a core facet of personal liberty',
+      'Section 296 BNS 2023 (earlier Section 294 IPC) - Holding hands, conversing, or sitting peacefully does not meet the legal threshold of causing annoyance or obscenity in public',
+      'Shafin Jahan v. Asokan K.M. (Hadiya Case), (2018) 16 SCC 368 - Consenting adults possess absolute constitutional freedom to live their personal lives without parental or police veto',
+      'Navtej Singh Johar v. Union of India, (2018) 1 SCC 1 - Constitutional morality prevails over public or police moral policing',
+      'S. Khushboo v. Kanniammal, (2010) 5 SCC 600 - Consensual cohabitation and association between adults is completely legal'
+    ],
     legalShield: 'Article 19(1)(a), Article 19(1)(d) & Article 21 Constitution, Section 296 BNS (earlier Sec 294 IPC).',
     landmarkCase: 'Shafin Jahan v. Asokan K.M. (Hadiya Case 2018) & Navtej Singh Johar (2018) - Consenting adults possess absolute constitutional freedom of choice, association, and privacy.',
     summaryRights: [
@@ -1940,6 +2246,8 @@ export const SITUATION_STEPS: SituationStep[] = [
         url: 'http://ncw.nic.in',
         department: 'NCW India',
         type: 'portal',
+        gazetteRef: 'National Commission for Women Act, 1990',
+        citationRef: 'Act No. 20 of 1990',
         description: 'Helpline 7827170170 for complaints against moral policing and harassment of women.'
       }
     ],
@@ -1977,6 +2285,20 @@ export const SITUATION_STEPS: SituationStep[] = [
     situation: 'Police detain you prior to a planned peaceful assembly, protest, or during election cycles citing "preventive measures".',
     category: 'arrest',
     severity: 'warning',
+    sourceActName: 'Bharatiya Nagarik Suraksha Sanhita (BNSS) 2023 & Constitution of India',
+    sourceSectionOrArticle: 'Section 170, Section 126/128 BNSS 2023 / Section 151 & 107/116 CrPC, Article 22 Constitution',
+    sources: [
+      'Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023 - Section 170 (Arrest to prevent the commission of cognizable offences)',
+      'Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023 - Section 126 & 128 (Security for keeping peace and good behavior)',
+      'Constitution of India (Articles 19(1)(b) & 22 - Protection against arbitrary arrest and detention)',
+      'Code of Criminal Procedure, 1973 - Section 151, Section 107 & Section 116'
+    ],
+    legalCitations: [
+      'Section 170 BNSS 2023 (earlier Section 151 CrPC) - Strict limitation prohibiting detention beyond 24 hours without explicit remand from a Judicial Magistrate',
+      'Article 22(1) & 22(2), Constitution of India - Constitutional guarantee of being informed of grounds of arrest, right to consult an advocate of choice, and production before Magistrate within 24 hours',
+      'Ahmed Noormohmed Bhatinda v. State of Gujarat, (2015) 3 SCC 225 - Preventive detention under Section 151/170 cannot be misused to stifle legitimate democratic dissent or peaceful assemblies',
+      'D.K. Basu v. State of West Bengal, (1997) 1 SCC 416 - Mandatory inspection memos, custody logs, and intimate notifications to family apply with equal rigor to preventive detentions'
+    ],
     legalShield: 'Section 170 BNSS (earlier Sec 151 CrPC), Sections 126 & 128 BNSS (earlier Sec 107/116 CrPC), Article 19(1)(b) & Article 22 Constitution.',
     landmarkCase: 'Ahmed Noormohmed Bhatinda v. State of Gujarat & D.K. Basu - Preventive detention under Sec 151/170 cannot exceed 24 hours without Judicial Magistrate authorization.',
     summaryRights: [
@@ -2021,6 +2343,8 @@ export const SITUATION_STEPS: SituationStep[] = [
         url: 'https://nalsa.gov.in',
         department: 'NALSA India',
         type: 'portal',
+        gazetteRef: 'Legal Services Authorities Act, 1987',
+        citationRef: 'Section 12 LSA Act 1987',
         description: 'Dial 15100 for instant free legal aid lawyer assistance during preventive detention.'
       }
     ],

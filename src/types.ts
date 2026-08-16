@@ -34,8 +34,10 @@ export interface OfficialSourceLink {
   title: string;
   url: string;
   department: string;
-  type: 'act' | 'portal' | 'judgement' | 'helpline' | 'form';
+  type: 'act' | 'portal' | 'judgement' | 'helpline' | 'form' | 'gazette';
   description?: string;
+  gazetteRef?: string;
+  citationRef?: string;
 }
 
 export interface LegalRight {
@@ -56,6 +58,8 @@ export interface LegalRight {
   officialLinks?: OfficialSourceLink[];
   sourceActName?: string;
   sourceSectionOrArticle?: string;
+  sources?: string[];
+  legalCitations?: string[];
   translations?: Partial<Record<SupportedLanguage, {
     title: string;
     summary: string;
@@ -76,6 +80,11 @@ export interface SituationStep {
   legalShield: string; // Step 2: Your Rights
   summaryRights?: string[]; // Quick summary rights points for 30-sec scan
   landmarkCase?: string; // Landmark Supreme Court Precedent
+  sources?: string[]; // Official primary sources, acts, and official gazettes
+  legalCitations?: string[]; // Standardized statutory & constitutional legal citations
+  sourceActName?: string;
+  sourceSectionOrArticle?: string;
+  officialLinks?: OfficialSourceLink[]; // Direct links to India Code, Supreme Court, Gazette, or Gov Portals
   immediateActions: string[]; // Step 3: What To Do Now
   doNotDo: string[]; // What NOT to do
   sayThis: string; // Exact Spoken Verbal Script
@@ -95,9 +104,6 @@ export interface SituationStep {
   };
   detailedExplanation?: string;
   departmentId?: string;
-  officialLinks?: OfficialSourceLink[];
-  sourceActName?: string;
-  sourceSectionOrArticle?: string;
   translations?: Partial<Record<SupportedLanguage, {
     title: string;
     situation: string;

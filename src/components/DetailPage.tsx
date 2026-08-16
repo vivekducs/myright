@@ -25,6 +25,7 @@ import { LegalRight, SituationStep, DepartmentLink, DKBasuGuideline, ScriptDialo
 import { getT, LANGUAGE_OPTIONS } from '../data/translations';
 import { LEGAL_RIGHTS, SITUATION_STEPS, EMERGENCY_CONTACTS } from '../data/legalData';
 import { OFFICIAL_DEPARTMENTS } from '../data/departmentData';
+import { LegalCitationsAndSourcesSection } from '../utils/legalHelpers';
 
 interface DetailPageProps {
   target: DetailPageTarget;
@@ -399,41 +400,46 @@ export const DetailPage: React.FC<DetailPageProps> = ({
 
       {/* Immediate Steps & Mistakes to Avoid (If Situation) */}
       {sitItem && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="p-6 sm:p-7 rounded-[32px] bg-emerald-50/95 border-2 border-emerald-300 shadow-md space-y-4">
-            <div className="flex items-center gap-2 text-emerald-900 text-xs font-black uppercase tracking-wider">
-              <CheckCircle2 className="w-4 h-4 text-emerald-700" />
-              <span>{t.immediateActions}</span>
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="p-6 sm:p-7 rounded-[32px] bg-emerald-50/95 border-2 border-emerald-300 shadow-md space-y-4">
+              <div className="flex items-center gap-2 text-emerald-900 text-xs font-black uppercase tracking-wider">
+                <CheckCircle2 className="w-4 h-4 text-emerald-700" />
+                <span>{t.immediateActions}</span>
+              </div>
+              <ul className="space-y-2.5">
+                {sitItem.immediateActions.map((step, idx) => (
+                  <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-emerald-950 font-bold leading-relaxed">
+                    <span className="w-5 h-5 rounded-full bg-emerald-200 text-emerald-900 flex items-center justify-center text-xs font-black shrink-0 mt-0.5">
+                      {idx + 1}
+                    </span>
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <ul className="space-y-2.5">
-              {sitItem.immediateActions.map((step, idx) => (
-                <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-emerald-950 font-bold leading-relaxed">
-                  <span className="w-5 h-5 rounded-full bg-emerald-200 text-emerald-900 flex items-center justify-center text-xs font-black shrink-0 mt-0.5">
-                    {idx + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ul>
+
+            <div className="p-6 sm:p-7 rounded-[32px] bg-rose-50/95 border-2 border-rose-300 shadow-md space-y-4">
+              <div className="flex items-center gap-2 text-rose-900 text-xs font-black uppercase tracking-wider">
+                <XCircle className="w-4 h-4 text-rose-700" />
+                <span>{t.avoidMistakes}</span>
+              </div>
+              <ul className="space-y-2.5">
+                {sitItem.doNotDo.map((mistake, idx) => (
+                  <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-rose-950 font-bold leading-relaxed">
+                    <span className="w-5 h-5 rounded-full bg-rose-200 text-rose-900 flex items-center justify-center text-xs font-black shrink-0 mt-0.5">
+                      ✕
+                    </span>
+                    <span>{mistake}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
-          <div className="p-6 sm:p-7 rounded-[32px] bg-rose-50/95 border-2 border-rose-300 shadow-md space-y-4">
-            <div className="flex items-center gap-2 text-rose-900 text-xs font-black uppercase tracking-wider">
-              <XCircle className="w-4 h-4 text-rose-700" />
-              <span>{t.avoidMistakes}</span>
-            </div>
-            <ul className="space-y-2.5">
-              {sitItem.doNotDo.map((mistake, idx) => (
-                <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-rose-950 font-bold leading-relaxed">
-                  <span className="w-5 h-5 rounded-full bg-rose-200 text-rose-900 flex items-center justify-center text-xs font-black shrink-0 mt-0.5">
-                    ✕
-                  </span>
-                  <span>{mistake}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+          {/* Legal Citations, Official Sources & Learn More Links */}
+          <LegalCitationsAndSourcesSection step={sitItem} />
+        </>
       )}
 
       {/* Official Government Portals & Department Links Connected to this Right */}
