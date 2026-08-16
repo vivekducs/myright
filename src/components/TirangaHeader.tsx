@@ -31,7 +31,7 @@ export const TirangaHeader: React.FC<TirangaHeaderProps> = ({ language, setLangu
       </div>
 
       {/* Official Government of India Top Banner */}
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-1.5 flex items-center justify-between gap-3">
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-1.5 flex items-center justify-between gap-3">
         {/* Left: Ashok Stambha & National Portal Tag */}
         <div className="flex items-center gap-2.5">
           <img src={flagSvg} alt="Indian Flag" className="h-4 w-6 object-cover shadow-sm border border-slate-700/50 rounded-[1px]" />
@@ -47,12 +47,30 @@ export const TirangaHeader: React.FC<TirangaHeaderProps> = ({ language, setLangu
         <div className="flex items-center gap-4">
           
           <div className="hidden lg:flex items-center gap-3 text-[10px] text-slate-300 font-medium">
-            <button className="hover:text-white transition-colors cursor-pointer">Skip to main content</button>
+            <a href="#main-content" className="hover:text-white transition-colors cursor-pointer outline-none focus:ring-1 focus:ring-teal-400 rounded-sm">Skip to main content</a>
             <span className="text-slate-600">|</span>
             <div className="flex items-center gap-1.5">
-              <button className="hover:text-white transition-colors cursor-pointer">A-</button>
-              <button className="hover:text-white transition-colors cursor-pointer font-bold">A</button>
-              <button className="hover:text-white transition-colors cursor-pointer">A+</button>
+              <button 
+                onClick={() => document.documentElement.style.fontSize = '90%'} 
+                className="hover:text-white transition-colors cursor-pointer"
+                title="Decrease Text Size"
+              >
+                A-
+              </button>
+              <button 
+                onClick={() => document.documentElement.style.fontSize = '100%'} 
+                className="hover:text-white transition-colors cursor-pointer font-bold"
+                title="Normal Text Size"
+              >
+                A
+              </button>
+              <button 
+                onClick={() => document.documentElement.style.fontSize = '110%'} 
+                className="hover:text-white transition-colors cursor-pointer"
+                title="Increase Text Size"
+              >
+                A+
+              </button>
             </div>
             <span className="text-slate-600">|</span>
           </div>

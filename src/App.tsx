@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Routes, Route, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
@@ -35,6 +35,16 @@ export default function App() {
     setDetailTarget(null);
     navigate(`/${tab}`);
   };
+
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname, detailTarget]);
+
+  // Determine if HeroSection should be visible
+  // We only show it on the home/situations route when no detail page is active
+  const isHomeRoute = location.pathname === '/' || location.pathname === '/situations';
+  const showHeroSection = !detailTarget && isHomeRoute;
 
   const handleSelectQuickSituation = (situationId: string) => {
     setSelectedSituationId(situationId);
@@ -74,8 +84,8 @@ export default function App() {
           onOpenEmergencyModal={() => setIsEmergencyModalOpen(true)}
         />
 
-        {/* Hero Section (Hidden when inside a detail page to maximize minimal distraction-free reading) */}
-        {!detailTarget && (
+        {/* Hero Section (Hidden when inside a detail page or non-home tabs to maximize reading space) */}
+        {showHeroSection && (
           <HeroSection
             searchQuery={searchQuery}
             setSearchQuery={(q) => {
@@ -99,7 +109,7 @@ export default function App() {
         />
 
         {/* Main Content Area */}
-        <main id="main-content-section" className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <main id="main-content" className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
           <AnimatePresence mode="wait">
             
             {/* Detail Page / Dedicated Single View */}

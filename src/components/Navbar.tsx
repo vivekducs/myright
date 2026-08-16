@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Shield, PhoneCall, Globe, BookOpen, AlertOctagon, HelpCircle, MessageSquareText, FileBadge, Check, Sparkles, ChevronDown, Compass, Building2, BookMarked } from 'lucide-react';
+import { Shield, PhoneCall, Globe, BookOpen, AlertOctagon, HelpCircle, MessageSquareText, FileBadge, Check, Sparkles, ChevronDown, Compass, Building2, BookMarked, Search } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { SupportedLanguage } from '../types';
 import { getT } from '../data/translations';
@@ -101,8 +101,17 @@ export const Navbar: React.FC<NavbarProps> = ({
             })}
           </nav>
 
-          {/* Right Actions: SOS Button */}
+          {/* Right Actions: Search & SOS Button */}
           <div className="flex items-center gap-2 sm:gap-2.5">
+            
+            {/* Quick Search Trigger */}
+            <button
+              onClick={() => navigate('/rights')}
+              className="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-600 hover:text-slate-900 flex items-center justify-center transition-all hover:scale-105 cursor-pointer"
+              title="Search Rights & Laws"
+            >
+              <Search className="w-4 h-4" />
+            </button>
 
             {/* Fast SOS Emergency Trigger Button */}
             <motion.button
