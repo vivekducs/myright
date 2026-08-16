@@ -243,7 +243,26 @@ export const GeminiChatbot: React.FC<GeminiChatbotProps> = ({ language }) => {
       const errorMsg: ChatMessage = {
         id: `err-${Date.now()}`,
         role: 'model',
-        text: `Under **Article 21 of the Constitution of India and Section 35 BNSS 2023**, you are protected from arbitrary police harassment. (Offline advisory for: "${text}"). Always ask the officer for their name & police station, demand an official memo/receipt, and dial **112** if facing intimidation.`,
+        text: `### ⚖️ Nyaya Sahayak Legal Advisory
+
+Regarding your inquiry: **"${text}"**
+
+#### 🛡️ 1. Constitutional & Statutory Protections
+- **Fundamental Right**: Under **Article 21 & Article 22 of the Constitution of India**, you are guaranteed protection against unlawful detention, arbitrary body/device searches, and police overreach.
+- **Statutory Mandate**: Under **Section 35 BNSS 2023** (formerly Section 41B CrPC), officers must wear visible identification badges, prepare a written arrest memo, and inform a nominated family member.
+
+#### 📋 2. Recommended Action Steps
+1. **Remain Calm & Polite**: Do not use confrontational language or resist physically.
+2. **Note Officer Identification**: Note their nameplate, designation, vehicle number, and police station.
+3. **Refuse Unwarranted Intrusions**: Do not hand over an unlocked smartphone without a valid search warrant.
+4. **Demand Official Receipts**: Refuse to pay spot cash without an official printed or SMS e-challan.
+
+#### 🗣️ 3. Exact Words to Say
+> *"Officer, I am cooperating fully in accordance with the law. Please show your badge identification and provide an official receipt or memo."*
+
+#### 🚨 4. Emergency Contacts
+- **National Citizen Emergency**: Dial **112** (24/7 Toll-Free)
+- **Free Legal Services (NALSA)**: Dial **15100**`,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         modelUsed: 'offline-fallback',
       };
