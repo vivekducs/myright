@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FileText, ChevronRight, ChevronLeft, Download, ShieldCheck, AlertCircle, Copy, Check } from 'lucide-react';
 import { SupportedLanguage } from '../types';
-import { getT } from '../utils/translations';
+import { getT } from '../data/translations';
 import { triggerLightHaptic, triggerHeavyHaptic } from '../utils/haptics';
 import { jsPDF } from 'jspdf';
 
