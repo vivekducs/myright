@@ -150,7 +150,7 @@ export const StickyAIAssistant: React.FC<StickyAIAssistantProps> = ({ language }
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-24 right-4 sm:right-6 w-[340px] sm:w-[380px] h-[500px] max-h-[75vh] bg-white rounded-3xl shadow-2xl shadow-slate-900/20 border border-slate-200 z-50 flex flex-col overflow-hidden flex-shrink-0"
+            className="fixed bottom-28 sm:bottom-24 right-4 sm:right-6 w-[calc(100vw-32px)] sm:w-[380px] h-[500px] max-h-[75vh] bg-white rounded-3xl shadow-2xl shadow-slate-900/20 border border-slate-200 z-50 flex flex-col overflow-hidden flex-shrink-0"
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-[#0B1A2C] to-slate-900 p-4 text-white flex items-center justify-between shadow-md">
@@ -259,7 +259,7 @@ export const StickyAIAssistant: React.FC<StickyAIAssistantProps> = ({ language }
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-500 hover:to-emerald-500 text-white px-5 py-3.5 rounded-full shadow-lg shadow-teal-600/30 border border-teal-400/30 cursor-pointer group"
+            className="fixed bottom-28 sm:bottom-6 right-4 sm:right-6 z-50 flex items-center gap-2.5 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-500 hover:to-emerald-500 text-white px-5 py-3.5 rounded-full shadow-lg shadow-teal-600/30 border border-teal-400/30 cursor-pointer group"
           >
             <div className="relative">
               <Sparkles className="w-5 h-5 text-teal-100 group-hover:animate-pulse" />

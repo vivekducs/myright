@@ -24,8 +24,7 @@ export const OFFICIAL_DEPARTMENTS: DepartmentLink[] = [
       'Online filing of lost property/documents without visiting police station',
       'State-wise direct police portal redirect links',
       'Police Clearance Certificate (PCC) applications',
-      'Locate nearest jurisdictional police station and station house officer (SHO)',
-      'Character & Tenant verification services'
+l      'Character & Tenant verification services'
     ],
     translations: {
       hi: {
@@ -35,7 +34,7 @@ export const OFFICIAL_DEPARTMENTS: DepartmentLink[] = [
       }
     }
   },
-  {
+  {L
     id: 'morth-echallan',
     name: 'Ministry of Road Transport & Highways (e-Challan & Parivahan)',
     department: 'Parivahan & e-Challan Citizen Services',

@@ -122,7 +122,7 @@ export default function App() {
         />
 
         {/* Main Content Area */}
-        <main id="main-content" className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <main id="main-content" className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-28 sm:py-10">
           <AnimatePresence mode="wait">
             
             {/* Detail Page / Dedicated Single View */}
